@@ -1,5 +1,6 @@
 class Fraction:
-    # The class represents rational number p/q, q!=0, the fraction is irreducible
+    # The class represents rational number p/q, q!=0,
+    # and the fraction is irreducible
     p = 0
     q = 1
 
