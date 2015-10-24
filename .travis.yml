@@ -6,7 +6,7 @@ python:
 install: "pip install -r requirements.txt"
 # command to run tests
 script:
-  - nosetests code\\* --with-coverage
+  - nosetests code/* --with-coverage
   - pep8 code
 
 after_success:
