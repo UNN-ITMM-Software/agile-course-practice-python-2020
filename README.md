@@ -1,4 +1,4 @@
-# Спецкурс "Agile Development"
+# Спецкурс "Agile Development". Python версия репозитория
 
 [![Build Status][travis-badge]][travis]
 [![Coverage Status][coveralls-badge]][coveralls]
@@ -23,10 +23,10 @@
 
 <!-- LINKS -->
 
-[travis]:           https://travis-ci.org/UNN-VMK-Software/agile-course-practice
-[travis-badge]:     https://travis-ci.org/UNN-VMK-Software/agile-course-practice.svg
-[coveralls]:        https://coveralls.io/r/UNN-VMK-Software/agile-course-practice
-[coveralls-badge]:  https://img.shields.io/coveralls/UNN-VMK-Software/agile-course-practice.svg
+[travis]:           https://travis-ci.org/GodfatherThe/agile-course-practice-python
+[travis-badge]:     https://api.travis-ci.org/GodfatherThe/agile-course-practice-python.svg?branch=master
+[coveralls]:        https://coveralls.io/github/GodfatherThe/agile-course-practice-python
+[coveralls-badge]:  https://coveralls.io/repos/GodfatherThe/agile-course-practice-python/badge.svg?branch=master&service=github
 [cc3]:              http://creativecommons.org/licenses/by-sa/3.0/
 [list]:             https://groups.google.com/forum/?hl=ru#!forum/agile-development-course
 [hall-of-fame]:     https://docs.google.com/spreadsheets/d/1JXyJBOlLZ8yvMGVVAJ6U3uiH10mMzcm-6n77SWg3p9Q/edit?authkey=CNXx0YMC&authkey=CNXx0YMC#gid=823569082
