@@ -1,15 +1,4 @@
-# noinspection PyPep8Naming
-def GCD(p, q):
-    if q == 0:
-        return p
-    else:
-        return GCD(q, p % q)
-
-
-# noinspection PyPep8Naming
-def LCM(p, q):
-    return p * q / GCD(p, q)
-
+import rational_math
 
 class InvalidFractionError(Exception):
     pass
@@ -24,7 +13,7 @@ class Fraction:
     def __init__(self, p=0, q=1):
         if q == 0:
             raise InvalidFractionError('q cannot be equal to zero')
-        common_divisor = GCD(p, q)
+        common_divisor = rational_math.GCD(p, q)
         self.p = p / common_divisor
         self.q = q / common_divisor
 
@@ -35,7 +24,7 @@ class Fraction:
         return Fraction(self.p * other.p, self.q * other.q)
 
     def __add__(self, other):
-        common_multiple = LCM(self.q, other.q)
+        common_multiple = rational_math.LCM(self.q, other.q)
         self_multiplier = common_multiple / self.q
         other_multiplier = common_multiple / other.q
         return Fraction(self.p * self_multiplier +
