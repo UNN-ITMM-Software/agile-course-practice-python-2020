@@ -1,6 +1,6 @@
 import unittest
 
-from fraction import Fraction, GCD
+from fraction import Fraction, GCD, LCM
 
 
 class TestFractionClass(unittest.TestCase):
@@ -18,13 +18,34 @@ class TestFractionClass(unittest.TestCase):
         self.assertEqual(frac.p, 1)
         self.assertEqual(frac.q, 2)
 
-    # def test_auto_reduce_fraction(self):
-    #     frac = Fraction(2, 4)
-    #     self.assertEqual(frac.p, 1)
-    #     self.assertEqual(frac.q, 2)
+    def test_auto_reduce_fraction(self):
+        frac = Fraction(2, 4)
+        self.assertEqual(frac.p, 1)
+        self.assertEqual(frac.q, 2)
+
+    def test_multiply_fraction(self):
+        frac_1 = Fraction(1, 3)
+        frac_2 = Fraction(2, 5)
+        result = frac_1 * frac_2
+        self.assertEqual(result.p, 2)
+        self.assertEqual(result.q, 15)
+
+    def test_sum_fraction_1_2_1_2(self):
+        frac_1 = Fraction(1, 2)
+        frac_2 = Fraction(1, 2)
+        result = frac_1 + frac_2
+        self.assertEqual(result.p, 1)
+        self.assertEqual(result.q, 1)
+
+    def test_sum_fraction_1_2_1_3(self):
+        frac_1 = Fraction(1, 2)
+        frac_2 = Fraction(1, 3)
+        result = frac_1 + frac_2
+        self.assertEqual(result.p, 5)
+        self.assertEqual(result.q, 6)
 
 
-class TestGCD(unittest.TestCase):
+class TestMathFunctions(unittest.TestCase):
     def test_GCD_1_1(self):
         self.assertEqual(GCD(1, 1), 1)
 
@@ -33,3 +54,6 @@ class TestGCD(unittest.TestCase):
 
     def test_GCD_81_35(self):
         self.assertEqual(GCD(81, 35), 1)
+
+    def test_LCM_1_2(self):
+        self.assertEqual(LCM(1, 2), 2)
