@@ -70,4 +70,4 @@ class TestFractionClass(unittest.TestCase):
 
     def test_can_get_int_part(self):
         frac = Fraction(7, 3)
-        self.assertEqual(frac.get_int_part(), 2)
+        self.assertEqual(frac.get_integer_part(), 2)

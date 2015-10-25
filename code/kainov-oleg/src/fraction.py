@@ -42,7 +42,7 @@ class Fraction:
         return Fraction(self.p * self_multiplier +
                         other.p * other_multiplier, common_multiple)
 
-    def get_int_part(self):
+    def get_integer_part(self):
         return self.p / self.q
 
     def to_decimal(self):
