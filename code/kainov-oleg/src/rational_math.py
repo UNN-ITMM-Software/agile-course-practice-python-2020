@@ -6,8 +6,7 @@ def euclidean_algorithm(a, b):
         yield quotient, remainder
 
 
-# noinspection PyPep8Naming
-def GCD(p, q):
+def gcd(p, q):
     previous_remainder = q
     for quotient, remainder in euclidean_algorithm(p, q):
         if remainder != 0:
@@ -15,6 +14,5 @@ def GCD(p, q):
     return previous_remainder
 
 
-# noinspection PyPep8Naming
-def LCM(p, q):
-    return p / GCD(p, q) * q
+def lcm(p, q):
+    return p / gcd(p, q) * q

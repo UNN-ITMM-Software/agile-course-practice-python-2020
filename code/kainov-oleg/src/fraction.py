@@ -25,7 +25,7 @@ class Fraction:
     def __init__(self, p=0, q=1):
         if q == 0:
             raise InvalidFractionError('q cannot be equal to zero')
-        common_divisor = rational_math.GCD(p, q)
+        common_divisor = rational_math.gcd(p, q)
         self.p = p / common_divisor
         self.q = q / common_divisor
 
@@ -36,7 +36,7 @@ class Fraction:
         return Fraction(self.p * other.p, self.q * other.q)
 
     def __add__(self, other):
-        common_multiple = rational_math.LCM(self.q, other.q)
+        common_multiple = rational_math.lcm(self.q, other.q)
         self_multiplier = common_multiple / self.q
         other_multiplier = common_multiple / other.q
         return Fraction(self.p * self_multiplier +
@@ -48,5 +48,5 @@ class Fraction:
     def to_decimal(self):
         return self.p / float(self.q)
 
-    def isEqual(self, p, q):
+    def is_equal(self, p, q):
         return self.p == p and self.q == q
