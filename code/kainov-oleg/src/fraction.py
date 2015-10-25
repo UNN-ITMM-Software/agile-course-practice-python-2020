@@ -48,5 +48,10 @@ class Fraction:
     def to_decimal(self):
         return self.p / float(self.q)
 
+    def to_continuous(self):
+        for quotient, remainder in rational_math.euclidean_algorithm(self.p,
+                                                                     self.q):
+            yield quotient
+
     def is_equal(self, p, q):
         return self.p == p and self.q == q

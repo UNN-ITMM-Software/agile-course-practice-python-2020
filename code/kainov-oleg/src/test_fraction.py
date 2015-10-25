@@ -71,3 +71,17 @@ class TestFractionClass(unittest.TestCase):
     def test_can_get_int_part(self):
         frac = Fraction(7, 3)
         self.assertEqual(frac.get_integer_part(), 2)
+
+    def test_can_convert_to_continuous_1071_462(self):
+        frac = Fraction(1071, 462)
+        expected_coefficients = [2, 3, 7]
+        for actual, expected in zip(frac.to_continuous(),
+                                    expected_coefficients):
+            self.assertEqual(actual, expected)
+
+    def test_can_convert_to_continuous_9_4(self):
+        frac = Fraction(9, 4)
+        expected_coefficients = [2, 4]
+        for actual, expected in zip(frac.to_continuous(),
+                                    expected_coefficients):
+            self.assertEqual(actual, expected)
