@@ -38,7 +38,7 @@ class Fraction:
     def from_decimal(decimal_number):
         int_part = int(decimal_number)
         frac_part = decimal_number - int_part
-        frac_length = len(str(frac_part))
+        frac_length = len(str(frac_part)) - 2  # Leading 0.
 
         q = pow(10, frac_length)
         p = int(frac_part * q) + int_part * q
