@@ -85,3 +85,11 @@ class TestFractionClass(unittest.TestCase):
         for actual, expected in zip(frac.to_continuous(),
                                     expected_coefficients):
             self.assertEqual(actual, expected)
+
+    def test_is_equal_can_return_false_nominator(self):
+        frac = Fraction(1, 2)
+        self.assertFalse(frac.is_equal(1, 6))
+
+    def test_is_equal_can_return_false_denominator(self):
+        frac = Fraction(1, 2)
+        self.assertFalse(frac.is_equal(2, 2))
