@@ -34,6 +34,9 @@ class Fraction:
     def to_decimal(self):
         return self.p / float(self.q)
 
+    def get_int_part(self):
+        return self.p / self.q
+
     @staticmethod
     def from_decimal(decimal_number):
         int_part = int(decimal_number)

@@ -77,3 +77,7 @@ class TestFractionClass(unittest.TestCase):
         frac = Fraction.from_decimal(0.333333333333)
         self.assertEqual(frac.p, 333333333333)
         self.assertEqual(frac.q, 1000000000000)
+
+    def test_can_get_int_part(self):
+        frac = Fraction(7, 3)
+        self.assertEqual(frac.get_int_part(), 2)
