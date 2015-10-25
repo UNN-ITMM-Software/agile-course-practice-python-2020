@@ -1,10 +1,9 @@
 # noinspection PyPep8Naming
 def GCD(p, q):
-    if q == 0:
-        return p
-    else:
-        return GCD(q, p % q)
-
+    while q != 0:
+        p = p % q
+        p, q = q, p
+    return p
 
 # noinspection PyPep8Naming
 def LCM(p, q):
