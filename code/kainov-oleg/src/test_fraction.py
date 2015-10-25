@@ -41,6 +41,13 @@ class TestFractionClass(unittest.TestCase):
         self.assertEqual(result.p, 1)
         self.assertEqual(result.q, 1)
 
+    def test_sum_fraction_1_2_minus_1_2(self):
+        frac_1 = Fraction(1, 2)
+        frac_2 = Fraction(-1, 2)
+        result = frac_1 + frac_2
+        self.assertEqual(result.p, 0)
+        self.assertEqual(result.q, 1)
+
     def test_sum_fraction_1_2_1_3(self):
         frac_1 = Fraction(1, 2)
         frac_2 = Fraction(1, 3)
@@ -51,3 +58,22 @@ class TestFractionClass(unittest.TestCase):
     def test_can_print_fraction(self):
         frac = Fraction(5, 7)
         self.assertEqual(str(frac), '5/7')
+
+    def test_can_convert_to_decimal_1_2(self):
+        frac = Fraction(1, 2)
+        self.assertEqual(frac.to_decimal(), 0.5)
+
+    def test_can_convert_from_decimal_0_5(self):
+        frac = Fraction.from_decimal(0.5)
+        self.assertEqual(frac.p, 1)
+        self.assertEqual(frac.q, 2)
+
+    def test_can_convert_from_decimal_0_75(self):
+        frac = Fraction.from_decimal(0.75)
+        self.assertEqual(frac.p, 3)
+        self.assertEqual(frac.q, 4)
+
+    def test_can_convert_from_decimal_0_333333333333(self):
+        frac = Fraction.from_decimal(0.333333333333)
+        self.assertEqual(frac.p, 333333333333)
+        self.assertEqual(frac.q, 1000000000000)

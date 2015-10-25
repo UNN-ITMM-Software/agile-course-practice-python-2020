@@ -1,5 +1,6 @@
 import rational_math
 
+
 class InvalidFractionError(Exception):
     pass
 
@@ -29,3 +30,17 @@ class Fraction:
         other_multiplier = common_multiple / other.q
         return Fraction(self.p * self_multiplier +
                         other.p * other_multiplier, common_multiple)
+
+    def to_decimal(self):
+        return self.p / float(self.q)
+
+    @staticmethod
+    def from_decimal(decimal_number):
+        int_part = int(decimal_number)
+        frac_part = decimal_number - int_part
+        frac_length = len(str(frac_part))
+
+        q = pow(10, frac_length)
+        p = int(frac_part * q) + int_part * q
+
+        return Fraction(p, q)
