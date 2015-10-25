@@ -11,6 +11,10 @@ def LCM(p, q):
     return p * q / GCD(p, q)
 
 
+class InvalidFractionError(Exception):
+    pass
+
+
 class Fraction:
     # The class represents rational number p/q, q!=0,
     # and the fraction is irreducible
@@ -18,9 +22,14 @@ class Fraction:
     q = 1
 
     def __init__(self, p=0, q=1):
+        if q == 0:
+            raise InvalidFractionError('q cannot be equal to zero')
         common_divisor = GCD(p, q)
         self.p = p / common_divisor
         self.q = q / common_divisor
+
+    def __str__(self):
+        return '{p}/{q}'.format(p=self.p, q=self.q)
 
     def __mul__(self, other):
         return Fraction(self.p * other.p, self.q * other.q)

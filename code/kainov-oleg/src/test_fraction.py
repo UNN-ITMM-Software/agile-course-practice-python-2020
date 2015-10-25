@@ -1,6 +1,6 @@
 import unittest
 
-from fraction import Fraction, GCD, LCM
+from fraction import Fraction, GCD, LCM, InvalidFractionError
 
 
 class TestFractionClass(unittest.TestCase):
@@ -17,6 +17,10 @@ class TestFractionClass(unittest.TestCase):
         frac = Fraction(1, 2)
         self.assertEqual(frac.p, 1)
         self.assertEqual(frac.q, 2)
+
+    def test_cannot_create_x_0_fraction(self):
+        with self.assertRaises(InvalidFractionError):
+            Fraction(2, 0)
 
     def test_auto_reduce_fraction(self):
         frac = Fraction(2, 4)
@@ -43,6 +47,10 @@ class TestFractionClass(unittest.TestCase):
         result = frac_1 + frac_2
         self.assertEqual(result.p, 5)
         self.assertEqual(result.q, 6)
+
+    def test_can_print_fraction(self):
+        frac = Fraction(5, 7)
+        self.assertEqual(str(frac), '5/7')
 
 
 class TestMathFunctions(unittest.TestCase):
