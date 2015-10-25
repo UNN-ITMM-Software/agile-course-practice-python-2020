@@ -31,3 +31,4 @@ war/
 
 # Mac
 .DS_Store
+*.pyc
