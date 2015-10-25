@@ -29,4 +29,5 @@ class Fraction:
         common_multiple = LCM(self.q, other.q)
         self_multiplier = common_multiple / self.q
         other_multiplier = common_multiple / other.q
-        return Fraction(self.p*self_multiplier + other.p * other_multiplier, common_multiple)
+        return Fraction(self.p * self_multiplier +
+                        other.p * other_multiplier, common_multiple)
