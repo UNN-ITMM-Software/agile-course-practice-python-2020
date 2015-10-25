@@ -2,7 +2,7 @@ import random
 import copy
 
 class Matrix(object):
-    """ matrix class with some basis func. """
+    """ Matrix class with some basis func. """
 
     def __init__(self, rowsCount, colsCount):
         self.rows = rowsCount
@@ -13,10 +13,9 @@ class Matrix(object):
         s = '\n'.join([' '.join([str(item) for item in row]) for row in self.dataLines])
         return s + '\n'
 
-#---- Matrix filling methods: random filling and filling from list of user-written ----#
     @classmethod
     def makeRandom(cls, rowsCount, colsCount, lowNumberLimit=0, highNumberLimit=10):
-        """ Make a random matrix with elements in range (low-high) """
+        """ Make a random matrix with elements in range (lowNumberLimit-highNumberLimit) """
 
         obj = Matrix(rowsCount, colsCount)
         for x in range(obj.rows):
@@ -25,23 +24,25 @@ class Matrix(object):
 
     @classmethod
     def makeFromList(cls, inputDataList):
-        """ Create a matrix from list """
+        """ Create a matrix from list of user-written"""
 
         dataLines = inputDataList[:]
         return cls.makeMatrix(dataLines)
 
     @classmethod
     def makeMatrix(cls, dataLines):
-
+        """ Helper function for creating matrix """
+        
         m = len(dataLines)
         n = len(dataLines[0])
         mat = Matrix(m, n)
         mat.dataLines = dataLines
         return mat
 
-#---- Calculate determinant ------------------------------------------------------ ----#
     @classmethod
     def deleteColumnAndRow(cls, matrix, delRow, delCol):
+         """ Delete specified column and row from matrix """  
+         
         newMatrix = copy.deepcopy(matrix)
         del newMatrix.dataLines[delRow]
         for i in range(0, newMatrix.rows-1):
@@ -53,6 +54,7 @@ class Matrix(object):
     @classmethod
     def calculateDeterminant(cls, matrix):
         """ Calculate determinant of matrix """
+        
         if matrix.rows == 1 or matrix.cols == 1:
             return  matrix.dataLines[0][0]
         elif matrix.rows == 2 or matrix.cols == 2:
