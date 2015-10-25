@@ -8,7 +8,7 @@ def GCD(p, q):
 
 # noinspection PyPep8Naming
 def LCM(p, q):
-    return p*q / GCD(p, q)
+    return p * q / GCD(p, q)
 
 
 class Fraction:
