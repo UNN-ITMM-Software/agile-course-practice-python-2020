@@ -67,5 +67,5 @@ class Matrix(object):
                 sub_matrix = Matrix.del_col_and_row(matrix, i, 0)
                 sub_det = Matrix.calculate_det(sub_matrix)
                 determinant += (-1) ** (i + 2) *\
-                               matrix.data_lines[i][0] * sub_det
+                    matrix.data_lines[i][0] * sub_det
         return determinant
