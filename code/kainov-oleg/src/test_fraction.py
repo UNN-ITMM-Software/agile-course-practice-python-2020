@@ -84,9 +84,21 @@ class TestFractionClass(unittest.TestCase):
         frac = Fraction.from_decimal(0.5)
         self.assertTrue(frac.is_equal(1, 2))
 
+    def test_can_convert_from_decimal_minus_0_5(self):
+        frac = Fraction.from_decimal(-0.5)
+        self.assertTrue(frac.is_equal(-1, 2))
+
     def test_can_convert_from_decimal_0_75(self):
         frac = Fraction.from_decimal(0.75)
         self.assertTrue(frac.is_equal(3, 4))
+
+    def test_can_convert_from_decimal_2_4(self):
+        frac = Fraction.from_decimal(2.4)
+        self.assertTrue(frac.is_equal(12, 5))
+
+    def test_can_convert_from_decimal_minus_2_4(self):
+        frac = Fraction.from_decimal(-2.4)
+        self.assertTrue(frac.is_equal(-12, 5))
 
     def test_can_convert_from_decimal_0_333333333333(self):
         frac = Fraction.from_decimal(0.333333333333)

@@ -15,10 +15,12 @@ class Fraction:
     def from_decimal(decimal_number):
         int_part = int(decimal_number)
         frac_part = decimal_number - int_part
-        frac_length = len(str(frac_part)) - 2  # Leading 0.
+        str_frac_part = str(frac_part)
+        n_digits_after_point = len(str_frac_part) - \
+            str_frac_part.index('.') - 1
 
-        q = pow(10, frac_length)
-        p = int(frac_part * q) + int_part * q
+        q = pow(10, n_digits_after_point)
+        p = int(round(frac_part * q)) + int_part * q
 
         return Fraction(p, q)
 
