@@ -1,68 +1,69 @@
 import random
 import copy
 
+
 class Matrix(object):
     """ matrix class with some basis func. """
 
-    def __init__(self, rowsCount, colsCount):
-        self.rows = rowsCount
-        self.cols = colsCount
-        self.dataLines = []
+    def __init__(self, rows_count, cols_count):
+        self.rows = rows_count
+        self.cols = cols_count
+        self.data_lines = []
 
     def __str__(self):
-        s = '\n'.join([' '.join([str(item) for item in row]) for row in self.dataLines])
+        s = '\n'.join([' '.join([str(item) for item in row]) for row in self.data_lines])
         return s + '\n'
 
-#---- Matrix filling methods: random filling and filling from list of user-written ----#
     @classmethod
-    def makeRandom(cls, rowsCount, colsCount, lowNumberLimit=0, highNumberLimit=10):
+    def make_random(cls, rows_count, cols_count, low_number_limit=0, high_number_limit=10):
         """ Make a random matrix with elements in range (low-high) """
 
-        obj = Matrix(rowsCount, colsCount)
+        obj = Matrix(rows_count, cols_count)
         for x in range(obj.rows):
-            obj.dataLines.append([random.randrange(lowNumberLimit, highNumberLimit) for y in range(obj.cols)])
+            obj.data_lines.append([random.randrange(low_number_limit, high_number_limit)
+                                  for y in range(obj.cols)])
         return obj
 
     @classmethod
-    def makeFromList(cls, inputDataList):
+    def make_from_list(cls, input_data_list):
         """ Create a matrix from list """
 
-        dataLines = inputDataList[:]
-        return cls.makeMatrix(dataLines)
+        data_lines = input_data_list[:]
+        return cls.make_matrix(data_lines)
 
     @classmethod
-    def makeMatrix(cls, dataLines):
+    def make_matrix(cls, data_lines):
 
-        m = len(dataLines)
-        n = len(dataLines[0])
+        m = len(data_lines)
+        n = len(data_lines[0])
         mat = Matrix(m, n)
-        mat.dataLines = dataLines
+        mat.data_lines = data_lines
         return mat
 
-#---- Calculate determinant ------------------------------------------------------ ----#
     @classmethod
-    def deleteColumnAndRow(cls, matrix, delRow, delCol):
-        newMatrix = copy.deepcopy(matrix)
-        del newMatrix.dataLines[delRow]
-        for i in range(0, newMatrix.rows-1):
-            del newMatrix.dataLines[i][delCol]
-        newMatrix.rows-=1
-        newMatrix.cols-=1
-        return newMatrix
+    def delete_column_and_row(cls, matrix, del_row, del_col):
+        new_matrix = copy.deepcopy(matrix)
+        del new_matrix.data_lines[del_row]
+        for i in range(0, new_matrix.rows-1):
+            del new_matrix.data_lines[i][del_col]
+        new_matrix.rows -= 1
+        new_matrix.cols -= 1
+        return new_matrix
 
     @classmethod
-    def calculateDeterminant(cls, matrix):
+    def calculate_determinant(cls, matrix):
         """ Calculate determinant of matrix """
         if matrix.rows == 1 or matrix.cols == 1:
-            return  matrix.dataLines[0][0]
+            return matrix.data_lines[0][0]
         elif matrix.rows == 2 or matrix.cols == 2:
-            return matrix.dataLines[0][0]* matrix.dataLines[1][1] - matrix.dataLines[1][0]*matrix.dataLines[0][1]
+            return matrix.data_lines[0][0]*matrix.data_lines[1][1] - \
+                matrix.data_lines[1][0]*matrix.data_lines[0][1]
         else:
             determinant = 0
             for i in range(0, matrix.rows):
-                subMatrix = Matrix.deleteColumnAndRow(matrix, i, 0)
-                subDet = Matrix.calculateDeterminant(subMatrix)
-                determinant+=(-1)**(i+2)*matrix.dataLines[i][0]*subDet
+                sub_matrix = Matrix.delete_column_and_row(matrix, i, 0)
+                sub_det = Matrix.calculate_determinant(sub_matrix)
+                determinant += (-1)**(i+2)*matrix.data_lines[i][0]*sub_det
         return determinant
 
 
