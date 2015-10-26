@@ -24,7 +24,7 @@ class Matrix(object):
         for x in range(obj.rows):
             obj.data_lines.append([random.randrange(low_number_limit,
                                                     high_number_limit)
-                                  for y in range(obj.cols)])
+                                   for y in range(obj.cols)])
         return obj
 
     @classmethod
@@ -44,27 +44,27 @@ class Matrix(object):
         return mat
 
     @classmethod
-    def delete_column_and_row(cls, matrix, del_row, del_col):
+    def delete_col_and_row(cls, matrix, del_row, del_col):
         new_matrix = copy.deepcopy(matrix)
         del new_matrix.data_lines[del_row]
-        for i in range(0, new_matrix.rows-1):
+        for i in range(0, new_matrix.rows - 1):
             del new_matrix.data_lines[i][del_col]
         new_matrix.rows -= 1
         new_matrix.cols -= 1
         return new_matrix
 
     @classmethod
-    def calculate_determinant(cls, matrix):
+    def calculate_det(cls, matrix):
         """ Calculate determinant of matrix """
         if matrix.rows == 1 or matrix.cols == 1:
             return matrix.data_lines[0][0]
         elif matrix.rows == 2 or matrix.cols == 2:
-            return matrix.data_lines[0][0]*matrix.data_lines[1][1] - \
-                matrix.data_lines[1][0]*matrix.data_lines[0][1]
+            return matrix.data_lines[0][0] * matrix.data_lines[1][1] - \
+                   matrix.data_lines[1][0] * matrix.data_lines[0][1]
         else:
             determinant = 0
             for i in range(0, matrix.rows):
-                sub_matrix = Matrix.delete_column_and_row(matrix, i, 0)
-                sub_det = Matrix.calculate_determinant(sub_matrix)
-                determinant += (-1)**(i+2)*matrix.data_lines[i][0]*sub_det
+                sub_matrix = Matrix.delete_col_and_row(matrix, i, 0)
+                sub_det = Matrix.calculate_det(sub_matrix)
+                determinant += (-1) ** (i + 2) * matrix.data_lines[i][0] * sub_det
         return determinant
