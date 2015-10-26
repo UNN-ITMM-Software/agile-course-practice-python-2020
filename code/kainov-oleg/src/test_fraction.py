@@ -30,6 +30,24 @@ class TestFractionClass(unittest.TestCase):
         result = frac_1 * frac_2
         self.assertTrue(result.is_equal(2, 15))
 
+    def test_multiply_one_negative_fraction(self):
+        frac_1 = Fraction(1, 3)
+        frac_2 = Fraction(-2, 5)
+        result = frac_1 * frac_2
+        self.assertTrue(result.is_equal(-2, 15))
+
+    def test_multiply_one_negative_fraction_minus_in_denominator(self):
+        frac_1 = Fraction(1, 3)
+        frac_2 = Fraction(2, -5)
+        result = frac_1 * frac_2
+        self.assertTrue(result.is_equal(-2, 15))
+
+    def test_multiply_two_negative_fractions(self):
+        frac_1 = Fraction(-1, 3)
+        frac_2 = Fraction(2, -5)
+        result = frac_1 * frac_2
+        self.assertTrue(result.is_equal(2, 15))
+
     def test_sum_fraction_1_2_1_2(self):
         frac_1 = Fraction(1, 2)
         frac_2 = Fraction(1, 2)
@@ -41,6 +59,12 @@ class TestFractionClass(unittest.TestCase):
         frac_2 = Fraction(-1, 2)
         result = frac_1 + frac_2
         self.assertTrue(result.is_equal(0, 1))
+
+    def test_sum_negative_fraction_minus_1_2_minus_1_2(self):
+        frac_1 = Fraction(1, -2)
+        frac_2 = Fraction(-1, 2)
+        result = frac_1 + frac_2
+        self.assertTrue(result.is_equal(-1, 1))
 
     def test_sum_fraction_1_2_1_3(self):
         frac_1 = Fraction(1, 2)
