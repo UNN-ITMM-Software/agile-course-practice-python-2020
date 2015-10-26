@@ -11,16 +11,19 @@ class Matrix(object):
         self.data_lines = []
 
     def __str__(self):
-        s = '\n'.join([' '.join([str(item) for item in row]) for row in self.data_lines])
+        s = '\n'.join([' '.join([str(item) for item in row])
+                       for row in self.data_lines])
         return s + '\n'
 
     @classmethod
-    def make_random(cls, rows_count, cols_count, low_number_limit=0, high_number_limit=10):
+    def make_random(cls, rows_count, cols_count, low_number_limit=0,
+                    high_number_limit=10):
         """ Make a random matrix with elements in range (low-high) """
 
         obj = Matrix(rows_count, cols_count)
         for x in range(obj.rows):
-            obj.data_lines.append([random.randrange(low_number_limit, high_number_limit)
+            obj.data_lines.append([random.randrange(low_number_limit,
+                                                    high_number_limit)
                                   for y in range(obj.cols)])
         return obj
 
@@ -65,9 +68,3 @@ class Matrix(object):
                 sub_det = Matrix.calculate_determinant(sub_matrix)
                 determinant += (-1)**(i+2)*matrix.data_lines[i][0]*sub_det
         return determinant
-
-
-
-
-
-
