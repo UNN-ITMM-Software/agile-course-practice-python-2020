@@ -47,7 +47,7 @@ class Matrix(object):
     @classmethod
     def make_random(cls, rows_count, cols_count, low_number_limit=0,
                     high_number_limit=10):
-        """ Make a random matrix with elements in range (low-high) """
+        """ Make a random matrix with elements in range (low--high) """
         obj = Matrix(rows_count, cols_count)
         for x in range(obj.rows):
             obj.data_lines.append([random.randrange(low_number_limit,
