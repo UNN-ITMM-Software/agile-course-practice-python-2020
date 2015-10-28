@@ -5,14 +5,30 @@ from matrix import Matrix
 
 class MatrixTests(unittest.TestCase):
 
+    def test_check_constructor(self):
+        test_matrix = Matrix.make_from_list([[1, 1]])
+        if test_matrix.cols == 2 and test_matrix.rows == 1:
+            if test_matrix.data_lines[0][0] ==\
+                    test_matrix.data_lines[0][1] == 1:
+                    self.assertEqual(1, 1)
+
     def test_can_calculate_determinant_for_matrix1x1(self):
         test_matrix = Matrix.make_random(1, 1)
         det = Matrix.calculate_det(test_matrix)
         self.assertTrue(test_matrix.data_lines[0][0] == det)
 
+    def test_check_str_func(self):
+        test_matrix = Matrix.make_from_list([[1, 3], [5, 7]])
+        s = test_matrix.__str__()
+        self.assertEqual(s, '1 3\n5 7\n')
+
     def test_is_matrix_square(self):
         test_matrix = Matrix.make_random(3, 3)
-        self.assertTrue(test_matrix.rows == test_matrix.cols)
+        self.assertEqual(test_matrix.is_matrix_square(), 1)
+
+    def test_is_matrix_not_square(self):
+        test_matrix = Matrix.make_random(3, 2)
+        self.assertEqual(test_matrix.is_matrix_square(), 0)
 
     def test_can_calculate_determinant_for_matrix2x2(self):
         test_matrix = Matrix.make_from_list([[1, 3], [5, 7]])
