@@ -8,18 +8,20 @@ class MatrixError(Exception):
 
 
 class Matrix(object):
-    """ matrix class with some basis func. """
+    """ Matrix class with some basis func. """
     def __init__(self, rows_count, cols_count):
         self.rows = rows_count
         self.cols = cols_count
         self.data_lines = []
 
     def __str__(self):
+        """ Matrix output """
         s = '\n'.join([' '.join([str(item) for item in row])
                        for row in self.data_lines])
         return s + '\n'
 
     def is_matrix_square(self):
+        """ Verification of square matrix """
         if self.rows == self.cols:
             return 1
         return 0
@@ -61,7 +63,7 @@ class Matrix(object):
 
     @classmethod
     def make_matrix(cls, data_lines):
-
+        """ Helper func in creating matrix """
         m = len(data_lines)
         n = len(data_lines[0])
         mat = Matrix(m, n)
@@ -70,6 +72,7 @@ class Matrix(object):
 
     @classmethod
     def del_col_and_row(cls, matrix, del_row, del_col):
+        """ Delete col and row for creating sub-matrix """
         new_matrix = copy.deepcopy(matrix)
         del new_matrix.data_lines[del_row]
         for i in range(0, new_matrix.rows - 1):

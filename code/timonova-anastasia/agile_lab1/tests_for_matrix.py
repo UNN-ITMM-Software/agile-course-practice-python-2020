@@ -62,5 +62,4 @@ class MatrixTests(unittest.TestCase):
         det = Matrix.calculate_det(test_matrix)
         self.assertEqual(det, -96)
 
-if __name__ == "__main__":
-    unittest.main(verbosity=2)
+
