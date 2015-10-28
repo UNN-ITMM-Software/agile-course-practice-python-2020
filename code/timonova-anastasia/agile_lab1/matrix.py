@@ -77,4 +77,3 @@ class Matrix(object):
         new_matrix.rows -= 1
         new_matrix.cols -= 1
         return new_matrix
-
