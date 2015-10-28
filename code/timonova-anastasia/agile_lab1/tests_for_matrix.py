@@ -61,5 +61,3 @@ class MatrixTests(unittest.TestCase):
                                              [-4, 0, 6, 0, 0, -5]])
         det = Matrix.calculate_det(test_matrix)
         self.assertEqual(det, -96)
-
-
