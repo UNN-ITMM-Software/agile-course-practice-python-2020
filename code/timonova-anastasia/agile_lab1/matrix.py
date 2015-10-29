@@ -59,10 +59,10 @@ class Matrix(object):
     def make_from_list(cls, input_data_list):
         """ Create a matrix from list """
         data_lines = input_data_list[:]
-        return cls.make_matrix(data_lines)
+        return cls.create_matrix(data_lines)
 
     @classmethod
-    def make_matrix(cls, data_lines):
+    def create_matrix(cls, data_lines):
         """ Helper func in creating matrix """
         m = len(data_lines)
         n = len(data_lines[0])
