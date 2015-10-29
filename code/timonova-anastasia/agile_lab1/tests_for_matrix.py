@@ -8,14 +8,13 @@ class MatrixTests(unittest.TestCase):
 
     def test_check_constructor(self):
         test_matrix = Matrix.make_from_list([[1, 1]])
-        if test_matrix.cols == 2 and test_matrix.rows == 1:
-            if test_matrix.data_lines[0][0] ==\
-                    test_matrix.data_lines[0][1] == 1:
-                    self.assertEqual(1, 1)
+        self.assertTrue(test_matrix.cols == 2 and test_matrix.rows == 1)
+        self.assertTrue(test_matrix.data_lines[0][0] ==
+                        test_matrix.data_lines[0][1] == 1)
 
     def test_can_calculate_determinant_of_matrix1x1(self):
         test_matrix = Matrix.make_random(1, 1)
-        det = Matrix.calculate_det(test_matrix)
+        det = test_matrix.calculate_det()
         self.assertTrue(test_matrix.data_lines[0][0] == det)
 
     def test_check_str_func(self):
@@ -24,7 +23,9 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(s, '1 3\n5 7\n')
 
     def test_check_exception(self):
-        self.assertRaises('Matrix must be square!')
+        with self.assertRaises(MatrixError):
+            test_matrix = Matrix.make_from_list([[1, 3]])
+            test_matrix.calculate_det()
 
     def test_is_matrix_square(self):
         test_matrix = Matrix.make_random(3, 3)
@@ -36,24 +37,24 @@ class MatrixTests(unittest.TestCase):
 
     def test_can_calculate_determinant_of_matrix2x2(self):
         test_matrix = Matrix.make_from_list([[1, 3], [5, 7]])
-        det = Matrix.calculate_det(test_matrix)
+        det = test_matrix.calculate_det()
         self.assertEqual(det, -8)
 
     def test_delete_zero_row_and_zero_col_in_matrix(self):
-        test_matrix = Matrix.make_from_list([[1, 3], [5, 7]])
-        det = Matrix.calculate_det(Matrix.del_col_and_row(
-            test_matrix, 0, 0))
+        test_matrix = Matrix.del_col_and_row(
+            Matrix.make_from_list([[1, 3], [5, 7]]), 0, 0)
+        det = test_matrix.calculate_det()
         self.assertEqual(det, 7)
 
     def test_can_calculate_determinant_of_matrix3x3(self):
         test_matrix = Matrix.make_from_list([[7, 2, 0], [5, 8, 7], [1, 2, 3]])
-        det = Matrix.calculate_det(test_matrix)
+        det = test_matrix.calculate_det()
         self.assertEqual(det, 54)
 
     def test_can_calculate_determinant_with_minor_0_1(self):
-        test_matrix = Matrix.make_from_list([[1, 0, -3], [0, 0, 2],
-                                             [-1, -2, 0]])
-        det = Matrix.calculate_det(Matrix.del_col_and_row(test_matrix, 0, 1))
+        test_matrix = Matrix.del_col_and_row(
+            Matrix.make_from_list([[1, 0, -3], [0, 0, 2], [-1, -2, 0]]), 0, 1)
+        det = test_matrix.calculate_det()
         self.assertEqual(det, 2)
 
     def test_can_calculate_determinant_of_matrix6x6(self):
@@ -63,5 +64,5 @@ class MatrixTests(unittest.TestCase):
                                              [1, 0, 3, 4, 5, 6],
                                              [0, 8, 0, 1, 2, 0],
                                              [-4, 0, 6, 0, 0, -5]])
-        det = Matrix.calculate_det(test_matrix)
+        det = test_matrix.calculate_det()
         self.assertEqual(det, -96)
