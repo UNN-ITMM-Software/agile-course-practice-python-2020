@@ -13,13 +13,10 @@
  - HSV
  - LAB
 
-Класс должен позволять работать с двумя типами входных параметров:
-
- - Заданный цвет в одном из цветовых пространств
- - Загруженное изображение
+Класс должен позволять работать с заданным цветом в одном из цветовых пространств
 
 Все необходимые математические сведения по цветовым пространствам можно найти в статьях
-["HSV"][HSV], ["RGB"][RGB], ["LAB"][LAB] на сайте Wikipedia.
+["HSV"][HSV], ["RGB"][RGB], ["LAB"][LAB] на сайте Wikipedia. Были использованы формулы для перевода и нормировки значений аналогичные [OpenCV][doc].
 
 ## Документация разработчика
 
@@ -30,4 +27,5 @@ TBD
 [HSV]: https://en.wikipedia.org/wiki/HSL_and_HSV
 [RGB]: https://en.wikipedia.org/wiki/RGB_color_model
 [LAB]: https://en.wikipedia.org/wiki/Lab_color_space
+[doc]: http://docs.opencv.org/2.4.11/modules/imgproc/doc/miscellaneous_transformations.html#cvtcolor
 
