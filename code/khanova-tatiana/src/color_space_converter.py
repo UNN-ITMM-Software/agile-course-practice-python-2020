@@ -40,26 +40,25 @@ class ColorSpaceConverter:
 
     @staticmethod
     def hsv2rgb(self, color):
-        hue = color.value[0] * 2. / 360.
+        hue = color.value[0] * 2. / 360. * 6
         saturation = color.value[1] / 255.
         value = color.value[2] / 255.
 
-        idx = hue * 6.
         chroma = value * saturation
-        x = chroma * (1 - math.fabs(idx % 2 - 1))
+        x = chroma * (1 - math.fabs(hue % 2 - 1))
         rgb = [0] * Color.COLOR_DIM
-        idx = idx % 6
-        if 0. <= idx < 1.:
+        hue = hue % 6
+        if 0. <= hue < 1.:
             rgb = [chroma, x, 0]
-        if 1. <= idx < 2.:
+        if 1. <= hue < 2.:
             rgb = [x, chroma, 0]
-        if 2. <= idx < 3.:
+        if 2. <= hue < 3.:
             rgb = [0, chroma, x]
-        if 3. <= idx < 4.:
+        if 3. <= hue < 4.:
             rgb = [0, x, chroma]
-        if 4. <= idx < 5.:
+        if 4. <= hue < 5.:
             rgb = [x, 0, chroma]
-        if 5. <= idx < 6.:
+        if 5. <= hue < 6.:
             rgb = [chroma, 0, x]
 
         min_val = value - chroma
