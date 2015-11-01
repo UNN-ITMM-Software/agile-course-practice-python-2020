@@ -51,7 +51,7 @@ class MatrixTests(unittest.TestCase):
         det = test_matrix.calculate_det()
         self.assertEqual(det, 54)
 
-    def test_can_calculate_determinant_with_minor_0_1(self):
+    def test_can_calculate_minor_0_1(self):
         test_matrix = Matrix.del_col_and_row(
             Matrix.make_from_list([[1, 0, -3], [0, 0, 2], [-1, -2, 0]]), 0, 1)
         det = test_matrix.calculate_det()
