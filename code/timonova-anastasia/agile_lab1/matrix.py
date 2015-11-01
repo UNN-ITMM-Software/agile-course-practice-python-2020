@@ -8,7 +8,7 @@ class MatrixError(Exception):
 
 
 class Matrix(object):
-    """ Matrix class with some basis func. """
+    """ Matrix class with some basic func. """
     def __init__(self, rows_count, cols_count):
         self.rows = rows_count
         self.cols = cols_count
@@ -39,7 +39,7 @@ class Matrix(object):
                 raise MatrixError('Matrix must be square!')
             for i in range(0, self.rows):
                 sub_matrix = Matrix.del_col_and_row(self, i, 0)
-                sub_det = Matrix.calculate_det(sub_matrix)
+                sub_det = sub_matrix.calculate_det()
                 determinant += (-1) ** (i + 2) *\
                     self.data_lines[i][0] * sub_det
         return determinant
