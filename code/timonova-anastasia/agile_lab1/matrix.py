@@ -23,20 +23,23 @@ class Matrix(object):
         return 0
 
     def calculate_det(self):
-        if self.rows == 1 and self.cols == 1:
-            return self.data_lines[0][0]
-        elif self.rows == 2 and self.cols == 2:
-            return self.data_lines[0][0] * self.data_lines[1][1] - \
-                self.data_lines[1][0] * self.data_lines[0][1]
+        if self.is_matrix_square() > 1:
+            if self.rows == 1:
+                return self.data_lines[0][0]
+            elif self.rows == 2:
+                return self.data_lines[0][0] * self.data_lines[1][1] - \
+                    self.data_lines[1][0] * self.data_lines[0][1]
+            else:
+                determinant = 0
+                if self.is_matrix_square() < 1:
+                    raise MatrixError('Matrix must be square!')
+                for i in range(0, self.rows):
+                    sub_matrix = Matrix.del_col_and_row(self, i, 0)
+                    sub_det = sub_matrix.calculate_det()
+                    determinant += (-1) ** (i + 2) *\
+                        self.data_lines[i][0] * sub_det
         else:
-            determinant = 0
-            if self.is_matrix_square() < 1:
-                raise MatrixError('Matrix must be square!')
-            for i in range(0, self.rows):
-                sub_matrix = Matrix.del_col_and_row(self, i, 0)
-                sub_det = sub_matrix.calculate_det()
-                determinant += (-1) ** (i + 2) *\
-                    self.data_lines[i][0] * sub_det
+            raise MatrixError('Matrix must be square!')
         return determinant
 
     @classmethod
