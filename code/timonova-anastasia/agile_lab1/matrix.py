@@ -23,7 +23,7 @@ class Matrix(object):
         return 0
 
     def calculate_det(self):
-        if self.is_matrix_square() < 1:
+        if self.is_matrix_square() > 0:
             if self.rows == 1:
                 return self.data_lines[0][0]
             elif self.rows == 2:
