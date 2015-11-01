@@ -17,7 +17,7 @@ class MatrixTests(unittest.TestCase):
         det = test_matrix.calculate_det()
         self.assertTrue(test_matrix.data_lines[0][0] == det)
 
-    def test_check_str_func(self):
+    def test_can_write_matrix_as_string(self):
         test_matrix = Matrix.make_from_list([[1, 3], [5, 7]])
         s = test_matrix.__str__()
         self.assertEqual(s, '1 3\n5 7\n')
