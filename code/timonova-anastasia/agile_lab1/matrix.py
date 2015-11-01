@@ -19,11 +19,11 @@ class Matrix(object):
 
     def is_matrix_square(self):
         if self.rows == self.cols:
-            return 1
-        return 0
+            return True
+        return False
 
     def calculate_det(self):
-        if self.is_matrix_square() < 1:
+        if self.is_matrix_square() is False:
             raise MatrixError('Matrix must be square!')
         else:
             if self.rows == 1:
@@ -34,7 +34,7 @@ class Matrix(object):
             else:
                 determinant = 0
                 for i in range(0, self.rows):
-                    sub_matrix = Matrix.del_col_and_row(self, i, 0)
+                    sub_matrix = Matrix.delete_col_and_row(self, i, 0)
                     sub_det = sub_matrix.calculate_det()
                     determinant += (-1) ** (i + 2) *\
                         self.data_lines[i][0] * sub_det
@@ -60,7 +60,7 @@ class Matrix(object):
         return mat
 
     @classmethod
-    def del_col_and_row(cls, matrix, del_row, del_col):
+    def delete_col_and_row(cls, matrix, del_row, del_col):
         new_matrix = copy.deepcopy(matrix)
         del new_matrix.data_lines[del_row]
         for i in range(0, new_matrix.rows - 1):
