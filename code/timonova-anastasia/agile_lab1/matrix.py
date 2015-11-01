@@ -3,31 +3,26 @@ import copy
 
 
 class MatrixError(Exception):
-    """ An exception class for Matrix """
     pass
 
 
 class Matrix(object):
-    """ Matrix class with some basic func. """
     def __init__(self, rows_count, cols_count):
         self.rows = rows_count
         self.cols = cols_count
         self.data_lines = []
 
     def __str__(self):
-        """ Matrix output """
         s = '\n'.join([' '.join([str(item) for item in row])
                        for row in self.data_lines])
         return s + '\n'
 
     def is_matrix_square(self):
-        """ Verification of square matrix """
         if self.rows == self.cols:
             return 1
         return 0
 
     def calculate_det(self):
-        """ Calculate determinant of matrix """
         if self.rows == 1 and self.cols == 1:
             return self.data_lines[0][0]
         elif self.rows == 2 and self.cols == 2:
@@ -47,7 +42,6 @@ class Matrix(object):
     @classmethod
     def make_random(cls, rows_count, cols_count, low_number_limit=0,
                     high_number_limit=10):
-        """ Make a random matrix with elements in range (low--high) """
         obj = Matrix(rows_count, cols_count)
         for x in range(obj.rows):
             obj.data_lines.append([random.randrange(low_number_limit,
@@ -57,13 +51,7 @@ class Matrix(object):
 
     @classmethod
     def make_from_list(cls, input_data_list):
-        """ Create a matrix from list """
         data_lines = input_data_list[:]
-        return cls.create_matrix(data_lines)
-
-    @classmethod
-    def create_matrix(cls, data_lines):
-        """ Helper func in creating matrix """
         m = len(data_lines)
         n = len(data_lines[0])
         mat = Matrix(m, n)
@@ -72,7 +60,6 @@ class Matrix(object):
 
     @classmethod
     def del_col_and_row(cls, matrix, del_row, del_col):
-        """ Delete col and row for creating sub-matrix """
         new_matrix = copy.deepcopy(matrix)
         del new_matrix.data_lines[del_row]
         for i in range(0, new_matrix.rows - 1):
