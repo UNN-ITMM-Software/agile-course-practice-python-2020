@@ -41,23 +41,22 @@ class Matrix(object):
         return determinant
 
     @classmethod
-    def make_random(cls, rows_count, cols_count, low_number_limit=0,
-                    high_number_limit=10):
-        obj = Matrix(rows_count, cols_count)
-        for x in range(obj.rows):
-            obj.data_lines.append([random.randrange(low_number_limit,
-                                                    high_number_limit)
-                                   for y in range(obj.cols)])
-        return obj
+    def make_random(cls, rows_count, cols_count, min_value=0,
+                    max_value=10):
+        my_matrix = Matrix(rows_count, cols_count)
+        for x in range(my_matrix.rows):
+            my_matrix.data_lines.append([random.randrange(min_value, max_value)
+                                   for y in range(my_matrix.cols)])
+        return my_matrix
 
     @classmethod
     def make_from_list(cls, input_data_list):
         data_lines = input_data_list[:]
         m = len(data_lines)
         n = len(data_lines[0])
-        mat = Matrix(m, n)
-        mat.data_lines = data_lines
-        return mat
+        my_matrix = Matrix(m, n)
+        my_matrix.data_lines = data_lines
+        return my_matrix
 
     @classmethod
     def delete_col_and_row(cls, matrix, del_row, del_col):
