@@ -46,7 +46,7 @@ class Matrix(object):
         my_matrix = Matrix(rows_count, cols_count)
         for x in range(my_matrix.rows):
             my_matrix.data_lines.append([random.randrange(min_value, max_value)
-                                   for y in range(my_matrix.cols)])
+                                         for y in range(my_matrix.cols)])
         return my_matrix
 
     @classmethod
