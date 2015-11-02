@@ -48,6 +48,7 @@ class ColorSpaceConverter:
         x = chroma * (1 - math.fabs(hue % 2 - 1))
         rgb = [0] * Color.COLOR_DIM
         hue = hue % 6
+
         if 0. <= hue < 1.:
             rgb = [chroma, x, 0]
         if 1. <= hue < 2.:
