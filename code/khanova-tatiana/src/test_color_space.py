@@ -23,6 +23,8 @@ class TestColorSpaceClass(unittest.TestCase):
         with self.assertRaises(InvalidColorSpace):
             ColorSpace(1)
 
+
+class TestColorClass(unittest.TestCase):
     def test_can_create_empty_color(self):
         color = Color()
         self.assertTrue(isinstance(color, Color))
@@ -60,6 +62,8 @@ class TestColorSpaceClass(unittest.TestCase):
         with self.assertRaises(InvalidColorError):
             Color(ColorSpace("RGB"), rand_color)
 
+
+class TestColorSpaceConverterClass(unittest.TestCase):
     def test_can_create_color_space_converter(self):
         converter = ColorSpaceConverter()
         self.assertTrue(isinstance(converter, ColorSpaceConverter))
