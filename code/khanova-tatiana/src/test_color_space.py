@@ -47,26 +47,25 @@ class TestColorClass(unittest.TestCase):
                                                     np.array([123, 45,
                                                               67]).tolist()))
 
-    def test_cant_create_invalid_rgb_color_len(self):
+    def test_cannot_create_invalid_rgb_color_len(self):
         rand_color = np.random.randint(0, 255, size=(1, 10))
         with self.assertRaises(InvalidColorError):
             Color("RGB", rand_color)
 
-    def test_cant_create_invalid_rgb_color_val(self):
+    def test_cannot_create_invalid_rgb_color_val(self):
         rand_color = np.random.randint(300, 400, size=(1, Color.COLOR_DIM))
         with self.assertRaises(InvalidColorError):
             Color(ColorSpace("RGB"), rand_color)
 
-    def test_cant_create_invalid_rgb_color_val_neg(self):
+    def test_cannot_create_invalid_rgb_color_val_neg(self):
         rand_color = np.random.randint(-100, -10, size=(1, Color.COLOR_DIM))
         with self.assertRaises(InvalidColorError):
             Color(ColorSpace("RGB"), rand_color)
 
 
 class TestColorSpaceConverterClass(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        cls.converter = ColorSpaceConverter()
+    def setUp(self):
+        self.converter = ColorSpaceConverter()
 
     def test_can_create_color_space_converter(self):
         self.assertTrue(isinstance(self.converter, ColorSpaceConverter))
@@ -158,7 +157,7 @@ class TestColorSpaceConverterClass(unittest.TestCase):
         self.assertEqual(lab_color, Color(ColorSpace("LAB"),
                                           np.array([159, 142, 109])))
 
-    def test_cant_create_unimplemented_converter(self):
+    def test_cannot_create_unimplemented_converter(self):
         color = Color(ColorSpace("LAB"))
         with self.assertRaises(InvalidConversion):
             self.converter.convert(color, ColorSpace("RGB"))

@@ -31,7 +31,7 @@ class ColorSpaceConverter:
         hue *= 60
         hue = hue + 360 if hue < 0 else hue
 
-        saturation = (0 if max_val == 0 else diff / max_val) * 255
+        saturation = 0 if max_val == 0 else diff / max_val * 255
         value = max_val * 255
         hue *= 0.5
 
