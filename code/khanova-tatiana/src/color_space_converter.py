@@ -70,23 +70,28 @@ class ColorSpaceConverter:
     @staticmethod
     def rgb2lab(self, color):
         color.value = color.value / 255.
+        # Convert RGB to XYZ.
+        red, green, blue = [val * 100. for val in
+                            map(utility.rgb2xyz_nonlinear_transform,
+                                color.value.tolist())]
 
         conversion_mat = np.array([[0.412453, 0.357580, 0.180423],
                                    [0.212671, 0.715160, 0.072169],
                                    [0.019334, 0.119193, 0.950227]])
 
-        xyz = conversion_mat.dot(color.value)
-        xyz[0] /= 0.950456
-        xyz[2] /= 1.088754
+        xyz = conversion_mat.dot(
+            np.array([red, green, blue], dtype=np.float32))
 
-        if xyz[1] > 0.008856:
-            l = 116. * math.pow(xyz[1], 1. / 3.) - 16.
-        else:
-            l = 903.3 * xyz[1]
-        a = 500. * (utility.f(xyz[0]) - utility.f(xyz[1])) + 128
-        b = 200. * (utility.f(xyz[1]) - utility.f(xyz[2])) + 128
+        # Convert XYZ to Lab.
+        ref_point = np.array([95.047, 100., 108.883])
 
-        l *= 255. / 100.
+        x_norm, y_norm, z_norm = map(utility.xyz2lab_nonlinear_transform,
+                                     np.divide(xyz, ref_point).tolist())
+
+        l = (116. * y_norm - 16.) * 255. / 100.
+        a = 500. * (x_norm - y_norm) + 128
+        b = 200. * (y_norm - z_norm) + 128
+
         return Color(ColorSpace("LAB"), np.round(np.array([l, a, b])))
 
     def convert(self, color, dst_space):
