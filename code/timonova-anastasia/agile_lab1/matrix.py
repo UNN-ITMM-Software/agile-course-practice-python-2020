@@ -21,7 +21,12 @@ class Matrix(object):
         return True if self.rows == self.cols else False
 
     def calculate_det(self):
-        if not self.is_matrix_square():
+        if self.is_matrix_square():
+            return True
+        return False
+
+    def calculate_det(self):
+        if self.is_matrix_square() is False:
             raise MatrixError('Matrix must be square!')
         else:
             if self.rows == 1:
@@ -56,7 +61,6 @@ class Matrix(object):
         for x in m:
             for y in n:
                 if Matrix.data_lines[x][y]
-
         return my_matrix
 
     @classmethod
