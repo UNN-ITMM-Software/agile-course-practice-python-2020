@@ -12,6 +12,10 @@ class MatrixTests(unittest.TestCase):
         self.assertTrue(test_matrix.data_lines[0][0] ==
                         test_matrix.data_lines[0][1] == 1)
 
+    # def test_check_constructor_incorrect_matrix(self):
+    #     test_matrix = Matrix.make_from_list([[1, 1, 1], [1, 1, 1], [1, 1, 1]])
+    #     self.assertEqual(test_matrix.is_full_matrix([[1, 1], [1]]), True)
+
     def test_can_calculate_determinant_of_matrix1x1(self):
         test_matrix = Matrix.make_random(1, 1)
         det = test_matrix.calculate_det()
@@ -19,8 +23,7 @@ class MatrixTests(unittest.TestCase):
 
     def test_can_write_matrix_as_string(self):
         test_matrix = Matrix.make_from_list([[1, 3], [5, 7]])
-        s = test_matrix.__str__()
-        self.assertEqual(s, '1 3\n5 7\n')
+        self.assertEqual(str(test_matrix), '1 3\n5 7\n')
 
     def test_check_exception(self):
         with self.assertRaises(MatrixError):
@@ -29,7 +32,11 @@ class MatrixTests(unittest.TestCase):
 
     def test_is_matrix_square(self):
         test_matrix = Matrix.make_random(3, 3)
-        self.assertEqual(test_matrix.is_matrix_square(), 1)
+        self.assertEqual(test_matrix.is_matrix_square(), True)
+
+    def test_is_correct_index(self):
+        test_matrix = Matrix.make_random(3, 3)
+        self.assertEqual(test_matrix.is_correct_index(4, 3), False)
 
     def test_is_matrix_not_square(self):
         test_matrix = Matrix.make_random(3, 2)
@@ -66,4 +73,3 @@ class MatrixTests(unittest.TestCase):
                                              [-4, 0, 6, 0, 0, -5]])
         det = test_matrix.calculate_det()
         self.assertEqual(det, -96)
-

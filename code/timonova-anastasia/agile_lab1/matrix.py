@@ -20,13 +20,12 @@ class Matrix(object):
     def is_matrix_square(self):
         return True if self.rows == self.cols else False
 
-    def calculate_det(self):
-        if self.is_matrix_square():
-            return True
-        return False
+    def is_correct_index(self, row, col):
+        return True if 0 <= row < self.rows and 0 <= col < self.cols\
+            else False
 
     def calculate_det(self):
-        if self.is_matrix_square() is False:
+        if not self.is_matrix_square():
             raise MatrixError('Matrix must be square!')
         else:
             if self.rows == 1:
@@ -57,14 +56,18 @@ class Matrix(object):
         m = len(input_data_list[:])
         n = len(input_data_list[:][0])
         my_matrix = Matrix(m, n)
+        if not my_matrix.is_full_matrix(input_data_list):
+            raise MatrixError('Matrix isn\'t  full! Check matrix elements.')
         my_matrix.data_lines = input_data_list[:]
-        for x in m:
-            for y in n:
-                if Matrix.data_lines[x][y]
         return my_matrix
+
+    def is_full_matrix(self, input_data_list):
+        return True
 
     @classmethod
     def delete_col_and_row(cls, matrix, del_row, del_col):
+        if not matrix.is_correct_index(del_row, del_col):
+            raise MatrixError('Row or col index out of range!')
         new_matrix = copy.deepcopy(matrix)
         del new_matrix.data_lines[del_row]
         for i in range(0, new_matrix.rows - 1):
