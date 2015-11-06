@@ -13,7 +13,8 @@ class MatrixTests(unittest.TestCase):
                         test_matrix.data_lines[0][1] == 1)
 
     # def test_check_constructor_incorrect_matrix(self):
-    #     test_matrix = Matrix.make_from_list([[1, 1, 1], [1, 1, 1], [1, 1, 1]])
+    #     test_matrix = Matrix.make_from_list([[1, 1, 1], [1, 1, 1],
+    #  [1, 1, 1]])
     #     self.assertEqual(test_matrix.is_full_matrix([[1, 1], [1]]), True)
 
     def test_can_calculate_determinant_of_matrix1x1(self):
