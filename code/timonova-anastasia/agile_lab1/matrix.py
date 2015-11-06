@@ -18,12 +18,10 @@ class Matrix(object):
         return s + '\n'
 
     def is_matrix_square(self):
-        if self.rows == self.cols:
-            return True
-        return False
+        return True if self.rows == self.cols else False
 
     def calculate_det(self):
-        if self.is_matrix_square() is False:
+        if not self.is_matrix_square():
             raise MatrixError('Matrix must be square!')
         else:
             if self.rows == 1:
@@ -51,11 +49,14 @@ class Matrix(object):
 
     @classmethod
     def make_from_list(cls, input_data_list):
-        data_lines = input_data_list[:]
-        m = len(data_lines)
-        n = len(data_lines[0])
+        m = len(input_data_list[:])
+        n = len(input_data_list[:][0])
         my_matrix = Matrix(m, n)
-        my_matrix.data_lines = data_lines
+        my_matrix.data_lines = input_data_list[:]
+        for x in m:
+            for y in n:
+                if Matrix.data_lines[x][y]
+
         return my_matrix
 
     @classmethod
