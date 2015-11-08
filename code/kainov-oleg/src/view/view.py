@@ -1,10 +1,14 @@
 import Tkinter
 import ttk
 
+from viewmodel import viewmodel
+
 
 class View(ttk.Frame):
     valid_operations = ['+', '-', '*', '/', 'Convert to continuous']
     default_sticky = Tkinter.W + Tkinter.E + Tkinter.N + Tkinter.S
+
+    view_model = viewmodel.ViewModel()
 
     def set_weight_to_grid(self):
         self.rowconfigure(1, weight=1)
@@ -23,6 +27,25 @@ class View(ttk.Frame):
         self.txt_second_frac.bind('<KeyRelease>', self.second_frac_txt_changed)
         self.cmb_operation.bind('<<ComboboxSelected>>', self.operation_changed)
 
+    def mvvm_bind(self):
+        self.view_model.set_button_convert_state(self.btn_convert.state())
+        self.view_model.set_first_fraction(
+            self.txt_first_frac.get("1.0", Tkinter.END))
+        self.view_model.set_second_fraction(
+            self.txt_second_frac.get("1.0", Tkinter.END))
+
+    def mvvm_back_bind(self):
+        self.txt_first_frac.delete(1.0, Tkinter.END)
+        self.txt_first_frac.insert(
+            Tkinter.END, self.view_model.get_first_fraction())
+
+        self.txt_second_frac.delete(1.0, Tkinter.END)
+        self.txt_second_frac.insert(
+            Tkinter.END, self.view_model.get_second_fraction())
+
+        self.btn_convert.config(
+            state=self.view_model.get_button_convert_state())
+
     def __init__(self):
         ttk.Frame.__init__(self)
         self.master.title("Fraction calculator")
@@ -35,7 +58,7 @@ class View(ttk.Frame):
         self.btn_convert.grid(row=0, column=3, rowspan=2,
                               sticky=self.default_sticky)
 
-        self.txt_first_frac = Tkinter.Text(self, wrap='word',
+        self.txt_first_frac = Tkinter.Text(self,
                                            height=1, width=10)
         self.txt_first_frac.grid(row=0, column=0, sticky=self.default_sticky)
 
@@ -44,7 +67,7 @@ class View(ttk.Frame):
         self.cmb_operation.current(0)
         self.cmb_operation.grid(row=0, column=1, sticky=self.default_sticky)
 
-        self.txt_second_frac = Tkinter.Text(self, wrap='word',
+        self.txt_second_frac = Tkinter.Text(self,
                                             height=1, width=10)
         self.txt_second_frac.grid(row=0, column=2, sticky=self.default_sticky)
 
@@ -55,15 +78,21 @@ class View(ttk.Frame):
         self.bind_events()
         self.set_weight_to_grid()
 
+        self.mvvm_back_bind()
+
     def convert_clicked(self, event):
-        pass
+        self.mvvm_bind()
+        self.mvvm_back_bind()
 
     def first_frac_txt_changed(self, event):
-        pass
+        self.mvvm_bind()
+        self.mvvm_back_bind()
 
     def second_frac_txt_changed(self, event):
-        pass
+        self.mvvm_bind()
+        self.mvvm_back_bind()
 
     def operation_changed(self, event):
-        pass
+        self.mvvm_bind()
+        self.mvvm_back_bind()
         # print self.valid_operations[self.cmb_operation.current()]
