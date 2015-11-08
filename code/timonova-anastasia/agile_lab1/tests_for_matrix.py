@@ -12,10 +12,13 @@ class MatrixTests(unittest.TestCase):
         self.assertTrue(test_matrix.data_lines[0][0] ==
                         test_matrix.data_lines[0][1] == 1)
 
-    # def test_check_constructor_incorrect_matrix(self):
-    #     test_matrix = Matrix.make_from_list([[1, 1, 1], [1, 1, 1],
-    #  [1, 1, 1]])
-    #     self.assertEqual(test_matrix.is_full_matrix([[1, 1], [1]]), True)
+    def test_create_matrix_with_not_full_last_string(self):
+        with self.assertRaises(MatrixError):
+            Matrix.make_from_list([[1, 1, 1], [1, 1, 1], [1, 1]])
+
+    def test_create_matrix_with_not_full_first_string(self):
+        with self.assertRaises(MatrixError):
+            Matrix.make_from_list([[1, 1], [1, 1, 1], [1, 2, 1]])
 
     def test_can_calculate_determinant_of_matrix1x1(self):
         test_matrix = Matrix.make_random(1, 1)

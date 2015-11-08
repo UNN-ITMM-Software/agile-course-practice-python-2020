@@ -20,6 +20,17 @@ class Matrix(object):
     def is_matrix_square(self):
         return True if self.rows == self.cols else False
 
+    @classmethod
+    def is_full_matrix(cls, input_data_list):
+        print("___", len(input_data_list))
+        print("___", len(input_data_list[2]))
+        for i in range(1, len(input_data_list)):
+            if len(input_data_list[i]) != len(input_data_list[0]):
+                print("input_data_list[i]", input_data_list[i])
+                print("len(input_data_list)", len(input_data_list))
+                return False
+        return True
+
     def is_correct_index(self, row, col):
         return True if 0 <= row < self.rows and 0 <= col < self.cols\
             else False
@@ -53,16 +64,16 @@ class Matrix(object):
 
     @classmethod
     def make_from_list(cls, input_data_list):
-        m = len(input_data_list[:])
-        n = len(input_data_list[:][0])
-        my_matrix = Matrix(m, n)
-        if not my_matrix.is_full_matrix(input_data_list):
+        my_rows = len(input_data_list[:])
+        my_cols = 0
+        for i in range(0, my_rows):
+            if len(input_data_list[:][i]) > my_cols:
+                my_cols = len(input_data_list[:][i])
+        if not Matrix.is_full_matrix(input_data_list):
             raise MatrixError('Matrix isn\'t  full! Check matrix elements.')
+        my_matrix = Matrix(my_rows, my_cols)
         my_matrix.data_lines = input_data_list[:]
         return my_matrix
-
-    def is_full_matrix(self, input_data_list):
-        return True
 
     @classmethod
     def delete_col_and_row(cls, matrix, del_row, del_col):
