@@ -1,8 +1,9 @@
-import re
+from model.fraction import Fraction
 
 
 class ViewModel:
     def __init__(self):
+        self.message_text = ''
         self.set_btn_disabled()
         self.first_fraction = ''
         self.second_fraction = ''
@@ -17,15 +18,9 @@ class ViewModel:
         self.second_fraction = value.strip()
         self.validate_text()
 
-    def is_fraction(self, fraction):
-        if re.match('^\d+(?:[/]\d+)?$', fraction):
-            return True
-        else:
-            return False
-
     def validate_text(self):
-        is_first_fraction = self.is_fraction(self.first_fraction)
-        is_second_fraction = self.is_fraction(self.second_fraction)
+        is_first_fraction = Fraction.is_fraction(self.first_fraction)
+        is_second_fraction = Fraction.is_fraction(self.second_fraction)
         if is_first_fraction and is_second_fraction:
             self.set_btn_enabled()
         else:
@@ -46,3 +41,11 @@ class ViewModel:
 
     def get_first_fraction(self):
         return self.first_fraction
+
+    def click_convert(self):
+
+        self.message_text = str(Fraction.from_string(self.first_fraction) +
+                                Fraction.from_string(self.second_fraction))
+
+    def get_msg_text(self):
+        return self.message_text

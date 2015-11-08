@@ -26,3 +26,10 @@ class TestFractionCalculatorViewModel(unittest.TestCase):
         view_model.set_first_fraction('1')
         view_model.set_second_fraction('1a')
         self.assertEqual('disabled', view_model.get_button_convert_state())
+
+    def test_can_add_1_and_1(self):
+        view_model = ViewModel()
+        view_model.set_first_fraction('1')
+        view_model.set_second_fraction('1')
+        view_model.click_convert()
+        self.assertEqual('2/1', view_model.get_msg_text())

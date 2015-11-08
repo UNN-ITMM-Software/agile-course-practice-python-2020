@@ -1,3 +1,5 @@
+import re
+
 from model import rational_math
 
 
@@ -57,3 +59,19 @@ class Fraction:
 
     def is_equal(self, p, q):
         return self.p == p and self.q == q
+
+    @classmethod
+    def is_fraction(cls, fraction):
+        match = re.match('^(\d+)(?:[/](\d+))?$', fraction)
+        if match:
+            return match.group(1), match.group(2)
+        else:
+            return False
+
+    @classmethod
+    def from_string(cls, fraction):
+        if Fraction.is_fraction(fraction):
+            p, q = Fraction.is_fraction(fraction)
+            if not q:
+                q = 1
+            return Fraction(int(p), int(q))

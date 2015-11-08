@@ -16,6 +16,10 @@ class TestFractionClass(unittest.TestCase):
         frac = Fraction(1, 2)
         self.assertTrue(frac.is_equal(1, 2))
 
+    def test_can_create_1_2_fraction_from_str(self):
+        frac = Fraction.from_string('1/2')
+        self.assertTrue(frac.is_equal(1, 2))
+
     def test_cannot_create_x_0_fraction(self):
         with self.assertRaises(InvalidFractionError):
             Fraction(2, 0)
