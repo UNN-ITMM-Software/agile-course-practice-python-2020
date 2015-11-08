@@ -1,7 +1,9 @@
+import re
+
 
 class ViewModel:
     def __init__(self):
-        self.button_convert_state = 'disabled'
+        self.set_btn_disabled()
         self.first_fraction = ''
         self.second_fraction = ''
 
@@ -13,16 +15,34 @@ class ViewModel:
 
     def set_second_fraction(self, value):
         self.second_fraction = value.strip()
-        if self.first_fraction and self.second_fraction:
-            self.button_convert_state = 'normal'
+        self.validate_text()
+
+    def is_fraction(self, fraction):
+        if re.match('^\d+(?:[/]\d+)?$', fraction):
+            return True
+        else:
+            return False
+
+    def validate_text(self):
+        is_first_fraction = self.is_fraction(self.first_fraction)
+        is_second_fraction = self.is_fraction(self.second_fraction)
+        if is_first_fraction and is_second_fraction:
+            self.set_btn_enabled()
+        else:
+            self.set_btn_disabled()
+
+    def set_btn_enabled(self):
+        self.button_convert_state = 'normal'
+
+    def set_btn_disabled(self):
+        self.button_convert_state = 'disabled'
 
     def get_second_fraction(self):
         return self.second_fraction
 
     def set_first_fraction(self, value):
         self.first_fraction = value.strip()
-        if self.first_fraction and self.second_fraction:
-            self.button_convert_state = 'normal'
+        self.validate_text()
 
     def get_first_fraction(self):
         return self.first_fraction
