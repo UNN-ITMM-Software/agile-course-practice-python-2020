@@ -11,9 +11,6 @@ class ViewModel:
     def get_button_convert_state(self):
         return self.button_convert_state
 
-    def set_button_convert_state(self, state):
-        self.button_convert_state = state
-
     def set_second_fraction(self, value):
         self.second_fraction = value.strip()
         self.validate_text()
@@ -43,7 +40,6 @@ class ViewModel:
         return self.first_fraction
 
     def click_convert(self):
-
         self.message_text = str(Fraction.from_string(self.first_fraction) +
                                 Fraction.from_string(self.second_fraction))
 
