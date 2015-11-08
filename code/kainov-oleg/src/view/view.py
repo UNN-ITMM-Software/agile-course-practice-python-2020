@@ -46,6 +46,8 @@ class View(ttk.Frame):
         self.btn_convert.config(
             state=self.view_model.get_button_convert_state())
 
+        self.lbl_result.config(text=self.view_model.get_msg_text())
+
     def __init__(self):
         ttk.Frame.__init__(self)
         self.master.title("Fraction calculator")
@@ -82,6 +84,7 @@ class View(ttk.Frame):
 
     def convert_clicked(self, event):
         self.mvvm_bind()
+        self.view_model.click_convert()
         self.mvvm_back_bind()
 
     def first_frac_txt_changed(self, event):
