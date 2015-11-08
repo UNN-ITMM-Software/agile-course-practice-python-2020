@@ -1,4 +1,4 @@
-import rational_math
+from model import rational_math
 
 
 class InvalidFractionError(Exception):
