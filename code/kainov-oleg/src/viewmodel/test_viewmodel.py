@@ -43,3 +43,11 @@ class TestFractionCalculatorViewModel(unittest.TestCase):
         view_model.set_second_fraction('1')
         view_model.click_convert()
         self.assertEqual('2/1', view_model.get_msg_text())
+
+    def test_can_substract_1_and_1(self):
+        view_model = ViewModel()
+        view_model.set_first_fraction('1')
+        view_model.set_second_fraction('1')
+        view_model.set_operation('-')
+        view_model.click_convert()
+        self.assertEqual('0/1', view_model.get_msg_text())

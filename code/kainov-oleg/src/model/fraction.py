@@ -15,6 +15,7 @@ class Fraction:
 
     @staticmethod
     def from_decimal(decimal_number):
+        decimal_number = float(decimal_number)
         int_part = int(decimal_number)
         frac_part = decimal_number - int_part
         str_frac_part = str(frac_part)
@@ -39,12 +40,19 @@ class Fraction:
     def __mul__(self, other):
         return Fraction(self.p * other.p, self.q * other.q)
 
+    def __rmul__(self, other):
+        other_fraction = Fraction.from_decimal(other)
+        return Fraction(self.p * other_fraction.p, self.q * other_fraction.q)
+
     def __add__(self, other):
         common_multiple = rational_math.lcm(self.q, other.q)
         self_multiplier = common_multiple / self.q
         other_multiplier = common_multiple / other.q
         return Fraction(self.p * self_multiplier +
                         other.p * other_multiplier, common_multiple)
+
+    def __sub__(self, other):
+        return self.__add__(-1.0 * other)
 
     def get_integer_part(self):
         return self.p / self.q

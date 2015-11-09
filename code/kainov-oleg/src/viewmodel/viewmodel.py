@@ -7,6 +7,7 @@ class ViewModel:
         self.set_btn_disabled()
         self.first_fraction = ''
         self.second_fraction = ''
+        self.operation = '+'
 
     def get_button_convert_state(self):
         return self.button_convert_state
@@ -40,8 +41,15 @@ class ViewModel:
         return self.first_fraction
 
     def click_convert(self):
-        self.message_text = str(Fraction.from_string(self.first_fraction) +
-                                Fraction.from_string(self.second_fraction))
+        if self.operation == '+':
+            self.message_text = str(Fraction.from_string(self.first_fraction) +
+                                    Fraction.from_string(self.second_fraction))
+        else:
+            self.message_text = str(Fraction.from_string(self.first_fraction) -
+                                    Fraction.from_string(self.second_fraction))
 
     def get_msg_text(self):
         return self.message_text
+
+    def set_operation(self, operation):
+        self.operation = operation

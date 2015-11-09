@@ -58,6 +58,24 @@ class TestFractionClass(unittest.TestCase):
         result = frac_1 + frac_2
         self.assertTrue(result.is_equal(1, 1))
 
+    def test_multiply_fraction_and_int_number(self):
+        fraction = Fraction(-1, 6)
+        number = 2
+        result = number * fraction
+        self.assertTrue(result.is_equal(-1, 3))
+
+    def test_multiply_fraction_and_decimal_number(self):
+        fraction = Fraction(1, 6)
+        number = 2.5
+        result = number * fraction
+        self.assertTrue(result.is_equal(5, 12))
+
+    def test_substract_fraction_1_2_1_2(self):
+        frac_1 = Fraction(1, 2)
+        frac_2 = Fraction(1, 2)
+        result = frac_1 - frac_2
+        self.assertTrue(result.is_equal(0, 1))
+
     def test_sum_fraction_1_2_minus_1_2(self):
         frac_1 = Fraction(1, 2)
         frac_2 = Fraction(-1, 2)
@@ -99,6 +117,10 @@ class TestFractionClass(unittest.TestCase):
     def test_can_convert_from_decimal_2_4(self):
         frac = Fraction.from_decimal(2.4)
         self.assertTrue(frac.is_equal(12, 5))
+
+    def test_can_convert_from_decimal_int_1(self):
+        frac = Fraction.from_decimal(1)
+        self.assertTrue(frac.is_equal(1, 1))
 
     def test_can_convert_from_decimal_minus_2_4(self):
         frac = Fraction.from_decimal(-2.4)

@@ -32,6 +32,8 @@ class View(ttk.Frame):
             self.txt_first_frac.get("1.0", Tkinter.END))
         self.view_model.set_second_fraction(
             self.txt_second_frac.get("1.0", Tkinter.END))
+        self.view_model.set_operation(
+            self.valid_operations[self.cmb_operation.current()])
 
     def mvvm_back_bind(self):
         self.txt_first_frac.delete(1.0, Tkinter.END)
