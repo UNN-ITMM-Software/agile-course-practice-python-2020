@@ -20,6 +20,14 @@ class TestFractionClass(unittest.TestCase):
         frac = Fraction.from_string('1/2')
         self.assertTrue(frac.is_equal(1, 2))
 
+    def test_can_create_minus_1_2_fraction_from_str(self):
+        frac = Fraction.from_string('-1/2')
+        self.assertTrue(frac.is_equal(-1, 2))
+
+    def test_can_create_1_fraction_from_str(self):
+        frac = Fraction.from_string('1')
+        self.assertTrue(frac.is_equal(1, 1))
+
     def test_cannot_create_x_0_fraction(self):
         with self.assertRaises(InvalidFractionError):
             Fraction(2, 0)
@@ -36,13 +44,47 @@ class TestFractionClass(unittest.TestCase):
         frac = Fraction(7, 3)
         self.assertEqual(frac.get_integer_part(), 2)
 
-    def test_is_equal_can_return_false_nominator(self):
+    def test_is_equal_can_return_false_nominator_differs(self):
         frac = Fraction(1, 2)
         self.assertFalse(frac.is_equal(1, 6))
 
-    def test_is_equal_can_return_false_denominator(self):
+    def test_is_equal_can_return_false_denominator_differs(self):
         frac = Fraction(1, 2)
         self.assertFalse(frac.is_equal(2, 2))
+
+    def test_can_get_nominator_denominator_1_2(self):
+        p, q = Fraction.get_nominator_denominator('1/2')
+        result = p == '1' and q == '2'
+        self.assertTrue(result)
+
+    def test_can_get_nominator_denominator_minus_1_2(self):
+        p, q = Fraction.get_nominator_denominator('-1/2')
+        result = p == '-1' and q == '2'
+        self.assertTrue(result)
+
+    def test_none_when_get_nominator_denominator_invalid(self):
+        result = Fraction.get_nominator_denominator('a')
+        self.assertIsNone(result)
+
+    def test_is_fraction_1_2(self):
+        result = Fraction.is_fraction('1/2')
+        self.assertTrue(result)
+
+    def test_is_fraction_minus_1_2(self):
+        result = Fraction.is_fraction('-1/2')
+        self.assertTrue(result)
+
+    def test_is_fraction_1(self):
+        result = Fraction.is_fraction('1')
+        self.assertTrue(result)
+
+    def test_is_not_fraction_a(self):
+        result = Fraction.is_fraction('a')
+        self.assertFalse(result)
+
+    def test_is_not_fraction_empty(self):
+        result = Fraction.is_fraction('')
+        self.assertFalse(result)
 
 
 class TestFractionConvertation(unittest.TestCase):

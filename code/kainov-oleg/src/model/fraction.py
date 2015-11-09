@@ -13,6 +13,8 @@ class Fraction:
     p = 0
     q = 1
 
+    FRACTION_REGEXP = '^([-]?\d+)(?:[/](\d+))?$'
+
     @staticmethod
     def from_decimal(decimal_number):
         decimal_number = float(decimal_number)
@@ -72,17 +74,22 @@ class Fraction:
         return self.p == p and self.q == q
 
     @classmethod
-    def is_fraction(cls, fraction):
-        match = re.match('^(\d+)(?:[/](\d+))?$', fraction)
-        if match:
+    def is_fraction(cls, fraction_str):
+        match = re.match(Fraction.FRACTION_REGEXP, fraction_str)
+        return True if match else False
+
+    @classmethod
+    def get_nominator_denominator(cls, fraction_str):
+        if Fraction.is_fraction(fraction_str):
+            match = re.match(Fraction.FRACTION_REGEXP, fraction_str)
             return match.group(1), match.group(2)
         else:
-            return False
+            return None
 
     @classmethod
     def from_string(cls, fraction):
         if Fraction.is_fraction(fraction):
-            p, q = Fraction.is_fraction(fraction)
+            p, q = Fraction.get_nominator_denominator(fraction)
             if not q:
                 q = 1
             return Fraction(int(p), int(q))
