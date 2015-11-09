@@ -28,7 +28,6 @@ class View(ttk.Frame):
         self.cmb_operation.bind('<<ComboboxSelected>>', self.operation_changed)
 
     def mvvm_bind(self):
-        self.view_model.set_button_convert_state(self.btn_convert.state())
         self.view_model.set_first_fraction(
             self.txt_first_frac.get("1.0", Tkinter.END))
         self.view_model.set_second_fraction(
