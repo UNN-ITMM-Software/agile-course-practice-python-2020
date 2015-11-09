@@ -49,25 +49,23 @@ class ViewModel:
         return self.first_fraction
 
     def click_convert(self):
+        first_fraction = Fraction.from_string(self.first_fraction)
+        second_fraction = Fraction.from_string(self.second_fraction)
+
         if self.operation == '+':
-            self.message_text = str(Fraction.from_string(self.first_fraction) +
-                                    Fraction.from_string(self.second_fraction))
+            self.message_text = str(first_fraction + second_fraction)
         elif self.operation == '-':
-            self.message_text = str(Fraction.from_string(self.first_fraction) -
-                                    Fraction.from_string(self.second_fraction))
+            self.message_text = str(first_fraction - second_fraction)
         elif self.operation == '*':
-            self.message_text = str(Fraction.from_string(self.first_fraction) *
-                                    Fraction.from_string(self.second_fraction))
+            self.message_text = str(first_fraction * second_fraction)
         elif self.operation == '/':
             try:
-                result = Fraction.from_string(self.first_fraction) / \
-                    Fraction.from_string(self.second_fraction)
+                result = str(first_fraction / second_fraction)
             except InvalidFractionError:
                 result = 'Error! Cannot divide by zero!'
             self.message_text = str(result)
         else:
-            self.message_text = str(list(
-                Fraction.from_string(self.first_fraction).to_continuous()))
+            self.message_text = str(list(first_fraction.to_continuous()))
 
     def get_msg_text(self):
         return self.message_text
