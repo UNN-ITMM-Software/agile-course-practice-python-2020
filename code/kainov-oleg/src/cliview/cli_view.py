@@ -57,12 +57,10 @@ class CLIView:
         self.first_fraction = self.view_model.get_first_fraction()
         self.second_fraction = self.view_model.get_second_fraction()
         self.message_text = self.view_model.get_msg_text()
-        self.is_calc_enabled = True if \
-            self.view_model.get_button_convert_state() == 'normal' \
-            else False
-        self.is_second_fraction_enabled = True if \
-            self.view_model.get_second_fraction_text_state() == 'normal' \
-            else False
+        self.is_calc_enabled = \
+            self.view_model.get_button_convert_state() == 'normal'
+        self.is_second_fraction_enabled = \
+            self.view_model.get_second_fraction_text_state() == 'normal'
         self.result = self.view_model.get_msg_text()
         self.print_main_window()
 
