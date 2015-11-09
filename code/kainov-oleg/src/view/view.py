@@ -47,6 +47,9 @@ class View(ttk.Frame):
         self.btn_convert.config(
             state=self.view_model.get_button_convert_state())
 
+        self.txt_second_frac.config(
+            state=self.view_model.get_second_fraction_text_state())
+
         self.lbl_result.config(text=self.view_model.get_msg_text())
 
     def __init__(self):

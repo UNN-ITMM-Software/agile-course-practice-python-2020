@@ -9,6 +9,7 @@ class ViewModel:
         self.second_fraction = ''
         self.operation = '+'
         self.set_btn_disabled()
+        self.set_second_fraction_text_enabled()
 
     def get_button_convert_state(self):
         return self.button_convert_state
@@ -30,6 +31,12 @@ class ViewModel:
 
     def set_btn_disabled(self):
         self.button_convert_state = 'disabled'
+
+    def set_second_fraction_text_enabled(self):
+        self.second_fraction_text_state = 'normal'
+
+    def set_second_fraction_text_disabled(self):
+        self.second_fraction_text_state = 'disabled'
 
     def get_second_fraction(self):
         return self.second_fraction
@@ -60,3 +67,10 @@ class ViewModel:
 
     def set_operation(self, operation):
         self.operation = operation
+        if operation == 'Convert to continuous':
+            self.set_second_fraction_text_disabled()
+        else:
+            self.set_second_fraction_text_enabled()
+
+    def get_second_fraction_text_state(self):
+        return self.second_fraction_text_state
