@@ -47,6 +47,11 @@ class MatrixTests(unittest.TestCase):
         self.assertEqual(test_matrix.is_matrix_square(), 0)
 
     def test_can_calculate_determinant_of_matrix2x2(self):
+        test_matrix = Matrix.make_from_list([[1, 3], [5, 7], [5, 7]])
+        with self.assertRaises(MatrixError):
+            test_matrix.calculate_det()
+
+    def test_can_calculate_determinant_of_matrix2x2(self):
         test_matrix = Matrix.make_from_list([[1, 3], [5, 7]])
         det = test_matrix.calculate_det()
         self.assertEqual(det, -8)
