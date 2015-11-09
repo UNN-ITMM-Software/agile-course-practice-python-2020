@@ -8,6 +8,7 @@ class ViewModel:
         self.first_fraction = ''
         self.second_fraction = ''
         self.operation = '+'
+        self.button_convert_state = 'normal'
 
     def get_button_convert_state(self):
         return self.button_convert_state
