@@ -40,6 +40,9 @@ class Fraction:
     def __mul__(self, other):
         return Fraction(self.p * other.p, self.q * other.q)
 
+    def __div__(self, other):
+        return Fraction(self.p * other.q, self.q * other.p)
+
     def __rmul__(self, other):
         other_fraction = Fraction.from_decimal(other)
         return Fraction(self.p * other_fraction.p, self.q * other_fraction.q)

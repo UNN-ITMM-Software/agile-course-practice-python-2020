@@ -28,6 +28,72 @@ class TestFractionClass(unittest.TestCase):
         frac = Fraction(2, 4)
         self.assertTrue(frac.is_equal(1, 2))
 
+    def test_can_print_fraction(self):
+        frac = Fraction(5, 7)
+        self.assertEqual(str(frac), '5/7')
+
+    def test_can_get_int_part(self):
+        frac = Fraction(7, 3)
+        self.assertEqual(frac.get_integer_part(), 2)
+
+    def test_is_equal_can_return_false_nominator(self):
+        frac = Fraction(1, 2)
+        self.assertFalse(frac.is_equal(1, 6))
+
+    def test_is_equal_can_return_false_denominator(self):
+        frac = Fraction(1, 2)
+        self.assertFalse(frac.is_equal(2, 2))
+
+
+class TestFractionConvertation(unittest.TestCase):
+    def test_can_convert_to_decimal_1_2(self):
+        frac = Fraction(1, 2)
+        self.assertEqual(frac.to_decimal(), 0.5)
+
+    def test_can_convert_from_decimal_0_5(self):
+        frac = Fraction.from_decimal(0.5)
+        self.assertTrue(frac.is_equal(1, 2))
+
+    def test_can_convert_from_decimal_minus_0_5(self):
+        frac = Fraction.from_decimal(-0.5)
+        self.assertTrue(frac.is_equal(-1, 2))
+
+    def test_can_convert_from_decimal_0_75(self):
+        frac = Fraction.from_decimal(0.75)
+        self.assertTrue(frac.is_equal(3, 4))
+
+    def test_can_convert_from_decimal_2_4(self):
+        frac = Fraction.from_decimal(2.4)
+        self.assertTrue(frac.is_equal(12, 5))
+
+    def test_can_convert_from_decimal_int_1(self):
+        frac = Fraction.from_decimal(1)
+        self.assertTrue(frac.is_equal(1, 1))
+
+    def test_can_convert_from_decimal_minus_2_4(self):
+        frac = Fraction.from_decimal(-2.4)
+        self.assertTrue(frac.is_equal(-12, 5))
+
+    def test_can_convert_from_decimal_0_333333333333(self):
+        frac = Fraction.from_decimal(0.333333333333)
+        self.assertTrue(frac.is_equal(333333333333, 1000000000000))
+
+    def test_can_convert_to_continuous_1071_462(self):
+        frac = Fraction(1071, 462)
+        expected_coefficients = [2, 3, 7]
+        for actual, expected in zip(frac.to_continuous(),
+                                    expected_coefficients):
+            self.assertEqual(actual, expected)
+
+    def test_can_convert_to_continuous_9_4(self):
+        frac = Fraction(9, 4)
+        expected_coefficients = [2, 4]
+        for actual, expected in zip(frac.to_continuous(),
+                                    expected_coefficients):
+            self.assertEqual(actual, expected)
+
+
+class TestFractionOperations(unittest.TestCase):
     def test_multiply_fraction(self):
         frac_1 = Fraction(1, 3)
         frac_2 = Fraction(2, 5)
@@ -70,6 +136,24 @@ class TestFractionClass(unittest.TestCase):
         result = number * fraction
         self.assertTrue(result.is_equal(5, 12))
 
+    def test_multiply_fractions_by_zero(self):
+        frac_1 = Fraction(1, 2)
+        frac_2 = Fraction(0, 2)
+        result = frac_1 * frac_2
+        self.assertTrue(result.is_equal(0, 1))
+
+    def test_cannot_divide_fractions_by_zero(self):
+        frac_1 = Fraction(1, 2)
+        frac_2 = Fraction(0, 2)
+        with self.assertRaises(InvalidFractionError):
+            frac_1 / frac_2
+
+    def test_divide_two_fractions(self):
+        frac_1 = Fraction(2, 3)
+        frac_2 = Fraction(2, 3)
+        result = frac_1 / frac_2
+        self.assertTrue(result.is_equal(1, 1))
+
     def test_substract_fraction_1_2_1_2(self):
         frac_1 = Fraction(1, 2)
         frac_2 = Fraction(1, 2)
@@ -93,65 +177,3 @@ class TestFractionClass(unittest.TestCase):
         frac_2 = Fraction(1, 3)
         result = frac_1 + frac_2
         self.assertTrue(result.is_equal(5, 6))
-
-    def test_can_print_fraction(self):
-        frac = Fraction(5, 7)
-        self.assertEqual(str(frac), '5/7')
-
-    def test_can_convert_to_decimal_1_2(self):
-        frac = Fraction(1, 2)
-        self.assertEqual(frac.to_decimal(), 0.5)
-
-    def test_can_convert_from_decimal_0_5(self):
-        frac = Fraction.from_decimal(0.5)
-        self.assertTrue(frac.is_equal(1, 2))
-
-    def test_can_convert_from_decimal_minus_0_5(self):
-        frac = Fraction.from_decimal(-0.5)
-        self.assertTrue(frac.is_equal(-1, 2))
-
-    def test_can_convert_from_decimal_0_75(self):
-        frac = Fraction.from_decimal(0.75)
-        self.assertTrue(frac.is_equal(3, 4))
-
-    def test_can_convert_from_decimal_2_4(self):
-        frac = Fraction.from_decimal(2.4)
-        self.assertTrue(frac.is_equal(12, 5))
-
-    def test_can_convert_from_decimal_int_1(self):
-        frac = Fraction.from_decimal(1)
-        self.assertTrue(frac.is_equal(1, 1))
-
-    def test_can_convert_from_decimal_minus_2_4(self):
-        frac = Fraction.from_decimal(-2.4)
-        self.assertTrue(frac.is_equal(-12, 5))
-
-    def test_can_convert_from_decimal_0_333333333333(self):
-        frac = Fraction.from_decimal(0.333333333333)
-        self.assertTrue(frac.is_equal(333333333333, 1000000000000))
-
-    def test_can_get_int_part(self):
-        frac = Fraction(7, 3)
-        self.assertEqual(frac.get_integer_part(), 2)
-
-    def test_can_convert_to_continuous_1071_462(self):
-        frac = Fraction(1071, 462)
-        expected_coefficients = [2, 3, 7]
-        for actual, expected in zip(frac.to_continuous(),
-                                    expected_coefficients):
-            self.assertEqual(actual, expected)
-
-    def test_can_convert_to_continuous_9_4(self):
-        frac = Fraction(9, 4)
-        expected_coefficients = [2, 4]
-        for actual, expected in zip(frac.to_continuous(),
-                                    expected_coefficients):
-            self.assertEqual(actual, expected)
-
-    def test_is_equal_can_return_false_nominator(self):
-        frac = Fraction(1, 2)
-        self.assertFalse(frac.is_equal(1, 6))
-
-    def test_is_equal_can_return_false_denominator(self):
-        frac = Fraction(1, 2)
-        self.assertFalse(frac.is_equal(2, 2))
