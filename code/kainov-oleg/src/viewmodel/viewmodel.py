@@ -1,4 +1,4 @@
-from model.fraction import Fraction,InvalidFractionError
+from model.fraction import Fraction, InvalidFractionError
 
 
 class ViewModel:
@@ -61,7 +61,7 @@ class ViewModel:
         elif self.operation == '/':
             try:
                 result = Fraction.from_string(self.first_fraction) / \
-                         Fraction.from_string(self.second_fraction)
+                    Fraction.from_string(self.second_fraction)
             except InvalidFractionError:
                 result = 'Error! Cannot divide by zero!'
             self.message_text = str(result)
