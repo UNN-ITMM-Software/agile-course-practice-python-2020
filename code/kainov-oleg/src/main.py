@@ -1,6 +1,6 @@
 import argparse
 
-from view import view
+from guiview import gui_view
 from cliview import cli_view
 
 
@@ -17,6 +17,6 @@ if __name__ == '__main__':
     if args.cli:
         cli_view.CLIView().mainloop()
     elif args.gui:
-        view.View().mainloop()
+        gui_view.GUIView().mainloop()
     else:
         print 'Option is required'

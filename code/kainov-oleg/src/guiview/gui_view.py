@@ -4,7 +4,7 @@ import ttk
 from viewmodel import viewmodel
 
 
-class View(ttk.Frame):
+class GUIView(ttk.Frame):
     valid_operations = ['+', '-', '*', '/', 'Convert to continuous']
     default_sticky = Tkinter.W + Tkinter.E + Tkinter.N + Tkinter.S
 
