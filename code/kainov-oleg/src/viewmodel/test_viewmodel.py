@@ -76,11 +76,27 @@ class TestFractionCalculatorViewModel(unittest.TestCase):
         view_model = ViewModel()
         view_model.set_first_fraction('2/3')
         view_model.set_operation('Convert to continuous')
-        self.assertEqual('disabled', view_model.get_second_fraction_text_state())
+        self.assertEqual('disabled',
+                         view_model.get_second_fraction_text_state())
 
     def test_when_selected_continuous_then_plus_second_text_is_enabled(self):
         view_model = ViewModel()
         view_model.set_first_fraction('2/3')
         view_model.set_operation('Convert to continuous')
         view_model.set_operation('+')
-        self.assertEqual('normal', view_model.get_second_fraction_text_state())
+        self.assertEqual('normal',
+                         view_model.get_second_fraction_text_state())
+
+    def test_can_convert_1_to_continuous(self):
+        view_model = ViewModel()
+        view_model.set_first_fraction('1')
+        view_model.set_operation('Convert to continuous')
+        view_model.click_convert()
+        self.assertEqual(str([1]), view_model.get_msg_text())
+
+    def test_can_convert_2_to_continuous(self):
+        view_model = ViewModel()
+        view_model.set_first_fraction('2/3')
+        view_model.set_operation('Convert to continuous')
+        view_model.click_convert()
+        self.assertEqual(str([0, 1, 2]), view_model.get_msg_text())
