@@ -22,12 +22,8 @@ class Matrix(object):
 
     @classmethod
     def is_full_matrix(cls, input_data_list):
-        print("___", len(input_data_list))
-        print("___", len(input_data_list[2]))
         for i in range(1, len(input_data_list)):
             if len(input_data_list[i]) != len(input_data_list[0]):
-                print("input_data_list[i]", input_data_list[i])
-                print("len(input_data_list)", len(input_data_list))
                 return False
         return True
 
