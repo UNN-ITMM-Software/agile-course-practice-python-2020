@@ -102,4 +102,3 @@ class View(ttk.Frame):
     def operation_changed(self, event):
         self.mvvm_bind()
         self.mvvm_back_bind()
-        # print self.valid_operations[self.cmb_operation.current()]
