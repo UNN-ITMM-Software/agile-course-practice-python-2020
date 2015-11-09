@@ -52,10 +52,18 @@ class TestFractionCalculatorViewModel(unittest.TestCase):
         view_model.click_convert()
         self.assertEqual('0/1', view_model.get_msg_text())
 
-    def test_can_multiply_2_3_and_3_2(self):
+    def test_can_divide_2_3_and_3_2(self):
         view_model = ViewModel()
         view_model.set_first_fraction('2/3')
         view_model.set_second_fraction('3/2')
         view_model.set_operation('/')
         view_model.click_convert()
-        self.assertEqual('1/1', view_model.get_msg_text())
+        self.assertEqual('4/9', view_model.get_msg_text())
+
+    def test_can_multiply_2_3_and_2_3(self):
+        view_model = ViewModel()
+        view_model.set_first_fraction('2/3')
+        view_model.set_second_fraction('2/3')
+        view_model.set_operation('*')
+        view_model.click_convert()
+        self.assertEqual('4/9', view_model.get_msg_text())

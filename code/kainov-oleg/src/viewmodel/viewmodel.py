@@ -48,8 +48,11 @@ class ViewModel:
         elif self.operation == '-':
             self.message_text = str(Fraction.from_string(self.first_fraction) -
                                     Fraction.from_string(self.second_fraction))
-        else:
+        elif self.operation == '*':
             self.message_text = str(Fraction.from_string(self.first_fraction) *
+                                    Fraction.from_string(self.second_fraction))
+        elif self.operation == '/':
+            self.message_text = str(Fraction.from_string(self.first_fraction) /
                                     Fraction.from_string(self.second_fraction))
 
     def get_msg_text(self):
