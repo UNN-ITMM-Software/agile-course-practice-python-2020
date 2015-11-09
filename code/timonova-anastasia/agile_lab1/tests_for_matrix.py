@@ -46,10 +46,10 @@ class MatrixTests(unittest.TestCase):
         test_matrix = Matrix.make_random(3, 2)
         self.assertEqual(test_matrix.is_matrix_square(), 0)
 
-    def test_can_calculate_determinant_of_matrix3x2(self):
+    def test_can_not_delete_incorrect_col_or_row(self):
         test_matrix = Matrix.make_from_list([[1, 3], [5, 7], [5, 7]])
         with self.assertRaises(MatrixError):
-            test_matrix.calculate_det()
+            Matrix.delete_col_and_row(test_matrix, -100, -500)
 
     def test_can_calculate_determinant_of_matrix2x2(self):
         test_matrix = Matrix.make_from_list([[1, 3], [5, 7]])
