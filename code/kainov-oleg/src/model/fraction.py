@@ -90,6 +90,6 @@ class Fraction:
     def from_string(cls, fraction):
         if Fraction.is_fraction(fraction):
             p, q = Fraction.get_nominator_denominator(fraction)
-            if not q:
+            if q is None:
                 q = 1
             return Fraction(int(p), int(q))
