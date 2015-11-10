@@ -5,7 +5,7 @@ from viewmodel import viewmodel
 
 
 class GUIView(ttk.Frame):
-    valid_operations = ['+', '-', '*', '/', 'Convert to continuous']
+    VALID_OPERATIONS = ['+', '-', '*', '/', 'Convert to continuous']
     default_sticky = Tkinter.W + Tkinter.E + Tkinter.N + Tkinter.S
 
     view_model = viewmodel.ViewModel()
@@ -33,7 +33,7 @@ class GUIView(ttk.Frame):
         self.view_model.set_second_fraction(
             self.txt_second_frac.get("1.0", Tkinter.END))
         self.view_model.set_operation(
-            self.valid_operations[self.cmb_operation.current()])
+            self.VALID_OPERATIONS[self.cmb_operation.current()])
 
     def mvvm_back_bind(self):
         self.txt_first_frac.delete(1.0, Tkinter.END)
@@ -69,7 +69,7 @@ class GUIView(ttk.Frame):
         self.txt_first_frac.grid(row=0, column=0, sticky=self.default_sticky)
 
         self.cmb_operation = ttk.Combobox(self, height=1, width=15,
-                                          values=self.valid_operations)
+                                          values=self.VALID_OPERATIONS)
         self.cmb_operation.current(0)
         self.cmb_operation.grid(row=0, column=1, sticky=self.default_sticky)
 
