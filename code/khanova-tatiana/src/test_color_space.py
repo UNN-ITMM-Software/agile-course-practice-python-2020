@@ -157,7 +157,14 @@ class TestColorSpaceConverterClass(unittest.TestCase):
         self.assertEqual(lab_color, Color(ColorSpace("LAB"),
                                           np.array([88, 148, 101])))
 
+    def test_can_convert_lab_to_rgb(self):
+        color = Color(ColorSpace("LAB"), np.array([88, 148, 101]))
+        rgb_color = self.converter.convert(color, ColorSpace("RGB"))
+        self.assertEqual(rgb_color, Color(ColorSpace("RGB"),
+                                          np.array([90, 72, 124])))
+
+
     def test_cannot_create_unimplemented_converter(self):
-        color = Color(ColorSpace("LAB"))
+        color = Color(ColorSpace("HSV"))
         with self.assertRaises(InvalidConversion):
-            self.converter.convert(color, ColorSpace("RGB"))
+            self.converter.convert(color, ColorSpace("LAB"))
