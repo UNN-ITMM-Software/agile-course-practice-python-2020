@@ -1,5 +1,5 @@
 import unittest
-from view_model import *
+from view_model import ViewModel
 
 
 class TestColorSpaceConverterViewModel(unittest.TestCase):
@@ -42,11 +42,6 @@ class TestColorSpaceConverterViewModel(unittest.TestCase):
         viewmodel.set_color_space_out("QQQ")
         self.assertEqual("disabled", viewmodel.get_button_convert_state())
 
-    def test_convert_button_disabled_incorrect_color_space_in(self):
-        viewmodel = ViewModel()
-        viewmodel.set_color_space_in("QQQ")
-        self.assertEqual("disabled", viewmodel.get_button_convert_state())
-
     def test_complains_on_incorrect_color_space_in(self):
         viewmodel = ViewModel()
         viewmodel.set_color_space_in("QQQ")
@@ -74,12 +69,17 @@ class TestColorSpaceConverterViewModel(unittest.TestCase):
         viewmodel.set_color_in(['a', 'b', '10'])
         self.assertEqual("disabled", viewmodel.get_button_convert_state())
 
-    def test_convert_button_disabled_incorrect_color_in(self):
+    def test_convert_button_disabled_incorrect_color_in_negative(self):
         viewmodel = ViewModel()
         viewmodel.set_color_in(['-1', '-1', '300'])
         self.assertEqual("disabled", viewmodel.get_button_convert_state())
 
-    def test_when_convert_def_RGB_to_RGB_display_it(self):
+    def test_complains_on_incorrect_color_in_not_in_range(self):
+        viewmodel = ViewModel()
+        viewmodel.set_color_in(['1000', '0', '0'])
+        self.assertEqual("Input values should be in range 0-255.", viewmodel.get_error_message())
+
+    def test_when_convert_def_rgb_to_rgb_display_it(self):
         viewmodel = ViewModel()
         viewmodel.set_color_space_in("RGB")
         viewmodel.set_color_space_out("RGB")
@@ -88,7 +88,7 @@ class TestColorSpaceConverterViewModel(unittest.TestCase):
         self.assertEqual("RGB", viewmodel.get_color_space_out())
         self.assertEqual(['0', '0', '0'], viewmodel.get_color_out())
 
-    def test_when_convert_RGB_to_HSV_display_it(self):
+    def test_when_convert_rgb_to_hsv_display_it(self):
         viewmodel = ViewModel()
         viewmodel.set_color_space_in("RGB")
         viewmodel.set_color_space_out("HSV")
@@ -97,7 +97,7 @@ class TestColorSpaceConverterViewModel(unittest.TestCase):
         self.assertEqual("HSV", viewmodel.get_color_space_out())
         self.assertEqual(['85', '255', '100'], viewmodel.get_color_out())
 
-    def test_when_convert_LAB_to_RGB_display_it(self):
+    def test_when_convert_lab_to_rgb_display_it(self):
         viewmodel = ViewModel()
         viewmodel.set_color_space_in("LAB")
         viewmodel.set_color_space_out("RGB")
@@ -105,7 +105,3 @@ class TestColorSpaceConverterViewModel(unittest.TestCase):
         viewmodel.convert()
         self.assertEqual("RGB", viewmodel.get_color_space_out())
         self.assertEqual(['90', '72', '124'], viewmodel.get_color_out())
-
-
-if __name__ == '__main__':
-    unittest.main()

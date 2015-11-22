@@ -16,7 +16,6 @@ def xyz2lab_nonlinear_transform_inv(t):
         return (t - (16.0 / 116.0)) / 7.787
 
 
-
 def rgb2xyz_nonlinear_transform(t):
     if t <= 0.04045:
         return t / 12.92
