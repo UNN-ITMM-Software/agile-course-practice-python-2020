@@ -1,6 +1,6 @@
 import unittest
 
-import rational_math
+from model import rational_math
 
 
 class TestMathFunctions(unittest.TestCase):
