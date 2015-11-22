@@ -40,14 +40,14 @@ class ColorSpaceConverter:
 
         saturation = 0 if max_val == 0 else diff / max_val * 255
         value = max_val * 255
-        hue *= 0.5
+        hue *= 255. / 360.
 
         return Color(ColorSpace("HSV"),
-                     np.round(np.array([hue, saturation, value])))
+                     np.round(np.array([hue, saturation, value])).astype(np.uint8))
 
     @staticmethod
     def hsv2rgb(self, color):
-        hue = color.value[0] * 2. / 360. * 6
+        hue = color.value[0] * 360. / 255. / 360. * 6
         saturation = color.value[1] / 255.
         value = color.value[2] / 255.
 
@@ -72,7 +72,7 @@ class ColorSpaceConverter:
         min_val = value - chroma
 
         return Color(ColorSpace("RGB"),
-                     np.round((np.array(rgb) + min_val) * 255))
+                     np.round((np.array(rgb) + min_val) * 255).astype(np.uint8))
 
     @staticmethod
     def rgb2lab(self, color):
@@ -94,7 +94,7 @@ class ColorSpaceConverter:
         a = 500. * (x_norm - y_norm) + 128
         b = 200. * (y_norm - z_norm) + 128
 
-        return Color(ColorSpace("LAB"), np.round(np.array([l, a, b])))
+        return Color(ColorSpace("LAB"), np.round(np.array([l, a, b])).astype(np.uint8))
 
     @staticmethod
     def lab2rgb(self, color):
@@ -115,7 +115,7 @@ class ColorSpaceConverter:
         vec_func = np.vectorize(utility.rgb2xyz_nonlinear_transform_inv)
         rgb = np.multiply(vec_func(rgb), 255.)
 
-        return Color(ColorSpace("RGB"), np.round(rgb))
+        return Color(ColorSpace("RGB"), np.round(rgb).astype(np.uint8))
 
     def convert(self, color, dst_space):
         if color.space == dst_space:
