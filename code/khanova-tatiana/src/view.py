@@ -9,20 +9,21 @@ class GUI(ttk.Frame):
 
     def bind_events(self):
         self.btn_convert.bind('<Button-1>', self.convert_clicked)
-        self.txt_x_in.bind('<FocusOut>', self.txt_x_in_changed)
-        self.txt_y_in.bind('<FocusOut>', self.txt_y_in_changed)
-        self.txt_z_in.bind('<FocusOut>', self.txt_z_in_changed)
-        self.txt_color_space.bind('<FocusOut>', self.color_space_changed)
-        self.txt_out_color_space.bind('<FocusOut>', self.color_space_out_changed)
+        self.txt_x_in.bind('<KeyRelease>', self.txt_x_in_changed)
+        self.txt_y_in.bind('<KeyRelease>', self.txt_y_in_changed)
+        self.txt_z_in.bind('<KeyRelease>', self.txt_z_in_changed)
+        self.txt_color_space.bind('<KeyRelease>', self.color_space_in_changed)
+        self.txt_out_color_space.bind('<KeyRelease>', self.color_space_out_changed)
 
     def mvvm_bind(self):
         self.view_model.set_color_in(
             [self.txt_x_in.get(), self.txt_y_in.get(), self.txt_z_in.get()])
 
-        self.view_model.set_color_space_in(
-            self.txt_color_space.get())
-        self.view_model.set_color_space_out(
-            self.txt_out_color_space.get())
+        self.view_model.set_color_space_in(self.txt_color_space.get())
+        self.view_model.set_color_space_out(self.txt_out_color_space.get())
+
+        self.txt_error_message.config(text=self.view_model.get_error_message())
+        self.txt_error_message.update_idletasks()
 
     def mvvm_back_bind(self):
         self.txt_color_space.delete(0, tk.END)
@@ -49,11 +50,10 @@ class GUI(ttk.Frame):
         self.txt_z_out.delete(0, tk.END)
         self.txt_z_out.insert(0, color_out[2])
 
-        self.btn_convert.config(
-            state=self.view_model.get_button_convert_state())
+        self.btn_convert.config(state=self.view_model.get_button_convert_state())
 
-        self.txt_error_massage.delete(1.0, tk.END)
-        self.txt_error_massage.insert(tk.END, self.view_model.get_error_message())
+        self.txt_error_message.config(text=self.view_model.get_error_message())
+        self.txt_error_message.update_idletasks()
 
     def __init__(self):
         ttk.Frame.__init__(self)
@@ -85,8 +85,8 @@ class GUI(ttk.Frame):
         self.btn_convert.grid(row=0, column=3, rowspan=1,
                               sticky=self.default_sticky)
 
-        self.txt_error_massage = tk.Text(self, height=1, width=15, wrap=tk.WORD)
-        self.txt_error_massage.grid(row=1, column=3)
+        self.txt_error_message = tk.Label(self, height=3, width=15, wraplength=150)
+        self.txt_error_message.grid(row=1, column=3, rowspan=3)
 
         self.bind_events()
         self.mvvm_back_bind()
@@ -108,7 +108,7 @@ class GUI(ttk.Frame):
         self.mvvm_bind()
         self.mvvm_back_bind()
 
-    def color_space_changed(self, event):
+    def color_space_in_changed(self, event):
         self.mvvm_bind()
         self.mvvm_back_bind()
 

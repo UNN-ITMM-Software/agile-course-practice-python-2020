@@ -8,15 +8,14 @@ import operator
 class ViewModel:
     @staticmethod
     def is_correct(color):
-        # if map(str.isdigit, color) == [True] * 3:
-        # print map(operator.methodcaller("isdigit"), color)
-        if map(operator.methodcaller("isdigit"), color) == [True] * 3:
-            return True
-        else:
-            return False
+        return map(operator.methodcaller("isdigit"), color) == [True] * 3
+
+    @staticmethod
+    def is_in_range(color, lower, upper):
+        return len(color) == len([val for val in map(int, color) if lower <= val <= upper])
 
     def __init__(self):
-        self.error_message_text = ''
+        self.error_message_text = {"color": "", "color_space_in": "", "color_space_out": ""}
         self.color_space_in = "RGB"
         self.color_space_out = "RGB"
         self.color_in = ['0', '0', '0']
@@ -30,34 +29,36 @@ class ViewModel:
     def set_button_convert_state(self, state):
         self.button_convert_state = state
 
-    def set_color_space_in(self, color_space):
-        self.color_space_in = color_space
-        self.error_message_text = ""
+    def check_color_space(self, color_space, type):
+        self.error_message_text[type] = ""
         if color_space not in ColorSpace.SUPPORTED_COLOR_SPACES:
-            self.error_message_text = "Unsupported color space."
+            self.error_message_text[type] = "Unsupported color space."
             self.set_button_convert_state("disabled")
 
-    def set_color_space_out(self, color_space):
-        self.color_space_out = color_space
-        self.error_message_text = ""
-        if color_space not in ColorSpace.SUPPORTED_COLOR_SPACES:
-            self.error_message_text = "Unsupported color space."
-            self.set_button_convert_state("disabled")
-
-    def set_color_in(self, color):
-        self.color_in = color
-        self.error_message_text = ""
+    def check_color(self, color):
+        self.error_message_text["color"] = ""
         if ViewModel.is_correct(color):
-            if len(color) == len([val for val in map(int, color) if val <= 255 and val >= 0]):
-                self.color_in = color
+            if ViewModel.is_in_range(color, 0, 255):
                 self.set_button_convert_state("enabled")
                 return
             else:
-                self.error_message_text = "Input values should be in range 0-255."
+                self.error_message_text["color"] = "Input values should be in range 0-255."
         else:
-            self.error_message_text = "Incorrect values."
+            self.error_message_text["color"] = "Incorrect values."
 
         self.set_button_convert_state("disabled")
+
+    def set_color_space_in(self, color_space):
+        self.color_space_in = color_space
+        self.check_color_space(color_space, "color_space_in")
+
+    def set_color_space_out(self, color_space):
+        self.color_space_out = color_space
+        self.check_color_space(color_space, "color_space_out")
+
+    def set_color_in(self, color):
+        self.color_in = color
+        self.check_color(color)
 
     def get_color_space_out(self):
         return self.color_space_out
@@ -77,4 +78,4 @@ class ViewModel:
         self.color_out = map(str, converted_color.value.tolist())
 
     def get_error_message(self):
-        return self.error_message_text
+        return "".join(self.error_message_text.values())
