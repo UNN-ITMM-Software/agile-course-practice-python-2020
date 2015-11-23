@@ -6,7 +6,7 @@ class TestColorSpaceConverterViewModel(unittest.TestCase):
     def setUp(self):
         self.viewmodel = ViewModel()
 
-    def test_button_enabled__by_default(self):
+    def test_button_enabled_by_default(self):
         self.assertEqual('enabled', self.viewmodel.get_button_convert_state())
 
     def test_when_entered_color_button_enabled(self):
