@@ -115,6 +115,8 @@ class ColorSpaceConverter:
         vec_func = np.vectorize(utility.rgb2xyz_nonlinear_transform_inv)
         rgb = np.multiply(vec_func(rgb), 255.)
 
+        rgb[rgb < 0] = 0
+
         return Color(ColorSpace("RGB"), np.round(rgb).astype(np.uint8))
 
     def convert(self, color, dst_space):
