@@ -36,7 +36,7 @@ class SimpleTableInput(tk.Frame):
         if p.strip() == "":
             return True
         try:
-            f = float(p)
+            float(p)
         except ValueError:
             return False
         return True
@@ -97,12 +97,3 @@ class GuiView(tk.Frame):
         self.table = SimpleTableInput(self, self.view_model.rows, matrix_as_list)
         self.table.pack(side="top", fill="both", expand=True)
         self.answer.config(text=self.view_model.answer)
-
-
-
-
-
-
-
-
-

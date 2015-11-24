@@ -29,4 +29,3 @@ class ViewModel():
     def init_zero_matrix_with_new_rank_value(self):
         self.matrix = Matrix.make_random(self.rows, self.rows, 0, 1)
         return self.get_matrix_as_list()
-
