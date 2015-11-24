@@ -35,3 +35,9 @@ class TestForViewModel(unittest.TestCase):
         content = [[2, 1, 2], [0, 3, 0], [3, 1, 1]]
         view_model.update_matrix_content(content)
         self.assertEqual(view_model.calculate_determinant(), -12)
+
+    def test_set_answer(self):
+        view_model = ViewModel()
+        answer_str = '1'
+        view_model.set_answer(answer_str)
+        self.assertEqual(view_model.answer, answer_str)
