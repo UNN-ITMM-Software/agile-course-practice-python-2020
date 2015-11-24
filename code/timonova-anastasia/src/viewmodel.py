@@ -1,4 +1,4 @@
-from model.matrix import Matrix
+from matrix import Matrix
 
 
 class ViewModel():
