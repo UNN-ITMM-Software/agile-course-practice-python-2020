@@ -42,4 +42,3 @@ class TestForViewModel(unittest.TestCase):
         self.view_model.update_matrix_content(content)
         self.view_model.calculate_determinant()
         self.assertEqual(self.view_model.answer, -12)
-
