@@ -1,9 +1,13 @@
 from matrix import Matrix
 
 
+class ViewError(Exception):
+    pass
+
+
 class ViewModel():
     def __init__(self):
-        self.matrix = Matrix.make_from_list([[0, 0, 0], [0, 0, 0], [0, 0, 0]])
+        self.matrix = Matrix.make_from_list([[0]*3]*3)
         self.rows = 3
         self.answer = ''
 

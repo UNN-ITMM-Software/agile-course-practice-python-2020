@@ -9,11 +9,11 @@ class SimpleTableInput(tk.Frame):
         self._entry = {}
         self.rows = rows
 
-        check_input = (self.register(self._validate), "%P")
+        check_input = self.register(self._validate), "%P"
 
         for row in range(self.rows):
             for column in range(self.rows):
-                index = (row, column)
+                index = row, column
                 e = tk.Entry(self, validate="key", validatecommand=check_input)
                 e.insert(tk.END, str(value[row][column]))
                 e.grid(row=row, column=column, stick="nsew")
@@ -43,10 +43,11 @@ class SimpleTableInput(tk.Frame):
 
 
 class GuiView(tk.Frame):
-    def __init__(self, input_rows):
+    def __init__(self):
         tk.Frame.__init__(self)
 
         self.view_model = viewmodel.ViewModel()
+        self.view_model_error = viewmodel.ViewError()
         self.master.title("Determinant calculator")
         self.master.minsize(width=150, height=150)
 
@@ -55,20 +56,22 @@ class GuiView(tk.Frame):
                                    font="Arial 12", bg="light yellow")
         self.rows_label.pack()
         self.rows = tk.Text(self, height=1, width=20)
-        self.rows.insert(tk.END, "3")
         self.rows.pack()
         self.enter = tk.Button(self, text="Change matrix rank", width=15, height=1, font="Arial 12",
                                bg="light blue", command=self.on_change)
         self.enter.pack()
-
-        self.table = SimpleTableInput(self, input_rows, [[0, 0, 0], [0, 0, 0], [0, 0, 0]])
+        self.table = SimpleTableInput(self, self.view_model.get_number_of_rows(),
+                                      self.view_model.get_matrix_as_list())
         self.table.pack(side="top", fill="both", expand=True)
-        self.submit = tk.Button(self, text="Submit", width=15, height=1, font="Arial 12",
-                                bg="light blue", command=self.on_submit)
-        self.submit.pack()
+        self.submit_matrix_for_calc_det = tk.Button(self, text="Submit", width=15, height=1, font="Arial 12",
+                                                    bg="light blue", command=self.on_submit)
+        self.submit_matrix_for_calc_det.pack()
 
         self.answer = tk.Label(self, text="You result", fg='black', font="Arial 12", bg="light yellow")
         self.answer.pack()
+        self.error_msg = tk.Label(self, text="", fg='black', font="Arial 12", bg="light yellow")
+        self.error_msg.pack()
+
         self.my_back_bind()
 
     def on_submit(self):
@@ -83,7 +86,11 @@ class GuiView(tk.Frame):
         self.my_back_bind()
 
     def my_bind(self):
-        self.view_model.set_number_of_rows(int(self.rows.get("1.0", tk.END).strip()))
+        try:
+            self.view_model.set_number_of_rows(int(self.rows.get("1.0", tk.END).strip()))
+            self.error_msg.config(text="")
+        except ValueError:
+            self.error_msg.config(text="Rows count should be number!")
         self.view_model.set_answer('')
         table_raw_text = self.table.get()
         good_table = list()
@@ -92,6 +99,8 @@ class GuiView(tk.Frame):
         self.view_model.update_matrix_content(good_table)
 
     def my_back_bind(self):
+        self.rows.delete("1.0", tk.END)
+        self.rows.insert(tk.END, self.view_model.get_number_of_rows())
         matrix_as_list = self.view_model.get_matrix_as_list()
         self.table.pack_forget()
         self.table = SimpleTableInput(self, self.view_model.rows, matrix_as_list)
