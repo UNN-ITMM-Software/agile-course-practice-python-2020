@@ -14,7 +14,7 @@ class TestForViewModel(unittest.TestCase):
     def test_check_init_matrix_by_zero_values(self):
         self.assertEqual(self.view_model.get_matrix_as_list(), [[0]*3]*3)
 
-    def test_check_int_matrix_by_non_zero_values(self):
+    def test_check_init_matrix_by_non_zero_values(self):
         content = [[2, 1, 2], [0, 3, 0], [3, 1, 1]]
         self.view_model.update_matrix_content(content)
         self.assertEqual(self.view_model.get_matrix_as_list(), [[2, 1, 2], [0, 3, 0], [3, 1, 1]])
