@@ -82,3 +82,7 @@ class MatrixTests(unittest.TestCase):
                                              [-4, 0, 6, 0, 0, -5]])
         det = test_matrix.calculate_det()
         self.assertEqual(det, -96)
+
+    def test_get_data_line(self):
+        test_matrix = Matrix.make_from_list([[7, 0], [5, 8]])
+        self.assertEqual(test_matrix.get_data_lines(), [[7, 0], [5, 8]])

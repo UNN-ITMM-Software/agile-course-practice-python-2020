@@ -17,6 +17,9 @@ class Matrix(object):
                        for row in self.data_lines])
         return s + '\n'
 
+    def get_data_lines(self):
+        return self.data_lines
+
     def is_matrix_square(self):
         return True if self.rows == self.cols else False
 
