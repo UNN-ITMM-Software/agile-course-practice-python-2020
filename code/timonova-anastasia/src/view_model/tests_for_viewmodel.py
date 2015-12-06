@@ -2,6 +2,7 @@ import unittest
 from view_model.viewmodel import *
 
 
+
 class TestForViewModel(unittest.TestCase):
 
     def setUp(self):
