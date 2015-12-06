@@ -1,6 +1,5 @@
 import unittest
-from view_model.viewmodel import *
-
+from view_model.viewmodel import ViewModel
 
 
 
