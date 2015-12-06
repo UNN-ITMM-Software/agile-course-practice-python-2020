@@ -1,7 +1,7 @@
 import unittest
 
 from logger.fakelogger import FakeLogger
-
+from logger.reallogger import RealLogger
 from viewmodel import ViewModel
 
 
@@ -102,7 +102,7 @@ class TestFractionCalculatorViewModel(unittest.TestCase):
         self.assertEqual(str([0, 1, 2]), self.view_model.get_msg_text())
 
 
-class TestViewModelLogging(unittest.TestCase):
+class TestViewModelFakeLogging(unittest.TestCase):
     def setUp(self):
         self.view_model = ViewModel(FakeLogger())
 
@@ -132,3 +132,7 @@ class TestViewModelLogging(unittest.TestCase):
         self.view_model.click_convert()
 
         self.assertEqual(expected_messages, self.view_model.logger.get_log_messages()[-3:])
+
+class TestViewModelRealLogging(TestViewModelFakeLogging):
+    def setUp(self):
+        self.view_model = ViewModel(RealLogger())
