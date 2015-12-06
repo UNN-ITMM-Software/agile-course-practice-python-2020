@@ -1,6 +1,6 @@
 import unittest
 
-from viewmodel import ViewModel
+from view_model.viewmodel import ViewModel
 
 
 class TestForViewModel(unittest.TestCase):
