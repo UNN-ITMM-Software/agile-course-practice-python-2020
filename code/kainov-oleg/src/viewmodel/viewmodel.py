@@ -1,8 +1,10 @@
+from logger.reallogger import RealLogger
 from model.fraction import Fraction, InvalidFractionError
 
 
 class ViewModel:
-    def __init__(self):
+    def __init__(self, logger=RealLogger()):
+        self.logger = logger
         self.message_text = ''
         self.set_btn_disabled()
         self.first_fraction = ''
@@ -10,12 +12,14 @@ class ViewModel:
         self.operation = '+'
         self.set_btn_disabled()
         self.set_second_fraction_text_enabled()
+        self.logger.log('Welcome!')
 
     def get_button_convert_state(self):
         return self.button_convert_state
 
     def set_second_fraction(self, value):
         self.second_fraction = value.strip()
+        self.logger.log('Setting second fraction to %s' % self.second_fraction)
         self.validate_text()
 
     def validate_text(self):
@@ -43,12 +47,15 @@ class ViewModel:
 
     def set_first_fraction(self, value):
         self.first_fraction = value.strip()
+        self.logger.log('Setting first fraction to %s' % self.first_fraction)
         self.validate_text()
 
     def get_first_fraction(self):
         return self.first_fraction
 
     def click_convert(self):
+        self.logger.log('Button clicked')
+        self.logger.log('Selected operation is %s' % self.operation)
         first_fraction = Fraction.from_string(self.first_fraction)
         second_fraction = Fraction.from_string(self.second_fraction)
 
@@ -67,10 +74,13 @@ class ViewModel:
         else:
             self.message_text = str(list(first_fraction.to_continuous()))
 
+        self.logger.log('Result: %s' % self.message_text)
+
     def get_msg_text(self):
         return self.message_text
 
     def set_operation(self, operation):
+        self.logger.log('Setting operation to: %s' % operation)
         self.operation = operation
         if operation == 'Convert to continuous':
             self.set_second_fraction_text_disabled()
