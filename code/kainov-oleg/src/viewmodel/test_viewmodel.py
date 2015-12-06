@@ -1,12 +1,14 @@
 import unittest
 
+from logger.fakelogger import FakeLogger
+
 from viewmodel import ViewModel
 
 
 class TestFractionCalculatorViewModel(unittest.TestCase):
 
     def setUp(self):
-        self.view_model = ViewModel()
+        self.view_model = ViewModel(FakeLogger())
 
     def test_by_default_button_disabled(self):
         self.assertEqual('disabled', self.view_model.get_button_convert_state())
@@ -102,7 +104,7 @@ class TestFractionCalculatorViewModel(unittest.TestCase):
 
 class TestViewModelLogging(unittest.TestCase):
     def setUp(self):
-        self.view_model = ViewModel()
+        self.view_model = ViewModel(FakeLogger())
 
     def test_logging_init(self):
         self.assertEqual('Welcome!', self.view_model.logger.get_last_message())
