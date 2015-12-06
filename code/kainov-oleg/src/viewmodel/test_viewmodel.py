@@ -133,6 +133,7 @@ class TestViewModelFakeLogging(unittest.TestCase):
 
         self.assertEqual(expected_messages, self.view_model.logger.get_log_messages()[-3:])
 
+
 class TestViewModelRealLogging(TestViewModelFakeLogging):
     def setUp(self):
         self.view_model = ViewModel(RealLogger())
