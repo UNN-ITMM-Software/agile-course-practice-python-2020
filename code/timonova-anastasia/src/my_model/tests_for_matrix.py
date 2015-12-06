@@ -1,7 +1,7 @@
 import unittest
 
-from model.matrix import Matrix
-from model.matrix import MatrixError
+from my_model.matrix import Matrix
+from my_model.matrix import MatrixError
 
 
 class MatrixTests(unittest.TestCase):

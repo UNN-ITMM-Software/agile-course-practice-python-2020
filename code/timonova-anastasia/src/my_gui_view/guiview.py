@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from view_model import viewmodel
+from my_view_model import viewmodel
 
 
 class SimpleTableInput(tk.Frame):

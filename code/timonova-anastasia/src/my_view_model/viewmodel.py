@@ -1,4 +1,4 @@
-from model.matrix import Matrix
+from my_model.matrix import Matrix
 
 
 class ViewError(Exception):
