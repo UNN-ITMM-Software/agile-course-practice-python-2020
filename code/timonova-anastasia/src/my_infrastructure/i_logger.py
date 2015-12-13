@@ -3,7 +3,7 @@ class ILogger(object):
     def __init__(self):
         self.logs_list = []
 
-    def get_log_messages(self):
+    def get_logs_list(self):
         return self.logs_list
 
     def append_messages_in_logs_list(self, message):
