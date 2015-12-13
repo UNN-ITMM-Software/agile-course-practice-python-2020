@@ -50,7 +50,7 @@ class TestForViewModeWithFakeLogging(unittest.TestCase):
         self.view_model = ViewModel(FakeLogger())
 
     def test_start_logging(self):
-        self.assertEqual('Start logging...', self.view_model.my_logger.get_last_message_from_logs_list())
+        self.assertEqual('\n\n##    Start logging...    ##', self.view_model.my_logger.get_last_message_from_logs_list())
 
     def test_get_number_of_rows_logging(self):
         self.view_model.get_number_of_rows()
