@@ -1,11 +1,13 @@
 import unittest
-from my_view_model.viewmodel import ViewModel
+from my_view_model.view_model import ViewModel
+from my_infrastructure.fake_logger import FakeLogger
+from my_infrastructure.real_logger import RealLogger
 
 
 class TestForViewModel(unittest.TestCase):
 
     def setUp(self):
-        self.view_model = ViewModel()
+        self.view_model = ViewModel(FakeLogger())
 
     def test_check_number_or_rows_in_init(self):
         self.assertEqual(self.view_model.get_number_of_rows(), 3)
@@ -41,3 +43,50 @@ class TestForViewModel(unittest.TestCase):
         self.view_model.update_matrix_content(content)
         self.view_model.calculate_determinant()
         self.assertEqual(self.view_model.answer, -12)
+
+
+class TestForViewModeWithFakeLogging(unittest.TestCase):
+    def setUp(self):
+        self.view_model = ViewModel(FakeLogger())
+
+    def test_start_logging(self):
+        self.assertEqual('Start logging...', self.view_model.my_logger.get_last_message_from_logs_list())
+
+    def test_get_number_of_rows_logging(self):
+        self.view_model.get_number_of_rows()
+        self.assertEqual('Getting matrix\'s rows: 3', self.view_model.my_logger.get_last_message_from_logs_list())
+
+    def test_set_number_of_rows(self):
+        self.view_model.set_number_of_rows(4)
+        self.assertEqual('Setting matrix\'s rows: 4', self.view_model.my_logger.get_last_message_from_logs_list())
+
+    def test_get_matrix_as_list(self):
+        self.view_model.get_matrix_as_list()
+        self.assertEqual('Getting matrix as data lines: [[0, 0, 0], [0, 0, 0], [0, 0, 0]]',
+                         self.view_model.my_logger.get_last_message_from_logs_list())
+
+    def test_set_answer(self):
+        self.view_model.set_answer('0')
+        self.assertEqual('Setting answer: 0', self.view_model.my_logger.get_last_message_from_logs_list())
+
+    def test_update_matrix_content(self):
+        content = [[2, 1, 2], [0, 3, 0], [3, 1, 1]]
+        self.view_model.update_matrix_content(content)
+        self.assertEqual('Updating matrix\'s content: [[2, 1, 2], [0, 3, 0], [3, 1, 1]]',
+                         self.view_model.my_logger.get_last_message_from_logs_list())
+
+    def test_calculate_determinant(self):
+        content = [[2, 1, 2], [0, 3, 0], [3, 1, 1]]
+        self.view_model.update_matrix_content(content)
+        self.view_model.calculate_determinant()
+        self.assertEqual('Calculating determinant: -12', self.view_model.my_logger.get_last_message_from_logs_list())
+
+    def test_init_zero_matrix_with_new_rank_value(self):
+        self.view_model.init_zero_matrix_with_new_rank_value()
+        self.assertEqual('Getting matrix as data lines: [[0, 0, 0], [0, 0, 0], [0, 0, 0]]',
+                         self.view_model.my_logger.get_last_message_from_logs_list())
+
+
+class TestForViewModeWithRealLogging(TestForViewModeWithFakeLogging):
+    def setUp(self):
+        self.view_model = ViewModel(RealLogger())
