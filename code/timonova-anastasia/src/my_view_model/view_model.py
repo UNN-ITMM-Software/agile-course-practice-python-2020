@@ -23,7 +23,8 @@ class ViewModel:
         self.my_logger.append_messages_in_logs_list('Setting matrix\'s rows: %s' % self.rows)
 
     def get_matrix_as_list(self):
-        self.my_logger.append_messages_in_logs_list('Getting matrix as data lines: %s' % self.matrix.get_data_lines())
+        self.my_logger.append_messages_in_logs_list('Getting matrix as data lines: %s'
+                                                    % self.matrix.get_data_lines())
         return self.matrix.get_data_lines()
 
     def set_answer(self, answer_str):
@@ -32,7 +33,8 @@ class ViewModel:
 
     def update_matrix_content(self, content):
         self.matrix = Matrix.make_from_list(content)
-        self.my_logger.append_messages_in_logs_list('Updating matrix\'s content: %s' % self.get_matrix_as_list())
+        self.my_logger.append_messages_in_logs_list('Updating matrix\'s content: %s'
+                                                    % self.get_matrix_as_list())
 
     def calculate_determinant(self):
         self.answer = Matrix.calculate_det(self.matrix)
