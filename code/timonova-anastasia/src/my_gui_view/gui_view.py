@@ -8,7 +8,6 @@ class SimpleTableInput(Tk.Frame):
         Tk.Frame.__init__(self, parent)
 
         self._entry = {}
-        self._entry = {}
         self.rows = rows
 
         check_input = self.register(self._validate), "%P"
@@ -96,7 +95,6 @@ class GuiView(Tk.Frame):
         except ValueError:
             self.error_msg.config(text="Rows count should be number!")
         logger_text = self.view_model.my_logger.get_last_message_from_logs_list()
-        print("logger_text", logger_text)
         self.log_label.config(text=logger_text)
         self.view_model.set_answer('')
         table_raw_text = self.table.get()
@@ -107,7 +105,6 @@ class GuiView(Tk.Frame):
 
     def my_back_bind(self):
         logger_text = self.view_model.my_logger.get_last_message_from_logs_list()
-        print("logger_text", logger_text)
         self.log_label.config(text=logger_text)
         self.rows.delete("1.0", Tk.END)
         self.rows.insert(Tk.END, self.view_model.get_number_of_rows())
