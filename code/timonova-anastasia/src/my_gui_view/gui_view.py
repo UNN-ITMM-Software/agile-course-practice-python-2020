@@ -49,7 +49,6 @@ class GuiView(Tk.Frame):
         Tk.Frame.__init__(self)
 
         self.view_model = view_model.ViewModel()
-        self.view_model_error = view_model.ViewError()
         self.master.title("Determinant calculator")
         self.master.minsize(width=150, height=150)
 
