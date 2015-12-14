@@ -8,6 +8,7 @@ class SimpleTableInput(Tk.Frame):
         Tk.Frame.__init__(self, parent)
 
         self._entry = {}
+        self._entry = {}
         self.rows = rows
 
         check_input = self.register(self._validate), "%P"
@@ -73,7 +74,8 @@ class GuiView(Tk.Frame):
         self.answer.pack()
         self.error_msg = Tk.Label(self, text="", fg='black', font="Arial 12", bg="light yellow")
         self.error_msg.pack()
-
+        self.log_label = Tk.Label(self, text="", fg='black', font="Arial 12", bg="light yellow")
+        self.log_label.pack()
         self.my_back_bind()
 
     def on_submit(self):
@@ -93,6 +95,9 @@ class GuiView(Tk.Frame):
             self.error_msg.config(text="")
         except ValueError:
             self.error_msg.config(text="Rows count should be number!")
+        logger_text = self.view_model.my_logger.get_last_message_from_logs_list()
+        print("logger_text", logger_text)
+        self.log_label.config(text=logger_text)
         self.view_model.set_answer('')
         table_raw_text = self.table.get()
         good_table = list()
@@ -101,6 +106,9 @@ class GuiView(Tk.Frame):
         self.view_model.update_matrix_content(good_table)
 
     def my_back_bind(self):
+        logger_text = self.view_model.my_logger.get_last_message_from_logs_list()
+        print("logger_text", logger_text)
+        self.log_label.config(text=logger_text)
         self.rows.delete("1.0", Tk.END)
         self.rows.insert(Tk.END, self.view_model.get_number_of_rows())
         matrix_as_list = self.view_model.get_matrix_as_list()

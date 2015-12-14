@@ -14,16 +14,16 @@ class TestForLogger(unittest.TestCase):
         log = self.my_logger.get_logs_list()
         self.assertEqual(log, [])
 
-    def test_state_after_append_messages_in_logs_list(self):
-        self.my_logger.append_messages_in_logs_list('## testing line0 ##')
+    def test_state_after_append_message_to_logs_list(self):
+        self.my_logger.append_message_to_logs_list('## testing line0 ##')
         self.assertEqual('## testing line0 ##', self.my_logger.get_last_message_from_logs_list())
 
     def test_can_get_last_log(self):
-        self.my_logger.append_messages_in_logs_list('## testing line1 ##')
-        self.my_logger.append_messages_in_logs_list('## testing line2 ##')
+        self.my_logger.append_message_to_logs_list('## testing line1 ##')
+        self.my_logger.append_message_to_logs_list('## testing line2 ##')
         self.assertEqual('## testing line2 ##', self.my_logger.get_last_message_from_logs_list())
 
     def test_can_log_several_messages(self):
-        self.my_logger.append_messages_in_logs_list('## testing line3 ##')
-        self.my_logger.append_messages_in_logs_list('## testing line4 ##')
+        self.my_logger.append_message_to_logs_list('## testing line3 ##')
+        self.my_logger.append_message_to_logs_list('## testing line4 ##')
         self.assertEqual(['## testing line3 ##', '## testing line4 ##'], self.my_logger.get_logs_list())

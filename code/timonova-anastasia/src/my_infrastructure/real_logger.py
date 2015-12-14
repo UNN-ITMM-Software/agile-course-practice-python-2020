@@ -1,6 +1,6 @@
 import logging
 
-from my_infrastructure.i_logger import ILogger
+from my_infrastructure.ilogger import ILogger
 
 
 class RealLogger(ILogger):

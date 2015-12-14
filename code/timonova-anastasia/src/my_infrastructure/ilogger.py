@@ -6,7 +6,7 @@ class ILogger(object):
     def get_logs_list(self):
         return self.logs_list
 
-    def append_messages_in_logs_list(self, message):
+    def append_message_to_logs_list(self, message):
         self.logs_list.append(message)
 
     def get_last_message_from_logs_list(self):
