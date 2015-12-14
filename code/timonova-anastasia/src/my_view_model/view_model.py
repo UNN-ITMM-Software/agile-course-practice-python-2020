@@ -2,10 +2,6 @@ from my_model.matrix import Matrix
 from my_infrastructure.real_logger import RealLogger
 
 
-class ViewError(Exception):
-    pass
-
-
 class ViewModel:
     def __init__(self, my_logger=RealLogger()):
         self.matrix = Matrix.make_from_list([[0]*3]*3)

@@ -16,12 +16,12 @@ class TestForLogger(unittest.TestCase):
 
     def test_state_after_append_message_to_logs_list(self):
         self.my_logger.append_message_to_logs_list('## testing line0 ##')
-        self.assertEqual('## testing line0 ##', self.my_logger.get_last_message_from_logs_list())
+        self.assertEqual(['## testing line0 ##'], self.my_logger.get_last_message_from_logs_list(1))
 
     def test_can_get_last_log(self):
         self.my_logger.append_message_to_logs_list('## testing line1 ##')
         self.my_logger.append_message_to_logs_list('## testing line2 ##')
-        self.assertEqual('## testing line2 ##', self.my_logger.get_last_message_from_logs_list())
+        self.assertEqual(['## testing line2 ##'], self.my_logger.get_last_message_from_logs_list(1))
 
     def test_can_log_several_messages(self):
         self.my_logger.append_message_to_logs_list('## testing line3 ##')

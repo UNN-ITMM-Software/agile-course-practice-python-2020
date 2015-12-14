@@ -93,8 +93,6 @@ class GuiView(Tk.Frame):
             self.error_msg.config(text="")
         except ValueError:
             self.error_msg.config(text="Rows count should be number!")
-        logger_text = self.view_model.my_logger.get_last_message_from_logs_list()
-        self.log_label.config(text=logger_text)
         self.view_model.set_answer('')
         table_raw_text = self.table.get()
         good_table = list()
@@ -103,7 +101,8 @@ class GuiView(Tk.Frame):
         self.view_model.update_matrix_content(good_table)
 
     def my_back_bind(self):
-        logger_text = self.view_model.my_logger.get_last_message_from_logs_list()
+        count_log_messages = 6
+        logger_text = '\n'.join(self.view_model.my_logger.get_last_message_from_logs_list(count_log_messages))
         self.log_label.config(text=logger_text)
         self.rows.delete("1.0", Tk.END)
         self.rows.insert(Tk.END, self.view_model.get_number_of_rows())
