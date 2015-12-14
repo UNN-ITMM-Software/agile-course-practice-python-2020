@@ -8,6 +8,6 @@ class RealLogger(ILogger):
         super(RealLogger, self).__init__()
         logging.basicConfig(filename='matrix.log', level=logging.INFO)
 
-    def append_messages_in_logs_list(self, message):
+    def append_message_to_logs_list(self, message):
         self.logs_list.append(message)
         logging.info(message)
