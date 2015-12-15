@@ -9,5 +9,5 @@ class ILogger(object):
     def append_message_to_logs_list(self, message):
         self.logs_list.append(message)
 
-    def get_last_message_from_logs_list(self, count):
+    def get_last_messages_from_logs_list(self, count):
         return self.logs_list[-count:]
