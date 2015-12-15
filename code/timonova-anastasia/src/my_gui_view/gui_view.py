@@ -103,7 +103,8 @@ class GuiView(Tk.Frame):
 
     def my_back_bind(self):
 
-        logger_text = '\n'.join(self.view_model.my_logger.get_last_message_from_logs_list(self.count_log_messages))
+        logger_text = '\n'.join(self.view_model.my_logger.
+                                get_last_messages_from_logs_list(self.count_log_messages))
         self.log_label.config(text=logger_text)
         self.rows.delete("1.0", Tk.END)
         self.rows.insert(Tk.END, self.view_model.get_number_of_rows())
