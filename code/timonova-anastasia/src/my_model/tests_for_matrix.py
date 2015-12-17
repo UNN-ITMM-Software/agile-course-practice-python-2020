@@ -1,15 +1,14 @@
 import unittest
 
-from matrix import Matrix
-from matrix import MatrixError
+from my_model.matrix import Matrix
+from my_model.matrix import MatrixError
 
 
 class MatrixTests(unittest.TestCase):
 
     def test_check_constructor(self):
         test_matrix = Matrix.make_from_list([[1, 1]])
-        self.assertTrue(test_matrix.cols == 2 and test_matrix.rows == 1)
-        self.assertTrue(test_matrix.data_lines[0][0] ==
+        self.assertTrue(test_matrix.cols == 2 and test_matrix.rows == 1 and test_matrix.data_lines[0][0] ==
                         test_matrix.data_lines[0][1] == 1)
 
     def test_create_matrix_with_not_full_last_string(self):
