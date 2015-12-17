@@ -6,6 +6,7 @@ from viewmodel import viewmodel
 
 class GUIView(ttk.Frame):
     VALID_OPERATIONS = ['+', '-', '*', '/', 'Convert to continuous']
+    N_LOG_MESSAGES_TO_DISPLAY = 15
     default_sticky = Tkinter.W + Tkinter.E + Tkinter.N + Tkinter.S
 
     view_model = viewmodel.ViewModel()
@@ -50,7 +51,8 @@ class GUIView(ttk.Frame):
         self.txt_second_frac.config(
             state=self.view_model.get_second_fraction_text_state())
 
-        self.lbl_result.config(text=self.view_model.get_msg_text())
+        logger_text = '\n'.join(self.view_model.logger.get_log_messages()[-self.N_LOG_MESSAGES_TO_DISPLAY:])
+        self.lbl_result.config(text='%s\n%s' % (self.view_model.get_msg_text(), logger_text))
 
     def __init__(self):
         ttk.Frame.__init__(self)
