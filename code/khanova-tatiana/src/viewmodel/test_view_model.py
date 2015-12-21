@@ -1,10 +1,14 @@
 import unittest
 from view_model import ViewModel
+from my_logger.real_logger import Logger
 
 
 class TestColorSpaceConverterViewModel(unittest.TestCase):
     def setUp(self):
         self.viewmodel = ViewModel()
+
+    def tearDown(self):
+        self.viewmodel.logger.clear()
 
     def test_button_enabled_by_default(self):
         self.assertEqual('enabled', self.viewmodel.get_button_convert_state())
@@ -87,3 +91,47 @@ class TestColorSpaceConverterViewModel(unittest.TestCase):
         self.viewmodel.set_color_in(['88', '148', '101'])
         self.viewmodel.convert()
         self.assertEqual(['90', '72', '124'], self.viewmodel.get_color_out())
+
+
+class TestColorSpaceConverterViewModelMockUpLogger(unittest.TestCase):
+    def setUp(self):
+        self.viewmodel = ViewModel()
+        self.viewmodel.logger.clear()
+
+    def test_log_is_empty_in_the_beginning(self):
+        log = self.viewmodel.logger.get_log()
+        self.assertEqual(log, "")
+
+    def test_log_contains_correct_message_for_setting_color_space_in(self):
+        self.viewmodel.set_color_space_in("LAB")
+        log = self.viewmodel.logger.get_log()
+        self.assertEqual(log, 'Input color space: LAB')
+
+    def test_log_contains_correct_message_for_setting_color_space_out(self):
+        self.viewmodel.set_color_space_out("LAB")
+        log = self.viewmodel.logger.get_log()
+        self.assertEqual(log, 'Output color space: LAB')
+
+    def test_log_contains_correct_message_for_setting_color(self):
+        self.viewmodel.set_color_in(['88', '148', '101'])
+        log = self.viewmodel.logger.get_log()
+        self.assertEqual(log, "Input color: ['88', '148', '101']")
+
+    def test_log_contains_correct_message_for_conversion(self):
+        self.viewmodel.set_color_space_in("LAB")
+        self.viewmodel.set_color_space_out("RGB")
+        self.viewmodel.set_color_in(['88', '148', '101'])
+        self.viewmodel.convert()
+        log = self.viewmodel.logger.get_log()
+        expected_messages = ["Input color space: LAB", "Output color space: RGB",
+                             "Input color: ['88', '148', '101']",
+                             "Input color: LAB [88, 148, 101] --> Output color: RGB [90, 72, 124]"]
+        self.assertEqual(log, "\n".join(expected_messages))
+
+
+class TestColorSpaceConverterViewModelWithLogger(TestColorSpaceConverterViewModelMockUpLogger):
+    def setUp(self):
+        real_logger = Logger("ViewModel_with_Logger_Tests-lab3.log")
+        real_logger.clear()
+        self.viewmodel = ViewModel(real_logger)
+        self.viewmodel.logger.clear()

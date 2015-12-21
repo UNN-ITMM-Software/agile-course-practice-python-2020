@@ -3,6 +3,7 @@ from model.color import Color
 from model.color_space_converter import ColorSpaceConverter
 import numpy as np
 import operator
+from my_logger.mockup_logger import MockUpLogger
 
 
 class ViewModel:
@@ -14,7 +15,8 @@ class ViewModel:
     def is_in_range(color, lower, upper):
         return len(color) == len([val for val in map(int, color) if lower <= val <= upper])
 
-    def __init__(self):
+    def __init__(self, logger=MockUpLogger()):
+        self.logger = logger
         self.error_message_text = {"color": "", "color_space_in": "", "color_space_out": ""}
         self.color_space_in = "RGB"
         self.color_space_out = "RGB"
@@ -51,14 +53,17 @@ class ViewModel:
     def set_color_space_in(self, color_space):
         self.color_space_in = color_space
         self.check_color_space(color_space, "color_space_in")
+        self.logger.log("Input color space: " + str(color_space))
 
     def set_color_space_out(self, color_space):
         self.color_space_out = color_space
         self.check_color_space(color_space, "color_space_out")
+        self.logger.log("Output color space: " + str(self.color_space_out))
 
     def set_color_in(self, color):
         self.color_in = color
         self.check_color(color)
+        self.logger.log("Input color: " + str(color))
 
     def get_color_space_out(self):
         return self.color_space_out
@@ -76,6 +81,7 @@ class ViewModel:
         color = Color(ColorSpace(self.color_space_in), np.array(map(int, self.color_in)))
         converted_color = self.converter.convert(color, ColorSpace(self.color_space_out))
         self.color_out = map(str, converted_color.value.tolist())
+        self.logger.log("Input color: " + str(color) + " --> " + "Output color: " + str(converted_color))
 
     def get_error_message(self):
         return "".join(self.error_message_text.values())
