@@ -3,7 +3,7 @@ from model.color import Color
 from model.color_space_converter import ColorSpaceConverter
 import numpy as np
 import operator
-from my_logger.mockup_logger import MockUpLogger
+from my_logger.real_logger import Logger
 
 
 class ViewModel:
@@ -15,7 +15,7 @@ class ViewModel:
     def is_in_range(color, lower, upper):
         return len(color) == len([val for val in map(int, color) if lower <= val <= upper])
 
-    def __init__(self, logger=MockUpLogger()):
+    def __init__(self, logger=Logger()):
         self.logger = logger
         self.error_message_text = {"color": "", "color_space_in": "", "color_space_out": ""}
         self.color_space_in = "RGB"

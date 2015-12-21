@@ -1,6 +1,7 @@
 import unittest
 from view_model import ViewModel
 from my_logger.real_logger import Logger
+from my_logger.mockup_logger import MockUpLogger
 
 
 class TestColorSpaceConverterViewModel(unittest.TestCase):
@@ -95,7 +96,10 @@ class TestColorSpaceConverterViewModel(unittest.TestCase):
 
 class TestColorSpaceConverterViewModelMockUpLogger(unittest.TestCase):
     def setUp(self):
-        self.viewmodel = ViewModel()
+        mockup_logger = MockUpLogger()
+        self.viewmodel = ViewModel(mockup_logger)
+
+    def tearDown(self):
         self.viewmodel.logger.clear()
 
     def test_log_is_empty_in_the_beginning(self):
@@ -132,6 +136,7 @@ class TestColorSpaceConverterViewModelMockUpLogger(unittest.TestCase):
 class TestColorSpaceConverterViewModelWithLogger(TestColorSpaceConverterViewModelMockUpLogger):
     def setUp(self):
         real_logger = Logger("ViewModel_with_Logger_Tests-lab3.log")
-        real_logger.clear()
         self.viewmodel = ViewModel(real_logger)
+
+    def tearDown(self):
         self.viewmodel.logger.clear()
