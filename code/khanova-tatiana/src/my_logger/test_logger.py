@@ -1,5 +1,18 @@
 import unittest
 from real_logger import Logger
+from ilogger import ILogger
+
+
+class TestILogger(unittest.TestCase):
+    def test_cannot_log_from_interface(self):
+        interface = ILogger()
+        with self.assertRaises(NotImplementedError):
+            interface.log("QQQ")
+
+    def test_cannot_get_log_from_interface(self):
+        interface = ILogger()
+        with self.assertRaises(NotImplementedError):
+            interface.get_log()
 
 
 class TestLogger(unittest.TestCase):
