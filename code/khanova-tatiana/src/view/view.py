@@ -1,6 +1,6 @@
 import Tkinter as tk
 import ttk
-import view_model
+from viewmodel import view_model
 
 
 class GUI(ttk.Frame):
@@ -22,7 +22,7 @@ class GUI(ttk.Frame):
         self.view_model.set_color_space_in(self.txt_color_space.get())
         self.view_model.set_color_space_out(self.txt_out_color_space.get())
 
-        self.txt_error_message.config(text=self.view_model.get_error_message())
+        self.txt_error_message.config(text=self.view_model.logger.get_log())
         self.txt_error_message.update_idletasks()
 
     def mvvm_back_bind(self):
@@ -52,7 +52,7 @@ class GUI(ttk.Frame):
 
         self.btn_convert.config(state=self.view_model.get_button_convert_state())
 
-        self.txt_error_message.config(text=self.view_model.get_error_message())
+        self.txt_error_message.config(text=self.view_model.logger.get_log())
         self.txt_error_message.update_idletasks()
 
     def __init__(self):
