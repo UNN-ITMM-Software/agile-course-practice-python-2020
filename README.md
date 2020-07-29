@@ -12,7 +12,7 @@
 
 - [Таблица успеваемости][hall-of-fame]
 - Учебные материалы
-    - [Описания лабораторных работ][labs]
+    - [Описания лабораторных работ][lab-guide]
     - [Контрольные вопросы][quiz], [колхозная шпаргалка][cheatsheet] к ним
     - [Экзаменационные вопросы][exam-questions]
 - Литература
@@ -35,21 +35,18 @@
 [book-agile]:       http://www.books.ru/books/printsipy-patterny-i-metodiki-gibkoi-razrabotki-na-yazyke-c-fail-pdf-864714/?show=1
 [book-refactoring]: http://www.books.ru/books/refaktoring-uluchshenie-sushchestvuyushchego-koda-fail-pdf-552092/?show=1
 
+[lab-guide]:        https://github.com/UNN-VMK-Software/agile-course-practice-python/tree/master/docs
 [quiz]:             https://github.com/UNN-VMK-Software/agile-course-theory/blob/master/slides/control-questions.md
 [cheatsheet]:       https://docs.google.com/document/d/1QhdJOnSw-Gn_-WM9RWLzmxZMrWTB4EbyTkaNBWMGA3Y/edit
 [exam-questions]:   https://docs.google.com/spreadsheets/d/1Pt9i-UGUiFG8_tjnUjxmCqVjP9VHG9GJc1LNZQeGU_4/edit#gid=827430395
-
-<!-- CLEANUP -->
-[labs]:             https://github.com/UNN-VMK-Software/agile-course-practice/tree/master/docs
 
 <!-- NOTES
 
 TODO
 
     - infrastructure
-        - refresh links
-        - enable GitterChat
         - update lab guides for Python
+        - change license to MIT or something like that
     - code
         - make code coverage report from nosetests look the same both locally and on Travis-CI
         - migrate to newer version of Python
