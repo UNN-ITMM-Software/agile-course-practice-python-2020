@@ -1,5 +1,6 @@
-# Спецкурс "Agile Development". Python версия репозитория
+# Спецкурс Agile Development, Python Edition
 
+[![Join the chat][gitter-badge]][gitter-chat]
 [![Build Status][travis-badge]][travis]
 [![Coverage Status][coveralls-badge]][coveralls]
 
@@ -20,7 +21,6 @@
 
 <!-- LINKS UPDATABLE -->
 [hall-of-fame]:     https://docs.google.com/spreadsheets/d/1Pt9i-UGUiFG8_tjnUjxmCqVjP9VHG9GJc1LNZQeGU_4/edit#gid=1613595355
-[exam-questions]:   https://docs.google.com/spreadsheets/d/1Pt9i-UGUiFG8_tjnUjxmCqVjP9VHG9GJc1LNZQeGU_4/edit#gid=827430395
 
 <!-- LINKS PERMANENT -->
 [cc3]:              http://creativecommons.org/licenses/by-sa/3.0/
@@ -30,10 +30,13 @@
 [cheatsheet]:       https://docs.google.com/document/d/1QhdJOnSw-Gn_-WM9RWLzmxZMrWTB4EbyTkaNBWMGA3Y/edit
 [book-agile]:       http://www.books.ru/books/printsipy-patterny-i-metodiki-gibkoi-razrabotki-na-yazyke-c-fail-pdf-864714/?show=1
 [book-refactoring]: http://www.books.ru/books/refaktoring-uluchshenie-sushchestvuyushchego-koda-fail-pdf-552092/?show=1
-
-<!-- CLEANUP -->
 [coveralls]:        https://coveralls.io/github/UNN-ITMM-Software/agile-course-practice-python?branch=master
 [coveralls-badge]:  https://coveralls.io/repos/github/UNN-ITMM-Software/agile-course-practice-python/badge.svg?branch=master
+[exam-questions]:   https://docs.google.com/spreadsheets/d/1Pt9i-UGUiFG8_tjnUjxmCqVjP9VHG9GJc1LNZQeGU_4/edit#gid=827430395
+[gitter-chat]:      https://gitter.im/agile-course-practice-python/community
+[gitter-badge]:     https://badges.gitter.im/Lobby.svg
+
+<!-- CLEANUP -->
 [labs]:             https://github.com/UNN-VMK-Software/agile-course-practice/tree/master/docs
 
 <!-- NOTES
@@ -46,7 +49,6 @@ TODO
         - update lab guides for Python
     - code
         - make code coverage report from nosetests look the same both locally and on Travis-CI
-        - enable code coverage
         - migrate to newer version of Python
 
 NOTES
