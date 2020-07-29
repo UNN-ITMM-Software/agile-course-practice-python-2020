@@ -32,8 +32,8 @@
 [book-refactoring]: http://www.books.ru/books/refaktoring-uluchshenie-sushchestvuyushchego-koda-fail-pdf-552092/?show=1
 
 <!-- CLEANUP -->
-[coveralls]:        https://coveralls.io/github/GodfatherThe/agile-course-practice-python
-[coveralls-badge]:  https://coveralls.io/repos/GodfatherThe/agile-course-practice-python/badge.svg?branch=master&service=github
+[coveralls]:        https://coveralls.io/github/UNN-ITMM-Software/agile-course-practice-python?branch=master
+[coveralls-badge]:  https://coveralls.io/repos/github/UNN-ITMM-Software/agile-course-practice-python/badge.svg?branch=master
 [labs]:             https://github.com/UNN-VMK-Software/agile-course-practice/tree/master/docs
 
 <!-- NOTES
