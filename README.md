@@ -3,17 +3,17 @@
 [![Join the chat][gitter-badge]][gitter-chat]
 [![Build Status][travis-badge]][travis]
 [![Coverage Status][coveralls-badge]][coveralls]
+[![License: CC BY-SA 4.0][license-badge]][license]
 
  - Нижегородский Государственный Университет им. Н.И. Лобачевского
  - Институт ИТММ, каф. МОСТ
- - __License__: Creative Commons Attribution-Share Alike 3.0 ([CC BY-SA 3.0][cc3])
 
 ## Ресурсы
 
 - [Таблица успеваемости][hall-of-fame]
 - Учебные материалы
     - [Описания лабораторных работ][labs]
-    - [Контрольные вопросы][control-questions], [колхозная шпаргалка][cheatsheet] к ним
+    - [Контрольные вопросы][quiz], [колхозная шпаргалка][cheatsheet] к ним
     - [Экзаменационные вопросы][exam-questions]
 - Литература
     - Мика Мартин, Роберт Мартин "Принципы, паттерны и методики гибкой разработки на языке C#" ([pdf][book-agile])
@@ -23,18 +23,21 @@
 [hall-of-fame]:     https://docs.google.com/spreadsheets/d/1Pt9i-UGUiFG8_tjnUjxmCqVjP9VHG9GJc1LNZQeGU_4/edit#gid=1613595355
 
 <!-- LINKS PERMANENT -->
-[cc3]:              http://creativecommons.org/licenses/by-sa/3.0/
+[license]:          http://creativecommons.org/licenses/by-sa/4.0/
+[license-badge]:    https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 [travis]:           https://travis-ci.org/UNN-ITMM-Software/agile-course-practice-python
 [travis-badge]:     https://travis-ci.org/UNN-ITMM-Software/agile-course-practice-python.svg?branch=master
-[control-questions]: https://github.com/UNN-VMK-Software/agile-course-theory/blob/master/slides/control-questions.md
-[cheatsheet]:       https://docs.google.com/document/d/1QhdJOnSw-Gn_-WM9RWLzmxZMrWTB4EbyTkaNBWMGA3Y/edit
-[book-agile]:       http://www.books.ru/books/printsipy-patterny-i-metodiki-gibkoi-razrabotki-na-yazyke-c-fail-pdf-864714/?show=1
-[book-refactoring]: http://www.books.ru/books/refaktoring-uluchshenie-sushchestvuyushchego-koda-fail-pdf-552092/?show=1
 [coveralls]:        https://coveralls.io/github/UNN-ITMM-Software/agile-course-practice-python?branch=master
 [coveralls-badge]:  https://coveralls.io/repos/github/UNN-ITMM-Software/agile-course-practice-python/badge.svg?branch=master
-[exam-questions]:   https://docs.google.com/spreadsheets/d/1Pt9i-UGUiFG8_tjnUjxmCqVjP9VHG9GJc1LNZQeGU_4/edit#gid=827430395
 [gitter-chat]:      https://gitter.im/agile-course-practice-python/community
 [gitter-badge]:     https://badges.gitter.im/Lobby.svg
+
+[book-agile]:       http://www.books.ru/books/printsipy-patterny-i-metodiki-gibkoi-razrabotki-na-yazyke-c-fail-pdf-864714/?show=1
+[book-refactoring]: http://www.books.ru/books/refaktoring-uluchshenie-sushchestvuyushchego-koda-fail-pdf-552092/?show=1
+
+[quiz]:             https://github.com/UNN-VMK-Software/agile-course-theory/blob/master/slides/control-questions.md
+[cheatsheet]:       https://docs.google.com/document/d/1QhdJOnSw-Gn_-WM9RWLzmxZMrWTB4EbyTkaNBWMGA3Y/edit
+[exam-questions]:   https://docs.google.com/spreadsheets/d/1Pt9i-UGUiFG8_tjnUjxmCqVjP9VHG9GJc1LNZQeGU_4/edit#gid=827430395
 
 <!-- CLEANUP -->
 [labs]:             https://github.com/UNN-VMK-Software/agile-course-practice/tree/master/docs
