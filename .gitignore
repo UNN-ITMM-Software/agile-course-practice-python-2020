@@ -2,6 +2,7 @@
 *.log
 log.txt
 .DS_Store
+.coverage
 
 # Gradle
 .gradle
