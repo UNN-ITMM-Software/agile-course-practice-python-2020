@@ -45,9 +45,9 @@ TODO
         - enable GitterChat
         - update lab guides for Python
     - code
-        - resolve issue with flake8 (first locally, then remotely)
-        - make code coverage report the same both locally and on Travis-CI
+        - make code coverage report from nosetests look the same both locally and on Travis-CI
         - enable code coverage
+        - migrate to newer version of Python
 
 NOTES
 
