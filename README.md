@@ -44,12 +44,13 @@
 
 TODO
 
-    - infrastructure
-        - update lab guides for Python
-        - change license to MIT or something like that
     - code
         - make code coverage report from nosetests look the same both locally and on Travis-CI
         - migrate to newer version of Python
+    - infrastructure
+        - update lab guides for Python
+        - change license to MIT or something like that
+        - whether and how to use Python virtualenv
 
 NOTES
 
