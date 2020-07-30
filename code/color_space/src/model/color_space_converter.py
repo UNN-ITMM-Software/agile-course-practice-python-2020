@@ -1,9 +1,10 @@
 import numpy as np
 from numpy.linalg import inv
 import math
-from color import Color
-from color_space import ColorSpace
-import utility
+
+from .color import Color
+from .color_space import ColorSpace
+from . import utility
 
 
 class InvalidConversion(Exception):
@@ -106,7 +107,7 @@ class ColorSpaceConverter:
         z = y - (b - 128.) / 200.
 
         xyz = np.multiply(
-            map(utility.xyz2lab_nonlinear_transform_inv, [x, y, z]),
+            list(map(utility.xyz2lab_nonlinear_transform_inv, [x, y, z])),
             ColorSpaceConverter.WHITE_POINT)
 
         # Convert XYZ to RGB.

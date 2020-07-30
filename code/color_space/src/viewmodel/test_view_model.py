@@ -1,5 +1,6 @@
 import unittest
-from view_model import ViewModel
+
+from .view_model import ViewModel
 from my_logger.real_logger import Logger
 from my_logger.mockup_logger import MockUpLogger
 
@@ -73,10 +74,15 @@ class TestColorSpaceConverterViewModel(unittest.TestCase):
         self.assertEqual("Input values should be in range 0-255.", self.viewmodel.get_error_message())
 
     def test_when_convert_def_rgb_to_rgb_display_it(self):
+        # Arrange
         self.viewmodel.set_color_space_in("RGB")
         self.viewmodel.set_color_space_out("RGB")
         self.viewmodel.set_color_in(['0', '0', '0'])
+
+        # Act
         self.viewmodel.convert()
+
+        # Assert
         self.assertEqual(['0', '0', '0'], self.viewmodel.get_color_out())
 
     def test_when_convert_rgb_to_hsv_display_it(self):

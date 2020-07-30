@@ -1,4 +1,4 @@
-from ilogger import ILogger
+from .ilogger import ILogger
 
 
 class MockUpLogger(ILogger):

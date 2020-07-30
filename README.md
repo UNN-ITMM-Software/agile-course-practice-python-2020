@@ -46,6 +46,7 @@ TODO
 
     - code
         - migrate to newer version of Python
+          - add to requirements: numpy 1.19.1
         - remove log files in the end of the test
         - overall code cleaning
         - implement one more topic as an excersize

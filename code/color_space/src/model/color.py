@@ -1,5 +1,6 @@
 import numpy as np
-from color_space import ColorSpace
+
+from .color_space import ColorSpace
 
 
 class InvalidColorError(Exception):
