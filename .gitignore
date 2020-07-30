@@ -1,36 +1,7 @@
 # General
 *.log
-log.txt
-.DS_Store
 .coverage
 
-# Gradle
-.gradle
-build
-gradle/
-gradlew
-gradlew.bat
-cpd.xml
-
-# IntelliJ IDEA
-out
-.idea
-*.iml
-*.ipr
-*.iws
-
-# Eclipse
-.classpath
-.settings
-.project
-bin
-
-# GWT
-bin/
-gwt-unitCache/
-war/
-*.html
-
-# Mac
+# macOS
 .DS_Store
 *.pyc

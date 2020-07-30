@@ -2,7 +2,7 @@ from ilogger import ILogger
 
 
 class Logger(ILogger):
-    def __init__(self, filename="log.txt"):
+    def __init__(self, filename="one_more.log"):
         self.log_filename = filename
         open(filename, 'w').close()
 

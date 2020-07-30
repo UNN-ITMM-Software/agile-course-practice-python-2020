@@ -28,4 +28,3 @@ TBD
 [RGB]: https://en.wikipedia.org/wiki/RGB_color_model
 [LAB]: https://en.wikipedia.org/wiki/Lab_color_space
 [doc]: http://docs.opencv.org/2.4.11/modules/imgproc/doc/miscellaneous_transformations.html#cvtcolor
-
