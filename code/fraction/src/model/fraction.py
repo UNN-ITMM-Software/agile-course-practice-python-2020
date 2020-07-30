@@ -16,15 +16,14 @@ class Fraction:
     FRACTION_REGEXP = '^([-]?\d+)(?:[/](\d+))?$'
 
     @staticmethod
-    def from_decimal(decimal_number):
-        decimal_number = float(decimal_number)
-        int_part = int(decimal_number)
-        frac_part = decimal_number - int_part
-        str_frac_part = str(frac_part)
-        n_digits_after_point = len(str_frac_part) - \
-            str_frac_part.index('.') - 1
-
+    def from_decimal(decimal_number_str):
+        n_digits_after_point = len(decimal_number_str) - \
+            decimal_number_str.index('.') - 1
         q = pow(10, n_digits_after_point)
+
+        decimal_number = float(decimal_number_str)
+        int_part = int(decimal_number)
+        frac_part = decimal_number - int_par
         p = int(round(frac_part * q)) + int_part * q
 
         return Fraction(p, q)
