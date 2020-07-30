@@ -17,13 +17,15 @@ class Fraction:
 
     @staticmethod
     def from_decimal(decimal):
-        decimal_number_str = str(decimal)
-        n_digits_after_point = len(decimal_number_str) - \
-            decimal_number_str.index('.') - 1
+        decimal_str = str(decimal)
+        try:
+            n_digits_after_point = len(decimal_str) - decimal_str.index('.') - 1
+        except ValueError:
+            n_digits_after_point = 0
         q = pow(10, n_digits_after_point)
 
         # TODO: simplify logic, make it less fragile
-        decimal_number = float(decimal_number_str)
+        decimal_number = float(decimal_str)
         int_part = int(decimal_number)
         frac_part = decimal_number - int_part
         p = int_part * q + int(round(frac_part * q))
