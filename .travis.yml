@@ -10,7 +10,7 @@ install:
 
 # run tests
 script:
-  - nosetests code/* --with-coverage
+  - nosetests -x --with-coverage code/*
   - flake8 --max-line-length=110 code
 
 # submit coverage report
