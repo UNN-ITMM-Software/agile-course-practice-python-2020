@@ -23,7 +23,7 @@ class Fraction:
 
         decimal_number = float(decimal_number_str)
         int_part = int(decimal_number)
-        frac_part = decimal_number - int_par
+        frac_part = decimal_number - int_part
         p = int(round(frac_part * q)) + int_part * q
 
         return Fraction(p, q)
