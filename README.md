@@ -45,8 +45,9 @@
 TODO
 
     - code
-        - make code coverage report from nosetests look the same both locally and on Travis-CI
         - migrate to newer version of Python
+        - remove log files in the end of the test
+        - rename folders by project meaning, not name
     - infrastructure
         - update lab guides for Python
         - change license to MIT or something like that
@@ -66,7 +67,5 @@ NOTES
    88  pip install contextlib2 pathlib2
    89  pip install configparser==3.5
    99  PATH="/Users/kirill-personal/Library/Python/2.7/bin:$PATH"
-
-  101  flake8 --max-line-length=110 code
 
 -->
