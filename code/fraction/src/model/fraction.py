@@ -60,7 +60,7 @@ class Fraction:
         return self.__add__(-1.0 * other)
 
     def get_integer_part(self):
-        return self.p / self.q
+        return int(self.p / self.q)
 
     def to_decimal(self):
         return self.p / float(self.q)

@@ -38,7 +38,7 @@ class TestFractionClass(unittest.TestCase):
 
     def test_can_print_fraction(self):
         frac = Fraction(5, 7)
-        self.assertEqual(str(frac), '5/7')
+        self.assertEqual('5.0/7.0', str(frac))
 
     def test_can_get_int_part(self):
         frac = Fraction(7, 3)
