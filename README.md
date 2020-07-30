@@ -47,11 +47,13 @@ TODO
     - code
         - migrate to newer version of Python
         - remove log files in the end of the test
-        - rename folders by project meaning, not name
+        - overall code cleaning
+        - implement one more topic as an excersize
     - infrastructure
         - update lab guides for Python
-        - change license to MIT or something like that
         - whether and how to use Python virtualenv
+        - change license to MIT or something like that
+        - also enable macOS testing on Travis CI
 
 NOTES
 
