@@ -2,7 +2,7 @@ import unittest
 
 from logger.fakelogger import FakeLogger
 from logger.reallogger import RealLogger
-from viewmodel import ViewModel
+from viewmodel.viewmodel import ViewModel
 
 
 class TestFractionCalculatorViewModel(unittest.TestCase):
