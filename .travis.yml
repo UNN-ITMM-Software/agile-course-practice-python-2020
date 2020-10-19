@@ -5,15 +5,15 @@ language: python
   # - "2.7"
   # - "3.5"
 
-# install dependencies
+# Install dependencies
 install:
   - pip install -r requirements.txt
 
-# run tests
+# Run checks
 script:
   - nosetests -x --with-coverage code/*
   - flake8 --max-line-length=110 code
 
-# submit coverage report
+# Submit coverage report
 after_success:
   - coveralls

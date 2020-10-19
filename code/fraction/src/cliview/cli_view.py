@@ -27,26 +27,24 @@ class CLIView:
 
     def print_main_window(self):
         os.system('cls')
-        print self.center_text('')
-        print self.center_text('Welcome to fractions calculator')
-        print self.left_text('First fraction:  %s ' % self.first_fraction)
-        print self.left_text('Operation:  %s ' % self.operation)
+        print(self.center_text(''))
+        print(self.center_text('Welcome to fractions calculator'))
+        print(self.left_text('First fraction:  %s ' % self.first_fraction))
+        print(self.left_text('Operation:  %s ' % self.operation))
         if self.is_second_fraction_enabled:
-            print self.left_text('Second fraction:  %s ' %
-                                 self.second_fraction)
+            print(self.left_text('Second fraction:  %s ' % self.second_fraction))
         if self.result:
-            print self.center_text('Calculation result: %s' % self.result)
-        print self.center_text('Possible commands:')
-        print self.left_text('"SetFirst,x", where x is '
-                             'fraction value, to set first fraction')
+            print(self.center_text('Calculation result: %s' % self.result))
+        print(self.center_text('Possible commands:'))
+        print(self.left_text('"SetFirst,x", where x is fraction value, to set first fraction'))
         if self.is_second_fraction_enabled:
-            print self.left_text('"SetSecond,x", where x is fraction '
-                                 'value, to set second fraction')
-        print self.left_text('"SetOp,x", where x is '
-                             'one of +-*/ or "Convert to continuous"')
+            print(self.left_text('"SetSecond,x", where x is fraction '
+                                 'value, to set second fraction'))
+        print(self.left_text('"SetOp,x", where x is '
+                             'one of +-*/ or "Convert to continuous"'))
         if self.is_calc_enabled:
-            print self.left_text('"Calc" to get a result')
-        print self.left_text('"Exit" to exit')
+            print(self.left_text('"Calc" to get a result'))
+        print(self.left_text('"Exit" to exit'))
 
     def mvvm_bind(self):
         self.view_model.set_first_fraction(self.first_fraction)
@@ -84,7 +82,7 @@ class CLIView:
     def mainloop(self):
         while True:
             self.print_main_window()
-            raw_command = raw_input('Enter your choice: ')
+            raw_command = input('Enter your choice: ')
             if ',' not in raw_command:
                 command = raw_command
                 value = None

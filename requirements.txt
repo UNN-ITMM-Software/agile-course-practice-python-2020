@@ -5,4 +5,4 @@ coverage==4.5.4
 coveralls==1.0
 pep8==1.7.1
 pep8-naming==0.3.3
-#numpy==1.19.2
+numpy==1.19.2

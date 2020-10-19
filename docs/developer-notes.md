@@ -1,13 +1,13 @@
 # TODO
 
 ## Next step
-  -
 
+  - Fix issues with `flake8 --max-line-length=110 code`
 
 ## Code
 
     * migrate to newer version of Python
-      - add to requirements: numpy 1.19.1
+    * test GUI
     - optional
       - remove log files in the end of the test (or create them in folder)
       - implement one more topic as an excersize

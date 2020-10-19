@@ -19,4 +19,4 @@ if __name__ == '__main__':
     elif args.gui:
         gui_view.GUIView().mainloop()
     else:
-        print 'Option is required'
+        print('Option is required')
