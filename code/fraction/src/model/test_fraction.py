@@ -123,8 +123,8 @@ class TestFractionConvertation(unittest.TestCase):
     def test_can_convert_to_continuous_1071_462(self):
         frac = Fraction(1071, 462)
         expected_coefficients = [2, 3, 7]
-        for actual, expected in zip(frac.to_continuous(),
-                                    expected_coefficients):
+
+        for actual, expected in zip(frac.to_continuous(), expected_coefficients):
             self.assertEqual(actual, expected)
 
     def test_can_convert_to_continuous_9_4(self):
