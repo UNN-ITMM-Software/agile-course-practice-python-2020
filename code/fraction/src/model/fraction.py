@@ -45,7 +45,7 @@ class Fraction:
     def __mul__(self, other):
         return Fraction(self.p * other.p, self.q * other.q)
 
-    def __div__(self, other):
+    def __truediv__(self, other):
         return Fraction(self.p * other.q, self.q * other.p)
 
     def __rmul__(self, other):
