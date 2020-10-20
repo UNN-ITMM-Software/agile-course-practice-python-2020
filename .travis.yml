@@ -1,6 +1,6 @@
 language: python
 
-# Python 3.6.7 as of 2020-10-19
+# TravisCI uses Python 3.6.7 as of 2020-10-19
 # python:
   # - "2.7"
   # - "3.5"
