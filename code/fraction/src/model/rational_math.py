@@ -1,7 +1,7 @@
 def euclidean_algorithm(a, b):
     while b != 0:
         remainder = a % b
-        quotient = a / b
+        quotient = int(a / b)
         a, b = b, remainder
         yield quotient, remainder
 

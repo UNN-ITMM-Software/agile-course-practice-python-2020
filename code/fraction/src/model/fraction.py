@@ -16,16 +16,19 @@ class Fraction:
     FRACTION_REGEXP = '^([-]?\d+)(?:[/](\d+))?$'
 
     @staticmethod
-    def from_decimal(decimal_number):
-        decimal_number = float(decimal_number)
+    def from_decimal(decimal):
+        decimal_str = str(decimal)
+        try:
+            n_digits_after_point = len(decimal_str) - decimal_str.index('.') - 1
+        except ValueError:
+            n_digits_after_point = 0
+        q = pow(10, n_digits_after_point)
+
+        # TODO: simplify logic, make it less fragile
+        decimal_number = float(decimal_str)
         int_part = int(decimal_number)
         frac_part = decimal_number - int_part
-        str_frac_part = str(frac_part)
-        n_digits_after_point = len(str_frac_part) - \
-            str_frac_part.index('.') - 1
-
-        q = pow(10, n_digits_after_point)
-        p = int(round(frac_part * q)) + int_part * q
+        p = int_part * q + int(round(frac_part * q))
 
         return Fraction(p, q)
 
@@ -33,8 +36,8 @@ class Fraction:
         if q == 0:
             raise InvalidFractionError('q cannot be equal to zero')
         common_divisor = rational_math.gcd(p, q)
-        self.p = p / common_divisor
-        self.q = q / common_divisor
+        self.p = int(p / common_divisor)
+        self.q = int(q / common_divisor)
 
     def __str__(self):
         return '{p}/{q}'.format(p=self.p, q=self.q)
@@ -42,7 +45,7 @@ class Fraction:
     def __mul__(self, other):
         return Fraction(self.p * other.p, self.q * other.q)
 
-    def __div__(self, other):
+    def __truediv__(self, other):
         return Fraction(self.p * other.q, self.q * other.p)
 
     def __rmul__(self, other):
@@ -60,7 +63,7 @@ class Fraction:
         return self.__add__(-1.0 * other)
 
     def get_integer_part(self):
-        return self.p / self.q
+        return int(self.p / self.q)
 
     def to_decimal(self):
         return self.p / float(self.q)

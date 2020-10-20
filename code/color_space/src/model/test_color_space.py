@@ -1,8 +1,9 @@
 import unittest
 import numpy as np
-from color_space import ColorSpace, InvalidColorSpace
-from color import Color, InvalidColorError
-from color_space_converter import ColorSpaceConverter, InvalidConversion
+
+from .color_space import ColorSpace, InvalidColorSpace
+from .color import Color, InvalidColorError
+from .color_space_converter import ColorSpaceConverter, InvalidConversion
 
 
 class TestColorSpaceClass(unittest.TestCase):

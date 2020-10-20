@@ -9,7 +9,7 @@ from my_logger.real_logger import Logger
 class ViewModel:
     @staticmethod
     def is_correct(color):
-        return map(operator.methodcaller("isdigit"), color) == [True] * 3
+        return list(map(operator.methodcaller("isdigit"), color)) == [True] * 3
 
     @staticmethod
     def is_in_range(color, lower, upper):
@@ -78,9 +78,10 @@ class ViewModel:
         return self.color_in
 
     def convert(self):
-        color = Color(ColorSpace(self.color_space_in), np.array(map(int, self.color_in)))
+        a = np.array(list(map(int, self.color_in)))
+        color = Color(ColorSpace(self.color_space_in), a)
         converted_color = self.converter.convert(color, ColorSpace(self.color_space_out))
-        self.color_out = map(str, converted_color.value.tolist())
+        self.color_out = list(map(str, converted_color.value.tolist()))
         self.logger.log("Input color: " + str(color) + " --> " + "Output color: " + str(converted_color))
 
     def get_error_message(self):
