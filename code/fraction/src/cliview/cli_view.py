@@ -17,8 +17,8 @@ class CLIView:
     result = ''
 
     def center_text(self, string):
-        signs_we_need = (self.WIDTH - len(string)) / 2
-        remainder = (self.WIDTH - len(string)) % 2
+        signs_we_need = int((self.WIDTH - len(string)) / 2)
+        remainder = int((self.WIDTH - len(string)) % 2)
         return '=' * signs_we_need + string + '=' * (signs_we_need + remainder)
 
     def left_text(self, string):
@@ -26,7 +26,7 @@ class CLIView:
         return '=' + string + '=' * signs_we_need
 
     def print_main_window(self):
-        os.system('cls')
+        os.system('clear')
         print(self.center_text(''))
         print(self.center_text('Welcome to fractions calculator'))
         print(self.left_text('First fraction:  %s ' % self.first_fraction))

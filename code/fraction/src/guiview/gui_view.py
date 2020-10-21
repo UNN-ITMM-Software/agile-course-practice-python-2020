@@ -1,5 +1,5 @@
-import Tkinter
-import ttk
+import tkinter
+from tkinter import ttk
 
 from viewmodel import viewmodel
 
@@ -7,7 +7,7 @@ from viewmodel import viewmodel
 class GUIView(ttk.Frame):
     VALID_OPERATIONS = ['+', '-', '*', '/', 'Convert to continuous']
     N_LOG_MESSAGES_TO_DISPLAY = 15
-    default_sticky = Tkinter.W + Tkinter.E + Tkinter.N + Tkinter.S
+    default_sticky = tkinter.W + tkinter.E + tkinter.N + tkinter.S
 
     view_model = viewmodel.ViewModel()
 
@@ -30,20 +30,20 @@ class GUIView(ttk.Frame):
 
     def mvvm_bind(self):
         self.view_model.set_first_fraction(
-            self.txt_first_frac.get("1.0", Tkinter.END))
+            self.txt_first_frac.get("1.0", tkinter.END))
         self.view_model.set_second_fraction(
-            self.txt_second_frac.get("1.0", Tkinter.END))
+            self.txt_second_frac.get("1.0", tkinter.END))
         self.view_model.set_operation(
             self.VALID_OPERATIONS[self.cmb_operation.current()])
 
     def mvvm_back_bind(self):
-        self.txt_first_frac.delete(1.0, Tkinter.END)
+        self.txt_first_frac.delete(1.0, tkinter.END)
         self.txt_first_frac.insert(
-            Tkinter.END, self.view_model.get_first_fraction())
+            tkinter.END, self.view_model.get_first_fraction())
 
-        self.txt_second_frac.delete(1.0, Tkinter.END)
+        self.txt_second_frac.delete(1.0, tkinter.END)
         self.txt_second_frac.insert(
-            Tkinter.END, self.view_model.get_second_fraction())
+            tkinter.END, self.view_model.get_second_fraction())
 
         self.btn_convert.config(
             state=self.view_model.get_button_convert_state())
@@ -60,13 +60,13 @@ class GUIView(ttk.Frame):
 
         self.master.rowconfigure(0, weight=1)
         self.master.columnconfigure(0, weight=5)
-        self.grid(sticky=Tkinter.W + Tkinter.E + Tkinter.N + Tkinter.S)
+        self.grid(sticky=tkinter.W + tkinter.E + tkinter.N + tkinter.S)
 
         self.btn_convert = ttk.Button(self, text='Do it')
         self.btn_convert.grid(row=0, column=3, rowspan=2,
                               sticky=self.default_sticky)
 
-        self.txt_first_frac = Tkinter.Text(self,
+        self.txt_first_frac = tkinter.Text(self,
                                            height=1, width=10)
         self.txt_first_frac.grid(row=0, column=0, sticky=self.default_sticky)
 
@@ -75,13 +75,13 @@ class GUIView(ttk.Frame):
         self.cmb_operation.current(0)
         self.cmb_operation.grid(row=0, column=1, sticky=self.default_sticky)
 
-        self.txt_second_frac = Tkinter.Text(self,
+        self.txt_second_frac = tkinter.Text(self,
                                             height=1, width=10)
         self.txt_second_frac.grid(row=0, column=2, sticky=self.default_sticky)
 
         self.lbl_result = ttk.Label(self, text="Here will be your result")
         self.lbl_result.grid(row=1, column=0, columnspan=3,
-                             sticky=Tkinter.W + Tkinter.N)
+                             sticky=tkinter.W + tkinter.N)
 
         self.bind_events()
         self.set_weight_to_grid()

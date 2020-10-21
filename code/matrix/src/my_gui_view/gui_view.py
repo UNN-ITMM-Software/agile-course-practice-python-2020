@@ -1,4 +1,4 @@
-import Tkinter as Tk
+import tkinter as Tk
 
 from my_view_model import view_model
 
