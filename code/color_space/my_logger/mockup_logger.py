@@ -1,4 +1,4 @@
-from .ilogger import ILogger
+from color_space.my_logger.ilogger import ILogger
 
 
 class MockUpLogger(ILogger):

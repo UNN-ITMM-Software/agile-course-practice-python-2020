@@ -1,7 +1,7 @@
 import unittest
 
-from .real_logger import Logger
-from .ilogger import ILogger
+from color_space.my_logger.real_logger import Logger
+from color_space.my_logger.ilogger import ILogger
 
 
 class TestILogger(unittest.TestCase):
