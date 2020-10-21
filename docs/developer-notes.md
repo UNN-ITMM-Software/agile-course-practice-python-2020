@@ -24,13 +24,14 @@
         - change license to MIT or something like that
         - implement one more topic as an excersize
         - overall code cleaning
+        - remove `src` folders, uplevel their contents
 
 ## Notes
 
 Python virtual environment
 
-    $ python3 -m venv tutorial-env
-    $ source tutorial-env/bin/activate
+    $ python -m venv env
+    $ source env/bin/activate
     $ deactivate # if needed
 
 Dependencies installation
