@@ -2,31 +2,32 @@
 
 ## Next step
 
-    * test GUI
-      - resolve: ModuleNotFoundError: No module named 'Tkinter'
-      - https://stackoverflow.com/questions/60469202/unable-to-install-tkinter-with-pyenv-pythons-on-macos/60469203#60469203
-        - but only after the homebrew reinstall
-        - also helpful for details: https://github.com/pyenv/pyenv/issues/1375#issuecomment-589964703
+      * update lab guides for Python language
 
 ## Improvements
 
     - must have
-      * update lab guides for Python language
       * test project on Windows
 
     - nice to have
-        - fix flake8 warning (newer version of flake8 and/or pycodestyle=2.4+)
-        - remove log files in the end of the test (or create them in folder)
-        - enable macOS testing on Travis CI
-        - enable appveyor testing?
-
-    - optional
+        - testing
+          - enable macOS testing on Travis CI
+          - enable appveyor testing?
+        - cleaning
+          - remove `src` folders, uplevel their contents
+          - fix flake8 warning (newer version of flake8 and/or pycodestyle=2.4+)
+          - remove log files in the end of the test (or create them in folder)
         - change license to MIT or something like that
         - implement one more topic as an excersize
-        - overall code cleaning
-        - remove `src` folders, uplevel their contents
 
 ## Notes
+
+Install tkinter on macOS
+
+    - resolve: ModuleNotFoundError: No module named 'Tkinter'
+    - https://stackoverflow.com/questions/60469202/unable-to-install-tkinter-with-pyenv-pythons-on-macos/60469203#60469203
+      - but only after the homebrew reinstall
+      - also helpful for details: https://github.com/pyenv/pyenv/issues/1375#issuecomment-589964703
 
 Python virtual environment
 
