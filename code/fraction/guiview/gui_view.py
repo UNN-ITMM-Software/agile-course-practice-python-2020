@@ -1,7 +1,7 @@
 import tkinter
 from tkinter import ttk
 
-from viewmodel import viewmodel
+from fraction.viewmodel.viewmodel import viewmodel
 
 
 class GUIView(ttk.Frame):

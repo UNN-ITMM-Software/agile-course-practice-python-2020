@@ -3,3 +3,5 @@ omit =
     */python?.?/*
     */site-packages/nose/*
     */numpy/*
+[run]
+data_file = tmp/coverage_report

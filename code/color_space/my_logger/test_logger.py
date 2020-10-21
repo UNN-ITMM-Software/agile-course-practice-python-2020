@@ -18,7 +18,7 @@ class TestILogger(unittest.TestCase):
 
 class TestLogger(unittest.TestCase):
     def setUp(self):
-        self.logger = Logger("Logger_Tests-lab3.log")
+        self.logger = Logger("tmp/Logger_Tests-lab3.log")
 
     def test_can_create_logger(self):
         self.assertIsInstance(self.logger, Logger)

@@ -141,7 +141,7 @@ class TestColorSpaceConverterViewModelMockUpLogger(unittest.TestCase):
 
 class TestColorSpaceConverterViewModelWithLogger(TestColorSpaceConverterViewModelMockUpLogger):
     def setUp(self):
-        real_logger = Logger("ViewModel_with_Logger_Tests-lab3.log")
+        real_logger = Logger("tmp/ViewModel_with_Logger_Tests-lab3.log")
         self.viewmodel = ViewModel(real_logger)
 
     def tearDown(self):

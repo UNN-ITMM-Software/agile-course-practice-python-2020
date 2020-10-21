@@ -3,6 +3,7 @@
 ## Next step
 
       * update lab guides for Python language
+      * fix running GUI apps (issue with importin package)
 
 ## Improvements
 
