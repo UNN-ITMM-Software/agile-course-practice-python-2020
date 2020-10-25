@@ -33,7 +33,7 @@
     $ pip install -r requirements.txt
     $ nosetests -x --with-coverage code/*
     $ flake8 --max-line-length=110 code
-  ```
+    ```
 
 ## Детальные инструкции
 
