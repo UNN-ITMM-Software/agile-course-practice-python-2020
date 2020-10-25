@@ -134,11 +134,10 @@
 вливаются в ветку `master` центрального репозитория.
 
 <!-- LINKS -->
+[agile-travis]: https://travis-ci.org/UNN-VMK-Software/agile-course-practice/pull_requests
+[upstream]:     https://github.com/UNN-ITMM-Software/agile-course-practice-python
 
 [github-flow]:  http://scottchacon.com/2011/08/31/github-flow.html
-[git-pull]:     https://groups.google.com/d/msg/devtools-course/V8rtlLrCXc4/k7vx6BxnqR4J
 [gradle]:       http://www.gradle.org/downloads
-[agile-travis]: https://travis-ci.org/UNN-VMK-Software/agile-course-practice/pull_requests
-[upstream]:     https://github.com/UNN-VMK-Software/agile-course-practice
 [codestyle]:    http://www.oracle.com/technetwork/java/javase/documentation/codeconvtoc-136057.html
 [tddcast]:      http://www.youtube.com/watch?v=lDdJYid8NpE
