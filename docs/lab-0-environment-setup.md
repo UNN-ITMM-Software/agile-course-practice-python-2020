@@ -28,9 +28,9 @@
 1. Установите себе IDE для работы по выбору, рекомендуется использовать PyCharm или обычный текстовый редактор + консоль.
 1. Критерием успеха на этом этапе должно являться то, что следующая команда выведет небольшое графическое окошко.
 
-  ```bash
+    ```bash
     $ python -m tkinter -c "tkinter._test()"
-  ```
+    ```
 
 ### Получение исходников
 
@@ -41,11 +41,11 @@
 1. Создайте форк [проекта][upstream], затем клонируйте созданный `origin` репозиторий (это ваш форк) к себе на рабочую машину. Все необходимые инструкции можно найти [здесь][help-fork].
     - В результате у вас должны быть объявлены и `origin` и `upstream` репозитории, стоит убедиться в правильности путей при помощи команды `$ git remote -v`.
 
-  ```bash
-        $ git clone https://github.com/YOUR_GITHUB_NAME/agile-course-practice-python
-        $ git remote add upstream https://github.com/UNN-ITMM-Software/agile-course-practice-python
-        $ git remote -v
-  ```
+    ```bash
+    $ git clone https://github.com/YOUR_GITHUB_NAME/agile-course-practice-python
+    $ git remote add upstream https://github.com/UNN-ITMM-Software/agile-course-practice-python
+    $ git remote -v
+    ```
 
 1. Также, включите тестирование своего форка на TravisCI, чтобы производить тестирование своих лабораторных в контексте репозитория `origin`, и не ждать в общей очереди на `upstream`.
 
