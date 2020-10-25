@@ -31,19 +31,19 @@
 
 Вот, для примера, команды, которые должны привести к успеху на macOS
 
-    ```bash
-    $ pyenv uninstall 3.7.3
-    $ env   PATH="$(brew --prefix tcl-tk)/bin:$PATH"   LDFLAGS="-L$(brew --prefix tcl-tk)/lib"   CPPFLAGS="-I$(brew --prefix tcl-tk)/include"   PKG_CONFIG_PATH="$(brew --prefix tcl-tk)/lib/pkgconfig"   CFLAGS="-I$(brew --prefix tcl-tk)/include"   PYTHON_CONFIGURE_OPTS="--with-tcltk-includes='-I$(brew --prefix tcl-tk)/include' --with-tcltk-libs='-L$(brew --prefix tcl-tk)/lib -ltcl8.6 -ltk8.6'"   pyenv install 3.7.3
-    $ pyenv versions
-    $ pyenv global 3.7.3
-    $ python -V
-    $ python -m tkinter -c 'tkinter._test()'
-    $ python -m venv env
-    $ source env/bin/activate
-    $ pip install -r requirements.txt
-    $ nosetests -x --with-coverage code/*
-    $ flake8 --max-line-length=110 code
-    ```
+```bash
+$ pyenv uninstall 3.7.3
+$ env   PATH="$(brew --prefix tcl-tk)/bin:$PATH"   LDFLAGS="-L$(brew --prefix tcl-tk)/lib"   CPPFLAGS="-I$(brew --prefix tcl-tk)/include"   PKG_CONFIG_PATH="$(brew --prefix tcl-tk)/lib/pkgconfig"   CFLAGS="-I$(brew --prefix tcl-tk)/include"   PYTHON_CONFIGURE_OPTS="--with-tcltk-includes='-I$(brew --prefix tcl-tk)/include' --with-tcltk-libs='-L$(brew --prefix tcl-tk)/lib -ltcl8.6 -ltk8.6'"   pyenv install 3.7.3
+$ pyenv versions
+$ pyenv global 3.7.3
+$ python -V
+$ python -m tkinter -c 'tkinter._test()'
+$ python -m venv env
+$ source env/bin/activate
+$ pip install -r requirements.txt
+$ nosetests -x --with-coverage code/*
+$ flake8 --max-line-length=110 code
+```
 
 ## Детальные инструкции
 
