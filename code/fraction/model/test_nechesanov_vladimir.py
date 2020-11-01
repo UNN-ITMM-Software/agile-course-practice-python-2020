@@ -2,6 +2,7 @@ import unittest
 
 from fraction.model.fraction import Fraction
 
+
 class TestFractionClass(unittest.TestCase):
     def test_can_create_fraction_isinstance(self):
         fraction = Fraction()
