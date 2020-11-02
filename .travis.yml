@@ -4,6 +4,7 @@ language: python
 # python:
   # - "2.7"
   # - "3.5"
+  # - "3.7"
 
 # Install dependencies
 install:
@@ -11,7 +12,7 @@ install:
 
 # Run checks
 script:
-  - nosetests -x --with-coverage code/*
+  - nosetests -x --with-coverage code/
   - flake8 --max-line-length=110 code
 
 # Submit coverage report
