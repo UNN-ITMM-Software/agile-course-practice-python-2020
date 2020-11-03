@@ -2,7 +2,6 @@ language: python
 
 # TravisCI uses Python 3.6.7 as of 2020-10-19
 # python:
-  # - "3.7"
   # - "2.7"
   # - "3.5"
 
@@ -12,7 +11,7 @@ install:
 
 # Run checks
 script:
-  - nosetests -x --with-coverage code/
+  - nosetests -x --with-coverage code/*
   - flake8 --max-line-length=110 code
 
 # Submit coverage report
