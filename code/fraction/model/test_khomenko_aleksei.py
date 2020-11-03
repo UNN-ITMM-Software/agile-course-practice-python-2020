@@ -14,4 +14,3 @@ class TestFractionSimple(unittest.TestCase):
         frac_2 = Fraction(5, 7)
         result = frac_1 * frac_2
         self.assertTrue(result.is_equal(25, 42))
-
