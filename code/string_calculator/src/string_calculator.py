@@ -24,10 +24,7 @@ class StrCalculatorParser(object):
             delimiters, numstring = self._handle_custom_delim(string, m)
         else:
             delimiters, numstring = self._handle_default_delim(string)
-
-        for s in delimiters:
-            numstring = numstring.replace(s, ",")
-
+        numstring = self.align_delimiters(delimiters, numstring)
         integers = self._split_string(numstring)
         return StrCalculatorType(string, delimiters, numstring, integers)
 
@@ -43,6 +40,11 @@ class StrCalculatorParser(object):
         delimiters = self.DEFAULT_DELIMS
         numstring = string
         return (delimiters, numstring)
+
+    def align_delimiters(self, delimiters, numstring):
+        for s in delimiters:
+            numstring = numstring.replace(s, ",")
+        return numstring
 
     def _split_string(self, numstring):
         return [int(e) for e in numstring.split(',')]

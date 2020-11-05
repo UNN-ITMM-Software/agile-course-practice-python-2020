@@ -1,12 +1,12 @@
 import tkinter as tk
 from tkinter import ttk
 
-from color_space.viewmodel import viewmodel
+from color_space.viewmodel import view_model
 
 
 class GUI(ttk.Frame):
     default_sticky = tk.W + tk.E + tk.N + tk.S
-    view_model = viewmodel.ViewModel()
+    view_model = view_model.ViewModel()
 
     def bind_events(self):
         self.btn_convert.bind('<Button-1>', self.convert_clicked)
