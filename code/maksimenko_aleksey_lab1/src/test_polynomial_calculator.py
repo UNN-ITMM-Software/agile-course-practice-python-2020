@@ -3,16 +3,16 @@ from polynomial_calculator import *
 
 
 class TestPolynomial(unittest.TestCase):
-    
+
     # INIT TESTS
 
     def test_init_param_list(self):
-        _list = list([1,2,3])
+        _list = list([1, 2, 3])
         self.assertEqual(_list, Polynomial(_list).coeffs)
 
     def test_init_param_tuple(self):
-        _tuple = tuple([1,2,3])
-        self.assertEqual([1,2,3], Polynomial(_tuple).coeffs)
+        _tuple = tuple([1, 2, 3])
+        self.assertEqual([1, 2, 3], Polynomial(_tuple).coeffs)
 
     def test_init_param_polynomial(self):
         pol1 = Polynomial([1, 2, 3])
@@ -26,7 +26,7 @@ class TestPolynomial(unittest.TestCase):
         self.assertEqual([0], Polynomial([0]).coeffs)
 
     def test_init_param_only_zeros(self):
-        self.assertEqual([0], Polynomial([0,0,0]).coeffs)
+        self.assertEqual([0], Polynomial([0, 0, 0]).coeffs)
 
     def test_init_fails_on_empty_param(self):
         with self.assertRaises(AttributeError):
@@ -63,8 +63,7 @@ class TestPolynomial(unittest.TestCase):
         self.assertEqual(Polynomial([4, 6, 8, 10]), Polynomial([1, 2, 3]) + Polynomial([4, 5, 6, 7]))
 
     def test_sum_poly_and_poly_with_check_zero(self):
-        self.assertEqual(Polynomial([1,0]), Polynomial([1, 2, 3]) + Polynomial([-1, -1, -3]))
-
+        self.assertEqual(Polynomial([1, 0]), Polynomial([1, 2, 3]) + Polynomial([-1, -1, -3]))
 
     # SUB TESTS
 
@@ -85,7 +84,7 @@ class TestPolynomial(unittest.TestCase):
         self.assertEqual(Polynomial([-4, -4, -4, -4]), Polynomial([1, 2, 3]) - Polynomial([4, 5, 6, 7]))
 
     def test_sub_poly_and_poly_with_check_zero(self):
-        self.assertEqual(Polynomial([1,0]), Polynomial([1, 2, 3]) - Polynomial([1, 1, 3]))
+        self.assertEqual(Polynomial([1, 0]), Polynomial([1, 2, 3]) - Polynomial([1, 1, 3]))
 
     # MUL TESTS
 
@@ -103,10 +102,11 @@ class TestPolynomial(unittest.TestCase):
             'str' * Polynomial([1, 2, 3])
 
     def test_mul_poly_and_poly(self):
-        self.assertEqual(Polynomial([4, 13, 28, 34, 32, 21]), Polynomial([1, 2, 3]) * Polynomial([4, 5, 6, 7]))
+        self.assertEqual(Polynomial([4, 13, 28, 34, 32, 21]),
+                         Polynomial([1, 2, 3]) * Polynomial([4, 5, 6, 7]))
 
     def test_sub_poly_and_poly_with_check_zero(self):
-        self.assertEqual(Polynomial([1,0,1,0,0]), Polynomial([1, 0, 1]) * Polynomial([1, 0, 0]))
+        self.assertEqual(Polynomial([1, 0, 1, 0, 0]), Polynomial([1, 0, 1]) * Polynomial([1, 0, 0]))
 
     # EQUAL TESTS
 
