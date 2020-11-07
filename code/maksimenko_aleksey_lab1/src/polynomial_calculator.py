@@ -75,7 +75,7 @@ class Polynomial:
     def __radd__(self, other):
         res = Polynomial(self.coeffs)
         if isinstance(other, int):
-            res.coeffs[-1] +=other
+            res.coeffs[-1] += other
         else:
             raise TypeError()
         res.coeffs = check_zero(res.coeffs)
@@ -115,8 +115,8 @@ class Polynomial:
             _s = self.coeffs
             _v = val.coeffs
             res = [0]*(len(_s)+len(_v)-1)
-            for selfpow,selfco in enumerate(_s):
-                for valpow,valco in enumerate(_v):
+            for selfpow, selfco in enumerate(_s):
+                for valpow, valco in enumerate(_v):
                     res[selfpow+valpow] += selfco*valco            
         else:
             raise TypeError()
@@ -124,7 +124,7 @@ class Polynomial:
         res = check_zero(res)
         return self.__class__(res)
 
-    def __rmul__(self,val):
+    def __rmul__(self, val):
         if isinstance(val, int):
             res = [val*t for t in self.coeffs]
         else:
