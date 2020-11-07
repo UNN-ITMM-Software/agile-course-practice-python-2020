@@ -42,3 +42,27 @@ class TestDHeap(unittest.TestCase):
         for i in range(10, 0, -1):
             dheap.insert(i)
         self.assertEqual(dheap.min(), 1)
+
+    def test_can_delete_min_of_3heap_with_3_elements(self):
+        dheap = DHeap(3)
+        dheap.insert(5)
+        dheap.insert(3)
+        dheap.insert(1)
+        dheap_min = dheap.min()
+        dheap.delete_min()
+        self.assertTrue(dheap_min not in dheap.heap)
+    
+    def test_can_delete_min_of_4heap_with_10_elements_3_times(self):
+        dheap = DHeap(4)
+        for i in range(10, 0, -1):
+            dheap.insert(i)
+        for i in range(3):
+            dheap_min = dheap.min()
+            dheap.delete_min()
+            self.assertTrue(dheap_min not in dheap.heap)
+
+    def test_raise_when_delete_min_from_empty_heap(self):
+        dheap = DHeap(4)
+        with self.assertRaises(RuntimeError):
+            dheap.delete_min()
+        
