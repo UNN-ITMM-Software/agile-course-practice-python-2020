@@ -22,7 +22,7 @@ class TestFractionOperations(unittest.TestCase):
         result = frac_1 / frac_2
         self.assertTrue(result.is_equal(1, 2))
 
-    def test_substract_fraction_1_2_1_2(self):
+    def test_substract_fraction(self):
         frac_1 = Fraction(1, 5)
         frac_2 = Fraction(1, 5)
         result = frac_1 - frac_2
