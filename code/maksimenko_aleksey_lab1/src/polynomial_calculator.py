@@ -238,7 +238,7 @@ class TestPolynomial(unittest.TestCase):
         self.assertEqual(Polynomial([4, 13, 28, 34, 32, 21]),
                          Polynomial([1, 2, 3]) * Polynomial([4, 5, 6, 7]))
 
-    def test_sub_poly_and_poly_with_check_zero(self):
+    def test_mul_poly_and_poly_with_check_zero(self):
         self.assertEqual(Polynomial([1, 0, 1, 0, 0]), Polynomial([1, 0, 1]) * Polynomial([1, 0, 0]))
 
     # EQUAL TESTS
