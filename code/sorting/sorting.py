@@ -1,5 +1,6 @@
 class Sorting:
+    def __init__(self, array):
+        self.array = array
 
-    @classmethod
-    def sorting_func(cls, array):
+    def sorting_func(self):
         return [0, 4, 7]
