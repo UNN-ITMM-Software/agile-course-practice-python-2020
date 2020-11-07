@@ -134,12 +134,13 @@ class Polynomial:
         res = check_zero(res)
         return self.__class__(res)
 
+
 class TestPolynomial(unittest.TestCase):
 
     # INIT TESTS
 
     def test_init_param_list(self):
-        _list = list([1 ,2, 3])
+        _list = list([1, 2, 3])
         self.assertEqual(_list, Polynomial(_list).coeffs)
 
     def test_init_param_tuple(self):
@@ -270,6 +271,6 @@ class TestPolynomial(unittest.TestCase):
 
     def test_str_with_zeros(self):
         self.assertEqual('x^2 + 2x + 3', str(Polynomial([0, 0, 1, 2, 3])))
-    
+
 if __name__ == '__main__':
     unittest.main()
