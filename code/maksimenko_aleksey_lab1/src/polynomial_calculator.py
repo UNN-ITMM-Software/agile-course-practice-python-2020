@@ -1,5 +1,6 @@
 from itertools import zip_longest
 
+
 def check_zero(coeffs):
         if not isinstance(coeffs, (list, tuple)):
             raise TypeError()
@@ -9,7 +10,8 @@ def check_zero(coeffs):
                 break
             i += 1
         return coeffs[i:]
-    
+
+
 class Polynomial:
     def __init__(self, params):
         if not isinstance(params, (list, tuple, Polynomial)):
@@ -35,14 +37,13 @@ class Polynomial:
             if (n_coeff == "1") and n != len(self.coeffs)-1:
                     n_coeff = ""
             if n < len(self.coeffs) - 2:
-                string = string + n_coeff + "x^"+ \
-                str(len(self.coeffs) - n - 1) + add_str
+                string = string + n_coeff + "x^" + str(len(self.coeffs) - n - 1) + add_str
             elif n < len(self.coeffs) - 1:
                 string = string + n_coeff + "x" + add_str
             else:
                 string = string + n_coeff
         return string
-    
+
     def __repr__(self):
         _str = "Polynomial(" + str(self.coeffs) + ")"
         return _str
@@ -101,7 +102,7 @@ class Polynomial:
         if isinstance(other, int):
             coeff = [(-1)*t for t in res.coeffs]
             res.coeffs = coeff
-            res.coeffs[-1] +=other
+            res.coeffs[-1] += other
         else:
             raise TypeError()
         res.coeffs = check_zero(res.coeffs)
