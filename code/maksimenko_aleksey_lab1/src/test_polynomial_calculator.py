@@ -1,6 +1,7 @@
 import unittest
 from polynomial_calculator import *
 
+
 class TestPolynomial(unittest.TestCase):
     
     # INIT TESTS

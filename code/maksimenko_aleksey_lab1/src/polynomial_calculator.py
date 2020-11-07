@@ -117,7 +117,7 @@ class Polynomial:
             res = [0]*(len(_s)+len(_v)-1)
             for selfpow, selfco in enumerate(_s):
                 for valpow, valco in enumerate(_v):
-                    res[selfpow+valpow] += selfco*valco            
+                    res[selfpow+valpow] += selfco*valco
         else:
             raise TypeError()
         res = list(res)
