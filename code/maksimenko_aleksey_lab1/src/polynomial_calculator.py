@@ -1,6 +1,7 @@
 from itertools import zip_longest
 import unittest
 
+
 def check_zero(coeffs):
         if not isinstance(coeffs, (list, tuple)):
             raise TypeError()
@@ -10,7 +11,8 @@ def check_zero(coeffs):
                 break
             i += 1
         return coeffs[i:]
-    
+
+
 class Polynomial:
     def __init__(self, params):
         if not isinstance(params, (list, tuple, Polynomial)):
@@ -36,14 +38,13 @@ class Polynomial:
             if (n_coeff == "1") and n != len(self.coeffs)-1:
                     n_coeff = ""
             if n < len(self.coeffs) - 2:
-                string = string + n_coeff + "x^"+ \
-                str(len(self.coeffs) - n - 1) + add_str
+                string = string + n_coeff + "x^" + str(len(self.coeffs) - n - 1) + add_str
             elif n < len(self.coeffs) - 1:
                 string = string + n_coeff + "x" + add_str
             else:
                 string = string + n_coeff
         return string
-    
+
     def __repr__(self):
         _str = "Polynomial(" + str(self.coeffs) + ")"
         return _str
@@ -75,7 +76,7 @@ class Polynomial:
     def __radd__(self, other):
         res = Polynomial(self.coeffs)
         if isinstance(other, int):
-            res.coeffs[-1] +=other
+            res.coeffs[-1] += other
         else:
             raise TypeError()
         res.coeffs = check_zero(res.coeffs)
@@ -102,7 +103,7 @@ class Polynomial:
         if isinstance(other, int):
             coeff = [(-1)*t for t in res.coeffs]
             res.coeffs = coeff
-            res.coeffs[-1] +=other
+            res.coeffs[-1] += other
         else:
             raise TypeError()
         res.coeffs = check_zero(res.coeffs)
@@ -115,16 +116,16 @@ class Polynomial:
             _s = self.coeffs
             _v = val.coeffs
             res = [0]*(len(_s)+len(_v)-1)
-            for selfpow,selfco in enumerate(_s):
-                for valpow,valco in enumerate(_v):
-                    res[selfpow+valpow] += selfco*valco            
+            for selfpow, selfco in enumerate(_s):
+                for valpow, valco in enumerate(_v):
+                    res[selfpow+valpow] += selfco*valco
         else:
             raise TypeError()
         res = list(res)
         res = check_zero(res)
         return self.__class__(res)
 
-    def __rmul__(self,val):
+    def __rmul__(self, val):
         if isinstance(val, int):
             res = [val*t for t in self.coeffs]
         else:
@@ -134,16 +135,16 @@ class Polynomial:
         return self.__class__(res)
 
 class TestPolynomial(unittest.TestCase):
-    
+
     # INIT TESTS
 
     def test_init_param_list(self):
-        _list = list([1,2,3])
+        _list = list([1 ,2, 3])
         self.assertEqual(_list, Polynomial(_list).coeffs)
 
     def test_init_param_tuple(self):
-        _tuple = tuple([1,2,3])
-        self.assertEqual([1,2,3], Polynomial(_tuple).coeffs)
+        _tuple = tuple([1, 2, 3])
+        self.assertEqual([1, 2, 3], Polynomial(_tuple).coeffs)
 
     def test_init_param_polynomial(self):
         pol1 = Polynomial([1, 2, 3])
@@ -157,7 +158,7 @@ class TestPolynomial(unittest.TestCase):
         self.assertEqual([0], Polynomial([0]).coeffs)
 
     def test_init_param_only_zeros(self):
-        self.assertEqual([0], Polynomial([0,0,0]).coeffs)
+        self.assertEqual([0], Polynomial([0, 0, 0]).coeffs)
 
     def test_init_fails_on_empty_param(self):
         with self.assertRaises(AttributeError):
@@ -194,8 +195,7 @@ class TestPolynomial(unittest.TestCase):
         self.assertEqual(Polynomial([4, 6, 8, 10]), Polynomial([1, 2, 3]) + Polynomial([4, 5, 6, 7]))
 
     def test_sum_poly_and_poly_with_check_zero(self):
-        self.assertEqual(Polynomial([1,0]), Polynomial([1, 2, 3]) + Polynomial([-1, -1, -3]))
-
+        self.assertEqual(Polynomial([1, 0]), Polynomial([1, 2, 3]) + Polynomial([-1, -1, -3]))
 
     # SUB TESTS
 
@@ -216,7 +216,7 @@ class TestPolynomial(unittest.TestCase):
         self.assertEqual(Polynomial([-4, -4, -4, -4]), Polynomial([1, 2, 3]) - Polynomial([4, 5, 6, 7]))
 
     def test_sub_poly_and_poly_with_check_zero(self):
-        self.assertEqual(Polynomial([1,0]), Polynomial([1, 2, 3]) - Polynomial([1, 1, 3]))
+        self.assertEqual(Polynomial([1, 0]), Polynomial([1, 2, 3]) - Polynomial([1, 1, 3]))
 
     # MUL TESTS
 
@@ -234,10 +234,11 @@ class TestPolynomial(unittest.TestCase):
             'str' * Polynomial([1, 2, 3])
 
     def test_mul_poly_and_poly(self):
-        self.assertEqual(Polynomial([4, 13, 28, 34, 32, 21]), Polynomial([1, 2, 3]) * Polynomial([4, 5, 6, 7]))
+        self.assertEqual(Polynomial([4, 13, 28, 34, 32, 21]),
+                         Polynomial([1, 2, 3]) * Polynomial([4, 5, 6, 7]))
 
     def test_sub_poly_and_poly_with_check_zero(self):
-        self.assertEqual(Polynomial([1,0,1,0,0]), Polynomial([1, 0, 1]) * Polynomial([1, 0, 0]))
+        self.assertEqual(Polynomial([1, 0, 1, 0, 0]), Polynomial([1, 0, 1]) * Polynomial([1, 0, 0]))
 
     # EQUAL TESTS
 
