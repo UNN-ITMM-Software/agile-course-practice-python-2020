@@ -17,3 +17,6 @@ class DHeap:
             self.heap[j1], self.heap[j2] = self.heap[j2], self.heap[j1]
             j1 = j2
             j2 = self._parent(j1)
+    
+    def min(self):
+        return self.heap[0]
