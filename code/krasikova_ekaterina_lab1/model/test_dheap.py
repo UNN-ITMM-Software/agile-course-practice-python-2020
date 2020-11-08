@@ -1,6 +1,6 @@
 import unittest
 
-from dheap import DHeap
+from krasikova_ekaterina_lab1.model.dheap import DHeap
 
 
 class TestDHeap(unittest.TestCase):
