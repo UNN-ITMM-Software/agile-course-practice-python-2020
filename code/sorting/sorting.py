@@ -18,5 +18,15 @@ class Sorting:
 
         return array_of_int
 
-    def sorting_func(self):
-        return [0, 4, 7]
+    def insertion_sort(self):
+        nums = self.array[:]
+
+        for index in range(1, len(nums)):
+            currentValue = nums[index]
+            currentPosition = index
+            while currentPosition > 0 and nums[currentPosition - 1] > currentValue:
+                nums[currentPosition] = nums[currentPosition - 1]
+                currentPosition = currentPosition - 1
+            nums[currentPosition] = currentValue
+        return nums
+
