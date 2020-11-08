@@ -16,6 +16,7 @@ class TestSolvingQuadraticEquation(unittest.TestCase):
         self.assertEqual(sqe(-3, 0, 0), 0)
         self.assertEqual(sqe(1, 2, 3), NO_SOLUTION)
         self.assertEqual(sqe(-1, 2, -3), NO_SOLUTION)
+        self.assertEqual(sqe(7, 4, 3), NO_SOLUTION)
         self.assertEqual(sqe(1, 5, 0), (-5, 0))
         self.assertEqual(sqe(1, -5, 0), (0, 5))
         self.assertEqual(sqe(2, 4, 2), -1)
