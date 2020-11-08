@@ -139,3 +139,14 @@ class TestPolynomial(unittest.TestCase):
 
     def test_str_with_zeros(self):
         self.assertEqual('x^2 + 2x + 3', str(Polynomial([0, 0, 1, 2, 3])))
+
+    #CHECK_ZERO TESTS
+
+    def zeros_at_the_beginning(self):
+        self.assertEqual([1, 2, 3], check_zero([0, 1, 2, 3]))
+
+    def zeros_at_the_beginning_and_in_the_middle(self):
+        self.assertEqual([1, 0, 3], check_zero([0, 0, 1, 0, 3]))
+
+    def all_zeros(self):
+        self.assertEqual([0], check_zero([0, 0, 0]))
