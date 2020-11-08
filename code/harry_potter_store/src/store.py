@@ -1,7 +1,8 @@
 class Store:
     book_types = ["1", "2", "3", "4", "5"]
 
-    def __init__(self):
+    def __init__(self, book_price=8):
+        self.book_price = book_price
         pass
 
     def _clean(self, to_buy_books: dict) -> dict:
@@ -15,13 +16,18 @@ class Store:
         price = 0
         to_buy_books = self._clean(to_buy_books)
         while len(to_buy_books) > 1:
+            if len(to_buy_books) == 5:
+                price += 5*self.book_price * 0.75
+                to_buy_books = self._decrement(to_buy_books)
             if len(to_buy_books) == 4:
-                price += 32 * 0.80
+                price += 4*self.book_price * 0.80
+                to_buy_books = self._decrement(to_buy_books)
             if len(to_buy_books) == 3:
-                price += 24 * 0.90
+                price += 3*self.book_price * 0.90
+                to_buy_books = self._decrement(to_buy_books)
             if len(to_buy_books) == 2:
-                price += 16 * 0.95
-            to_buy_books = self._decrement(to_buy_books)
+                price += 2*self.book_price * 0.95
+                to_buy_books = self._decrement(to_buy_books)
 
         count = sum(to_buy_books.values())
-        return price + 8 * count
+        return price + self.book_price * count
