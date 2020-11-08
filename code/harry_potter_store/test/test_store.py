@@ -19,6 +19,18 @@ class TestMain(unittest.TestCase):
         store = Store()
         self.assertTrue(store.get_price({"1": 2}) == 16)
 
-    def test_get_price_with_discount(self):
+    def test_get_price_with_discount_2_books(self):
         store = Store()
-        self.assertTrue(store.get_price({"1": 1, "2": 1}) == 16*0.95)
+        self.assertTrue(store.get_price({"1": 1, "2": 1}) == 16 * 0.95)
+
+    def test_get_price_complex_1(self):
+        store = Store()
+        self.assertTrue(store.get_price({"1": 1, "2": 2}) == 16 * 0.95 + 8)
+
+    def test_get_price_complex_2(self):
+        store = Store()
+        self.assertTrue(store.get_price({"1": 0, "2": 2}) == 16)
+
+    def test_get_price_complex_3(self):
+        store = Store()
+        self.assertTrue(store.get_price({"1": -132, "2": -3324}) == 0)
