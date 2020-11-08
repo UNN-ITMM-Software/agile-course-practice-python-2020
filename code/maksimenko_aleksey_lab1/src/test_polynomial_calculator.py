@@ -7,7 +7,7 @@ class TestPolynomial(unittest.TestCase):
 
     # CHECK_ZERO TESTS
 
-    def zeros_at_the_beginning(self):
+    def passing_a_string(self):
         with self.assertRaises(TypeError):
             check_zero('a')
 
