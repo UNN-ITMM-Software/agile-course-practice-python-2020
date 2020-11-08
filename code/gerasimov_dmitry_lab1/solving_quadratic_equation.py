@@ -23,4 +23,3 @@ def solving_quadratic_equation(a, b, c):
         x2 = (-b - math.sqrt(disc)) / (2 * a)
         res = sorted([x1, x2])
     return res[0], res[1]
-
