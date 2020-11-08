@@ -14,11 +14,13 @@ class Store:
     def get_price(self, to_buy_books: dict) -> float:
         price = 0
         to_buy_books = self._clean(to_buy_books)
-        if len(to_buy_books) == 3:
-            price += 24 * 0.90
-            to_buy_books = self._decrement(to_buy_books)
-        if len(to_buy_books) == 2:
-            price += 16 * 0.95
+        while len(to_buy_books) > 1:
+            if len(to_buy_books) == 4:
+                price += 32 * 0.80
+            if len(to_buy_books) == 3:
+                price += 24 * 0.90
+            if len(to_buy_books) == 2:
+                price += 16 * 0.95
             to_buy_books = self._decrement(to_buy_books)
 
         count = sum(to_buy_books.values())
