@@ -13,3 +13,8 @@ class Statistics:
 
     def mean(self):
         return Statistics._mean(self.values)
+
+    def var(self):
+        mean = self.mean()
+        tmp = [(x - mean)**2 for x in self.values]
+        return Statistics._mean(tmp)

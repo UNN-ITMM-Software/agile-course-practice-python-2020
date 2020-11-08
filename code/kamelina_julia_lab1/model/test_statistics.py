@@ -37,3 +37,11 @@ class TestStatisticsOperations(unittest.TestCase):
     def test_can_compute_mean_one_element(self):
         stat = Statistics(1)
         self.assertEqual(stat.mean(), 1.0)
+
+    def test_can_compute_var(self):
+        stat = Statistics([1, 2, 3, 2])
+        self.assertEqual(stat.var(), 0.5)
+
+    def test_can_compute_var_one_element(self):
+        stat = Statistics(1)
+        self.assertEqual(stat.var(), 0)
