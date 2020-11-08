@@ -61,12 +61,15 @@ class TestMain(unittest.TestCase):
 
     def test_get_price_complex_7(self):
         store = Store()
-        self.assertEqual(store.get_price({"1": 2, "2": 2, "3": 2, "4": 1, "5": 1}), (40 * 0.75) + (24 * 0.9))
+        self.assertEqual(store.get_price({"1": 2, "2": 2, "3": 2, "4": 1, "5": 1}),
+                         (40 * 0.75) + (24 * 0.9))
 
     def test_get_price_complex_8(self):
         store = Store()
-        self.assertEqual(store.get_price({"1": 2, "2": 2, "3": 2, "4": 3, "5": 4}), (40 * 0.75 * 2) + (16 * 0.95) + 8)
+        self.assertEqual(store.get_price({"1": 2, "2": 2, "3": 2, "4": 3, "5": 4}),
+                         (40 * 0.75 * 2) + (16 * 0.95) + 8)
 
     def test_another_book_price(self):
         store = Store(10)
-        self.assertEqual(store.get_price({"1": 2, "2": 2, "3": 2, "4": 3, "5": 4}), (50 * 0.75 * 2) + (20 * 0.95) + 10)
+        self.assertEqual(store.get_price({"1": 2, "2": 2, "3": 2, "4": 3, "5": 4}),
+                         (50 * 0.75 * 2) + (20 * 0.95) + 10)
