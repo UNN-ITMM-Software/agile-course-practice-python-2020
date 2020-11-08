@@ -1,3 +1,5 @@
+import math
+
 NO_SOLUTION = "No solution"
 
 
@@ -13,5 +15,12 @@ def solving_quadratic_equation(a, b, c):
 
     if discr < 0:
         return NO_SOLUTION
-    return discr
+
+    x1 = (-b + math.sqrt(discr)) / (2 * a)
+    x2 = (-b - math.sqrt(discr)) / (2 * a)
+
+    if x1 == x2 == 0:
+        return 0
+    res = sorted([x1, x2])
+    return res[0], res[1]
 
