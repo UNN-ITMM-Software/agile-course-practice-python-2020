@@ -27,3 +27,9 @@ class Statistics:
         else:
             res = tmp[m]
         return res
+
+    def bmoment(self, k):
+        if k <= 0:
+            raise ValueError
+        tmp = [x**k for x in self.values]
+        return Statistics._mean(tmp)

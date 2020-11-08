@@ -57,3 +57,21 @@ class TestStatisticsOperations(unittest.TestCase):
     def test_can_compute_median_one_element(self):
         stat = Statistics(1)
         self.assertEqual(stat.med(), 1)
+
+    def test_can_compute_begining_moment(self):
+        stat = Statistics([1, 2, 3, 2])
+        self.assertEqual(stat.bmoment(k=1), 2.0)
+
+    def test_can_compute_kth_bmoment(self):
+        stat = Statistics([1, 2, 3, 2])
+        self.assertEqual(stat.bmoment(k=3), 11.0)
+
+    def test_bmoment_raises_on_incorrect_k(self):
+        stat = Statistics([1, 2, 3, 2])
+        with self.assertRaises(ValueError):
+            stat.bmoment(k=0)
+
+    def test_bmoment_raises_on_neg_k(self):
+        stat = Statistics([1, 2, 3, 2])
+        with self.assertRaises(ValueError):
+            stat.bmoment(k=-1)
