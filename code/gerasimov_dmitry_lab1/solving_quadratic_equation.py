@@ -11,5 +11,7 @@ def solving_quadratic_equation(a, b, c):
         elif a > 0 and c > 0 or a < 0 and c < 0:
             return NO_SOLUTION
 
+    if discr < 0:
+        return NO_SOLUTION
     return discr
 
