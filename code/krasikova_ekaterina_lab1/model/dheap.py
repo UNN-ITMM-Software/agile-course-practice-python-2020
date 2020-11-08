@@ -59,3 +59,8 @@ class DHeap:
             raise ValueError("Index is out of range")
         self.heap[i] -= delta
         self._emersion(i)
+
+    def delete(self, i):
+        self.decrease_weight(i, float('Inf'))
+        self.delete_min()
+

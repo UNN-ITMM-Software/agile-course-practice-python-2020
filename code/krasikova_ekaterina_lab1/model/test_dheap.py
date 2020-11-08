@@ -98,3 +98,29 @@ class TestDHeap(unittest.TestCase):
         dheap.insert(1)
         with self.assertRaises(ValueError):
             dheap.decrease_weight(5, 4)
+
+    def test_can_delete_from_3heap_with_3_elements(self):
+        dheap = DHeap(3)
+        dheap.insert(5)
+        dheap.insert(3)
+        dheap.insert(1)
+        dheap_elem_to_delete = dheap.heap[1]
+        dheap.delete(1)
+        self.assertTrue(dheap_elem_to_delete not in dheap.heap and dheap.min() == 1)
+
+    def test_can_decrease_weight_in_4heap_with_10_elements_10_times(self):
+        dheap = DHeap(4)
+        for i in range(10, 0, -1):
+            dheap.insert(i)
+        for i in range(9):
+            dheap_elem_to_delete = dheap.heap[1]
+            dheap.delete(1)
+            self.assertTrue(dheap_elem_to_delete not in dheap.heap and dheap.min() == 1)
+
+    def test_raise_when_delete_by_wrong_index(self):
+        dheap = DHeap(3)
+        dheap.insert(5)
+        dheap.insert(3)
+        dheap.insert(1)
+        with self.assertRaises(ValueError):
+            dheap.delete(5)
