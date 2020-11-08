@@ -22,11 +22,11 @@ class Sorting:
         nums = self.convert_to_array_of_int()[:]
 
         for index in range(1, len(nums)):
-            currentValue = nums[index]
-            currentPosition = index
-            while currentPosition > 0 and nums[currentPosition - 1] > currentValue:
-                nums[currentPosition] = nums[currentPosition - 1]
-                currentPosition = currentPosition - 1
-            nums[currentPosition] = currentValue
-        return nums
+            currVal = nums[index]
+            currPos = index
+            while currPos > 0 and nums[currPos - 1] > currVal:
+                nums[currPos] = nums[currPos - 1]
+                currPos = currPos - 1
+            nums[currPos] = currVal
 
+        return nums

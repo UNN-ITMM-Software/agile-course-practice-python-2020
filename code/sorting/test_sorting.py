@@ -22,8 +22,8 @@ class SortingTest(unittest.TestCase):
         self.assertEqual(sort.insertion_sort(), [0, 4, 7])
 
     def test_can_convert_str_to_int(self):
-        sort = Sorting([0, 1, '2', '45', 4, '8'])
-        self.assertEqual(sort.convert_to_array_of_int(), [0, 1, 2, 45, 4, 8])
+        sort = Sorting([0, 1, '2', '45'])
+        self.assertEqual(sort.convert_to_array_of_int(), [0, 1, 2, 45])
 
     def test_can_resolv_words(self):
         sort = Sorting([1, '45', 3, 'erf', '5'])
