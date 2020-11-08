@@ -8,4 +8,7 @@ class TestMain(unittest.TestCase):
         pass
 
     def test_can_create_store(self):
-        store = Store()
+        Store()
+
+    def test_store_contain_five_book_types(self):
+        self.assertTrue(len(Store.book_types) == 5)
