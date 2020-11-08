@@ -149,4 +149,23 @@ class TestDHeap(unittest.TestCase):
     def test_raise_when_create_from_list_with_non_numeric_type_of_elements(self):
         with self.assertRaises(TypeError):
             dheap = DHeap(3, ["t", "element"])
-        
+    
+    def test_raise_when_set_value_of_d(self):
+        dheap = DHeap(3)
+        with self.assertRaises(AttributeError):
+            dheap.d = 4
+    
+    def test_raise_when_set_value_of_heap(self):
+        dheap = DHeap(3)
+        with self.assertRaises(AttributeError):
+            dheap.heap = [4, 5, 6]
+
+    def test_can_get_d(self):
+        dheap = DHeap(3, [5, 1, 3])
+        self.assertEqual(dheap.d, 3)
+
+    def test_can_get_copy_of_heap_list(self):
+        dheap = DHeap(3, [5, 1, 3])
+        heap = dheap.heap
+        heap[0] = 12
+        self.assertTrue(dheap.heap[0] != heap[0])
