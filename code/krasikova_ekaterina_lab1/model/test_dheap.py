@@ -24,6 +24,11 @@ class TestDHeap(unittest.TestCase):
         dheap.insert(3)
         dheap.insert(1)
         self.assertTrue(dheap.heap[0] <= dheap.heap[1] and dheap.heap[0] <= dheap.heap[2])
+    
+    def test_raise_when_insert_element_of_non_numeric_type(self):
+        dheap = DHeap(3)
+        with self.assertRaises(TypeError):
+            dheap.insert('t')
 
     def test_can_get_min_of_3heap_with_1_element(self):
         dheap = DHeap(3)
@@ -140,4 +145,8 @@ class TestDHeap(unittest.TestCase):
     def test_raise_when_create_not_from_list(self):
         with self.assertRaises(TypeError):
             dheap = DHeap(3, {})
+
+    def test_raise_when_create_from_list_with_non_numeric_type_of_elements(self):
+        with self.assertRaises(TypeError):
+            dheap = DHeap(3, ["t", "element"])
         

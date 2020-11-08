@@ -5,7 +5,10 @@ class DHeap:
             self.heap = []
         else:
             if not isinstance(data, list):
-                raise TypeError("Should be list")
+                raise TypeError("Must be list")
+            for elem in data:
+                if not (isinstance(elem, int) or isinstance(elem, float)):
+                    raise TypeError("Elements must have numeric type")
             self.heap = data
             for i in range(len(self.heap)-1, -1, -1):
                 self._diving(i)
@@ -49,6 +52,8 @@ class DHeap:
             j2 = self._min_child(j1)
 
     def insert(self, w):
+        if not (isinstance(w, int) or isinstance(w, float)):
+            raise TypeError("Elements must have numeric type")
         self.heap.append(w)
         self._emersion(len(self.heap) - 1)
         
