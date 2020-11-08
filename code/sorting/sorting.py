@@ -19,7 +19,7 @@ class Sorting:
         return array_of_int
 
     def insertion_sort(self):
-        nums = self.array[:]
+        nums = self.convert_to_array_of_int()[:]
 
         for index in range(1, len(nums)):
             currentValue = nums[index]
