@@ -24,16 +24,19 @@ class DHeap:
             if self.heap[j] < self.heap[mc]:
                 mc = j
         return mc
-
-    def insert(self, w):
-        self.heap.append(w)
-        j1 = len(self.heap) - 1
+    
+    def _emersion(self, i):
+        j1 = i
         j2 = self._parent(j1)
         while j2 != -1 and self.heap[j2] > self.heap[j1]:
             self.heap[j1], self.heap[j2] = self.heap[j2], self.heap[j1]
             j1 = j2
             j2 = self._parent(j1)
-    
+
+    def insert(self, w):
+        self.heap.append(w)
+        self._emersion(len(self.heap) - 1)
+        
     def min(self):
         return self.heap[0]
 
@@ -48,3 +51,11 @@ class DHeap:
             self.heap[j1], self.heap[j2] = self.heap[j2], self.heap[j1]
             j1 = j2
             j2 = self._min_child(j1)
+
+    def decrease_weight(self, i, delta):
+        if delta < 0:
+            raise ValueError("Can't increase weight")
+        if i < 0 or i >= len(self.heap):
+            raise ValueError("Index is out of range")
+        self.heap[i] -= delta
+        self._emersion(i)
