@@ -18,6 +18,8 @@ class TestSolvingQuadraticEquation(unittest.TestCase):
         self.assertEqual(sqe(-1, 2, -3), NO_SOLUTION)
         self.assertEqual(sqe(1, 5, 0), (-5, 0))
         self.assertEqual(sqe(1, -5, 0), (0, 5))
+        self.assertEqual(sqe(2, 4, 2), -1)
+        self.assertEqual(sqe(8, 8, 2), -0.5)
 
     def test_second_arg_value(self):
         self.assertEqual(sqe(1, 0, 100), NO_SOLUTION)
