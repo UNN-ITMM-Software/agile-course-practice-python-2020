@@ -22,6 +22,12 @@ class TestSolvingQuadraticEquation(unittest.TestCase):
         self.assertEqual(sqe(2, 4, 2), -1)
         self.assertEqual(sqe(8, 8, 2), -0.5)
 
+    def test_float_values(self):
+        self.assertEqual(sqe(7, 4, -3), (-1, 0.42857142857142855))
+        self.assertEqual(sqe(-10.4, 4.5, -3.4), NO_SOLUTION)
+        self.assertEqual(sqe(10.4, 4.5, -3.4), (-0.8276797249896831, 0.3949874172973754))
+        self.assertEqual(sqe(-0.5, 3, 1.5), (-0.4641016151377544, 6.464101615137754))
+
     def test_second_arg_value(self):
         self.assertEqual(sqe(1, 0, 100), NO_SOLUTION)
         self.assertEqual(sqe(-101, 0, -100), NO_SOLUTION)
