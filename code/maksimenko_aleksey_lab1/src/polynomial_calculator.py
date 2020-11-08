@@ -27,36 +27,7 @@ class Polynomial:
             else:
                 self.coeffs = params
 
-    def __str__(self):
-        string = ""
-        add_str = " + "
-        for n in range(len(self.coeffs)):
-            n_coeff = str(self.coeffs[n])
-            if (n_coeff == "1") and n != len(self.coeffs)-1:
-                    n_coeff = ""
-            if n < len(self.coeffs) - 2:
-                string = string + n_coeff + "x^" + str(len(self.coeffs) - n - 1) + add_str
-            elif n < len(self.coeffs) - 1:
-                string = string + n_coeff + "x" + add_str
-            else:
-                string = string + n_coeff
-        return string
-
-    def __repr__(self):
-        _str = "Polynomial(" + str(self.coeffs) + ")"
-        return _str
-
-    def __eq__(self, other):
-        if other.__class__ is not self.__class__:
-            raise TypeError()
-        else:
-            if other.coeffs != self.coeffs:
-                return False
-        return True
-
     def __add__(self, other):
-        if (isinstance(other, int) or isinstance(other, Polynomial)) == False:
-            raise TypeError()
         res = Polynomial(self.coeffs)
         if isinstance(other, int):
             res.coeffs[-1] += other
@@ -69,7 +40,8 @@ class Polynomial:
             res = list(res)
             res = check_zero(res)
             return Polynomial(res)
-            
+        else:
+            raise TypeError()
 
     def __radd__(self, other):
         res = Polynomial(self.coeffs)
@@ -131,3 +103,30 @@ class Polynomial:
         res = list(res)
         res = check_zero(res)
         return self.__class__(res)
+
+    def __eq__(self, other):
+        if other.__class__ is not self.__class__:
+            raise TypeError()
+        else:
+            if other.coeffs != self.coeffs:
+                return False
+        return True
+
+    def __repr__(self):
+        _str = "Polynomial(" + str(self.coeffs) + ")"
+        return _str
+
+    def __str__(self):
+        string = ""
+        add_str = " + "
+        for n in range(len(self.coeffs)):
+            n_coeff = str(self.coeffs[n])
+            if (n_coeff == "1") and n != len(self.coeffs)-1:
+                    n_coeff = ""
+            if n < len(self.coeffs) - 2:
+                string = string + n_coeff + "x^" + str(len(self.coeffs) - n - 1) + add_str
+            elif n < len(self.coeffs) - 1:
+                string = string + n_coeff + "x" + add_str
+            else:
+                string = string + n_coeff
+        return string

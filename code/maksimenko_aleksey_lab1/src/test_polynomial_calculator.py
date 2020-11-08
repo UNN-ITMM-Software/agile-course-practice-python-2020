@@ -62,7 +62,7 @@ class TestPolynomial(unittest.TestCase):
 
     def test_sum_fail_poly_and_incorrect_type(self):
         with self.assertRaises(TypeError):
-            Polynomial([1, 2, 3] + 'str')
+            Polynomial([1, 2, 3]) + 'str'
 
     def test_sum_poly_and_poly(self):
         self.assertEqual(Polynomial([4, 6, 8, 10]), Polynomial([1, 2, 3]) + Polynomial([4, 5, 6, 7]))
@@ -87,7 +87,7 @@ class TestPolynomial(unittest.TestCase):
 
     def test_sub_fail_poly_and_incorrect_type(self):
         with self.assertRaises(TypeError):
-            Polynomial([1, 2, 3] - 'str')
+            Polynomial([1, 2, 3]) - 'str'
 
     def test_sub_poly_and_poly(self):
         self.assertEqual(Polynomial([-4, -4, -4, -4]), Polynomial([1, 2, 3]) - Polynomial([4, 5, 6, 7]))
@@ -112,7 +112,7 @@ class TestPolynomial(unittest.TestCase):
 
     def test_mul_fail_poly_and_incorrect_type(self):
         with self.assertRaises(TypeError):
-            Polynomial([1, 2, 3] * 'str')
+            Polynomial([1, 2, 3]) * 'str'
 
     def test_mul_poly_and_poly(self):
         self.assertEqual(Polynomial([4, 13, 28, 34, 32, 21]),
