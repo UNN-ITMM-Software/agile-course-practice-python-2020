@@ -22,5 +22,7 @@ class SortingTest(unittest.TestCase):
         sort = Sorting([0, 1, '2', '45', 4, '8'])
         self.assertEqual(sort.convert_to_array_of_int(), [0, 1, 2, 45, 4, 8])
 
-if __name__ == '__main__':
-    unittest.main()
+    def test_can_resolv_words(self):
+        sort = Sorting([1, '45', 3, 'erf', '5'])
+        self.assertEqual(sort.convert_to_array_of_int(), [1, 45, 3, 5])
+
