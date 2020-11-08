@@ -3,7 +3,9 @@ import unittest
 from sorting.sorting import Sorting
 
 FIRST_CASE = [0, 7, 4]
-SECOND_CASE = [0, 1, 2, 45, 4, 8]
+SECOND_CASE = [0, 45, 1,  8, 2, 4]
+THIRD_CASE = [0, 4, '45', '1', 2, 8]
+FOURTH_CASE = [1, '45', 3, 5, 'wef']
 
 
 class SortingTest(unittest.TestCase):
@@ -30,3 +32,11 @@ class SortingTest(unittest.TestCase):
     def test_can_sort_second_case(self):
         sort = Sorting(SECOND_CASE)
         self.assertEqual(sort.insertion_sort(), [0, 1, 2, 4, 8, 45])
+
+    def test_can_sort_third_case(self):
+        sort = Sorting(THIRD_CASE)
+        self.assertEqual(sort.insertion_sort(), [0, 1, 2, 4, 8, 45])
+
+    def test_can_sort_fourth_case(self):
+        sort = Sorting(FOURTH_CASE)
+        self.assertEqual(sort.insertion_sort(), [1, 3, 5, 45])
