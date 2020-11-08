@@ -45,3 +45,15 @@ class TestStatisticsOperations(unittest.TestCase):
     def test_can_compute_var_one_element(self):
         stat = Statistics(1)
         self.assertEqual(stat.var(), 0)
+
+    def test_can_compute_median(self):
+        stat = Statistics([1, 2, 3, 2])
+        self.assertEqual(stat.med(), 2.0)
+
+    def test_can_compute_even_median(self):
+        stat = Statistics([1, 2, 3, 3, 5])
+        self.assertEqual(stat.med(), 3.0)
+
+    def test_can_compute_median_one_element(self):
+        stat = Statistics(1)
+        self.assertEqual(stat.med(), 1)

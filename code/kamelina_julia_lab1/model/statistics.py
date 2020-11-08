@@ -18,3 +18,12 @@ class Statistics:
         mean = self.mean()
         tmp = [(x - mean)**2 for x in self.values]
         return Statistics._mean(tmp)
+
+    def med(self):
+        tmp = sorted(self.values)
+        m = len(tmp)//2
+        if len(tmp) % 2 == 0:
+            res = (tmp[m] + tmp[m-1])/2
+        else:
+            res = tmp[m]
+        return res
