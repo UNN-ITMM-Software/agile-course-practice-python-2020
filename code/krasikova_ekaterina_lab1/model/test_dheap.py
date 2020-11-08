@@ -124,3 +124,20 @@ class TestDHeap(unittest.TestCase):
         dheap.insert(1)
         with self.assertRaises(ValueError):
             dheap.delete(5)
+
+    def test_can_create_3heap_with_3_elements_from_list(self):
+        dheap = DHeap(3, [5, 1, 3])
+        for i in range(3):
+            self.assertEqual(dheap.min(), min(dheap.heap))
+            dheap.delete_min()
+    
+    def test_can_create_4heap_with_10_elements_from_list(self):
+        dheap = DHeap(4, list(range(10, 0, -1)))
+        for i in range(10):
+            self.assertEqual(dheap.min(), min(dheap.heap))
+            dheap.delete_min()
+        
+    def test_raise_when_create_not_from_list(self):
+        with self.assertRaises(TypeError):
+            dheap = DHeap(3, {})
+        

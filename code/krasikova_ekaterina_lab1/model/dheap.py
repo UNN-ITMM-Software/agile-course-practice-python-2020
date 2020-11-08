@@ -1,7 +1,14 @@
 class DHeap:
-    def __init__(self, d=2):
+    def __init__(self, d=2, data=None):
         self.d = d
-        self.heap = []
+        if data is None:
+            self.heap = []
+        else:
+            if not isinstance(data, list):
+                raise TypeError("Should be list")
+            self.heap = data
+            for i in range(len(self.heap)-1, -1, -1):
+                self._diving(i)
 
     def _parent(self, i):
         if i > 0 and i < len(self.heap):
@@ -33,6 +40,14 @@ class DHeap:
             j1 = j2
             j2 = self._parent(j1)
 
+    def _diving(self, i):
+        j1 = i
+        j2 = self._min_child(j1)
+        while j2 != -1 and self.heap[j1] > self.heap[j2]:
+            self.heap[j1], self.heap[j2] = self.heap[j2], self.heap[j1]
+            j1 = j2
+            j2 = self._min_child(j1)
+
     def insert(self, w):
         self.heap.append(w)
         self._emersion(len(self.heap) - 1)
@@ -45,12 +60,7 @@ class DHeap:
             raise RuntimeError("Can't delete minimum from empty heap")
         self.heap[0] = self.heap[-1]
         self.heap.pop()
-        j1 = 0
-        j2 = self._min_child(j1)
-        while j2 != -1 and self.heap[j1] > self.heap[j2]:
-            self.heap[j1], self.heap[j2] = self.heap[j2], self.heap[j1]
-            j1 = j2
-            j2 = self._min_child(j1)
+        self._diving(0)
 
     def decrease_weight(self, i, delta):
         if delta < 0:
