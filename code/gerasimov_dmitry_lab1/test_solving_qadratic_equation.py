@@ -9,3 +9,5 @@ class TestSolvingQuadraticEquation(unittest.TestCase):
     def test_all_zero_values(self):
         self.assertRaises(ValueError, sqe, 0, 0, 0)
 
+    def test_values(self):
+        self.assertEqual(sqe(1, 0, 0), 0)
