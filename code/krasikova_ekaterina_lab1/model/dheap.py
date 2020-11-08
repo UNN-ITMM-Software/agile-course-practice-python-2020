@@ -14,11 +14,11 @@ class DHeap:
                 self._diving(i)
 
     @property
-    def d(self): 
+    def d(self):
         return self._d
-    
+
     @property
-    def heap(self): 
+    def heap(self):
         return self._heap.copy()
 
     def _parent(self, i):
@@ -42,7 +42,7 @@ class DHeap:
             if self._heap[j] < self._heap[mc]:
                 mc = j
         return mc
-    
+
     def _emersion(self, i):
         j1 = i
         j2 = self._parent(j1)
@@ -64,7 +64,7 @@ class DHeap:
             raise TypeError("Elements must have numeric type")
         self._heap.append(w)
         self._emersion(len(self._heap) - 1)
-        
+
     def min(self):
         return self._heap[0]
 
@@ -86,4 +86,3 @@ class DHeap:
     def delete(self, i):
         self.decrease_weight(i, float('Inf'))
         self.delete_min()
-
