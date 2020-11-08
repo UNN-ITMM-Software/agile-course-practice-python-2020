@@ -3,3 +3,6 @@ class Store:
 
     def __init__(self):
         pass
+
+    def get_price(self, book_types: list) -> int:
+        return 8 * len(book_types)
