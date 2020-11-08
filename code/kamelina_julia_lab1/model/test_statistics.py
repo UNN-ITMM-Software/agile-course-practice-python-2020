@@ -75,3 +75,21 @@ class TestStatisticsOperations(unittest.TestCase):
         stat = Statistics([1, 2, 3, 2])
         with self.assertRaises(ValueError):
             stat.bmoment(k=-1)
+
+    def test_can_compute_central_moment(self):
+        stat = Statistics([1, 2, 3, 2])
+        self.assertEqual(stat.cmoment(k=2), 0.5)
+
+    def test_cmoment_raises_on_incorrect_k(self):
+        stat = Statistics([1, 2, 3, 2])
+        with self.assertRaises(ValueError):
+            stat.cmoment(k=0)
+
+    def test_cmoment_raises_on_neg_k(self):
+        stat = Statistics([1, 2, 3, 2])
+        with self.assertRaises(ValueError):
+            stat.cmoment(k=-1)
+
+    def test_can_compute_kth_cmoment(self):
+        stat = Statistics([1, 2, 3, 2])
+        self.assertEqual(stat.bmoment(k=4), 28.5)

@@ -33,3 +33,10 @@ class Statistics:
             raise ValueError
         tmp = [x**k for x in self.values]
         return Statistics._mean(tmp)
+
+    def cmoment(self, k):
+        if k <= 0:
+            raise ValueError
+        mean = self.mean()
+        tmp = [(x - mean)**k for x in self.values]
+        return Statistics._mean(tmp)
