@@ -3,6 +3,7 @@ import unittest
 from gerasimov_dmitry_lab1 import solving_quadratic_equation
 
 sqe = solving_quadratic_equation.solving_quadratic_equation
+NO_SOLUTION = solving_quadratic_equation.NO_SOLUTION
 
 
 class TestSolvingQuadraticEquation(unittest.TestCase):
@@ -13,3 +14,6 @@ class TestSolvingQuadraticEquation(unittest.TestCase):
         self.assertEqual(sqe(1, 0, 0), 0)
         self.assertEqual(sqe(2, 0, 0), 0)
         self.assertEqual(sqe(-3, 0, 0), 0)
+
+    def test_second_arg_value(self):
+        self.assertEqual(sqe(1, 0, 100), NO_SOLUTION)
