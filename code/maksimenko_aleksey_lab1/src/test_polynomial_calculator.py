@@ -5,7 +5,7 @@ from maksimenko_aleksey_lab1.src.polynomial_calculator import Polynomial, check_
 
 class TestPolynomial(unittest.TestCase):
 
-    #CHECK_ZERO TESTS
+    # CHECK_ZERO TESTS
 
     def zeros_at_the_beginning(self):
         with self.assertRaises(TypeError):
