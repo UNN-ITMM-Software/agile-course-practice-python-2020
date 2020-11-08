@@ -31,3 +31,12 @@ class TestSolvingQuadraticEquation(unittest.TestCase):
     def test_second_arg_value(self):
         self.assertEqual(sqe(1, 0, 100), NO_SOLUTION)
         self.assertEqual(sqe(-101, 0, -100), NO_SOLUTION)
+
+    def test_correct_input_data_type(self):
+        self.assertRaises(TypeError, sqe, 1)
+        self.assertRaises(TypeError, sqe, 1, 2)
+        self.assertRaises(TypeError, sqe, [1, 2, 3])
+        self.assertRaises(TypeError, sqe, 1, 2, 3, 4)
+        self.assertRaises(TypeError, sqe, "1", 2, 3)
+        self.assertRaises(TypeError, sqe, "1", "2", "3")
+        self.assertRaises(TypeError, sqe, "a", "+", "3")
