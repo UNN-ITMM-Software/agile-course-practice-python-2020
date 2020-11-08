@@ -5,9 +5,9 @@ class DepoCalc():
                 s0=100.,  # Start depo
                 t=1.,  # Depo time, years
                 r=0.05,  # interest rate
-                is_add_to_depo=False,
-                capitalization_freq=4,  # capitalization frequency
-                replenishment_freq=-1):
+                is_add_to_depo=False,  # ability to add capitalization income to deposit
+                capitalization_freq=4,  # capitalization frequency, times a year
+                replenishment_freq=-1):  # replenishment frequency, times a year. If -1 then not available
         assert all([s0 > 0,
                     t > 0,
                     r > 0,
@@ -15,7 +15,7 @@ class DepoCalc():
                     is_add_to_depo in [True, False],
                     capitalization_freq in [1, 2, 3, 4, 6, 12],
                     replenishment_freq in [-1, 1, 2, 3, 4, 6, 12],
-                    t*12 >= capitalization_freq,
+                    t * 12 >= capitalization_freq,
                     capitalization_freq > replenishment_freq
                     ])
         self.s0 = s0
