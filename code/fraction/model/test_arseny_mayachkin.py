@@ -10,7 +10,7 @@ class TestFractionClass(unittest.TestCase):
 
     def test_is_equal(self):
         frac = Fraction(1, -3)
-        self.assertFalse(frac.is_equal(-1, 3))
+        self.assertTrue(frac.is_equal(-1, 3))
 
     def test_fraction_sum(self):
         frac_1 = Fraction(1, 5)
