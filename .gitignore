@@ -8,3 +8,7 @@
 # Python
 env
 *.pyc
+
+*.xml
+*.iml
+*.idea
