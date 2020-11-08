@@ -2,8 +2,6 @@ from itertools import zip_longest
 
 
 def check_zero(coeffs):
-        if not isinstance(coeffs, (list, tuple)):
-            raise TypeError()
         i = 0
         while coeffs[i] == 0:
             if i == len(coeffs) - 1:
