@@ -12,3 +12,4 @@ class TestSolvingQuadraticEquation(unittest.TestCase):
     def test_values(self):
         self.assertEqual(sqe(1, 0, 0), 0)
         self.assertEqual(sqe(2, 0, 0), 0)
+        self.assertEqual(sqe(-3, 0, 0), 0)
