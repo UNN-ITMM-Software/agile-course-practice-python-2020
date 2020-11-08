@@ -13,8 +13,12 @@ class TestMain(unittest.TestCase):
 
     def test_get_price_1(self):
         store = Store()
-        self.assertTrue(store.get_price(["1"]) == 8)
+        self.assertTrue(store.get_price({"1": 1}) == 8)
 
     def test_get_price_2(self):
         store = Store()
-        self.assertTrue(store.get_price(["1", "1"]) == 16)
+        self.assertTrue(store.get_price({"1": 2}) == 16)
+
+    def test_get_price_with_discount(self):
+        store = Store()
+        self.assertTrue(store.get_price({"1": 1, "2": 1}) == 16*0.95)
