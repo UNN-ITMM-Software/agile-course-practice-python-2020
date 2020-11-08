@@ -6,3 +6,10 @@ class Statistics:
             self.values = values
         else:
             raise TypeError
+
+    @staticmethod
+    def _mean(x):
+        return sum(x)/len(x)
+
+    def mean(self):
+        return Statistics._mean(self.values)

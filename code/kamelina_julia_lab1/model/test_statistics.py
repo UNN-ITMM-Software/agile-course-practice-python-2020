@@ -27,3 +27,13 @@ class TestStatisticsClass(unittest.TestCase):
     def test_raises_on_empty(self):
         with self.assertRaises(TypeError):
             Statistics()
+
+
+class TestStatisticsOperations(unittest.TestCase):
+    def test_can_compute_mean(self):
+        stat = Statistics([1, 2, 3, 2])
+        self.assertEqual(stat.mean(), 2.0)
+
+    def test_can_compute_mean_one_element(self):
+        stat = Statistics(1)
+        self.assertEqual(stat.mean(), 1.0)
