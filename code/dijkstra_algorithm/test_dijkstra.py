@@ -23,3 +23,13 @@ class TestDijkstraClass(unittest.TestCase):
 
     def test_create_graph_negative_vertices(self):
         self.assertRaises(ValueError, Graph, -2)
+
+    def test_can_create_matrix(self):
+        graph = Graph(1)
+        self.assertTrue(graph.graph == [[0]])
+
+    def test_can_create_matrix_some_elements(self):
+        graph = Graph(3)
+        self.assertTrue(graph.graph == [[0, 0, 0],
+                                        [0, 0, 0],
+                                        [0, 0, 0]])
