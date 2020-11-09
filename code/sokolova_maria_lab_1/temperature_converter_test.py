@@ -28,7 +28,7 @@ class TemperatureConverterTest(unittest.TestCase):
 
     def test_convert_from_string_value_f(self):
         string_value = TemperatureConverter("-13")
-        self.assertAlmostEqual(TemperatureConverter(string_value).convert_to_fahrenheit(), 8.6)
+        self.assertAlmostEqual(string_value.convert_to_fahrenheit(), 8.6)
 
 
     # Kelvin
@@ -46,7 +46,7 @@ class TemperatureConverterTest(unittest.TestCase):
 
     def test_convert_from_string_value_k(self):
         string_value = TemperatureConverter("-13")
-        self.assertAlmostEqual(TemperatureConverter(string_value).convert_to_fahrenheit(), 260.15)
+        self.assertAlmostEqual(string_value.convert_to_kelvin(), 260.15)
 
     # Newton
     def test_convert_from_zero_n(self):
@@ -63,7 +63,7 @@ class TemperatureConverterTest(unittest.TestCase):
 
     def test_convert_from_string_value_n(self):
         string_value = TemperatureConverter("-13")
-        self.assertAlmostEqual(TemperatureConverter(string_value).convert_to_fahrenheit(), -4.29)
+        self.assertAlmostEqual(string_value.convert_to_newton(), -4.29)
 
 
 if __name__ == '__main__':
