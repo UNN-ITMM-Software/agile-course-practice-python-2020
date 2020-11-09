@@ -24,3 +24,7 @@ class TestCurrencyConverter(unittest.TestCase):
         curr = CurrencyConverter()
         curr.set_custom_rate("USD", "RUB", 30)
         self.assertTrue(curr.convert("USD", "RUB", 1), 30)
+
+    def test_convert_new_zero_rate(self):
+        curr = CurrencyConverter()
+        self.assertTrue(curr.set_custom_rate("USD", "RUB", 0), ['Rate should be greater than zero'])
