@@ -8,6 +8,18 @@ class TestDHeap(unittest.TestCase):
         dheap = DHeap(3)
         self.assertTrue(isinstance(dheap, DHeap))
 
+    def test_raise_when_create_dheap_with_negative_integer_d(self):
+        with self.assertRaises(ValueError):
+            DHeap(-3)
+
+    def test_raise_when_create_dheap_with_zero_d(self):
+        with self.assertRaises(ValueError):
+            DHeap(0)
+
+    def test_raise_when_create_dheap_with_float_d(self):
+        with self.assertRaises(ValueError):
+            DHeap(3.14)
+
     def test_can_insert_1_element_into_empty_3heap(self):
         dheap = DHeap(3)
         dheap.insert(5)

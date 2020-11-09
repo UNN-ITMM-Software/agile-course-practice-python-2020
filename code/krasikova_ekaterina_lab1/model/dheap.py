@@ -1,5 +1,7 @@
 class DHeap:
     def __init__(self, d=2, data=None):
+        if not isinstance(d, int) or d < 1:
+            raise ValueError("d must be natural")
         self._d = d
         if data is None:
             self._heap = []
