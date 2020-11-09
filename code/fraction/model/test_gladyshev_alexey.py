@@ -13,4 +13,3 @@ class TwoSimpleTestFraction(unittest.TestCase):
         frac2 = Fraction(3, 2)
         result = frac1 + frac2
         self.assertTrue(result.is_equal(2, 1))
-
