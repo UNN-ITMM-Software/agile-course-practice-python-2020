@@ -1,6 +1,7 @@
 import unittest
 
 from sokolova_maria_lab_1.temperature_converter import TemperatureConverter
+from sokolova_maria_lab_1.temperature_converter import get_float_value
 
 
 class TemperatureConverterTest(unittest.TestCase):
@@ -12,6 +13,10 @@ class TemperatureConverterTest(unittest.TestCase):
     def test_can_set_celsius_value_to_converter(self):
         celsius = 5
         self.assertEqual(celsius, TemperatureConverter(5).celsius)
+
+    def test_convert_to_float(self):
+        some_string = "-15,67"
+        self.assertEqual(get_float_value(some_string), -15.67)
 
     # Fahrenheit
     def test_convert_from_zero_f(self):
