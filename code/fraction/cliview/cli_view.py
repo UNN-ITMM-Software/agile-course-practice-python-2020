@@ -1,11 +1,11 @@
 import os
 import sys
 
-from viewmodel import viewmodel
+from fraction.viewmodel import viewmodel
 
 
 class CLIView:
-    view_model = viewmodel.ViewModel()
+    view_model = viewmodel.FractionViewModel()
     WIDTH = 80
     message_text = ''
     first_fraction = ''
