@@ -39,6 +39,19 @@ class TemperatureConverterTest(unittest.TestCase):
         positive_value = TemperatureConverter(15)
         self.assertAlmostEqual(positive_value.convert_to_kelvin(), 288.15)
 
+    # Newton
+    def test_convert_from_zero_n(self):
+        zero_value = TemperatureConverter(0)
+        self.assertAlmostEqual(zero_value.convert_to_newton(), 0)
+
+    def test_convert_from_negative_value_n(self):
+        negative_value = TemperatureConverter(-11)
+        self.assertAlmostEqual(negative_value.convert_to_newton(), -3.63)
+
+    def test_convert_from_positive_value_n(self):
+        positive_value = TemperatureConverter(15)
+        self.assertAlmostEqual(positive_value.convert_to_newton(), 4.95)
+
 
 if __name__ == '__main__':
     unittest.main()
