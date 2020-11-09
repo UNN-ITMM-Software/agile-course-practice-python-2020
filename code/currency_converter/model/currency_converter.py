@@ -17,3 +17,7 @@ class CurrencyConverter:
         if src == dest:
             return self.value
         return self.value * self.rates[src + "_to_" + dest]
+
+    def set_custom_rate(self, src, dest, rate):
+        rate_name = src + "_to_" + dest
+        self.rates[rate_name] = rate

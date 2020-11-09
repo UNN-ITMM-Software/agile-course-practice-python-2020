@@ -19,3 +19,8 @@ class TestCurrencyConverter(unittest.TestCase):
     def test_convert_same(self):
         curr = CurrencyConverter()
         self.assertTrue(curr.convert("USD", "USD", 5), 5)
+
+    def test_convert_new_rate(self):
+        curr = CurrencyConverter()
+        curr.set_custom_rate("USD", "RUB", 30)
+        self.assertTrue(curr.convert("USD", "RUB", 1), 30)
