@@ -24,6 +24,10 @@ class SortingTest(unittest.TestCase):
         arr = [3]
         self.assertTrue(Sorting(arr))
 
+    def test_raise_when_create_not_from_list(self):
+        with self.assertRaises(TypeError):
+            Sorting(3)
+
     def test_can_sort_first_case(self):
         sort = Sorting(FIRST_CASE)
         self.assertEqual(sort.insertion_sort(), [0, 4, 7])
