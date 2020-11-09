@@ -19,5 +19,7 @@ class CurrencyConverter:
         return self.value * self.rates[src + "_to_" + dest]
 
     def set_custom_rate(self, src, dest, rate):
+        if rate <= 0:
+            return 'Rate should be grater than zero'
         rate_name = src + "_to_" + dest
         self.rates[rate_name] = rate
