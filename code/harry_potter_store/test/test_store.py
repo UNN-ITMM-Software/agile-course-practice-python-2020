@@ -59,3 +59,13 @@ class TestMain(unittest.TestCase):
         store = Store(10)
         self.assertEqual((50 * 0.75 * 2) + (20 * 0.95) + 10,
                          store.get_price({"1": 2, "2": 2, "3": 2, "4": 3, "5": 4}))
+
+    def test_another_book_price_2(self):
+        store = Store(100)
+        self.assertEqual((300 * 0.9) + (200 * 0.95),
+                         store.get_price({"1": 2, "2": 2, "3": 1}))
+
+    def test_another_book_price_3(self):
+        store = Store(10)
+        self.assertEqual((30 * 0.9) + (20 * 0.95) + 10,
+                         store.get_price({"1": 1, "2": 2, "3": 3}))
