@@ -4,6 +4,8 @@ import math
 class TemperatureConverter:
 
     def __init__(self, celsius):
+        if isinstance(celsius, str):
+            celsius = celsius.replace(',', '.')
         self.celsius = float(celsius)
 
     def convert_to_fahrenheit(self):
