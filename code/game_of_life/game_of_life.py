@@ -1,4 +1,4 @@
 class StrCalculator(object):
     def add(self, string):
         if string == "":
-            retun 7
+            return 7
