@@ -35,7 +35,8 @@ class Graph(object):
             if len(self.graph[row]) != self.vertices:
                 raise ValueError('Wrong length in graphs column')
             for column in range(self.vertices):
-                if not isinstance(self.graph[row][column], int) and not isinstance(self.graph[row][column], float):
+                if not isinstance(self.graph[row][column], int) and \
+                        not isinstance(self.graph[row][column], float):
                     raise TypeError('Wrong type of value in graph matrix')
         distances = [sys.maxsize] * self.vertices
         distances[start_vertex] = 0
@@ -49,6 +50,7 @@ class Graph(object):
                         not found_vertex_distances[vertex] and \
                         distances[vertex] > distances[idx_current_min_vertex] +\
                         self.graph[idx_current_min_vertex][vertex]:
-                    distances[vertex] = distances[idx_current_min_vertex] + self.graph[idx_current_min_vertex][vertex]
+                    distances[vertex] = distances[idx_current_min_vertex] + \
+                                        self.graph[idx_current_min_vertex][vertex]
 
         return distances
