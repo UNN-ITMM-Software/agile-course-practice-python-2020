@@ -22,6 +22,15 @@ class Graph(object):
         return minimal_index
 
     def dijkstra(self, start_vertex):
+        if not isinstance(start_vertex, int):
+            raise TypeError('Wrong type of source vertex')
+
+        if start_vertex < 0 or start_vertex >= self.vertices:
+            raise ValueError('Wrong value of source vertex')
+
+        if len(self.graph) != self.vertices:
+            raise ValueError('Wrong length in graphs row')
+
         for row in range(self.vertices):
             if len(self.graph[row]) != self.vertices:
                 raise ValueError('Wrong length in graphs column')
