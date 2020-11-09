@@ -12,4 +12,8 @@ class CurrencyConverter:
         self.value = value
 
     def convert(self, src, dest, count=None):
-        pass
+        if count is not None:
+            self.value = count
+        if src == dest:
+            return self.value
+        return self.value * self.rates[src + "_to_" + dest]
