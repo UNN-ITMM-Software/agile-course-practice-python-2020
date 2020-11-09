@@ -12,9 +12,9 @@ class Store:
     def _validate(self, to_buy_books: Dict[str, int]):
         for book_type, amount in to_buy_books.items():
             if book_type not in Store.book_types:
-                raise ValueError(f"Book type {book_type} must be in {Store.book_types}")
+                raise ValueError("Book type %s must be in %s".format(book_type, Store.book_types))
             if amount <= 0:
-                raise ValueError(f"Book amount {amount} for type {book_type} must be > 0")
+                raise ValueError("Book amount %s for type %s must be > 0".format(amount, book_type))
 
     def _clean(self, to_buy_books: Dict[str, int]) -> dict:
         return dict(filter(lambda item: item[1] > 0 and item[0] in Store.book_types, to_buy_books.items()))
@@ -52,7 +52,7 @@ class Store:
     """
     to_buy_books - dictionary from book type and book amount
     key of dict -- book type
-    value of dict -- book amount  
+    value of dict -- book amount
     """
 
     def get_price(self, to_buy_books: Dict[str, int]) -> float:
@@ -60,11 +60,14 @@ class Store:
         discounts = [self._discount_5, self._discount_4, self._discount_3, self._discount_2]
         prices = []
         for i in range(len(discounts)):
-            prices.append(self._get_price(to_buy_books, [discounts[i]], len(discounts) - i, lambda x, y: x >= y))
-            prices.append(self._get_price(to_buy_books, discounts[0:i + 1], len(discounts) - i, lambda x, y: x == y))
+            prices.append(self._get_price(to_buy_books,
+                                          [discounts[i]], len(discounts) - i, lambda x, y: x >= y))
+            prices.append(self._get_price(to_buy_books,
+                                          discounts[0:i + 1], len(discounts) - i, lambda x, y: x == y))
         return min(prices)
 
-    def _get_price(self, to_buy_books: Dict[str, int], discount_funcs: list, min_value: int, predicate) -> float:
+    def _get_price(self, to_buy_books: Dict[str, int],
+                   discount_funcs: list, min_value: int, predicate) -> float:
         to_buy_books = deepcopy(to_buy_books)
         price = 0
         while len(to_buy_books) > min_value:

@@ -5,8 +5,8 @@ from harry_potter_store.src.store import Store
 
 class TestMain(unittest.TestCase):
     @classmethod
-    def setUpClass(self):
-        self.store = Store()
+    def setUpClass(cls):
+        cls.store = Store()
 
     def test_store_contain_five_book_types(self):
         self.assertEqual(5, len(Store.book_types))
