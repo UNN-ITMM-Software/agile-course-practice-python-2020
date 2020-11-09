@@ -8,3 +8,6 @@ class TemperatureConverter:
 
     def convert_to_fahrenheit(self):
         return float((self.celsius * 1.8)) + 32
+
+    def convert_to_kelvin(self):
+        return float(self.celsius + 273.15)
