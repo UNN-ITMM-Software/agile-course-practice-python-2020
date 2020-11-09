@@ -39,7 +39,7 @@ class TestMain(unittest.TestCase):
         self.assertRaises(ValueError, lambda: self.store.get_price({"1": -132, "2": -3324}))
 
     def test_get_price_complex_4(self):
-        self.assertRaises(ValueError, lambda: self.store.get_price({"1": -132, "2": -3324, "111": 333}))
+        self.assertRaises(ValueError, lambda: self.store.get_price({"1": 2, "2": 2, "111": 333}))
 
     def test_get_price_complex_5(self):
         self.assertEqual(24 * 0.90 + 16 * 0.95 + 8, self.store.get_price({"1": 3, "2": 1, "3": 2}))
@@ -54,6 +54,9 @@ class TestMain(unittest.TestCase):
     def test_get_price_complex_8(self):
         self.assertEqual((40 * 0.75 * 2) + (16 * 0.95) + 8,
                          self.store.get_price({"1": 2, "2": 2, "3": 2, "4": 3, "5": 4}))
+
+    def test_get_price_complex_9(self):
+        self.assertRaises(ValueError, lambda: self.store.get_price({"fake_key": 333}))
 
     def test_another_book_price(self):
         store = Store(10)
