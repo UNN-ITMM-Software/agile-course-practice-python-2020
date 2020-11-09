@@ -92,7 +92,3 @@ class TemperatureConverterTest(unittest.TestCase):
     def test_convert_from_string_value_with_point_n(self):
         string_value = TemperatureConverter("-13.5")
         self.assertAlmostEqual(string_value.convert_to_newton(), -4.455)
-
-
-if __name__ == '__main__':
-    unittest.main()
