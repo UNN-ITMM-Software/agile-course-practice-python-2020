@@ -30,7 +30,6 @@ class TemperatureConverterTest(unittest.TestCase):
         string_value = TemperatureConverter("-13")
         self.assertAlmostEqual(string_value.convert_to_fahrenheit(), 8.6)
 
-
     # Kelvin
     def test_convert_from_zero_k(self):
         zero_value = TemperatureConverter(0)
