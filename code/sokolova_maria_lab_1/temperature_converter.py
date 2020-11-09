@@ -1,12 +1,16 @@
 import math
 
 
+def get_float_value(celsius):
+    if isinstance(celsius, str):
+        celsius = celsius.replace(',', '.')
+    return float(celsius)
+
+
 class TemperatureConverter:
 
     def __init__(self, celsius):
-        if isinstance(celsius, str):
-            celsius = celsius.replace(',', '.')
-        self.celsius = float(celsius)
+        self.celsius = get_float_value(celsius)
 
     def convert_to_fahrenheit(self):
         return float((self.celsius * 1.8)) + 32
