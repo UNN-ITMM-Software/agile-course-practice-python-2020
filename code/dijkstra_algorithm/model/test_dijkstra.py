@@ -302,3 +302,10 @@ class TestDijkstraClass(unittest.TestCase):
         graph = Graph(3)
         graph.graph = [[]]
         self.assertRaises(ValueError, graph.dijkstra, 1)
+
+    def test_dijkstra_correctness_graph_weight_columns(self):
+        graph = Graph(3)
+        graph.graph = [[0, 1],
+                       [1, 0],
+                       [3, 2]]
+        self.assertRaises(ValueError, graph.dijkstra, 1)
