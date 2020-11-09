@@ -1,4 +1,3 @@
-import math
 
 
 def get_float_value(celsius):
@@ -17,6 +16,6 @@ class TemperatureConverter:
 
     def convert_to_kelvin(self):
         return float(self.celsius + 273.15)
-    
+
     def convert_to_newton(self):
         return float(self.celsius * 0.33)
