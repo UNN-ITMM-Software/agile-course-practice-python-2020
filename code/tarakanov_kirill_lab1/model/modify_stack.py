@@ -56,11 +56,8 @@ class ModifyStack:
             self._push_empty(val) if self.is_empty() else self._push_one(val)
 
     def pop(self, count=1):
-        if count <= 0 or not isinstance(count, int):
+        if count <= 0 or count > self.size() or not isinstance(count, int):
             raise ValueError('count should be positive')
-
-        if count > self.size():
-            count = self.size()
 
         for i in range(count):
             self._stack.pop()
