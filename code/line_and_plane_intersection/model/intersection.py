@@ -1,9 +1,10 @@
 from typing import Tuple
+from copy import deepcopy
 
 
 class Point3D:
     __slots__ = ['x', 'y', 'z']
-    
+
     def __init__(self, *obj):
         obj = obj[0] if len(obj) == 1 else obj
         if isinstance(obj, Point3D):
@@ -15,7 +16,8 @@ class Point3D:
                         'Point3D::init - Incorrect elements type. Expected: list[float], tuple[float]')
             coordinates = obj
         else:
-            raise TypeError('Point3D::init - Incorrect argument type. Expected: list[float], tuple[float], Point3D')
+            raise TypeError(
+                'Point3D::init - Incorrect argument type. Expected: list[float], tuple[float], Point3D')
         self.__make_point(coordinates)
 
     def to_tuple(self) -> Tuple[float, float, float]:
@@ -23,6 +25,9 @@ class Point3D:
 
     def __str__(self):
         return 'Point3D [x: {}, y: {}, z: {}]'.format(self.x, self.y, self.z)
+
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y and self.z == other.z
 
     def __make_point(self, xyz: Tuple[float, float, float]) -> None:
         if len(xyz) != 3:
@@ -33,16 +38,14 @@ class Point3D:
 
 
 class Plane:
-    def __init__(self,
-                 x: Tuple[float, float, float],
-                 y: Tuple[float, float, float],
-                 z: Tuple[float, float, float]) -> None:
-        if len(x) != 3 or len(y) != 3 or len(z) != 3:
-            raise ValueError('Plane must be in 3D space')
-
-        self.x = x
-        self.y = y
-        self.z = z
+    def __init__(self, p1: Point3D, p2: Point3D, p3: Point3D) -> None:
+        if not isinstance(p1, Point3D) or not isinstance(p2, Point3D) or not isinstance(p3, Point3D):
+            raise TypeError('Plane::init - Incorrect argument type. Plane is defined by three Point3D')
+        if p1 == p2 or p2 == p3 or p3 == p1:
+            raise ValueError('Plane::init - Incorrect value. Plane is defined by three different points')
+        self.p1 = deepcopy(p1)
+        self.p2 = deepcopy(p2)
+        self.p3 = deepcopy(p3)
 
 
 class Line:
