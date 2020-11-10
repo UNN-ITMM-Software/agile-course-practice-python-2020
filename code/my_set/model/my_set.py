@@ -12,15 +12,14 @@ class MySet:
     def get_size(self):
         return len(self.my_set)
 
-    def isEmpty(self):
+    def is_empty(self):
         return self.get_size() == 0
 
     def __contains__(self, element):
         if element in self.my_set:
             return True
         return False
-    
+
     def add(self, element):
         if element not in self.my_set:
             self.my_set.append(element)
-    
