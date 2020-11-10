@@ -39,3 +39,9 @@ class TestSetClass(unittest.TestCase):
         element = 7
         result = element in test_set
         self.assertFalse(result)
+
+    def test_can_add_mew_element(self):
+        test_set = MySet([1, 2, 4, 5])
+        element = 7
+        test_set.add(element)
+        self.assertTrue(element in test_set)
