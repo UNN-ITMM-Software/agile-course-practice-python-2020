@@ -22,9 +22,9 @@ def determine_if_two_line_segments_intersect(line_segment_1, line_segment_2):
                            [p11[1]-p12[1], p12[0]-p11[0]]])
     det = np.linalg.det(inv_matrix)
 
-    if det == 0:  # line segments are parallel
+    if det == 0.0:  # line segments are parallel
         if np.linalg.det([[p11[0]-p21[0], p11[0]-p12[0]],
-                          [p11[1]-p21[1], p11[1]-p12[1]]]) != 0:
+                          [p11[1]-p21[1], p11[1]-p12[1]]]) != 0.0:
             return False
 
         def is_point_on_line(point, line):
@@ -36,4 +36,5 @@ def determine_if_two_line_segments_intersect(line_segment_1, line_segment_2):
 
     vector = np.array([p21[0]-p11[0], p21[1]-p11[1]])
     params = np.dot(inv_matrix, vector) / det
-    return 0 <= params[0] <= 1 and 0 <= params[1] <= 1
+    print(params)
+    return 0.0 <= params[0] <= 1.0 and 0.0 <= params[1] <= 1.0
