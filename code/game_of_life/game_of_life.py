@@ -8,7 +8,15 @@ class GameOfLife(object):
         width_field = len(field[0])
         for i in range(width_field):
             for j in range(height_field):
-                field[i][j] = 0
+                current_neighbors = self.counting_neighbors(field, i, j)
+                if field[i][j]:
+                    if current_neighbors == 2 or current_neighbors == 3:
+                        field[i][j] = 1
+                    else:
+                        field[i][j] = 0
+                else:
+                    if current_neighbors == 3:
+                        field[i][j] = 1
         return field
 
     def counting_neighbors(self, current_field, y, x):
