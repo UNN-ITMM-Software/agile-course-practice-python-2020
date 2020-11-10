@@ -13,7 +13,7 @@ class TestMatrixOperationsClass(unittest.TestCase):
 
     def test_create_matrix_with_not_full_last_string(self):
         with self.assertRaises(MatrixOperationsError):
-            MatrixOperations.make_from_list([[1, 1, 1], [1, 1, 1], [1, 1]])
+            MatrixOperations.make_from_list([[1, 1, 1], [1, 1]])
 
     def test_plus_onesize_matrix(self):
         first_matrix = MatrixOperations.make_from_list([[1, 1]])
