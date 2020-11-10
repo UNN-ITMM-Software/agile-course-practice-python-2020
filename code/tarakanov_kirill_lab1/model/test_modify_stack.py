@@ -50,15 +50,24 @@ class TestModifyStack(unittest.TestCase):
         self.assertEqual(stack.look_top(), 2)
 
     def test_can_push_one_elem_in_stack(self):
-        stack = ModifyStack()
-        stack.push(2)
-        stack.push(-5)
-        self.assertEqual(stack.look_top(), -5)
+        stack = ModifyStack([2])
+        stack.push(3)
+        self.assertEqual(stack.look_top(), 3)
 
-    def can_push_more_then_one_elem(self):
+    def test_push_one_change_min(self):
+        stack = ModifyStack([2])
+        stack.push(-5)
+        self.assertEqual(stack.find_min(), -5)
+
+    def can_push_more_then_one_elem_in_empty_stack(self):
         stack = ModifyStack()
         stack.push([1, 2, 3, 4, 5])
-        self.assertEqual(stack.look_top(), 5)
+        self.assertEqual(stack._stack, [1, 2, 3, 4, 5])
+
+    def can_push_more_then_one_elem(self):
+        stack = ModifyStack([10])
+        stack.push([1, 2, 3, 4, 5])
+        self.assertEqual(stack._stack, [10, 1, 2, 3, 4, 5])
 
     def test_can_pop_one_from_stack(self):
         stack = ModifyStack()
