@@ -1,7 +1,13 @@
 class MySet:
     # The class sets using lists
-    def __init__(self):
+    def __init__(self, elements=None):
         self.my_set = list()
+        if isinstance(elements, list):
+            self.my_set = elements
+        elif elements is None:
+            pass
+        else:
+            raise TypeError('Input error: argument type must be list')
 
     def get_size(self):
-        return 0
+        return len(self.my_set)

@@ -12,3 +12,8 @@ class TestSetClass(unittest.TestCase):
         test_set = MySet()
         size = test_set.get_size()
         self.assertEqual(size, 0)
+
+    def test_can_init_with_init_constructor(self):
+        test_list_of_elements = [1, 2, 3, 5, 7]
+        test_set = MySet(test_list_of_elements)
+        self.assertEqual(test_set.get_size(), 5)
