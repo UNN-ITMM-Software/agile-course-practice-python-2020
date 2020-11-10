@@ -28,10 +28,7 @@ class ComplexNum:
         return self.__add__(other)
 
     def __sub__(self, other):
-        if isinstance(other, ComplexNum):
-            return self.__add__(-other)
-        elif isinstance(other, float) or isinstance(other, int):
-            return ComplexNum(self.re - other, self.im)
+        return self.__add__(-other)
 
     def __rsub__(self, other):
         if isinstance(other, float) or isinstance(other, int):
