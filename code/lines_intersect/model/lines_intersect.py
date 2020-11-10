@@ -30,7 +30,7 @@ def determine_if_two_line_segments_intersect(line_segment_1, line_segment_2):
 
     if is_float_eq(det, 0.0):  # line segments are parallel
         if not is_float_eq(np.linalg.det(np.array([[p11[0]-p21[0], p11[0]-p12[0]],
-                                                  [p11[1]-p21[1], p11[1]-p12[1]]],
+                                                   [p11[1]-p21[1], p11[1]-p12[1]]],
                                                   dtype=np.float64)), 0.0):
             return False
 
