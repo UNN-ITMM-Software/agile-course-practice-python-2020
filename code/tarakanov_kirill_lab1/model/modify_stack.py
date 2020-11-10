@@ -27,8 +27,8 @@ class ModifyStack:
             self._stack.append(elem)
             self._min_stack.append(elem)
         else:
-            self._stack.append(elem)
             top_elem = self.look_top()
+            self._stack.append(elem)
             if elem < top_elem:
                 self._min_stack.append(elem)
             else:
@@ -37,3 +37,6 @@ class ModifyStack:
     def pop(self):
         self._stack.pop()
         self._min_stack.pop()
+
+    def find_min(self):
+        return self._min_stack[-1]
