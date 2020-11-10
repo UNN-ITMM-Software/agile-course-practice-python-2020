@@ -12,3 +12,10 @@ class ModifyStack:
     def __init__(self):
         self._stack = []
         self._min_stack = []
+
+    def is_empty(self):
+        return len(self._stack) == 0
+
+    def size(self):
+        return len(self._stack)
+
