@@ -43,11 +43,11 @@ class MatrixOperations(Matrix):
         if not MatrixOperations.is_both_same_size(first_matrix, second_matrix):
             raise MatrixOperationsError('Matrices of different sizes! Check matrices elements.')
         return MatrixOperations.make_from_list([[elem1 + elem2 for elem1, elem2 in zip(row1, row2)] for row1, row2 in
-                 zip(first_matrix.data_lines, second_matrix.data_lines)])
+                                                zip(first_matrix.data_lines, second_matrix.data_lines)])
 
     @classmethod
     def can_mult_matr(self, first_matrix, second_matrix):
-        if(first_matrix.cols == second_matrix.rows):
+        if (first_matrix.cols == second_matrix.rows):
             return True
         return False
 
@@ -55,15 +55,20 @@ class MatrixOperations(Matrix):
     def mult_matr(self, first_matrix, second_matrix):
         if not MatrixOperations.can_mult_matr(first_matrix, second_matrix):
             raise MatrixOperationsError('Matrices has invalid sizes! Check matrices size.')
-        result_matrix = MatrixOperations.make_from_list([[0 for i in range(second_matrix.cols)] for i in range(first_matrix.rows)])
+        result_matrix = MatrixOperations.make_from_list(
+            [[0 for i in range(second_matrix.cols)] for i in range(first_matrix.rows)])
         for i in range(first_matrix.rows):
             for j in range(second_matrix.cols):
                 for k in range(first_matrix.cols):
                     result_matrix.data_lines[i][j] += first_matrix.data_lines[i][k] * second_matrix.data_lines[k][j]
         return result_matrix
 
+    @classmethod
+    def scalar_mult_matr(self, scalar, matrix):
+        return MatrixOperations.make_from_list([[scalar * elem for elem in row] for row in matrix.data_lines])
+
 
 fm = MatrixOperations.make_from_list([[1, 0], [0, 1], [1, 1]])
 sm = MatrixOperations.make_from_list([[3, 3], [3, 3]])
-m = MatrixOperations.mult_matr(fm, sm)
+m = MatrixOperations.scalar_mult_matr(2, fm)
 print(m)

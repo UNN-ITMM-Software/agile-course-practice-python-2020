@@ -69,3 +69,18 @@ class TestMatrixOperationsClass(unittest.TestCase):
         second_matrix = MatrixOperations.make_from_list([[3, 3], [3, 3], [3, 3]])
         with self.assertRaises(MatrixOperationsError):
             MatrixOperations.mult_matr(first_matrix, second_matrix)
+
+    def test_scalar_2_mult_square_2x2_matrix(self):
+        first_matrix = MatrixOperations.make_from_list([[1, 2], [3, 4]])
+        skalar = 2
+        result_matrix = MatrixOperations.scalar_mult_matr(skalar, first_matrix)
+        self.assertTrue(
+            result_matrix.data_lines[0][0] == 2 and result_matrix.data_lines[1][1] == 8)
+
+    def test_scalar_2_mult_3x2_matrix(self):
+        first_matrix = MatrixOperations.make_from_list([[1, 2], [3, 4], [2, 2]])
+        skalar = 2
+        result_matrix = MatrixOperations.scalar_mult_matr(skalar, first_matrix)
+        self.assertTrue(
+            result_matrix.data_lines[0][0] == 2 and result_matrix.data_lines[1][1] == 8 and result_matrix.data_lines[2][
+                1] == 4)
