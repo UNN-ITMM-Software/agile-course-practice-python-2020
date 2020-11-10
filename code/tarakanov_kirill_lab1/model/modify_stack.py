@@ -1,6 +1,7 @@
 class ModifyStack:
     """
-    Class ModifyStack implements
+    Class ModifyStack implements a data structure modified stack
+    Stack works works with int and float only
     The following operations are supported:
     * Insertion O(1)
     * Deletion top element O(1)
@@ -9,9 +10,21 @@ class ModifyStack:
     :attribute _stack: stores elements in stack
     :attribute _min_stack: stores min_elements for each stack state
     """
-    def __init__(self):
-        self._stack = []
-        self._min_stack = []
+
+    def __init__(self, init_list=None):
+        if init_list is None:
+            self._stack = []
+            self._min_stack = []
+        else:
+            if not isinstance(init_list, list):
+                raise TypeError('must be a list')
+            for elem in init_list:
+                if not isinstance(elem, int) or isinstance(elem, float):
+                    raise TypeError('elems in list should be int or float only')
+
+            self._stack = []
+            self._min_stack = []
+            self.push(init_list)
 
     def is_empty(self):
         return len(self._stack) == 0
