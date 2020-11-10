@@ -33,7 +33,10 @@ class ModifyStack:
         return len(self._stack)
 
     def look_top(self):
-        return self._stack[-1]
+        if self.is_empty():
+            return None
+        else:
+            return self._stack[-1]
 
     def _push_empty(self, elem):
         self._stack.append(elem)

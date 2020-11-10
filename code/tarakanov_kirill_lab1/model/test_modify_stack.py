@@ -36,6 +36,10 @@ class TestModifyStack(unittest.TestCase):
         stack = ModifyStack([1, 2, 3, 4])
         self.assertEqual(stack.size(), 4)
 
+    def test_look_top_return_none_if_stack_empty(self):
+        stack = ModifyStack()
+        self.assertEqual(stack.look_top(), None)
+
     def test_push_in_empty_stack_and_look_top_then(self):
         stack = ModifyStack()
         stack.push(2)
