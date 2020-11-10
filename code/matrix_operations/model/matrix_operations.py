@@ -12,14 +12,6 @@ class MatrixOperations(Matrix):
         super().__init__(rows_count, cols_count)
 
     @classmethod
-    def make_random(cls, rows_count, cols_count, min_value=0, max_value=10):
-        my_matrix = MatrixOperations(rows_count, cols_count)
-        for x in range(my_matrix.rows):
-            my_matrix.data_lines.append([random.randrange(min_value, max_value)
-                                         for y in range(my_matrix.cols)])
-        return my_matrix
-
-    @classmethod
     def make_from_list(cls, input_data_list):
         my_rows = len(input_data_list[:])
         my_cols = 0
