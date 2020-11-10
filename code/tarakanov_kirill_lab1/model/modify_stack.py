@@ -38,7 +38,7 @@ class ModifyStack:
         if isinstance(val, list):
             self._push_empty(val[0]) if self.is_empty() else self._push_one(val[0])
             for i in val[1:]:
-                self._push_one(val)
+                self._push_one(i)
         else:
             self._push_empty(val) if self.is_empty() else self._push_one(val)
 

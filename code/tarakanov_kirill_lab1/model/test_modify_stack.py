@@ -18,23 +18,19 @@ class TestModifyStack(unittest.TestCase):
 
     def test_push_in_empty_stack_and_look_top_then(self):
         stack = ModifyStack()
-        stack.push(2)
+        stack._push_empty(2)
         self.assertEqual(stack.look_top(), 2)
 
-    def test_can_push_in_stack(self):
+    def test_can_push_one_elem_in_stack(self):
         stack = ModifyStack()
-        stack.push(2)
-        stack.push(-5)
-        stack.push(10)
-        self.assertEqual(stack.look_top(), 10)
+        stack._push_empty(2)
+        stack._push_one(-5)
+        self.assertEqual(stack.look_top(), -5)
 
     def test_can_pop_from_stack(self):
         stack = ModifyStack()
 
-        stack.push(20)
-        stack.push(7)
-        stack.push(56)
-        stack.push(23)
+        stack.push([20, 7, 56, 23])
 
         stack.pop()
         stack.pop()
@@ -44,7 +40,6 @@ class TestModifyStack(unittest.TestCase):
     def test_can_find_min_in_stack(self):
         stack = ModifyStack()
 
-        stack.push(10)
-        stack.push(20)
+        stack.push([10, 20])
 
         self.assertEqual(stack.find_min(), 10)
