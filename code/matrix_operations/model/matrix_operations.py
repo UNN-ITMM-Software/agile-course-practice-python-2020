@@ -1,4 +1,3 @@
-import random
 from matrix.model.matrix import Matrix
 from matrix.model.matrix import MatrixError
 
