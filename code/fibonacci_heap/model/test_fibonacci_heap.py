@@ -68,7 +68,8 @@ class TestHeaps(unittest.TestCase):
 
     def delete_test(self, tested_heap):
         """
-        testing the delete() works, and find_min() returns min node
+        testing the delete() works
+        and find_min() returns min node
 
         :param tested_heap: the testing heap
         """
@@ -86,7 +87,8 @@ class TestHeaps(unittest.TestCase):
 
     def decrease_key_test(self, tested_heap):
         """
-        testing the decrease_key() works, and find_min() returns correct min node
+        testing the decrease_key() works
+        and find_min() returns correct min node
 
         :param tested_heap: the testing heap
         """
