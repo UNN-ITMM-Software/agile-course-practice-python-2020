@@ -1,5 +1,5 @@
 class MySet:
-    # The class sets using lists
+    # The class sets (integer set) using lists
     def __init__(self, elements=None):
         self.my_set = list()
         if isinstance(elements, list):
@@ -30,3 +30,15 @@ class MySet:
         else:
             position = self.my_set.index(element)
             del self.my_set[position]
+
+    def union(self, obj):
+        if isinstance(obj, list):
+            for element in obj:
+                self.add(element)
+        elif isinstance(obj, MySet):
+            self.union(element.my_set)
+        elif isinstance(obj, int):
+            self.add(obj)
+        else:
+            raise TypeError('Input error: argument type must be list or int or another set')
+        return self

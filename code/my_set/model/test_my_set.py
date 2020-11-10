@@ -63,3 +63,9 @@ class TestSetClass(unittest.TestCase):
         element = 2
         test_set.delete(element)
         self.assertEqual(test_set.get_size(), 3)
+
+    def test_can_union_with_list(self):
+        test_set = MySet([1, 2, 4, 5])
+        test_list = [7, 8, 10]
+        test_set.union(test_list)
+        self.assertEqual(test_set.get_size(), 7)
