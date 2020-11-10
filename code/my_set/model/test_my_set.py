@@ -88,12 +88,6 @@ class TestSetClass(unittest.TestCase):
         test_set.union(another_set)
         self.assertEqual(test_set.get_size(), 6)
 
-    def test_can_union_with_set(self):
-        test_set = MySet([1, 2, 4, 5])
-        another_set = MySet([6, 9, 14, 15])
-        test_set.union(another_set)
-        self.assertEqual(test_set.get_size(), 8)
-
     def test_can_union_with_one_element(self):
         test_set = MySet([1, 2, 4, 5])
         test_set.union(7)
@@ -129,3 +123,26 @@ class TestSetClass(unittest.TestCase):
         test_set_2 = MySet([1, 3, 4, 5])
         result = (test_set_1 == test_set_2)
         self.assertFalse(result)
+
+    def test_can_check_equalities_of_set_and_list(self):
+        test_set = MySet([1, 2, 4, 5])
+        test_list = [1, 2, 4, 5]
+        result = (test_set == test_list)
+        self.assertTrue(result)
+
+    def test_can_check_equalities_of_set_and_int(self):
+        test_set = MySet([1])
+        test_int = 1
+        result = (test_set == test_int)
+        self.assertTrue(result)
+
+    def test_can_check_equalities_of_no_one_element_set_and_int(self):
+        test_set = MySet([1, 3])
+        test_int = 1
+        result = (test_set == test_int)
+        self.assertFalse(result)
+
+    def test_cant_eq_with_invalide_argument(self):
+        test_set = MySet([1, 2, 4, 5])
+        with self.assertRaises(TypeError):
+            test_set == "invalide argument"

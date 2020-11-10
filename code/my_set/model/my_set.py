@@ -22,8 +22,23 @@ class MySet:
             return True
         return False
 
-    def __eq__(self, elements):
-        return self.my_set == elements
+    def __iter__(self):
+        for element in self.my_set:
+            yield element
+
+    def __eq__(self, obj):
+        if isinstance(obj, list):
+            return self.my_set == obj
+        elif isinstance(obj, MySet):
+            return self.my_set == obj.my_set
+        elif isinstance(obj, int):
+            if (self.get_size() != 1):
+                return False
+            else:
+                return self.my_set[0] == obj
+        else:
+            raise TypeError('Input error: argument type must be list or int or another set')
+        return self
 
     def add(self, element):
         if element not in self.my_set:
