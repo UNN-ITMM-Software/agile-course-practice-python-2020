@@ -12,18 +12,15 @@ class ModifyStack:
     """
 
     def __init__(self, init_list=None):
-        if init_list is None:
-            self._stack = []
-            self._min_stack = []
-        else:
+        self._stack = []
+        self._min_stack = []
+        if init_list:
             if not isinstance(init_list, list):
                 raise TypeError('must be a list')
             for elem in init_list:
                 if not isinstance(elem, int) or isinstance(elem, float):
                     raise TypeError('elems in list should be int or float only')
 
-            self._stack = []
-            self._min_stack = []
             self.push(init_list)
 
     def is_empty(self):
