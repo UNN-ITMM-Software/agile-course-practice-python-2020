@@ -72,6 +72,12 @@ class TestModifyStack(unittest.TestCase):
         stack.pop(3)
         self.assertEqual(stack.look_top(), 20)
 
+    def test_can_pop_if_count_more_then_stack_size(self):
+        stack = ModifyStack()
+        stack.push([20, 7, 56, 23])
+        stack.pop(200)
+        self.assertEqual(stack.look_top(), None)
+
     def test_raise_when_count_in_pop_not_positive(self):
         with self.assertRaises(ValueError):
             stack = ModifyStack([1, 45, 67, 67])

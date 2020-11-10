@@ -62,6 +62,9 @@ class ModifyStack:
         if count <= 0 or not isinstance(count, int):
             raise ValueError('count should be positive')
 
+        if count > self.size():
+            count = self.size()
+
         for i in range(count):
             self._stack.pop()
             self._min_stack.pop()
