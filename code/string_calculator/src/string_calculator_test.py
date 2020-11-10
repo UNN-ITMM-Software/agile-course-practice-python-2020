@@ -48,15 +48,13 @@ class TestStrCalculatorClass(unittest.TestCase):
     def test_can_use_custom_delimiter_hard(self):
         strcalc = StrCalculator()
         result = strcalc.add(";\n1;2;3;4;5;6;7")
-        print(result)
         self.assertTrue(result == 28)
 
     def test_check_negative_numbers_exception(self):
         strcalc = StrCalculator()
-        with self.assertRaises(Exception) as context:
-            strcalc.add("-1,-2")
         msg = 'negatives not allowed: -1, -2'
-        self.assertTrue(msg in str(context.exception))
+        with self.assertRaisesRegex(ValueError, msg):
+            strcalc.add("-1,-2")
 
 
 class TestStrCalculatorTypeClass(unittest.TestCase):
@@ -98,7 +96,7 @@ class TestStrCalculatorParserClass(unittest.TestCase):
     def test_parse_check_delimiters_with_custom_delim(self):
         parser = StrCalculatorParser()
         result = parser.parse(";\n1;2").delimiters
-        self.assertTrue(result == [";"])
+        self.assertTrue(result == ";")
 
     def test_parse_check_numstring_with_custom_delim(self):
         parser = StrCalculatorParser()

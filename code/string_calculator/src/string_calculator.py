@@ -1,4 +1,4 @@
-import regex as re
+import re
 
 
 class StrCalculatorType(object):
@@ -16,12 +16,12 @@ class StrCalculatorType(object):
 class StrCalculatorParser(object):
     # string to StrCalculatorType converter
     DEFAULT_DELIMS = ["\n", ","]
-    CUSTOM_DELIM_REGEX = "^([^\d])\n"
+    CUSTOM_DELIM_REGEX = re.compile("^([^\d])\n")
 
     def parse(self, string):
-        m = self._check_custom_delim(string)
-        if m:
-            delimiters, numstring = self._handle_custom_delim(string, m)
+        match = self._check_custom_delim(string)
+        if match:
+            delimiters, numstring = self._handle_custom_delim(string, match)
         else:
             delimiters, numstring = self._handle_default_delim(string)
         numstring = self.align_delimiters(delimiters, numstring)
@@ -31,19 +31,19 @@ class StrCalculatorParser(object):
     def _check_custom_delim(self, string):
         return re.match(self.CUSTOM_DELIM_REGEX, string)
 
-    def _handle_custom_delim(self, string, m):
-        delimiters = m.captures(1)
+    def _handle_custom_delim(self, string, match):
+        delimiters = match.group(1)
         numstring = re.sub(self.CUSTOM_DELIM_REGEX, "", string)
-        return (delimiters, numstring)
+        return delimiters, numstring
 
     def _handle_default_delim(self, string):
         delimiters = self.DEFAULT_DELIMS
         numstring = string
-        return (delimiters, numstring)
+        return delimiters, numstring
 
     def align_delimiters(self, delimiters, numstring):
-        for s in delimiters:
-            numstring = numstring.replace(s, ",")
+        trantab = numstring.maketrans(''.join(delimiters), "," * len(delimiters))
+        numstring = numstring.translate(trantab)
         return numstring
 
     def _split_string(self, numstring):
