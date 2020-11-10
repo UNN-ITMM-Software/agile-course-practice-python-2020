@@ -51,3 +51,15 @@ class TestSetClass(unittest.TestCase):
         element = 2
         test_set.add(element)
         self.assertEqual(test_set.get_size(), 4)
+
+    def test_can_delete_element(self):
+        test_set = MySet([1, 2, 4, 5])
+        element = 1
+        test_set.delete(element)
+        self.assertFalse(element in test_set)
+
+    def test_after_delete_size_became_less_on_one(self):
+        test_set = MySet([1, 2, 4, 5])
+        element = 2
+        test_set.delete(element)
+        self.assertEqual(test_set.get_size(), 3)

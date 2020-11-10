@@ -23,3 +23,10 @@ class MySet:
     def add(self, element):
         if element not in self.my_set:
             self.my_set.append(element)
+
+    def delete(self, element):
+        if element not in self.my_set:
+            raise ValueError('Set doesnt contain this element')
+        else:
+            position = self.my_set.index(element)
+            del self.my_set[position]
