@@ -1,6 +1,7 @@
 from stack import Stack
 import unittest
 
+
 class StackTestClass(unittest.TestCase):
     def test_create_stack_without_params(self):
         stack = Stack()
