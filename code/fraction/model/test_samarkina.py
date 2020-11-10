@@ -3,12 +3,15 @@ import unittest
 from fraction.model.fraction import Fraction
 
 
-class TestFractionClass(unittest.TestCase):
+class TestFractionOperations(unittest.TestCase):
+    def test_multiply_fraction(self):
+        frac_1 = Fraction(1, 2)
+        frac_2 = Fraction(3, 4)
+        result = frac_1 * frac_2
+        self.assertTrue(result.is_equal(3, 8))
 
-    def test_can_create_3_5_fraction(self):
-        frac = Fraction(3, 5)
-        self.assertTrue(frac.is_equal(3, 5))
-
-    def test_can_create_3_5_fraction_from_str(self):
-        frac = Fraction.from_string('3/5')
-        self.assertTrue(frac.is_equal(3, 5))
+    def test_sum_fraction_1_2_1_2(self):
+        frac_1 = Fraction(1, 2)
+        frac_2 = Fraction(3, 4)
+        result = frac_1 + frac_2
+        self.assertTrue(result.is_equal(5, 4))
