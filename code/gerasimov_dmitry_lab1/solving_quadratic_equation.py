@@ -2,9 +2,7 @@ import math
 
 
 def is_correct_input_type(value):
-    if type(value) is float or type(value) is int:
-        return True
-    return False
+    return not isinstance(value, bool) and (isinstance(value, float) or isinstance(value, int))
 
 
 class QuadraticEquation:
@@ -20,13 +18,11 @@ class QuadraticEquation:
 
     def solution(self):
         self.answer = list()
-        disc = self.b ** 2 - 4 * self.a * self.c
         if self.b == 0:
-            if self.c == 0:
-                disc = 0
-            elif self.a > 0 and self.c > 0 or self.a < 0 and self.c < 0:
+            if self.a > 0 and self.c > 0 or self.a < 0 and self.c < 0:
                 return self.answer
 
+        disc = self.b ** 2 - 4 * self.a * self.c
         if disc < 0:
             return self.answer
         elif disc == 0:

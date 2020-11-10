@@ -52,6 +52,7 @@ class TestSolvingQuadraticEquation(unittest.TestCase):
         self.assertEqual(QuadraticEquation(1, -5, 0).solution(), [0, 5])
         self.assertEqual(QuadraticEquation(2, 4, 2).solution(), [-1])
         self.assertEqual(QuadraticEquation(8, 8, 2).solution(), [-0.5])
+        self.assertEqual(QuadraticEquation(1, 0, -2).solution(), [-1.4142135623730951, 1.4142135623730951])
 
     def test_float_values(self):
         self.assertEqual(QuadraticEquation(7, 4, -3).solution(), [-1, 0.42857142857142855])
