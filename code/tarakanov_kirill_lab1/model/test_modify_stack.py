@@ -36,11 +36,15 @@ class TestModifyStack(unittest.TestCase):
         stack = ModifyStack([1, 2, 3, 4])
         self.assertEqual(stack.size(), 4)
 
+    def test_can_look_top(self):
+        stack = ModifyStack([34, 467, 567, 768])
+        self.assertEqual(stack.look_top(), 768)
+
     def test_look_top_return_none_if_stack_empty(self):
         stack = ModifyStack()
         self.assertEqual(stack.look_top(), None)
 
-    def test_push_in_empty_stack_and_look_top_then(self):
+    def test_push_in_empty_stack(self):
         stack = ModifyStack()
         stack.push(2)
         self.assertEqual(stack.look_top(), 2)
@@ -68,7 +72,21 @@ class TestModifyStack(unittest.TestCase):
         stack.pop(3)
         self.assertEqual(stack.look_top(), 20)
 
+    def test_raise_when_count_in_pop_not_positive(self):
+        with self.assertRaises(ValueError):
+            stack = ModifyStack([1, 45, 67, 67])
+            stack.pop(-3)
+
+    def test_raise_when_count_in_pop_not_int(self):
+        with self.assertRaises(ValueError):
+            stack = ModifyStack([1, 45, 67, 67])
+            stack.pop(-3.5)
+
     def test_can_find_min_in_stack(self):
         stack = ModifyStack()
         stack.push([10, 20])
         self.assertEqual(stack.find_min(), 10)
+
+    def test_find_min_return_none_if_stack_empty(self):
+        stack = ModifyStack()
+        self.assertEqual(stack.find_min(), None)

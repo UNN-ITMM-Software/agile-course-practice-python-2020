@@ -59,9 +59,15 @@ class ModifyStack:
             self._push_empty(val) if self.is_empty() else self._push_one(val)
 
     def pop(self, count=1):
+        if count <= 0 or not isinstance(count, int):
+            raise ValueError('count should be positive')
+
         for i in range(count):
             self._stack.pop()
             self._min_stack.pop()
 
     def find_min(self):
-        return self._min_stack[-1]
+        if self.is_empty():
+            return None
+        else:
+            return self._min_stack[-1]
