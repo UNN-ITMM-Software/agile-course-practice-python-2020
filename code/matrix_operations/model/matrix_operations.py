@@ -1,6 +1,6 @@
 import random
-import copy
 from matrix.model.matrix import Matrix
+from matrix.model.matrix import MatrixError
 
 
 class MatrixOperationsError(Exception):
@@ -39,21 +39,21 @@ class MatrixOperations(Matrix):
         return False
 
     @classmethod
-    def add_matr(self, first_matrix, second_matrix):
+    def add_matrix(cls, first_matrix, second_matrix):
         if not MatrixOperations.is_both_same_size(first_matrix, second_matrix):
             raise MatrixOperationsError('Matrices of different sizes! Check matrices elements.')
         return MatrixOperations.make_from_list([[elem1 + elem2 for elem1, elem2 in zip(row1, row2)] for row1, row2 in
                                                 zip(first_matrix.data_lines, second_matrix.data_lines)])
 
     @classmethod
-    def can_mult_matr(self, first_matrix, second_matrix):
-        if (first_matrix.cols == second_matrix.rows):
+    def can_multiply_matrix(cls, first_matrix, second_matrix):
+        if first_matrix.cols == second_matrix.rows:
             return True
         return False
 
     @classmethod
-    def mult_matr(self, first_matrix, second_matrix):
-        if not MatrixOperations.can_mult_matr(first_matrix, second_matrix):
+    def multiply_matrix(cls, first_matrix, second_matrix):
+        if not MatrixOperations.can_multiply_matrix(first_matrix, second_matrix):
             raise MatrixOperationsError('Matrices has invalid sizes! Check matrices size.')
         result_matrix = MatrixOperations.make_from_list(
             [[0 for i in range(second_matrix.cols)] for i in range(first_matrix.rows)])
@@ -64,7 +64,7 @@ class MatrixOperations(Matrix):
         return result_matrix
 
     @classmethod
-    def scalar_mult_matr(self, scalar, matrix):
+    def scalar_multiply_matrix(cls, scalar, matrix):
         if scalar == 0:
             return 0
         elif scalar == 1:
@@ -72,11 +72,19 @@ class MatrixOperations(Matrix):
         return MatrixOperations.make_from_list([[scalar * elem for elem in row] for row in matrix.data_lines])
 
     @classmethod
-    def transpose(self, matrix):
+    def transpose(cls, matrix):
         return MatrixOperations.make_from_list([list(row) for row in zip(*matrix.data_lines)])
 
-
-# fm = MatrixOperations.make_from_list([[1, 2], [3, 4]])
-# print(fm)
-# m = MatrixOperations.transpose_matrix(fm)
-# print(m)
+    @classmethod
+    def inverse(cls, matrix):
+        if matrix.calculate_det() == 0:
+            raise MatrixError('Matrix has zero determinant! Check your matrix.')
+        minor_matrix = MatrixOperations.make_from_list(
+            [[0 for i in range(matrix.cols)] for i in range(matrix.rows)])
+        for i in range(minor_matrix.rows):
+            for j in range(minor_matrix.cols):
+                minor = MatrixOperations.delete_col_and_row(matrix, i, j)
+                minor_matrix.data_lines[i][j] = minor.calculate_det() * ((-1) ** (i + j))
+        minor_matrix = MatrixOperations.transpose(minor_matrix)
+        return MatrixOperations.make_from_list(
+            [[elem / matrix.calculate_det() for elem in row] for row in minor_matrix.data_lines])
