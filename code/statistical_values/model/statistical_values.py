@@ -1,25 +1,25 @@
-class Statistics:
+class StatisticalValues:
     def __init__(self, values=None):
         if isinstance(values, (int, float)):
             self.values = [values]
         elif isinstance(values, (list, tuple)):
             self.values = values
         else:
-            raise TypeError
+            raise TypeError('Argument type must be list or tuple')
 
     @staticmethod
     def _mean(x):
         return sum(x)/len(x)
 
     def mean(self):
-        return Statistics._mean(self.values)
+        return StatisticalValues._mean(self.values)
 
-    def var(self):
+    def variance(self):
         mean = self.mean()
         tmp = [(x - mean)**2 for x in self.values]
-        return Statistics._mean(tmp)
+        return StatisticalValues._mean(tmp)
 
-    def med(self):
+    def median(self):
         tmp = sorted(self.values)
         m = len(tmp)//2
         if len(tmp) % 2 == 0:
@@ -28,15 +28,15 @@ class Statistics:
             res = tmp[m]
         return res
 
-    def bmoment(self, k):
+    def begining_moment(self, k):
         if k <= 0:
-            raise ValueError
+            raise ValueError('k must be > 0')
         tmp = [x**k for x in self.values]
-        return Statistics._mean(tmp)
+        return StatisticalValues._mean(tmp)
 
-    def cmoment(self, k):
+    def central_moment(self, k):
         if k <= 0:
-            raise ValueError
+            raise ValueError('k must be > 0')
         mean = self.mean()
         tmp = [(x - mean)**k for x in self.values]
-        return Statistics._mean(tmp)
+        return StatisticalValues._mean(tmp)
