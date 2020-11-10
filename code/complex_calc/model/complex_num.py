@@ -7,7 +7,7 @@ class ComplexNum:
         self.im = im
 
     def __str__(self):
-        return '{} + {}i'.format(self.re, self.im)
+        return '{}{}i'.format(self.re, (' + ' if self.im >= 0 else ' - ') + str(abs(self.im)))
 
     def __mul__(self, other):
         if isinstance(other, ComplexNum):
@@ -29,7 +29,7 @@ class ComplexNum:
 
     def __sub__(self, other):
         if isinstance(other, ComplexNum):
-            return ComplexNum(self.re - other.re, self.im - other.im)
+            return self.__add__(-other)
         elif isinstance(other, float) or isinstance(other, int):
             return ComplexNum(self.re - other, self.im)
 

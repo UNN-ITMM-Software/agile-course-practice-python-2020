@@ -24,6 +24,10 @@ class TestComplexNumClass(unittest.TestCase):
         number = ComplexNum(12, 0.23)
         self.assertEqual('12 + 0.23i', str(number))
 
+    def test_can_print_complex_number_with_neg_im(self):
+        number = ComplexNum(12, -0.23)
+        self.assertEqual('12 - 0.23i', str(number))
+
 
 class TestComplexNumOperations(unittest.TestCase):
     def test_equal_complex_numbers(self):
