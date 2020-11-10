@@ -26,3 +26,10 @@ class ModifyStack:
         if self.is_empty():
             self._stack.append(elem)
             self._min_stack.append(elem)
+        else:
+            self._stack.append(elem)
+            top_elem = self.look_top()
+            if elem < top_elem:
+                self._min_stack.append(elem)
+            else:
+                self._min_stack.append(top_elem)

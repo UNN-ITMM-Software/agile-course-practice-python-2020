@@ -20,3 +20,10 @@ class TestModifyStack(unittest.TestCase):
         stack = ModifyStack()
         stack.push(2)
         self.assertEqual(stack.look_top(), 2)
+
+    def test_can_push_in_stack(self):
+        stack = ModifyStack()
+        stack.push(2)
+        stack.push(-5)
+        stack.push(10)
+        self.assertEqual(stack.look_top(), 10)
