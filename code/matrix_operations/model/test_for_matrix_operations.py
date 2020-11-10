@@ -34,8 +34,8 @@ class TestMatrixOperationsClass(unittest.TestCase):
         second_matrix = MatrixOperations.make_from_list([[-1, -1], [-1, -1], [-1, -1]])
         result_matrix = MatrixOperations.add_matrix(first_matrix, second_matrix)
         self.assertTrue(
-            result_matrix.data_lines[0][0] == 0 and result_matrix.data_lines[1][1] == 1 and result_matrix.data_lines[2][
-                1] == 2)
+            result_matrix.data_lines[0][0] == 0 and result_matrix.data_lines[1][1] == 1 and
+            result_matrix.data_lines[2][1] == 2)
 
     def test_plus_diffsize_matrix(self):
         first_matrix = MatrixOperations.make_from_list([[1, 1]])
@@ -53,17 +53,16 @@ class TestMatrixOperationsClass(unittest.TestCase):
         first_matrix = MatrixOperations.make_from_list([[1, 0], [0, 1], [1, 1]])
         second_matrix = MatrixOperations.make_from_list([[3, 3, 3], [3, 3, 3]])
         result_matrix = MatrixOperations.multiply_matrix(first_matrix, second_matrix)
-        self.assertTrue(
-            result_matrix.data_lines[0][0] == 3 and result_matrix.data_lines[1][1] == 3 and result_matrix.data_lines[2][
-                2] == 6)
+        self.assertTrue(result_matrix.data_lines[0][0] == 3 and result_matrix.data_lines[1][1] == 3 and
+                        result_matrix.data_lines[2][2] == 6)
 
     def test_mult_3x2_2x2_matrix(self):
         first_matrix = MatrixOperations.make_from_list([[1, 0], [0, 1], [1, 1]])
         second_matrix = MatrixOperations.make_from_list([[3, 3], [3, 3]])
         result_matrix = MatrixOperations.multiply_matrix(first_matrix, second_matrix)
         self.assertTrue(
-            result_matrix.data_lines[0][0] == 3 and result_matrix.data_lines[1][1] == 3 and result_matrix.data_lines[2][
-                0] == 6)
+            result_matrix.data_lines[0][0] == 3 and result_matrix.data_lines[1][1] == 3 and
+            result_matrix.data_lines[2][0] == 6)
 
     def test_mult_invalid_size_matrix(self):
         first_matrix = MatrixOperations.make_from_list([[1, 0], [0, 1], [1, 1]])
@@ -83,8 +82,8 @@ class TestMatrixOperationsClass(unittest.TestCase):
         skalar = 2
         result_matrix = MatrixOperations.scalar_multiply_matrix(skalar, first_matrix)
         self.assertTrue(
-            result_matrix.data_lines[0][0] == 2 and result_matrix.data_lines[1][1] == 8 and result_matrix.data_lines[2][
-                1] == 4)
+            result_matrix.data_lines[0][0] == 2 and result_matrix.data_lines[1][1] == 8 and
+            result_matrix.data_lines[2][1] == 4)
 
     def test_scalar_0_mult_matrix(self):
         first_matrix = MatrixOperations.make_from_list([[1, 2], [3, 4]])
@@ -107,14 +106,16 @@ class TestMatrixOperationsClass(unittest.TestCase):
         matrix = MatrixOperations.make_from_list([[1, 2], [3, 4], [5, 6]])
         result_matrix = MatrixOperations.transpose(matrix)
         self.assertTrue(
-            result_matrix.data_lines[0][1] == 3 and result_matrix.data_lines[1][0] == 2 and result_matrix.data_lines[0][
+            result_matrix.data_lines[0][1] == 3 and result_matrix.data_lines[1][0] == 2 and
+            result_matrix.data_lines[0][
                 2] == 5)
 
     def test_transpose_1x3_matrix(self):
         matrix = MatrixOperations.make_from_list([[1, 2, 3]])
         result_matrix = MatrixOperations.transpose(matrix)
         self.assertTrue(
-            result_matrix.data_lines[0][0] == 1 and result_matrix.data_lines[1][0] == 2 and result_matrix.data_lines[2][
+            result_matrix.data_lines[0][0] == 1 and result_matrix.data_lines[1][0] == 2 and
+            result_matrix.data_lines[2][
                 0] == 3)
 
     def test_inverse_2x2_matrix(self):

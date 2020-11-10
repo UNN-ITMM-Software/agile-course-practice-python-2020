@@ -42,7 +42,8 @@ class MatrixOperations(Matrix):
     def add_matrix(cls, first_matrix, second_matrix):
         if not MatrixOperations.is_both_same_size(first_matrix, second_matrix):
             raise MatrixOperationsError('Matrices of different sizes! Check matrices elements.')
-        return MatrixOperations.make_from_list([[elem1 + elem2 for elem1, elem2 in zip(row1, row2)] for row1, row2 in
+        return MatrixOperations.make_from_list([[elem1 + elem2 for elem1, elem2 in zip(row1, row2)]
+                                                for row1, row2 in
                                                 zip(first_matrix.data_lines, second_matrix.data_lines)])
 
     @classmethod
@@ -60,7 +61,8 @@ class MatrixOperations(Matrix):
         for i in range(first_matrix.rows):
             for j in range(second_matrix.cols):
                 for k in range(first_matrix.cols):
-                    result_matrix.data_lines[i][j] += first_matrix.data_lines[i][k] * second_matrix.data_lines[k][j]
+                    result_matrix.data_lines[i][j] += first_matrix.data_lines[i][k] * \
+                                                      second_matrix.data_lines[k][j]
         return result_matrix
 
     @classmethod
