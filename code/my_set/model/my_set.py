@@ -82,3 +82,12 @@ class MySet:
             return result
         else:
             raise TypeError('Input error: argument type for operations on sets must be only set')
+
+    def issubset(self, obj):
+        if isinstance(obj, MySet):
+            for element in self:
+                if element not in obj:
+                    return False
+            return True
+        else:
+            raise TypeError('Input error: argument type for operations on sets must be only set')

@@ -194,3 +194,25 @@ class TestSetClass(unittest.TestCase):
         test_list = [2, 3, 5, 15]
         with self.assertRaises(TypeError):
             test_set.difference(test_list)
+
+    def test_can_check_on_subset_with_true_result(self):
+        test_set_1 = MySet([2, 5, 9])
+        test_set_2 = MySet([1, 2, 5, 9, 15])
+
+        result = test_set_1.issubset(test_set_2)
+
+        self.assertTrue(result)
+
+    def test_can_check_on_subset_with_false_result(self):
+        test_set_1 = MySet([2, 7, 9])
+        test_set_2 = MySet([1, 2, 5, 9, 15])
+
+        result = test_set_1.issubset(test_set_2)
+
+        self.assertFalse(result)
+
+    def test_cant_check_on_subset_with_non_set_object(self):
+        test_set = MySet([1, 2, 4, 5])
+        test_list = [2, 5]
+        with self.assertRaises(TypeError):
+            test_set.issubset(test_list)
