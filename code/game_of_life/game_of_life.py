@@ -2,6 +2,15 @@ class GameOfLife(object):
     def add(self, string):
         if string == "":
             return 0
+        parser = GameOfLifeParser()
+        field = parser.parse(string)
+        height_field = len(field)
+        width_field = len(field[0])
+        for i in range(width_field):
+            for j in range(height_field):
+                field[i][j] = 0
+        print(field)
+        return field
 
 
 class GameOfLifeParser(object):

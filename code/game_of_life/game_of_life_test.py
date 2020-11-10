@@ -10,6 +10,18 @@ class TestGameOfLifeClass(unittest.TestCase):
         result = strcalc.add("")
         self.assertTrue(result == 0)
 
+    def test_add_2x2_all_points_are_dead(self):
+        strcalc = GameOfLife()
+        result = strcalc.add("..\n..")
+        field_test = [[0 for i in range(2)] for j in range(2)]
+        self.assertTrue(result == field_test)
+
+    def test_add_2x2__first_point_live(self):
+        strcalc = GameOfLife()
+        result = strcalc.add("*.\n..")
+        field_test = [[0 for i in range(2)] for j in range(2)]
+        self.assertTrue(result == field_test)
+
 
 class TestGameOfLifeParserClass(unittest.TestCase):
     def test_can_create_parser(self):
