@@ -58,6 +58,10 @@ class TestMain(unittest.TestCase):
     def test_get_price_complex_9(self):
         self.assertRaises(ValueError, lambda: self.store.get_price({"fake_key": 333}))
 
+    def test_get_price_complex_10(self):
+        self.assertEqual((40 * 0.75) + (24 * 0.9),
+                         self.store.get_price({"1": 2, "2": 1, "3": 2, "4": 1, "5": 2}))
+
     def test_another_book_price(self):
         store = Store(10)
         self.assertEqual((50 * 0.75 * 2) + (20 * 0.95) + 10,
