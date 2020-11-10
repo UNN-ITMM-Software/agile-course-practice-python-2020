@@ -1,6 +1,6 @@
 import tkinter as Tk
 
-from matrix.viewmodel import view_model
+from matrix.viewmodel import viewmodel
 
 
 class SimpleTableInput(Tk.Frame):
@@ -49,7 +49,7 @@ class GuiView(Tk.Frame):
         Tk.Frame.__init__(self)
         self.count_log_messages = 6
 
-        self.view_model = view_model.ViewModel()
+        self.view_model = viewmodel.MatrixViewModel()
         self.master.title("Determinant calculator")
         self.master.minsize(width=150, height=150)
 
