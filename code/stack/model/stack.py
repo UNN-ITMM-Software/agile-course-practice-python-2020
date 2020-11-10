@@ -40,4 +40,3 @@ class Stack:
         top = self.top()
         del self.stack[-1]
         return top
-
