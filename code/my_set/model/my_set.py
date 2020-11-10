@@ -72,3 +72,13 @@ class MySet:
             return result
         else:
             raise TypeError('Input error: argument type for operations on sets must be only set')
+
+    def difference(self, obj):
+        if isinstance(obj, MySet):
+            result = MySet()
+            for element in self:
+                if element not in obj:
+                    result.add(element)
+            return result
+        else:
+            raise TypeError('Input error: argument type for operations on sets must be only set')

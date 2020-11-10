@@ -170,3 +170,27 @@ class TestSetClass(unittest.TestCase):
         test_list = [2, 3, 5, 15]
         with self.assertRaises(TypeError):
             test_set.intersection(test_list)
+
+    def test_can_find_difference(self):
+        test_set_1 = MySet([1, 2, 4, 5])
+        test_set_2 = MySet([1, 5, 9, 15])
+        true_result = MySet([2, 4])
+
+        result = test_set_1.difference(test_set_2)
+
+        self.assertEqual(result, true_result)
+
+    def test_can_find_difference_with_diff_sets(self):
+        test_set_1 = MySet([1, 2, 4, 5])
+        test_set_2 = MySet([3, 7, 9, 15])
+        true_result = MySet([1, 2, 4, 5])
+
+        result = test_set_1.difference(test_set_2)
+
+        self.assertEqual(result, true_result)
+
+    def test_cant_find_difference_with_non_set_object(self):
+        test_set = MySet([1, 2, 4, 5])
+        test_list = [2, 3, 5, 15]
+        with self.assertRaises(TypeError):
+            test_set.difference(test_list)
