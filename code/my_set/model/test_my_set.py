@@ -98,3 +98,34 @@ class TestSetClass(unittest.TestCase):
         test_set = MySet([1, 2, 4, 5])
         test_set.union(7)
         self.assertEqual(test_set.get_size(), 5)
+
+    def test_can_init_with_default_constructor_one_elem_set(self):
+        test_set = MySet(5)
+        self.assertEqual(test_set.get_size(), 1)
+
+    def test_cant_init_with_default_constructor_invalide_arg(self):
+        with self.assertRaises(TypeError):
+            MySet("invalide argument")
+
+    def test_cant_delete_uncontain_element(self):
+        test_set = MySet([1, 2, 4, 5])
+        uncontain_element = 7
+        with self.assertRaises(ValueError):
+            test_set.delete(uncontain_element)
+
+    def test_cant_union_with_invalide_argument(self):
+        test_set = MySet([1, 2, 4, 5])
+        with self.assertRaises(TypeError):
+            test_set.union("invalide argument")
+
+    def test_can_check_equalities_of_eqvivalent_sets(self):
+        test_set_1 = MySet([1, 2, 4, 5])
+        test_set_2 = MySet([1, 2, 4, 5])
+        result = (test_set_1 == test_set_2)
+        self.assertTrue(result)
+
+    def test_can_check_equalities_of_uneqvivalent_sets(self):
+        test_set_1 = MySet([1, 2, 4, 5])
+        test_set_2 = MySet([1, 3, 4, 5])
+        result = (test_set_1 == test_set_2)
+        self.assertFalse(result)

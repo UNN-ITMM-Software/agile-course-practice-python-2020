@@ -6,6 +6,8 @@ class MySet:
             self.my_set = elements
         elif elements is None:
             pass
+        elif isinstance(elements, int):
+            self.my_set.append(elements)
         else:
             raise TypeError('Input error: argument type must be list')
 
@@ -19,6 +21,9 @@ class MySet:
         if element in self.my_set:
             return True
         return False
+
+    def __eq__(self, elements):
+        return self.my_set == elements
 
     def add(self, element):
         if element not in self.my_set:
