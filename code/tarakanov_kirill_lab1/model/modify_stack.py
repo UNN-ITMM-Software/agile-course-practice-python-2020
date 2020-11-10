@@ -22,17 +22,25 @@ class ModifyStack:
     def look_top(self):
         return self._stack[-1]
 
-    def push(self, elem):
-        if self.is_empty():
-            self._stack.append(elem)
+    def _push_empty(self, elem):
+        self._stack.append(elem)
+        self._min_stack.append(elem)
+
+    def _push_one(self, elem):
+        top_elem = self.look_top()
+        self._stack.append(elem)
+        if elem < top_elem:
             self._min_stack.append(elem)
         else:
-            top_elem = self.look_top()
-            self._stack.append(elem)
-            if elem < top_elem:
-                self._min_stack.append(elem)
-            else:
-                self._min_stack.append(top_elem)
+            self._min_stack.append(top_elem)
+
+    def push(self, val):
+        if isinstance(val, list):
+            self._push_empty(val[0]) if self.is_empty() else self._push_one(val[0])
+            for i in val[1:]:
+                self._push_one(val)
+        else:
+            self._push_empty(val) if self.is_empty() else self._push_one(val)
 
     def pop(self):
         self._stack.pop()
