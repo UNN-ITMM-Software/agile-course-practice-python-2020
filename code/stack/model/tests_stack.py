@@ -2,27 +2,27 @@ from stack import Stack
 import unittest
 
 class StackTestClass(unittest.TestCase):
-    def test_create_stack_without_parameters(self):
+    def test_create_stack_without_params(self):
         stack = Stack()
         self.assertIsInstance(stack, Stack)
 
-    def test_create_stack_with_valid_max_size_type(self):
+    def test_create_with_valid_size(self):
         stack = Stack(10)
         self.assertIsInstance(stack, Stack)
 
-    def test_create_stack_with_invalid_max_size_type_float(self):
+    def test_create_with_invalid_size_float(self):
         with self.assertRaises(TypeError):
             Stack(0.5)
 
-    def test_create_stack_with_invalid_max_size_type_str(self):
+    def test_create_with_invalid_size_str(self):
         with self.assertRaises(TypeError):
             Stack("0.5")
 
-    def test_create_stack_with_max_size_less_zero(self):
+    def test_create_with_size_less_zero(self):
         with self.assertRaises(Exception):
             Stack(-10)
 
-    def test_create_stack_with_zero_max_size(self):
+    def test_create_with_zero_size(self):
         with self.assertRaises(Exception):
             Stack(0)
 
