@@ -1,8 +1,7 @@
 class Stack:
-    self.max_size = 100
-
     def __init__(self, size=None):
         self.stack = []
+        self.max_size = 100
         if size is not None:
             if type(size) is not int:
                 raise TypeError
