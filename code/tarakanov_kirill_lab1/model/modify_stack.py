@@ -42,9 +42,10 @@ class ModifyStack:
         else:
             self._push_empty(val) if self.is_empty() else self._push_one(val)
 
-    def pop(self):
-        self._stack.pop()
-        self._min_stack.pop()
+    def pop(self, count=1):
+        for i in range(count):
+            self._stack.pop()
+            self._min_stack.pop()
 
     def find_min(self):
         return self._min_stack[-1]
