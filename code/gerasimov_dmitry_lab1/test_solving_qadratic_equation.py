@@ -56,8 +56,12 @@ class TestSolvingQuadraticEquation(unittest.TestCase):
     def test_float_values(self):
         self.assertEqual(QuadraticEquation(7, 4, -3).solution(), [-1, 0.42857142857142855])
         self.assertEqual(QuadraticEquation(-10.4, 4.5, -3.4).solution(), [])
-        self.assertEqual(QuadraticEquation(10.4, 4.5, -3.4).solution(), [-0.8276797249896831, 0.3949874172973754])
-        self.assertEqual(QuadraticEquation(-0.5, 3, 1.5).solution(), [-0.4641016151377544, 6.464101615137754])
+        self.assertEqual(
+            QuadraticEquation(10.4, 4.5, -3.4).solution(),
+            [-0.8276797249896831, 0.3949874172973754])
+        self.assertEqual(
+            QuadraticEquation(-0.5, 3, 1.5).solution(),
+            [-0.4641016151377544, 6.464101615137754])
 
     def test_second_arg_value(self):
         self.assertEqual(QuadraticEquation(1, 0, 100).solution(), [])
@@ -87,8 +91,9 @@ class TestSolvingQuadraticEquation(unittest.TestCase):
         self.assertEqual(QuadraticEquation(1, 0, 0).solution_in_string_format(), 'Answer:\n x = 0.0')
         self.assertEqual(QuadraticEquation(2, 4, 2).solution_in_string_format(), 'Answer:\n x = -1.0')
 
-        self.assertEqual(QuadraticEquation(1, 5, 0).solution_in_string_format(), 'Answers:\n x1 = -5.0,\n x2 = 0.0')
+        self.assertEqual(
+            QuadraticEquation(1, 5, 0).solution_in_string_format(),
+            'Answers:\n x1 = -5.0,\n x2 = 0.0')
         self.assertEqual(
             QuadraticEquation(7, 4, -3).solution_in_string_format(),
-            'Answers:\n x1 = -1.0,\n x2 = 0.42857142857142855'
-        )
+            'Answers:\n x1 = -1.0,\n x2 = 0.42857142857142855')
