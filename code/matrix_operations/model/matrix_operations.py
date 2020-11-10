@@ -65,10 +65,18 @@ class MatrixOperations(Matrix):
 
     @classmethod
     def scalar_mult_matr(self, scalar, matrix):
+        if scalar == 0:
+            return 0
+        elif scalar == 1:
+            return matrix
         return MatrixOperations.make_from_list([[scalar * elem for elem in row] for row in matrix.data_lines])
 
+    @classmethod
+    def transpose(self, matrix):
+        return MatrixOperations.make_from_list([list(row) for row in zip(*matrix.data_lines)])
 
-fm = MatrixOperations.make_from_list([[1, 0], [0, 1], [1, 1]])
-sm = MatrixOperations.make_from_list([[3, 3], [3, 3]])
-m = MatrixOperations.scalar_mult_matr(2, fm)
-print(m)
+
+# fm = MatrixOperations.make_from_list([[1, 2], [3, 4]])
+# print(fm)
+# m = MatrixOperations.transpose_matrix(fm)
+# print(m)
