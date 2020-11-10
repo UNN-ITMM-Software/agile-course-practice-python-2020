@@ -1,5 +1,5 @@
 class Stack:
-    max_size = 100
+    self.max_size = 100
 
     def __init__(self, size=None):
         self.stack = []
