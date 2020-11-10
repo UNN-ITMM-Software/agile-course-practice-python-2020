@@ -3,8 +3,8 @@ import unittest
 from game_of_life import GameOfLife
 from game_of_life import GameOfLifeParser
 
-class TestGameOfLifeClass(unittest.TestCase):
 
+class TestGameOfLifeClass(unittest.TestCase):
     def test_add_empty_string_is_0(self):
         strcalc = GameOfLife()
         result = strcalc.add("")
@@ -21,6 +21,47 @@ class TestGameOfLifeClass(unittest.TestCase):
         result = strcalc.add("*.\n..")
         field_test = [[0 for i in range(2)] for j in range(2)]
         self.assertTrue(result == field_test)
+
+    def test_add_2x2__two_points_dots_on_the_first_line_are_live(self):
+        strcalc = GameOfLife()
+        result = strcalc.add("**\n..")
+        field_test = [[0 for i in range(2)] for j in range(2)]
+        self.assertTrue(result == field_test)
+
+    def test_counting_neighbors_0(self):
+        parser = GameOfLifeParser()
+        game_of_life = GameOfLife()
+        field = parser.parse("........\n....*...\n........\n........")
+        result = game_of_life.counting_neighbors(field, 1, 4)
+        self.assertTrue(result == 0)
+
+    def test_counting_neighbors_8(self):
+        parser = GameOfLifeParser()
+        game_of_life = GameOfLife()
+        field = parser.parse("...***..\n...***..\n...***..\n........")
+        result = game_of_life.counting_neighbors(field, 1, 4)
+        self.assertTrue(result == 8)
+
+    def test_counting_neighbors_5(self):
+        parser = GameOfLifeParser()
+        game_of_life = GameOfLife()
+        field = parser.parse("...***..\n...***..\n...***..\n........")
+        result = game_of_life.counting_neighbors(field, 1, 3)
+        self.assertTrue(result == 5)
+
+    def test_counting_neighbors_3_x_0_y_0(self):
+        parser = GameOfLifeParser()
+        game_of_life = GameOfLife()
+        field = parser.parse(".*......\n**......\n........\n........")
+        result = game_of_life.counting_neighbors(field, 0, 0)
+        self.assertTrue(result == 3)
+
+    def test_counting_neighbors_3_x_8_y_4(self):
+        parser = GameOfLifeParser()
+        game_of_life = GameOfLife()
+        field = parser.parse("........\n........\n......**\n......**")
+        result = game_of_life.counting_neighbors(field, 3, 7)
+        self.assertTrue(result == 3)
 
 
 class TestGameOfLifeParserClass(unittest.TestCase):
