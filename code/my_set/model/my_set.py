@@ -11,3 +11,6 @@ class MySet:
 
     def get_size(self):
         return len(self.my_set)
+
+    def isEmpty(self):
+        return self.get_size() == 0
