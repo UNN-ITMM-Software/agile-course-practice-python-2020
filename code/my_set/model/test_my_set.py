@@ -69,3 +69,32 @@ class TestSetClass(unittest.TestCase):
         test_list = [7, 8, 10]
         test_set.union(test_list)
         self.assertEqual(test_set.get_size(), 7)
+
+    def test_can_union_with_list_contain_same_elements(self):
+        test_set = MySet([1, 2, 4, 5])
+        test_list = [2, 5, 10]
+        test_set.union(test_list)
+        self.assertEqual(test_set.get_size(), 5)
+
+    def test_can_union_with_set(self):
+        test_set = MySet([1, 2, 4, 5])
+        another_set = MySet([6, 9, 14, 15])
+        test_set.union(another_set)
+        self.assertEqual(test_set.get_size(), 8)
+
+    def test_can_union_with_set_contain_same_elements(self):
+        test_set = MySet([1, 2, 4, 5])
+        another_set = MySet([1, 5, 14, 15])
+        test_set.union(another_set)
+        self.assertEqual(test_set.get_size(), 6)
+
+    def test_can_union_with_set(self):
+        test_set = MySet([1, 2, 4, 5])
+        another_set = MySet([6, 9, 14, 15])
+        test_set.union(another_set)
+        self.assertEqual(test_set.get_size(), 8)
+
+    def test_can_union_with_one_element(self):
+        test_set = MySet([1, 2, 4, 5])
+        test_set.union(7)
+        self.assertEqual(test_set.get_size(), 5)

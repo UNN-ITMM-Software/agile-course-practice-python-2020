@@ -36,7 +36,7 @@ class MySet:
             for element in obj:
                 self.add(element)
         elif isinstance(obj, MySet):
-            self.union(element.my_set)
+            self.union(obj.my_set)
         elif isinstance(obj, int):
             self.add(obj)
         else:
