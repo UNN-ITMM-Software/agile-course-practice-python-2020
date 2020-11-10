@@ -14,3 +14,10 @@ class MySet:
 
     def isEmpty(self):
         return self.get_size() == 0
+
+    def __contains__(self, element):
+        if element in self.my_set:
+            return True
+        return False
+
+    

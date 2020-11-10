@@ -27,3 +27,15 @@ class TestSetClass(unittest.TestCase):
         test_set = MySet([1, 2, 4, 5])
         result = test_set.isEmpty()
         self.assertFalse(result)
+    
+    def test_can_check_element_contain(self):
+        test_set = MySet([1, 2, 4, 5])
+        element = 4
+        result = element in test_set
+        self.assertTrue(result)
+
+    def test_can_check_element_not_contain(self):
+        test_set = MySet([1, 2, 4, 5])
+        element = 7
+        result = element in test_set
+        self.assertFalse(result)
