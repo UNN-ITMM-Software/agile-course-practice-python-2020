@@ -146,3 +146,27 @@ class TestSetClass(unittest.TestCase):
         test_set = MySet([1, 2, 4, 5])
         with self.assertRaises(TypeError):
             test_set == "invalide argument"
+
+    def test_can_find_intersection(self):
+        test_set_1 = MySet([1, 2, 4, 5])
+        test_set_2 = MySet([1, 5, 9, 15])
+        true_result = MySet([1, 5])
+
+        result = test_set_1.intersection(test_set_2)
+
+        self.assertEqual(result, true_result)
+
+    def test_can_find_intersection_with_diff_sets(self):
+        test_set_1 = MySet([1, 2, 4, 5])
+        test_set_2 = MySet([3, 7, 9, 15])
+        true_result = MySet([])
+
+        result = test_set_1.intersection(test_set_2)
+
+        self.assertEqual(result, true_result)
+
+    def test_cant_find_intersection_with_non_set_object(self):
+        test_set = MySet([1, 2, 4, 5])
+        test_list = [2, 3, 5, 15]
+        with self.assertRaises(TypeError):
+            test_set.intersection(test_list)

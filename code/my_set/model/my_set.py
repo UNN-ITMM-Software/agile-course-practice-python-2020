@@ -62,3 +62,13 @@ class MySet:
         else:
             raise TypeError('Input error: argument type must be list or int or another set')
         return self
+
+    def intersection(self, obj):
+        if isinstance(obj, MySet):
+            result = MySet()
+            for element in self:
+                if element in obj:
+                    result.add(element)
+            return result
+        else:
+            raise TypeError('Input error: argument type for operations on sets must be only set')
