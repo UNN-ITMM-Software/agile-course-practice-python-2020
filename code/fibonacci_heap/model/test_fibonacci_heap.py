@@ -1,7 +1,6 @@
 import unittest
 import random
 
-from nose.tools import nottest
 from .fibonacci_heap import FibonacciHeap
 
 RANDOM_SEED = 1
