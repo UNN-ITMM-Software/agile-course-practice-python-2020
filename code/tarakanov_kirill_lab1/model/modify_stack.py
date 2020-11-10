@@ -33,3 +33,7 @@ class ModifyStack:
                 self._min_stack.append(elem)
             else:
                 self._min_stack.append(top_elem)
+
+    def pop(self):
+        self._stack.pop()
+        self._min_stack.pop()

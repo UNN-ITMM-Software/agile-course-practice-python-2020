@@ -27,3 +27,16 @@ class TestModifyStack(unittest.TestCase):
         stack.push(-5)
         stack.push(10)
         self.assertEqual(stack.look_top(), 10)
+
+    def test_can_pop_from_stack(self):
+        stack = ModifyStack()
+        
+        stack.push(20)
+        stack.push(7)
+        stack.push(56)
+        stack.push(23)
+
+        stack.pop()
+        stack.pop()
+
+        self.assertEqual(stack.look_top(), 7)
