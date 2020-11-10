@@ -1,6 +1,6 @@
 import unittest
 
-from kamelina_julia_lab1.model.statistics import Statistics
+from statistical_values.model.statistics import Statistics
 
 
 class TestStatisticsClass(unittest.TestCase):
