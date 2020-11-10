@@ -9,37 +9,37 @@ class TestHeaps(unittest.TestCase):
     """
     Test methods of the Fibonacci heap
     """
-    def insert_key_test(self, heap):
+    def insert_key_test(self, tested_heap):
         """
         testing the insert() work
 
-        :param heap: the testing heap
+        :param tested_heap: the testing heap
         """
-        heap = heap()
+        heap = tested_heap()
         for k in [-10, 0, 10, -1.1, 1.1]:
             n = heap.insert(k)
             self.assertEqual(n.key, k)
             self.assertEqual(n.val, k)
 
-    def insert_key_value_test(self, heap):
+    def insert_key_value_test(self, tested_heap):
         """
         testing the insert() support parameter .val properly
 
-        :param heap: the testing heap
+        :param tested_heap: the testing heap
         """
-        heap = heap()
+        heap = tested_heap()
         for k, v in [(-10, 0), (0, "A"), (10, [1, 2]), (-1.1, {}), (1.1, 1.1)]:
             n = heap.insert(k, v)
             self.assertEqual(n.key, k)
             self.assertEqual(n.val, v)
 
     # tests if find_min() returns the min node
-    def find_min_test(self, heap):
+    def find_min_test(self, tested_heap):
         """
         testing the find_min(), should return the min node
-        :param heap: the testing heap
+        :param tested_heap: the testing heap
         """
-        heap = heap()
+        heap = tested_heap()
         random.seed(RANDOM_SEED)
         keys = random.sample(range(-1000, 1000), 100)
         added_keys = []
@@ -48,13 +48,13 @@ class TestHeaps(unittest.TestCase):
             heap.insert(k)
             self.assertEqual(heap.find_min().key, min(added_keys))
 
-    def delete_min_test(self, heap):
+    def delete_min_test(self, tested_heap):
         """
         testing the delete_min() deleting the min node
 
-        :param heap: the testing heap
+        :param tested_heap: the testing heap
         """
-        heap = heap()
+        heap = tested_heap()
         random.seed(RANDOM_SEED)
         keys = random.sample(range(-1000, 1000), 100)
         for k in keys:
@@ -66,13 +66,13 @@ class TestHeaps(unittest.TestCase):
             heap_min = heap.delete_min()
             self.assertEqual(heap_min.key, min_key)
 
-    def delete_test(self, heap):
+    def delete_test(self, tested_heap):
         """
         testing the delete() works, and find_min() returns min node
 
-        :param heap: the testing heap
+        :param tested_heap: the testing heap
         """
-        heap = heap()
+        heap = tested_heap()
         random.seed(RANDOM_SEED)
         keys = random.sample(range(-1000, 1000), 100)
         nodes = []
@@ -84,13 +84,13 @@ class TestHeaps(unittest.TestCase):
             heap.delete(node)
             self.assertEqual(heap.find_min(), min(nodes, key=lambda n: n.key))
 
-    def decrease_key_test(self, heap):
+    def decrease_key_test(self, tested_heap):
         """
         testing the decrease_key() works, and find_min() returns correct min node
 
-        :param heap: the testing heap
+        :param tested_heap: the testing heap
         """
-        heap = heap()
+        heap = tested_heap()
         random.seed(RANDOM_SEED)
         keys = random.sample(range(-1000, 1000), 100)
         nodes = []
@@ -104,19 +104,19 @@ class TestHeaps(unittest.TestCase):
             self.assertEqual(nodes[index].key, key_new)
             self.assertEqual(heap.find_min(), min(nodes, key=lambda n: n.key))
 
-    def merge_test(self, heap):
+    def merge_test(self, tested_heap):
         """
         testing the merge() works, and find_min() returns correct min node
 
-        :param heap: the testing heap
+        :param tested_heap: the testing heap
         """
-        first_heap = heap()
+        first_heap = tested_heap()
         random.seed(RANDOM_SEED)
 
         first_heap.insert(1)
         all_keys = [1]
         for _ in range(10):
-            new_heap = heap()
+            new_heap = tested_heap()
             keys = random.sample(range(-1000, 1000), 100)
             for k in keys:
                 new_heap.insert(k)
