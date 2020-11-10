@@ -9,7 +9,7 @@ class TestHeaps(unittest.TestCase):
     """
     Test methods of the Fibonacci heap
     """
-    def insert_key_test(self, heap):
+    def insert_key_test(self, heap: 'FibonacciHeap'):
         """
         testing the insert() work
 
@@ -20,7 +20,7 @@ class TestHeaps(unittest.TestCase):
             self.assertEqual(n.key, k)
             self.assertEqual(n.val, k)
 
-    def insert_key_value_test(self, heap):
+    def insert_key_value_test(self, heap: 'FibonacciHeap'):
         """
         testing the insert() support parameter .val properly
 
@@ -31,7 +31,7 @@ class TestHeaps(unittest.TestCase):
             self.assertEqual(n.key, k)
             self.assertEqual(n.val, v)
 
-    def find_min_test(self, heap):
+    def find_min_test(self, heap: 'FibonacciHeap'):
         """
         testing the find_min(), should return the min node
         :param heap: the testing heap
@@ -44,7 +44,7 @@ class TestHeaps(unittest.TestCase):
             heap.insert(k)
             self.assertEqual(heap.find_min().key, min(added_keys))
 
-    def delete_min_test(self, heap):
+    def delete_min_test(self, heap: 'FibonacciHeap'):
         """
         testing the delete_min() deleting the min node
 
@@ -61,7 +61,7 @@ class TestHeaps(unittest.TestCase):
             heap_min = heap.delete_min()
             self.assertEqual(heap_min.key, min_key)
 
-    def delete_test(self, heap):
+    def delete_test(self, heap: 'FibonacciHeap'):
         """
         testing the delete() works
         and find_min() returns min node
@@ -79,7 +79,7 @@ class TestHeaps(unittest.TestCase):
             heap.delete(node)
             self.assertEqual(heap.find_min(), min(nodes, key=lambda n: n.key))
 
-    def decrease_key_test(self, heap):
+    def decrease_key_test(self, heap: 'FibonacciHeap'):
         """
         testing the decrease_key() works
         and find_min() returns correct min node
@@ -99,7 +99,7 @@ class TestHeaps(unittest.TestCase):
             self.assertEqual(nodes[index].key, key_new)
             self.assertEqual(heap.find_min(), min(nodes, key=lambda n: n.key))
 
-    def merge_test(self, heap):
+    def merge_test(self, heap: 'FibonacciHeap'):
         """
         testing the merge() works, and find_min() returns correct min node
 
