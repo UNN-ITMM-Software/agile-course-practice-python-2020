@@ -128,23 +128,23 @@ class TestHeaps(unittest.TestCase):
             self.assertEqual(first_heap.find_min().key, min(all_keys))
 
     def test_heap_insert(self):
-        self.insert_key_test(FibonacciHeap)
-        self.insert_key_value_test(FibonacciHeap)
+        self.insert_key_test(tested_heap=FibonacciHeap)
+        self.insert_key_value_test(tested_heap=FibonacciHeap)
 
     def test_heap_find_min(self):
-        self.find_min_test(FibonacciHeap)
+        self.find_min_test(tested_heap=FibonacciHeap)
 
     def test_heap_delete_min(self):
-        self.delete_min_test(FibonacciHeap)
+        self.delete_min_test(tested_heap=FibonacciHeap)
 
     def test_heap_delete(self):
-        self.delete_test(FibonacciHeap)
+        self.delete_test(tested_heap=FibonacciHeap)
 
     def test_heap_decrease_key(self):
-        self.decrease_key_test(FibonacciHeap)
+        self.decrease_key_test(tested_heap=FibonacciHeap)
 
     def test_heap_merge(self):
-        self.merge_test(FibonacciHeap)
+        self.merge_test(tested_heap=FibonacciHeap)
 
 
 if __name__ == "__main__":
