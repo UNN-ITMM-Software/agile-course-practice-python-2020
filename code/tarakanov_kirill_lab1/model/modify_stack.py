@@ -19,3 +19,10 @@ class ModifyStack:
     def size(self):
         return len(self._stack)
 
+    def look_top(self):
+        return self._stack[-1]
+
+    def push(self, elem):
+        if self.is_empty():
+            self._stack.append(elem)
+            self._min_stack.append(elem)

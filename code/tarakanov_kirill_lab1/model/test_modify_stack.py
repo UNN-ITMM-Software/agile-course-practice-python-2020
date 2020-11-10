@@ -15,3 +15,8 @@ class TestModifyStack(unittest.TestCase):
     def test_size_return_zero_for_empty_stack(self):
         stack = ModifyStack()
         self.assertEqual(stack.size(), 0)
+
+    def test_push_in_empty_stack_and_look_top_then(self):
+        stack = ModifyStack()
+        stack.push(2)
+        self.assertEqual(stack.look_top(), 2)
