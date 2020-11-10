@@ -3,7 +3,7 @@ class Stack:
         self.stack = []
         self.max_size = 100
         if size is not None:
-            if type(size) is not int:
+            if not isinstance(size, int):
                 raise TypeError
             elif size < 1:
                 raise Exception('Incorrect max size value')
