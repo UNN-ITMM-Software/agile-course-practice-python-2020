@@ -16,16 +16,34 @@ class TestGameOfLifeClass(unittest.TestCase):
         field_test = "..\n.."
         self.assertTrue(result == field_test)
 
-    def test_add_2x2__first_point_live(self):
+    def test_add_2x2_first_point_live(self):
         strcalc = GameOfLife()
         result = strcalc.add("*.\n..")
         field_test = "..\n.."
         self.assertTrue(result == field_test)
 
-    def test_add_2x2__two_points_dots_on_the_first_line_are_live(self):
+    def test_add_2x2_two_points_on_the_first_line_are_live(self):
         strcalc = GameOfLife()
         result = strcalc.add("**\n..")
         field_test = "..\n.."
+        self.assertTrue(result == field_test)
+
+    def test_add_2x2_last_point_is_dead(self):
+        strcalc = GameOfLife()
+        result = strcalc.add("**\n*.")
+        field_test = "**\n**"
+        self.assertTrue(result == field_test)
+
+    def test_add_3x3_living_square(self):
+        strcalc = GameOfLife()
+        result = strcalc.add("**.\n*..\n...")
+        field_test = "**.\n**.\n..."
+        self.assertTrue(result == field_test)
+
+    def test_add_4x8_general_example(self):
+        strcalc = GameOfLife()
+        result = strcalc.add("........\n....*...\n...**...\n........")
+        field_test = "........\n...**...\n...**...\n........"
         self.assertTrue(result == field_test)
 
     def test_counting_neighbors_0(self):
