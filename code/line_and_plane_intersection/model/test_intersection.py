@@ -79,6 +79,22 @@ class TestPlane(unittest.TestCase):
         p3 = Point3D(1, 0, 1)
         self.assertRaises(ValueError, Plane, p1, p2, p3)
 
+    def test_cannot_create_plane_with_points_on_same_line(self):
+        p1 = Point3D(-2, 0, 3)
+        p2 = Point3D(2, 1, -2)
+        p3 = Point3D(38, 10, -47)
+        self.assertRaises(ValueError, Plane, p1, p2, p3)
+
+    def test_correct_canonical_view(self):
+        p1 = Point3D(1, -2, 0)
+        p2 = Point3D(2, 0, -1)
+        p3 = Point3D(0, -1, 2)
+
+        plane = Plane(p1, p2, p3)
+
+        self.assertEqual(plane.abcd, (5, -1, 3, -7))
+
+
 
 class TestLine(unittest.TestCase):
     def test_can_create_line(self):

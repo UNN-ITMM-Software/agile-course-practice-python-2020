@@ -46,12 +46,20 @@ class Plane:
             raise TypeError('Plane::init - Incorrect argument type. Plane is defined by three Point3D')
         if p1 == p2 or p2 == p3 or p3 == p1:
             raise ValueError('Plane::init - Incorrect value. Plane is defined by three different points')
+        if Line(p1, p2).point_on_line(p3):
+            raise ValueError('Plane::init - Incorrect value. Point should not be on the same line')
         self.p1 = deepcopy(p1)
         self.p2 = deepcopy(p2)
         self.p3 = deepcopy(p3)
+        self.abcd = self.__canonical_view()
 
-    def __canonical_view(self):
-        pass
+    def __canonical_view(self) -> Tuple[float, float, float, float]:
+        v = self.p2 - self.p1
+        w = self.p3 - self.p1
+        d1 = v.y * w.z - v.z * w.y
+        d2 = v.x * w.z - v.z * w.x
+        d3 = v.x * w.y - v.y * w.x
+        return d1, -d2, d3, -self.p1.x * d1 + self.p1.y * d2 - self.p1.z * d3
 
 
 class Line:
