@@ -52,7 +52,7 @@ class ArabToRomanConverterTest(unittest.TestCase):
         converter = ArabToRomanConverter(1000)
         self.assertEqual(converter.convert_arab_to_roman_number(), 'M')
 
-    def test_convert_arab_1000_to_roman(self):
+    def test_convert_arab_5000_to_roman(self):
         converter = ArabToRomanConverter(5000)
         self.assertEqual(converter.convert_arab_to_roman_number(), 'MMMMM')
 
@@ -70,3 +70,7 @@ class RomanToArabConverterTest(unittest.TestCase):
     def test_convert_roman_4_to_arab(self):
         converter = ArabToRomanConverter('IV')
         self.assertEqual(converter.convert_roman_to_arab_number(), 4)
+
+    def test_convert_roman_6_to_arab(self):
+        converter = ArabToRomanConverter('VI')
+        self.assertEqual(converter.convert_roman_to_arab_number(), 6)
