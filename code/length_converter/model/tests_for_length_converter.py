@@ -50,3 +50,13 @@ class TemperatureConverterTest(unittest.TestCase):
         converter = LengthConverter(1000, LengthType.millimeter)
         m = converter.convert(LengthType.meter)
         self.assertEqual(m, 1)
+
+    def test_can_convert_1000_meter_to_kilometer(self):
+        converter = LengthConverter(1000, LengthType.meter)
+        km = converter.convert(LengthType.kilometer)
+        self.assertEqual(km, 1)
+
+    def test_can_convert_1_kilometer_to_meter(self):
+        converter = LengthConverter(1, LengthType.kilometer)
+        m = converter.convert(LengthType.meter)
+        self.assertEqual(m, 1000)
