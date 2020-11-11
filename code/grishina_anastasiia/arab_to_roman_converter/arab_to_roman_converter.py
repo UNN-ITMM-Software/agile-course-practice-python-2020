@@ -20,4 +20,7 @@ class ArabToRomanConverter:
         ten = get_tens_of_number()[int(self.number / 10) % 10]
         hundred = get_hundreds_of_number()[int(self.number / 100) % 10]
 
+        if self.number == 1000:
+            return 'M'
+
         return hundred + ten + one
