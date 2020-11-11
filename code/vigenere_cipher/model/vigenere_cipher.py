@@ -1,6 +1,17 @@
 import re
 
 
+def check(string, key):
+    if not isinstance(string, str):
+        raise TypeError("only string")
+    if not isinstance(key, str):
+        raise TypeError("The key type must be 'string'")
+    if len(key) == 0:
+        raise ValueError("The key must be not empty")
+    if re.search(r'[^A-Z]', key):
+        raise ValueError("The key must be letters")
+
+
 class VigenereCipher:
     def __init__(self, key="key"):
         self.key = ""
@@ -14,7 +25,7 @@ class VigenereCipher:
 
     def a2i(self, ch):
         if not isinstance(ch, str):
-            raise TypeError("The letter to natural number")
+            raise TypeError("The letter to number")
         if len(ch) != 1:
             raise ValueError("Just one letter")
         ch = ch.upper()
@@ -27,23 +38,36 @@ class VigenereCipher:
 
     def i2a(self, i):
         if not isinstance(i, int):
-            raise TypeError("The natural number to letter")
-        if i < 0:
-            raise ValueError("Natural number")
+            raise TypeError("The number to letter")
         i = i % 26
         arr = ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
                'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z')
         return arr[i]
 
     def encipher(self, string):
+        check(string, self.key)
         res = ""
         i = 0
         for c in string:
             c = c.upper()
-            i = i % len(self.key)
+            j = i % len(self.key)
             if re.search(r'[^A-Z]', c):
                 res += c
             else:
-                res += self.i2a(self.a2i(c) + self.a2i(self.key[i]))
+                res += self.i2a(self.a2i(c) + self.a2i(self.key[j]))
+                i += 1
+        return res
+
+    def decipher(self, string):
+        check(string, self.key)
+        res = ""
+        i = 0
+        for c in string:
+            c = c.upper()
+            j = i % len(self.key)
+            if re.search(r'[^A-Z]', c):
+                res += c
+            else:
+                res += self.i2a(self.a2i(c) - self.a2i(self.key[j]))
                 i += 1
         return res
