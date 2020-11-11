@@ -41,3 +41,12 @@ class TemperatureConverterTest(unittest.TestCase):
         cm = converter.convert(LengthType.centimeter)
         self.assertEqual(cm, 10*100)
 
+    def test_can_convert_1_meter_to_millimeter(self):
+        converter = LengthConverter(1, LengthType.meter)
+        mm = converter.convert(LengthType.millimeter)
+        self.assertEqual(mm, 1*1000)
+
+    def test_can_convert_1000_millimeter_to_meter(self):
+        converter = LengthConverter(1000, LengthType.millimeter)
+        m = converter.convert(LengthType.meter)
+        self.assertEqual(m, 1)

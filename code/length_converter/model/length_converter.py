@@ -11,6 +11,7 @@ class LengthConverter:
         self.__length_type_coefficients = {
             LengthType.meter: 1,
             LengthType.centimeter: 100,
+            LengthType.millimeter: 1000
         }
 
     def __convert_self_to_meter(self):
@@ -23,3 +24,4 @@ class LengthConverter:
 class LengthType(Enum):
     meter = 0
     centimeter = 1
+    millimeter = 2
