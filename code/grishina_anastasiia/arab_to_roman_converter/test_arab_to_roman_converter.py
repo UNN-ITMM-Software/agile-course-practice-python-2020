@@ -19,3 +19,7 @@ class ArabToRomanConverterTest(unittest.TestCase):
     def test_convert_arab_five_to_roman(self):
         converter = ArabToRomanConverter(5)
         self.assertEqual(converter.convert_arab_to_roman_number(), 'V')
+
+    def test_convert_arab_ten_to_roman(self):
+        converter = ArabToRomanConverter(10)
+        self.assertEqual(converter.convert_arab_to_roman_number(), 'X')
