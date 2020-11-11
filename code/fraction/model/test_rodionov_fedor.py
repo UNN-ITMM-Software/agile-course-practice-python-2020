@@ -8,7 +8,7 @@ class TestFraction(unittest.TestCase):
         fraction = Fraction(3, 6)
         self.assertTrue(fraction.is_equal(1, 2))
 
-    def test_sum_fraction(self):
+    def test_sum_fractions(self):
         first_fraction = Fraction(3, 5)
         second_fraction = Fraction(1, 3)
         result = first_fraction + second_fraction
