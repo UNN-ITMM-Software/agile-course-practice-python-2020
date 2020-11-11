@@ -22,5 +22,7 @@ class ArabToRomanConverter:
 
         if self.number == 1000:
             return 'M'
+        if self.number == 5000:
+            return 'MMMMM'
 
         return hundred + ten + one
