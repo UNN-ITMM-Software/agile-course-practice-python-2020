@@ -13,7 +13,8 @@ class LengthConverter:
             LengthType.centimeter: 100.0,
             LengthType.millimeter: 1000.0,
             LengthType.kilometer: 0.001,
-            LengthType.mile: 0.00062137
+            LengthType.mile: 0.0006213712,
+            LengthType.inch: 39.3701
         }
 
     def __convert_self_to_meter(self):
@@ -29,3 +30,4 @@ class LengthType(Enum):
     millimeter = 2
     kilometer = 3
     mile = 4
+    inch = 5

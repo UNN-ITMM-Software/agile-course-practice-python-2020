@@ -64,10 +64,19 @@ class TemperatureConverterTest(unittest.TestCase):
     def test_can_convert_1000000_centimeter_to_mile(self):
         converter = LengthConverter(1000000.0, LengthType.centimeter)
         mile = converter.convert(LengthType.mile)
-        self.assertAlmostEqual(mile, 6.2137)
+        self.assertAlmostEqual(mile, 6.213712)
 
     def test_can_convert_1_mile_to_meter(self):
-        converter = LengthConverter(6.2137, LengthType.mile)
+        converter = LengthConverter(6.213712, LengthType.mile)
         m = converter.convert(LengthType.meter)
         self.assertAlmostEqual(m, 10000.0)
 
+    def test_can_convert_half_meter_to_inch(self):
+        converter = LengthConverter(0.5, LengthType.meter)
+        inch = converter.convert(LengthType.inch)
+        self.assertAlmostEqual(inch, 19.685, delta=0.001)
+
+    def test_can_convert_100_inch_to_kilometer(self):
+        converter = LengthConverter(100.0, LengthType.inch)
+        km = converter.convert(LengthType.kilometer)
+        self.assertAlmostEqual(km, 0.00254)
