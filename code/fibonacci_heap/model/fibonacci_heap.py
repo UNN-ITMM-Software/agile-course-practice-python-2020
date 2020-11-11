@@ -128,7 +128,6 @@ class FibonacciHeap(Heap):
     Implementation of FibonacciHeap
     Source info: https://en.wikipedia.org/wiki/Fibonacci_heap
     """
-
     def __init__(self):
         self.min = None
         self.no_nodes = 0
@@ -324,10 +323,10 @@ class FibonacciHeap(Heap):
 
         # if a heap is empty
         if heap.min is None:
-            return None
+            heap_min = None
+            return heap_min
         if self.min is None:
             self.min = heap.min
-            return None
 
         # move given heap between min and min.right
         # self.first <-> heap.first <-> ... <-> heap.last   <-> self.last
