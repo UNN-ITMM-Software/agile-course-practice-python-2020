@@ -2,6 +2,7 @@ import unittest
 
 from line_and_plane_intersection.model.intersection import Point3D
 from line_and_plane_intersection.model.intersection import Plane
+from line_and_plane_intersection.model.intersection import Line
 
 
 class TestPoint3D(unittest.TestCase):
@@ -67,3 +68,30 @@ class TestPlane(unittest.TestCase):
         p2 = Point3D(p1)
         p3 = Point3D(1, 0, 1)
         self.assertRaises(ValueError, Plane, p1, p2, p3)
+
+
+class TestLine(unittest.TestCase):
+    def test_can_create_line(self):
+        p1 = Point3D(0, 0, 0)
+        p2 = Point3D(1, 1, 1)
+
+        line = Line(p1, p2)
+
+        self.assertEqual([line.p1, line.p2], [p1, p2])
+
+    def test_can_change_source_data(self):
+        p1 = Point3D(0, 0, 0)
+        p2 = Point3D(1, 1, 1)
+        line = Line(p1, p2)
+
+        p1.x = 99999
+
+        self.assertNotEqual([line.p1, line.p2], [p1, p2])
+
+    def test_cannot_create_line_from_int(self):
+        self.assertRaises(TypeError, Line, 5, 5)
+
+    def test_cannot_create_line_with_similar_points(self):
+        p1 = Point3D(0, 0, 0)
+        p2 = Point3D(p1)
+        self.assertRaises(ValueError, Line, p1, p2)

@@ -49,7 +49,13 @@ class Plane:
 
 
 class Line:
-    pass
+    def __init__(self, p1: Point3D, p2: Point3D) -> None:
+        if not isinstance(p1, Point3D) or not isinstance(p2, Point3D):
+            raise TypeError('Line::init - Incorrect argument type. Line is defined by two Point3D')
+        if p1 == p2:
+            raise ValueError('Line::init - Incorrect value. Line is defined by two different points')
+        self.p1 = deepcopy(p1)
+        self.p2 = deepcopy(p2)
 
 
 class Intersection:
