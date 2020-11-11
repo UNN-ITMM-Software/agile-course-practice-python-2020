@@ -33,3 +33,5 @@ class ArabToRomanConverter:
     def convert_roman_to_arab_number(self):
         if self.number == 'I':
             return 1
+        elif self.number == 'V':
+            return 5
