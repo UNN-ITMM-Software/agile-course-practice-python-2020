@@ -63,6 +63,12 @@ class TestGameOfLifeClass(unittest.TestCase):
         result = game_of_life.counting_neighbors(field, 3, 7)
         self.assertTrue(result == 3)
 
+    def test_convert_to_string_2x2_all_points_are_dead(self):
+        converter = GameOfLife()
+        field_test = [[0 for i in range(2)] for j in range(2)]
+        result = converter.convert_to_string(field_test)
+        self.assertTrue(result == "..\n..")
+
 
 class TestGameOfLifeParserClass(unittest.TestCase):
     def test_can_create_parser(self):

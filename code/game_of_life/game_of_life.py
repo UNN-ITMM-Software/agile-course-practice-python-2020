@@ -43,6 +43,17 @@ class GameOfLife(object):
             count -= 1
         return count
 
+    def convert_to_string(self, current_field):
+        height_field = len(current_field)
+        width_field = len(current_field[0])
+        string = ""
+        for i in range(width_field):
+            for j in range(height_field):
+                string += "."
+            if i != width_field-1:
+                string += "\n"
+        return string
+
 
 class GameOfLifeParser(object):
     def parse(self, string):
