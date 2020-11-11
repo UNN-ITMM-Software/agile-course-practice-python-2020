@@ -4,6 +4,8 @@ from enum import Enum
 class LengthConverter:
 
     def __init__(self, value, length_type):
+        if value < 0:
+            raise ValueError
         self.value = value
         self.length_type = length_type
         self.__length_type_coefficients = {
