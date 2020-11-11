@@ -29,3 +29,7 @@ class ArabToRomanConverter:
         thousand = get_thousand_of_number(int(self.number / 1000) % 10)
 
         return thousand + hundred + ten + one
+
+    def convert_roman_to_arab_number(self):
+        if self.number == 'I':
+            return 1
