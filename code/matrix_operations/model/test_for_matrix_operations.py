@@ -6,6 +6,11 @@ from matrix.model.matrix import Matrix, MatrixError
 
 class TestMatrixOperationsClass(unittest.TestCase):
 
+    def test_can_create_matrix(self):
+        test_matrix = MatrixOperations(2, 2);
+        test_matrix.data_lines = [[1, 1], [0, 1]]
+        self.assertTrue(test_matrix.data_lines[0][1] == 1 and test_matrix.cols == 2)
+
     def test_check_constructor(self):
         test_matrix = Matrix.make_from_list([[1, 1]])
         self.assertTrue(test_matrix.cols == 2 and test_matrix.rows == 1 and test_matrix.data_lines[0][0] ==
