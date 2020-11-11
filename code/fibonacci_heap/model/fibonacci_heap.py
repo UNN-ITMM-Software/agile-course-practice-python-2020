@@ -36,7 +36,7 @@ class Heap:
         """
 
     @abstractmethod
-    def delete(self, node: '_Node'):
+    def delete(self, node: 'HeapNode'):
         """
         Delete the given node.
         Amortized time complexity: O(log n)
@@ -164,7 +164,7 @@ class FibonacciHeap(Heap):
         self.no_nodes += 1
         return n
 
-    def delete(self, node: '_Node'):
+    def delete(self, node: '_Node') -> None:
         """
         Delete of the given node
         Amortized time complexity: O(log n)
@@ -207,7 +207,7 @@ class FibonacciHeap(Heap):
             self.no_nodes -= 1
         return prev_min
 
-    def _consolidate(self):
+    def _consolidate(self) -> None:
         """
         Make the degrees of root elements unique, fibonacci sequence
         """
@@ -231,7 +231,7 @@ class FibonacciHeap(Heap):
 
         self._update_root_min()
 
-    def _update_root_min(self):
+    def _update_root_min(self) -> None:
         """
         Update self.min to lowest value from the root
         """
@@ -275,7 +275,7 @@ class FibonacciHeap(Heap):
 
         return node
 
-    def _cut(self, node: '_Node'):
+    def _cut(self, node: '_Node') -> None:
         """
         Move the node root level
         :param node: heap node
@@ -297,7 +297,7 @@ class FibonacciHeap(Heap):
         if node.key < self.min.key:
             self.min = node
 
-    def _cascading_cut(self, node: '_Node'):
+    def _cascading_cut(self, node: '_Node') -> None:
         """
         Reorganize the heap to keep it in optimal form
 
@@ -312,7 +312,7 @@ class FibonacciHeap(Heap):
             else:
                 parent.flag = True
 
-    def merge(self, heap: 'FibonacciHeap'):
+    def merge(self, heap: 'FibonacciHeap') -> None:
         """
         Merge another heap into this heap.
         Amortized time complexity: O(1)
@@ -324,10 +324,10 @@ class FibonacciHeap(Heap):
 
         # if a heap is empty
         if heap.min is None:
-            return
+            return None
         if self.min is None:
             self.min = heap.min
-            return
+            return None
 
         # move given heap between min and min.right
         # self.first <-> heap.first <-> ... <-> heap.last   <-> self.last
@@ -346,7 +346,7 @@ class FibonacciHeap(Heap):
         if heap.min.key < self.min.key:
             self.min = heap.min
 
-    def _add_node_left(self, node: '_Node', right_node: '_Node'):
+    def _add_node_left(self, node: '_Node', right_node: '_Node') -> None:
         """
         Add node to left side of the given right_node
 
@@ -359,7 +359,7 @@ class FibonacciHeap(Heap):
         right_node.left.right = node
         right_node.left = node
 
-    def _add_root(self, node: '_Node'):
+    def _add_root(self, node: '_Node') -> None:
         """
         Add node to left side of the given right_node
 
@@ -370,7 +370,7 @@ class FibonacciHeap(Heap):
         if node.key < self.min.key:
             self.min = node
 
-    def _add_child(self, child: '_Node', parent: '_Node'):
+    def _add_child(self, child: '_Node', parent: '_Node') -> None:
         """
         Add node as child to another node
         :param child: child node

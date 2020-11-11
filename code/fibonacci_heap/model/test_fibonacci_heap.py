@@ -140,7 +140,3 @@ class TestHeaps(unittest.TestCase):
 
     def test_heap_merge(self):
         self._merge_test(FibonacciHeap)
-
-
-if __name__ == "__main__":
-    unittest.main()
