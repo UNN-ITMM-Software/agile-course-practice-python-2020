@@ -8,3 +8,5 @@ class ArabToRomanConverter:
             return 'I'
         elif self.number == 2:
             return 'II'
+        elif self.number == 5:
+            return 'V'
