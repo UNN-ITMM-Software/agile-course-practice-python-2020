@@ -17,7 +17,7 @@ class GameOfLife(object):
                 else:
                     if current_neighbors == 3:
                         field[i][j] = 1
-        return field
+        return self.convert_to_string(field)
 
     def counting_neighbors(self, current_field, y, x):
         count = 0
