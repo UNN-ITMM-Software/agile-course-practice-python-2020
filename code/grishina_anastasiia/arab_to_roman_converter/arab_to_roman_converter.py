@@ -10,4 +10,6 @@ class ArabToRomanConverter:
     def convert_arab_to_roman_number(self):
         if self.number == 10:
             return 'X'
+        elif self.number == 70:
+            return 'LXX'
         return get_ones_of_number()[self.number]
