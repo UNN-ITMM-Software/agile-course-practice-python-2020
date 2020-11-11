@@ -6,18 +6,19 @@ class GameOfLife(object):
         field = parser.parse(string)
         height_field = len(field)
         width_field = len(field[0])
+        next_field = [[0 for i in range(width_field)] for j in range(height_field)]
         for i in range(height_field):
             for j in range(width_field):
                 current_neighbors = self.counting_neighbors(field, i, j)
                 if field[i][j]:
                     if current_neighbors == 2 or current_neighbors == 3:
-                        field[i][j] = 1
+                        next_field[i][j] = 1
                     else:
-                        field[i][j] = 0
+                        next_field[i][j] = 0
                 else:
                     if current_neighbors == 3:
-                        field[i][j] = 1
-        return self.convert_to_string(field)
+                        next_field[i][j] = 1
+        return self.convert_to_string(next_field)
 
     def counting_neighbors(self, current_field, y, x):
         count = 0

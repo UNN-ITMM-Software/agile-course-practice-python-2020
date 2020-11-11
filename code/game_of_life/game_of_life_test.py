@@ -46,6 +46,12 @@ class TestGameOfLifeClass(unittest.TestCase):
         field_test = "........\n...**...\n...**...\n........"
         self.assertTrue(result == field_test)
 
+    def test_add_4x8_line(self):
+        strcalc = GameOfLife()
+        result = strcalc.add("........\n...***..\n........\n........")
+        field_test = "....*...\n....*...\n....*...\n........"
+        self.assertTrue(result == field_test)
+
     def test_counting_neighbors_0(self):
         parser = GameOfLifeParser()
         game_of_life = GameOfLife()
