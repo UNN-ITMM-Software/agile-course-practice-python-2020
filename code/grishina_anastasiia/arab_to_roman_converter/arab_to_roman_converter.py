@@ -12,6 +12,9 @@ class ArabToRomanConverter:
         self.number = number
 
     def convert_arab_to_roman_number(self):
+        if self.number == 100:
+            return 'C'
+
         one = get_ones_of_number()[self.number % 10]
         ten = get_tens_of_number()[int(self.number / 10) % 10]
         return ten + one
