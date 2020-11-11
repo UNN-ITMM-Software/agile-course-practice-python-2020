@@ -35,3 +35,5 @@ class ArabToRomanConverter:
             return 1
         elif self.number == 'V':
             return 5
+        elif self.number == 'IV':
+            return 4
