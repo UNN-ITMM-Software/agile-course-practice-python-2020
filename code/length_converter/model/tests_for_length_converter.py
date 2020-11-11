@@ -31,3 +31,13 @@ class TemperatureConverterTest(unittest.TestCase):
     def test_can_create_negative_converter(self):
         with self.assertRaises(ValueError):
             LengthConverter(-1.0, LengthType.meter)
+
+    def test_can_create_converter_from_string(self):
+        converter = LengthConverter("1.0", LengthType.meter)
+        self.assertTrue(isinstance(converter, LengthConverter))
+
+    def test_can_convert_10_meter_to_centimeter_from_string(self):
+        converter = LengthConverter("10.0", LengthType.meter)
+        cm = converter.convert(LengthType.centimeter)
+        self.assertEqual(cm, 10*100)
+
