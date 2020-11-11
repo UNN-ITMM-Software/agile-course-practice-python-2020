@@ -76,6 +76,37 @@ class TestGameOfLifeClass(unittest.TestCase):
         result = converter.convert_to_string(field_test)
         self.assertTrue(result == "*.\n..")
 
+    def test_convert_to_string_2x2_second_point_live(self):
+        converter = GameOfLife()
+        field_test = [[0 for i in range(2)] for j in range(2)]
+        field_test[0][1] = 1
+        result = converter.convert_to_string(field_test)
+        self.assertTrue(result == ".*\n..")
+
+    def test_convert_to_string_2x2_two_points_second_column_live(self):
+        converter = GameOfLife()
+        field_test = [[0 for i in range(2)] for j in range(2)]
+        field_test[0][1] = 1
+        field_test[1][1] = 1
+        result = converter.convert_to_string(field_test)
+        self.assertTrue(result == ".*\n.*")
+
+    def test_convert_to_string_4x4_last_point_live(self):
+        converter = GameOfLife()
+        field_test = [[0 for i in range(4)] for j in range(4)]
+        field_test[3][3] = 1
+        result = converter.convert_to_string(field_test)
+        self.assertTrue(result == "....\n....\n....\n...*")
+
+    def test_convert_to_string_4x8_general_example(self):
+        converter = GameOfLife()
+        field_test = [[0 for i in range(8)] for j in range(4)]
+        field_test[1][4] = 1
+        field_test[2][3] = 1
+        field_test[2][4] = 1
+        result = converter.convert_to_string(field_test)
+        self.assertTrue(result == "........\n....*...\n...**...\n........")
+
 
 class TestGameOfLifeParserClass(unittest.TestCase):
     def test_can_create_parser(self):
