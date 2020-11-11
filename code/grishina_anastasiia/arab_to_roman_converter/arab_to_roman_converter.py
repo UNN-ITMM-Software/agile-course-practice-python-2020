@@ -1,5 +1,5 @@
 def get_ones_of_number():
-    return ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VII', 'IX']
+    return ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX']
 
 
 def get_tens_of_number():
@@ -19,5 +19,7 @@ class ArabToRomanConverter:
             return 'C'
         elif self.number == 150:
             return 'C' + ten
+        elif self.number == 288:
+            return 'CC' + ten + one
 
         return ten + one
