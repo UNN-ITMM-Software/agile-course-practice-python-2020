@@ -39,6 +39,16 @@ class TestPoint3D(unittest.TestCase):
         p2 = Point3D(p1)
         self.assertTrue(p1 == p2)
 
+    def test_can_sub_point_one(self):
+        p1 = Point3D(1, -47, 23)
+        p2 = Point3D(-43, 27, 12)
+        self.assertEqual(p1 - p2, Point3D(44, -74, 11))
+
+    def test_can_sub_point_two(self):
+        p1 = Point3D(1, -47, 23)
+        p2 = Point3D(-43, 27, 12)
+        self.assertEqual(p2 - p1, Point3D(-44, 74, -11))
+
 
 class TestPlane(unittest.TestCase):
     def test_can_create_plane(self):
@@ -95,3 +105,38 @@ class TestLine(unittest.TestCase):
         p1 = Point3D(0, 0, 0)
         p2 = Point3D(p1)
         self.assertRaises(ValueError, Line, p1, p2)
+
+    def test_point_on_line_one(self):
+        line = Line(Point3D(2, -3, 6), Point3D(4, -3, -10))
+        point = Point3D(2, -3, 6)
+        self.assertTrue(line.point_on_line(point))
+
+    def test_point_on_line_two(self):
+        line = Line(Point3D(2, -3, 6), Point3D(4, -3, -10))
+        point = Point3D(2, -2, 6)
+        self.assertFalse(line.point_on_line(point))
+
+    def test_point_on_line_three(self):
+        line = Line(Point3D(2, -3, 6), Point3D(4, -3, 6))
+        point = Point3D(2, -3, 6)
+        self.assertTrue(line.point_on_line(point))
+
+    def test_point_on_line_four(self):
+        line = Line(Point3D(4, -3, 6), Point3D(4, -3, -10))
+        point = Point3D(4, -3, 6)
+        self.assertTrue(line.point_on_line(point))
+
+    def test_point_on_line_five(self):
+        line = Line(Point3D(4, -3, 6), Point3D(4, -3, -10))
+        point = Point3D(5, -3, 6)
+        self.assertFalse(line.point_on_line(point))
+
+    def test_point_on_line_six(self):
+        line = Line(Point3D(2, -3, 6), Point3D(4, -3, 6))
+        point = Point3D(2, -3, 7)
+        self.assertFalse(line.point_on_line(point))
+
+    def test_point_on_line_seven(self):
+        line = Line(Point3D(-2, 0, 3), Point3D(2, 1, -2))
+        point = Point3D(2, 1, -2)
+        self.assertTrue(line.point_on_line(point))

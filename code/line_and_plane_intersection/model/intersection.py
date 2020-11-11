@@ -29,6 +29,9 @@ class Point3D:
     def __eq__(self, other):
         return self.x == other.x and self.y == other.y and self.z == other.z
 
+    def __sub__(self, other):
+        return Point3D(self.x - other.x, self.y - other.y, self.z - other.z)
+
     def __make_point(self, xyz: Tuple[float, float, float]) -> None:
         if len(xyz) != 3:
             raise ValueError('Point3D::__make_point - Point must be in 3D space')
@@ -47,6 +50,9 @@ class Plane:
         self.p2 = deepcopy(p2)
         self.p3 = deepcopy(p3)
 
+    def __canonical_view(self):
+        pass
+
 
 class Line:
     def __init__(self, p1: Point3D, p2: Point3D) -> None:
@@ -56,6 +62,22 @@ class Line:
             raise ValueError('Line::init - Incorrect value. Line is defined by two different points')
         self.p1 = deepcopy(p1)
         self.p2 = deepcopy(p2)
+        self.direction = self.__direction()
+
+    def point_on_line(self, p: Point3D) -> bool:
+        if self.direction.x == 0 and p.x != self.p1.x:
+            return False
+        if self.direction.y == 0 and p.y != self.p1.y:
+            return False
+        if self.direction.z == 0 and p.z != self.p1.z:
+            return False
+        first_fraction = (p.x - self.p1.x) / self.direction.x if self.direction.x != 0 else 0
+        second_fraction = (p.y - self.p1.y) / self.direction.y if self.direction.y != 0 else 0
+        third_fraction = (p.z - self.p1.z) / self.direction.z if self.direction.z != 0 else 0
+        return (first_fraction == second_fraction) and (second_fraction == third_fraction)
+
+    def __direction(self) -> Point3D:
+        return self.p2 - self.p1
 
 
 class Intersection:
