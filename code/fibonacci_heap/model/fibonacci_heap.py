@@ -322,11 +322,8 @@ class FibonacciHeap(Heap):
         assert isinstance(heap, FibonacciHeap)
 
         # if a heap is empty
-        if heap.min is None:
-            heap_min = None
-            return heap_min
-        if self.min is None:
-            self.min = heap.min
+        if not self.min or not heap.min:
+            self.min = heap.min or None
 
         # move given heap between min and min.right
         # self.first <-> heap.first <-> ... <-> heap.last   <-> self.last
