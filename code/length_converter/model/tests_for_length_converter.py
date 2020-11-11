@@ -12,3 +12,9 @@ class TemperatureConverterTest(unittest.TestCase):
         converter = LengthConverter(0, LengthType.meter)
         meter = converter.convert(LengthType.meter)
         self.assertEqual(meter, 0)
+
+    def test_can_convert_1000_meter_to_meter(self):
+        converter = LengthConverter(1000, LengthType.meter)
+        meter = converter.convert(LengthType.meter)
+        self.assertEqual(meter, 1000)
+

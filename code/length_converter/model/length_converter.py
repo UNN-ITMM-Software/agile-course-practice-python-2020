@@ -8,7 +8,8 @@ class LengthConverter:
         self.length_type = length_type
 
     def convert(self, to_length_type):
-        return 0
+        if self.length_type == to_length_type:
+            return self.value
 
 
 class LengthType(Enum):
