@@ -19,7 +19,7 @@ class TestAmountOfMarks(unittest.TestCase):
 
 class TestCorrectInputValue(unittest.TestCase):
     def test_marks_return_error_message_if_arguments_str(self):
-        self.assertRaises(ValueError, Register.is_correct, ['two', 'three', 'four', 'five'])
+        self.assertRaises(TypeError, Register.is_correct, ['two', 'three', 'four', 'five'])
 
     def test_marks_return_error_message_if_arguments_negative(self):
         self.assertRaises(ValueError, Register.is_correct, [-2, 3, -4, 5])
@@ -29,6 +29,20 @@ class TestCorrectInputValue(unittest.TestCase):
 
     def test_marks_return_error_message_if_arguments_greater_5(self):
         self.assertRaises(ValueError, Register.is_correct, [4, 3, 7, 5])
+
+
+class TestAverageMark(unittest.TestCase):
+    def test_correct_average_mark(self):
+        result = Register([2, 3]).average()
+        self.assertEqual(2.5, result)
+
+    def test_average_mark_not_negative(self):
+        result = Register([2, 3]).average()
+        self.assertGreaterEqual(result, 0)
+
+    def test_average_mark_not_string(self):
+        result = Register([2, 3]).average()
+        self.assertNotIsInstance(result, str)
 
 
 if __name__ == '__main__':
