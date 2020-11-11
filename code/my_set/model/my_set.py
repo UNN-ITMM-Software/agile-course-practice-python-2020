@@ -51,11 +51,9 @@ class Set:
             del self.my_set[position]
 
     def union(self, obj):
-        if isinstance(obj, list):
+        if isinstance(obj, (list, Set)):
             for element in obj:
                 self.add(element)
-        elif isinstance(obj, Set):
-            self.union(obj.my_set)
         elif isinstance(obj, int):
             self.add(obj)
         else:
