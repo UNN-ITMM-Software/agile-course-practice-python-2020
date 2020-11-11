@@ -1,11 +1,11 @@
-class MySet:
+class Set:
     # The class sets (integer set) using lists
     def __init__(self, elements=None):
         self.my_set = list()
-        if isinstance(elements, list):
-            self.my_set = elements
-        elif elements is None:
+        if elements is None:
             pass
+        elif isinstance(elements, list):
+            self.my_set = elements
         elif isinstance(elements, int):
             self.my_set.append(elements)
         else:
@@ -29,7 +29,7 @@ class MySet:
     def __eq__(self, obj):
         if isinstance(obj, list):
             return self.my_set == obj
-        elif isinstance(obj, MySet):
+        elif isinstance(obj, Set):
             return self.my_set == obj.my_set
         elif isinstance(obj, int):
             if (self.get_size() != 1):
@@ -54,7 +54,7 @@ class MySet:
         if isinstance(obj, list):
             for element in obj:
                 self.add(element)
-        elif isinstance(obj, MySet):
+        elif isinstance(obj, Set):
             self.union(obj.my_set)
         elif isinstance(obj, int):
             self.add(obj)
@@ -63,8 +63,8 @@ class MySet:
         return self
 
     def intersection(self, obj):
-        if isinstance(obj, MySet):
-            result = MySet()
+        if isinstance(obj, Set):
+            result = Set()
             for element in self:
                 if element in obj:
                     result.add(element)
@@ -73,8 +73,8 @@ class MySet:
             raise TypeError('Input error: argument type for operations on sets must be only set')
 
     def difference(self, obj):
-        if isinstance(obj, MySet):
-            result = MySet()
+        if isinstance(obj, Set):
+            result = Set()
             for element in self:
                 if element not in obj:
                     result.add(element)
@@ -82,8 +82,8 @@ class MySet:
         else:
             raise TypeError('Input error: argument type for operations on sets must be only set')
 
-    def issubset(self, obj):
-        if isinstance(obj, MySet):
+    def is_subset(self, obj):
+        if isinstance(obj, Set):
             for element in self:
                 if element not in obj:
                     return False
