@@ -10,6 +10,13 @@ def get_hundreds_of_number():
     return ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"]
 
 
+def get_thousand_of_number(count):
+    res = ''
+    for num in range(count):
+        res += 'M'
+    return res
+
+
 class ArabToRomanConverter:
 
     def __init__(self, number):
@@ -19,10 +26,6 @@ class ArabToRomanConverter:
         one = get_ones_of_number()[self.number % 10]
         ten = get_tens_of_number()[int(self.number / 10) % 10]
         hundred = get_hundreds_of_number()[int(self.number / 100) % 10]
+        thousand = get_thousand_of_number(int(self.number / 1000) % 10)
 
-        if self.number == 1000:
-            return 'M'
-        if self.number == 5000:
-            return 'MMMMM'
-
-        return hundred + ten + one
+        return thousand + hundred + ten + one
