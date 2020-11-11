@@ -42,6 +42,7 @@ class Store:
         value of dict -- book amount
         """
         self._validate(to_buy_books)
+        to_buy_books = {k: v for k, v in sorted(to_buy_books.items(), key=lambda item: item[1])}
         discounts = [self._discount_wrapper(5, 0.25), self._discount_wrapper(4, 0.2),
                      self._discount_wrapper(3, 0.1), self._discount_wrapper(2, 0.05)]
         min_price = self.book_price * sum(to_buy_books.values())
