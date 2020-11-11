@@ -1,3 +1,5 @@
+import numpy as np
+
 from typing import Tuple
 from copy import deepcopy
 
@@ -53,6 +55,13 @@ class Plane:
         self.p3 = deepcopy(p3)
         self.abcd = self.__canonical_view()
 
+    def point_on_plane(self, p: Point3D) -> bool:
+        a, b, c, d = self.abcd
+        return a * p.x + b * p.y + c * p.z + d == 0
+
+    def get_describe(self) -> Tuple[float, float, float, float]:
+        return self.abcd
+
     def __canonical_view(self) -> Tuple[float, float, float, float]:
         v = self.p2 - self.p1
         w = self.p3 - self.p1
@@ -84,9 +93,25 @@ class Line:
         third_fraction = (p.z - self.p1.z) / self.direction.z if self.direction.z != 0 else 0
         return (first_fraction == second_fraction) and (second_fraction == third_fraction)
 
+    def get_describe(self) -> Tuple[Point3D, Point3D]:
+        return self.p1, self.direction
+
     def __direction(self) -> Point3D:
         return self.p2 - self.p1
 
 
 class Intersection:
-    pass
+    @staticmethod
+    def have_intersection(line: Line, plane: Plane) -> bool:
+        line_point, line_direction = line.get_describe()
+        plane_abcd = plane.get_describe()
+        plane_normal = plane_abcd[:3]
+        is_parallel = np.dot(line_direction.to_tuple(), plane_normal) == 0
+
+        if not is_parallel:
+            return True
+        else:
+            if plane.point_on_plane(line_point):
+                return True
+            else:
+                return False

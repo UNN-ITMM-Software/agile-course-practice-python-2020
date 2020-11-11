@@ -3,6 +3,7 @@ import unittest
 from line_and_plane_intersection.model.intersection import Point3D
 from line_and_plane_intersection.model.intersection import Plane
 from line_and_plane_intersection.model.intersection import Line
+from line_and_plane_intersection.model.intersection import Intersection
 
 
 class TestPoint3D(unittest.TestCase):
@@ -94,6 +95,29 @@ class TestPlane(unittest.TestCase):
 
         self.assertEqual(plane.abcd, (5, -1, 3, -7))
 
+    def test_point_on_plane_one(self):
+        p1 = Point3D(1, -2, 0)
+        p2 = Point3D(2, 0, -1)
+        p3 = Point3D(0, -1, 2)
+        plane = Plane(p1, p2, p3)
+        self.assertTrue(plane.point_on_plane(Point3D(1, -2, 0)))
+
+    def test_point_on_plane_two(self):
+        p1 = Point3D(1, -2, 0)
+        p2 = Point3D(2, 0, -1)
+        p3 = Point3D(0, -1, 2)
+        plane = Plane(p1, p2, p3)
+        self.assertFalse(plane.point_on_plane(Point3D(1, -2, 99999)))
+
+    def test_can_get_describe(self):
+        p1 = Point3D(1, -2, 0)
+        p2 = Point3D(2, 0, -1)
+        p3 = Point3D(0, -1, 2)
+        plane = Plane(p1, p2, p3)
+
+        describe = plane.get_describe()
+
+        self.assertEqual(describe, (5, -1, 3, -7))
 
 
 class TestLine(unittest.TestCase):
@@ -156,3 +180,32 @@ class TestLine(unittest.TestCase):
         line = Line(Point3D(-2, 0, 3), Point3D(2, 1, -2))
         point = Point3D(2, 1, -2)
         self.assertTrue(line.point_on_line(point))
+
+    def test_can_get_describe(self):
+        p1 = Point3D(-2, 0, 3)
+        p2 = Point3D(2, 1, -2)
+        line = Line(p1, p2)
+
+        describe = line.get_describe()
+
+        self.assertEqual(describe, (Point3D(-2, 0, 3), Point3D(4, 1, -5)))
+
+
+class TestIntersection(unittest.TestCase):
+    def test_intersection_one(self):
+        line = Line(Point3D(0, 5, -1), Point3D(3, 3, 3))
+        plane = Plane(Point3D(1, 12, 1), Point3D(1, 1, 1), Point3D(1, 13, 1))
+        plane.abcd = (2, -3, -3, 12)    # dirty hack i know
+        self.assertTrue(Intersection.have_intersection(line, plane))
+
+    def test_intersection_two(self):
+        line = Line(Point3D(-2, 3, -1), Point3D(-1, 6, 1))
+        plane = Plane(Point3D(1, 12, 1), Point3D(1, 1, 1), Point3D(1, 13, 1))
+        plane.abcd = (0, 2, -1, -11)    # dirty hack i know
+        self.assertTrue(Intersection.have_intersection(line, plane))
+
+    def test_intersection_three(self):
+        line = Line(Point3D(1, 5, -1), Point3D(4, 3, 3))
+        plane = Plane(Point3D(1, 12, 1), Point3D(1, 1, 1), Point3D(1, 13, 1))
+        plane.abcd = (2, -3, -3, 12)    # dirty hack i know
+        self.assertFalse(Intersection.have_intersection(line, plane))
