@@ -69,6 +69,13 @@ class TestGameOfLifeClass(unittest.TestCase):
         result = converter.convert_to_string(field_test)
         self.assertTrue(result == "..\n..")
 
+    def test_convert_to_string_2x2_first_point_live(self):
+        converter = GameOfLife()
+        field_test = [[0 for i in range(2)] for j in range(2)]
+        field_test[0][0] = 1
+        result = converter.convert_to_string(field_test)
+        self.assertTrue(result == "*.\n..")
+
 
 class TestGameOfLifeParserClass(unittest.TestCase):
     def test_can_create_parser(self):

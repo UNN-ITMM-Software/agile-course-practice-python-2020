@@ -49,7 +49,10 @@ class GameOfLife(object):
         string = ""
         for i in range(width_field):
             for j in range(height_field):
-                string += "."
+                if current_field[i][j]:
+                    string += "*"
+                else:
+                    string += "."
             if i != width_field-1:
                 string += "\n"
         return string
