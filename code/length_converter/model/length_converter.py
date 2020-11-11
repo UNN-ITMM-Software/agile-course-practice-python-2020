@@ -4,14 +4,14 @@ from enum import Enum
 class LengthConverter:
 
     def __init__(self, value, length_type):
-        if float(value) < 0:
+        if float(value) < 0.0:
             raise ValueError
         self.value = float(value)
         self.length_type = length_type
         self.__length_type_coefficients = {
-            LengthType.meter: 1,
-            LengthType.centimeter: 100,
-            LengthType.millimeter: 1000,
+            LengthType.meter: 1.0,
+            LengthType.centimeter: 100.0,
+            LengthType.millimeter: 1000.0,
             LengthType.kilometer: 0.001
         }
 
