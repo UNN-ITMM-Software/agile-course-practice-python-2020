@@ -6,3 +6,5 @@ class ArabToRomanConverter:
     def convert_arab_to_roman_number(self):
         if self.number == 1:
             return 'I'
+        elif self.number == 2:
+            return 'II'
