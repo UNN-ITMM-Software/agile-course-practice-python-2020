@@ -38,7 +38,6 @@ class MySet:
                 return self.my_set[0] == obj
         else:
             raise TypeError('Input error: argument type must be list or int or another set')
-        return self
 
     def add(self, element):
         if element not in self.my_set:
