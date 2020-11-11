@@ -18,6 +18,14 @@ class TestSetClass(unittest.TestCase):
         test_set = MySet(test_list_of_elements)
         self.assertEqual(test_set.get_size(), 5)
 
+    def test_can_init_with_default_constructor_one_elem_set(self):
+        test_set = MySet(5)
+        self.assertEqual(test_set.get_size(), 1)
+
+    def test_cant_init_with_default_constructor_invalide_arg(self):
+        with self.assertRaises(TypeError):
+            MySet("invalide argument")
+
     def test_set_with_size_0_is_empty(self):
         test_set = MySet()
         result = test_set.is_empty()
@@ -39,78 +47,6 @@ class TestSetClass(unittest.TestCase):
         element = 7
         result = element in test_set
         self.assertFalse(result)
-
-    def test_can_add_new_element(self):
-        test_set = MySet([1, 2, 4, 5])
-        element = 7
-        test_set.add(element)
-        self.assertTrue(element in test_set)
-
-    def test_dont_add_ununic_element(self):
-        test_set = MySet([1, 2, 4, 5])
-        element = 2
-        test_set.add(element)
-        self.assertEqual(test_set.get_size(), 4)
-
-    def test_can_delete_element(self):
-        test_set = MySet([1, 2, 4, 5])
-        element = 1
-        test_set.delete(element)
-        self.assertFalse(element in test_set)
-
-    def test_after_delete_size_became_less_on_one(self):
-        test_set = MySet([1, 2, 4, 5])
-        element = 2
-        test_set.delete(element)
-        self.assertEqual(test_set.get_size(), 3)
-
-    def test_can_union_with_list(self):
-        test_set = MySet([1, 2, 4, 5])
-        test_list = [7, 8, 10]
-        test_set.union(test_list)
-        self.assertEqual(test_set.get_size(), 7)
-
-    def test_can_union_with_list_contain_same_elements(self):
-        test_set = MySet([1, 2, 4, 5])
-        test_list = [2, 5, 10]
-        test_set.union(test_list)
-        self.assertEqual(test_set.get_size(), 5)
-
-    def test_can_union_with_set(self):
-        test_set = MySet([1, 2, 4, 5])
-        another_set = MySet([6, 9, 14, 15])
-        test_set.union(another_set)
-        self.assertEqual(test_set.get_size(), 8)
-
-    def test_can_union_with_set_contain_same_elements(self):
-        test_set = MySet([1, 2, 4, 5])
-        another_set = MySet([1, 5, 14, 15])
-        test_set.union(another_set)
-        self.assertEqual(test_set.get_size(), 6)
-
-    def test_can_union_with_one_element(self):
-        test_set = MySet([1, 2, 4, 5])
-        test_set.union(7)
-        self.assertEqual(test_set.get_size(), 5)
-
-    def test_can_init_with_default_constructor_one_elem_set(self):
-        test_set = MySet(5)
-        self.assertEqual(test_set.get_size(), 1)
-
-    def test_cant_init_with_default_constructor_invalide_arg(self):
-        with self.assertRaises(TypeError):
-            MySet("invalide argument")
-
-    def test_cant_delete_uncontain_element(self):
-        test_set = MySet([1, 2, 4, 5])
-        uncontain_element = 7
-        with self.assertRaises(ValueError):
-            test_set.delete(uncontain_element)
-
-    def test_cant_union_with_invalide_argument(self):
-        test_set = MySet([1, 2, 4, 5])
-        with self.assertRaises(TypeError):
-            test_set.union("invalide argument")
 
     def test_can_check_equalities_of_eqvivalent_sets(self):
         test_set_1 = MySet([1, 2, 4, 5])
@@ -146,6 +82,72 @@ class TestSetClass(unittest.TestCase):
         test_set = MySet([1, 2, 4, 5])
         with self.assertRaises(TypeError):
             test_set == "invalide argument"
+
+    def test_can_add_new_element(self):
+        test_set = MySet([1, 2, 4, 5])
+        element = 7
+        test_set.add(element)
+        self.assertTrue(element in test_set)
+
+    def test_dont_add_ununic_element(self):
+        test_set = MySet([1, 2, 4, 5])
+        element = 2
+        test_set.add(element)
+        self.assertEqual(test_set.get_size(), 4)
+
+    def test_can_delete_element(self):
+        test_set = MySet([1, 2, 4, 5])
+        element = 1
+        test_set.delete(element)
+        self.assertFalse(element in test_set)
+
+    def test_after_delete_size_became_less_on_one(self):
+        test_set = MySet([1, 2, 4, 5])
+        element = 2
+        test_set.delete(element)
+        self.assertEqual(test_set.get_size(), 3)
+
+    def test_cant_delete_uncontain_element(self):
+        test_set = MySet([1, 2, 4, 5])
+        uncontain_element = 7
+        with self.assertRaises(ValueError):
+            test_set.delete(uncontain_element)
+
+
+class TestSetOperations(unittest.TestCase):
+    def test_can_union_with_list(self):
+        test_set = MySet([1, 2, 4, 5])
+        test_list = [7, 8, 10]
+        test_set.union(test_list)
+        self.assertEqual(test_set.get_size(), 7)
+
+    def test_can_union_with_list_contain_same_elements(self):
+        test_set = MySet([1, 2, 4, 5])
+        test_list = [2, 5, 10]
+        test_set.union(test_list)
+        self.assertEqual(test_set.get_size(), 5)
+
+    def test_can_union_with_set(self):
+        test_set = MySet([1, 2, 4, 5])
+        another_set = MySet([6, 9, 14, 15])
+        test_set.union(another_set)
+        self.assertEqual(test_set.get_size(), 8)
+
+    def test_can_union_with_set_contain_same_elements(self):
+        test_set = MySet([1, 2, 4, 5])
+        another_set = MySet([1, 5, 14, 15])
+        test_set.union(another_set)
+        self.assertEqual(test_set.get_size(), 6)
+
+    def test_can_union_with_one_element(self):
+        test_set = MySet([1, 2, 4, 5])
+        test_set.union(7)
+        self.assertEqual(test_set.get_size(), 5)
+
+    def test_cant_union_with_invalide_argument(self):
+        test_set = MySet([1, 2, 4, 5])
+        with self.assertRaises(TypeError):
+            test_set.union("invalide argument")
 
     def test_can_find_intersection(self):
         test_set_1 = MySet([1, 2, 4, 5])
