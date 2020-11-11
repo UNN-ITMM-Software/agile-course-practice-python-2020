@@ -1,6 +1,7 @@
 import math
 
 from typing import Union, Any, List
+from abc import abstractmethod
 
 
 class HeapNode:
@@ -17,14 +18,14 @@ class Heap:
     """
     Abstract class of the heap
     """
-
+    @abstractmethod
     def find_min(self):
         """
         Amortized time complexity: O(1)
 
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def insert(self, key: Union[int, float], value: Any = None):
         """
         Insert new item as a node to the heap
@@ -33,8 +34,8 @@ class Heap:
         :param key: Can be called with key (key)
         :param value: can be called by (key, value)
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def delete(self, node: '_Node'):
         """
         Delete the given node.
@@ -42,15 +43,15 @@ class Heap:
 
         :param node: node to delete
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def delete_min(self):
         """
         Delete and returns the minimum node.
         Amortized time complexity: O(log n)
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def decrease_key(self, node: 'HeapNode', new_key: Union[int, float]):
         """
         Decrease the value of the key of the given nodes
@@ -60,8 +61,8 @@ class Heap:
         :param new_key: re-define a new-key of node
         :return: the updated node
         """
-        raise NotImplementedError
 
+    @abstractmethod
     def merge(self, heap: 'Heap'):
         """
         Merge another heap into this heap
@@ -69,7 +70,6 @@ class Heap:
 
         :param heap: heap to merge
         """
-        raise NotImplementedError
 
 
 class _Node(HeapNode):
