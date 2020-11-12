@@ -70,3 +70,9 @@ class BisymmetricMatrix:
         if len(diff_numbs) > size * (size + 1):
             return False
         return True
+
+    def is_bisymmetric(self) -> bool:
+
+        if self.necessary_condition_for_bisymmetric():
+            return self.is_symmetric() and self.is_persymmetric()
+        return False
