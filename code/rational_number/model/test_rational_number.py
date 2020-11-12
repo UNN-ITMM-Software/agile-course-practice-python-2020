@@ -65,3 +65,8 @@ class TestRationalNumberClass(unittest.TestCase):
         number1 = RationalNumber(-2, 5)
         number2 = RationalNumber(3, 4)
         self.assertEquals(number1 * number2, -RationalNumber(3, 10))
+
+    def test_division_rational_numbers(self):
+        number1 = RationalNumber(-2, 5)
+        number2 = RationalNumber(4, 3)
+        self.assertEquals(number1 / number2, -RationalNumber(3, 10))

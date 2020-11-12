@@ -38,3 +38,6 @@ class RationalNumber:
 
     def __mul__(self, other):
         return RationalNumber(self._num*other._num, self._den*other._den)
+
+    def __truediv__(self, other):
+        return RationalNumber(self._num*other._den, self._den*other._num)
