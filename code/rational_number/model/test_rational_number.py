@@ -36,9 +36,13 @@ class TestRationalNumberClass(unittest.TestCase):
         self.assertNotEquals(number, RationalNumber(1, 2))
         self.assertNotEquals(number, RationalNumber(-1, 3))
 
-    def test_str_rational_number(self):
+    def test_str_rational_number1(self):
         number = RationalNumber(3, -4)
         self.assertEquals(str(number), '-3/4')
+
+    def test_str_rational_number2(self):
+        number = RationalNumber(-5, 5)
+        self.assertEquals(str(number), '-1')
 
     def test_add_rational_numbers1(self):
         number1 = RationalNumber(-1, 2)
