@@ -35,3 +35,7 @@ class TestRationalNumberClass(unittest.TestCase):
         number = RationalNumber(-1, 2)
         self.assertNotEquals(number, RationalNumber(1, 2))
         self.assertNotEquals(number, RationalNumber(-1, 3))
+
+    def test_str_rational_number(self):
+        number = RationalNumber(3, -4)
+        self.assertEquals(str(number), '-3/4')

@@ -21,3 +21,8 @@ class RationalNumber:
 
     def __eq__(self, other):
         return self._den == other._den and self._num == other._num
+
+    def __str__(self):
+        if self._den == 1:
+            return str(self._num)
+        return str(self._num) + '/' + str(self._den)
