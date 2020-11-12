@@ -93,3 +93,19 @@ class BisymmetricMatrix:
             for j in range(size - index_cor, size):
                 self.mtrx[i].insert(j, self.mtrx[size-1-j][size-1-i])
             index_cor += 1
+
+    @staticmethod
+    def is_correct_vector_size(size) -> bool:
+
+        if not isinstance(size, int):
+            raise TypeError
+
+        if size == 0:
+            return True
+
+        k = 1
+        while k ** 2 <= size:
+            if size == k ** 2 or size == k * (k + 1):
+                return True
+            k += 1
+        return False

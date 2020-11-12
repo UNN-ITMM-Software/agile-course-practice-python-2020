@@ -128,3 +128,20 @@ class TestGenerateRandom(unittest.TestCase):
         correct_bisymmetric_matrix = BisymmetricMatrix()
         correct_bisymmetric_matrix.generate_random_bisymmetric_matrix(10)
         self.assertTrue(correct_bisymmetric_matrix.is_bisymmetric())
+
+
+class TestIsCorrectVectorSize(unittest.TestCase):
+    def test_0_size_vector(self):
+        self.assertTrue(BisymmetricMatrix().is_correct_vector_size(0))
+
+    def test_correct_vector_size(self):
+        self.assertTrue(BisymmetricMatrix().is_correct_vector_size(4))
+
+    def test_incorrect_vector_size(self):
+        self.assertFalse(BisymmetricMatrix().is_correct_vector_size(3))
+
+    def test_float_vector_size(self):
+        self.assertRaises(TypeError, BisymmetricMatrix().is_correct_vector_size, 2.4)
+
+    def test_str_vector_size(self):
+        self.assertRaises(TypeError, BisymmetricMatrix().is_correct_vector_size, 'six')
