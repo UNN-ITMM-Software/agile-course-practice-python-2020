@@ -23,6 +23,10 @@ class TestRationalNumberClass(unittest.TestCase):
         self.assertEquals(number, RationalNumber(-1, 2))
         self.assertEquals(number, RationalNumber(1, -2))
 
+    def test_reduce_zero_rational_number(self):
+        number = RationalNumber(0, 3)
+        self.assertEquals(number, RationalNumber(0, 1))
+
     def test_reduce_rational_number1(self):
         number = RationalNumber(-1, 2)
         self.assertEquals(number, RationalNumber(2, -4))
