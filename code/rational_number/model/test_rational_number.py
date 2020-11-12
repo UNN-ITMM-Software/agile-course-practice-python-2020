@@ -21,4 +21,5 @@ class TestRationalNumberClass(unittest.TestCase):
     def test_can_check_equality_rational_numbers(self):
         number = RationalNumber(-1, 2)
         self.assertEquals(number, RationalNumber(-1, 2))
-        self.assertEquals(number, RationalNumber(-1, 2))
+        self.assertEquals(number, RationalNumber(1, -2))
+
