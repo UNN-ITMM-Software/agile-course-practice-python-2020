@@ -70,16 +70,15 @@ class GameOfLife(object):
         return step
 
     def convert_to_string(self, current_field):
-        height_field = len(current_field)
-        width_field = len(current_field[0])
+        field_boundaries = self.calc_field_boundaries(current_field)
         string = ""
-        for i in range(height_field):
-            for j in range(width_field):
+        for i in range(field_boundaries["height_field"]):
+            for j in range(field_boundaries["width_field"]):
                 if current_field[i][j]:
                     string += "*"
                 else:
                     string += "."
-            if i != height_field - 1:
+            if i != field_boundaries["height_field"] - 1:
                 string += "\n"
         return string
 
