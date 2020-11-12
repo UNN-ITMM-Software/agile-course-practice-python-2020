@@ -100,3 +100,13 @@ class TestHashmap(unittest.TestCase):
         keys.sort(key=lambda x: hash(x))
         ret_keys.sort(key=lambda x: hash(x))
         self.assertEqual(keys, ret_keys)
+
+    def test_insert_few_items_in_hashmap_size_one_positive(self):
+        hmap = Hashmap(1)
+        keys = [123, "asda", 1023]
+        for key in keys:
+            hmap.insert(key, "dummy")
+        ret_keys = hmap.keys()
+        keys.sort(key=lambda x: hash(x))
+        ret_keys.sort(key=lambda x: hash(x))
+        self.assertEqual(keys, ret_keys)
