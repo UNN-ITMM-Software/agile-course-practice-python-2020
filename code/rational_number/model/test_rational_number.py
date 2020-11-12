@@ -22,4 +22,3 @@ class TestRationalNumberClass(unittest.TestCase):
         number = RationalNumber(-1, 2)
         self.assertEquals(number, RationalNumber(-1, 2))
         self.assertEquals(number, RationalNumber(1, -2))
-
