@@ -10,4 +10,10 @@ class NumericalIntegrator(object):
         return trapezoidalIntegral
     
     def simpsonMethod(self, a, b, func):
-        pass
+        width = (b - a) / self.N
+        simpsonIntegral = 0
+        for i in range(self.N): 
+            x1 = a + i * width;
+            x2 = a + (i + 1) * width;
+            simpsonIntegral += (x2 - x1) / 6.0 * (func(x1) + 4.0 * func(0.5 * (x1 + x2)) + func(x2))
+        return simpsonIntegral
