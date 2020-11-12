@@ -7,7 +7,6 @@ class Hashmap(object):
     def __init__(self, size=113):
         self.__size = size
         self.__obj = [[] for _ in range(size)]
-        pass
 
     def update(self, key, value):
         self.delete(key)
