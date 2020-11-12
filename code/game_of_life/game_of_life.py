@@ -79,13 +79,25 @@ class GameOfLife(object):
 class GameOfLifeParser(object):
     def parse(self, string):
         field_lines = string.split()
-        height_field = len(field_lines)
-        width_field = len(field_lines[0])
-        next_field = [[0 for i in range(width_field)] for j in range(height_field)]
-        for i in range(height_field):
-            for j in range(width_field):
+        field_boundaries = self.calc_filed_boundaries(field_lines)
+        next_field = self.create_empty_field(field_boundaries)
+        for i in range(field_boundaries["height_field"]):
+            for j in range(field_boundaries["width_field"]):
                 if field_lines[i][j] == '.':
                     next_field[i][j] = 0
                 else:
                     next_field[i][j] = 1
+        return next_field
+
+    def calc_filed_boundaries(self, field_lines):
+        field_boundaries = {}
+        height_field = len(field_lines)
+        width_field = len(field_lines[0])
+        field_boundaries["height_field"] = height_field
+        field_boundaries["width_field"] = width_field
+        return field_boundaries
+
+    def create_empty_field(self, field_boundaries):
+        next_field = [[0 for i in range(field_boundaries["width_field"])]
+                      for j in range(field_boundaries["height_field"])]
         return next_field
