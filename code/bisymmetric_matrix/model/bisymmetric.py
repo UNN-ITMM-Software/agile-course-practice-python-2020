@@ -52,3 +52,21 @@ class BisymmetricMatrix:
                     return False
             index_max -= 1
         return True
+
+    def necessary_condition_for_bisymmetric(self) -> bool:
+
+        if len(self.mtrx) == 0:
+            return True
+
+        if not self.is_square():
+            return False
+
+        diff_numbs = set()
+        size = len(self.mtrx)
+
+        for i in range(size):
+            for j in range(size):
+                diff_numbs.add(self.mtrx[i][j])
+        if len(diff_numbs) > size * (size + 1):
+            return False
+        return True
