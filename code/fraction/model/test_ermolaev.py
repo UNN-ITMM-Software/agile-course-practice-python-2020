@@ -1,6 +1,6 @@
 import unittest
 
-from fraction.model.fraction import Fraction, InvalidFractionError
+from fraction.model.fraction import Fraction
 
 
 class TestFractionOperations(unittest.TestCase):
