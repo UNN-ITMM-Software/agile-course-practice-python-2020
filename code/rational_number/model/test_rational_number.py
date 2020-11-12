@@ -60,3 +60,8 @@ class TestRationalNumberClass(unittest.TestCase):
         number1 = RationalNumber(-1, 2)
         number2 = RationalNumber(2, 3)
         self.assertEquals(number1 - number2, RationalNumber(-7, 6))
+
+    def test_mult_rational_numbers(self):
+        number1 = RationalNumber(-2, 5)
+        number2 = RationalNumber(3, 4)
+        self.assertEquals(number1 * number2, -RationalNumber(3, 10))

@@ -35,3 +35,6 @@ class RationalNumber:
 
     def __sub__(self, other):
         return -other + self
+
+    def __mul__(self, other):
+        return RationalNumber(self._num*other._num, self._den*other._den)
