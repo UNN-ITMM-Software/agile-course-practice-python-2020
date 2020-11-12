@@ -77,3 +77,8 @@ class TestFractionClass(unittest.TestCase):
         line1 = ((0, 0), (0, 0))
         line2 = ((-0.05, -0.05), (0.1, 0.1))
         self.assertTrue(determine_if_two_line_segments_intersect(line2, line1))
+
+    def test_can_det_intersection_if_float_numbers_are_large(self):
+        line1 = ((0, 0), (0, 1e10))
+        line2 = ((0, 1e10), (0, 2e10))
+        self.assertTrue(determine_if_two_line_segments_intersect(line1, line2))
