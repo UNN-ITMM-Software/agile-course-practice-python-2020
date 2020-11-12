@@ -111,3 +111,20 @@ class TestIsBisymmetric(unittest.TestCase):
         not_square_matrix = BisymmetricMatrix()
         not_square_matrix.init_matrix([[1, 2, 3], [4, 5, 4]])
         self.assertFalse(not_square_matrix.is_bisymmetric())
+
+
+class TestGenerateRandom(unittest.TestCase):
+    def test_generate_bisymmetric_is_symmetric(self):
+        correct_bisymmetric_matrix = BisymmetricMatrix()
+        correct_bisymmetric_matrix.generate_random_bisymmetric_matrix(3)
+        self.assertTrue(correct_bisymmetric_matrix.is_symmetric())
+
+    def test_generate_bisymmetric_is_persymmetric(self):
+        correct_bisymmetric_matrix = BisymmetricMatrix()
+        correct_bisymmetric_matrix.generate_random_bisymmetric_matrix(5)
+        self.assertTrue(correct_bisymmetric_matrix.is_persymmetric())
+
+    def test_generate_bisymmetric_is_bisymmetric(self):
+        correct_bisymmetric_matrix = BisymmetricMatrix()
+        correct_bisymmetric_matrix.generate_random_bisymmetric_matrix(10)
+        self.assertTrue(correct_bisymmetric_matrix.is_bisymmetric())

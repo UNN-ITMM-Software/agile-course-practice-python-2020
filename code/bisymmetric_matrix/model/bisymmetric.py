@@ -1,3 +1,6 @@
+import random
+
+
 class BisymmetricMatrix:
 
     def __init__(self):
@@ -67,7 +70,7 @@ class BisymmetricMatrix:
         for i in range(size):
             for j in range(size):
                 diff_numbs.add(self.mtrx[i][j])
-        if len(diff_numbs) > size * (size + 1):
+        if len(diff_numbs) > (((size + 1) / 2) ** 2) // 1:
             return False
         return True
 
@@ -76,3 +79,17 @@ class BisymmetricMatrix:
         if self.necessary_condition_for_bisymmetric():
             return self.is_symmetric() and self.is_persymmetric()
         return False
+
+    def generate_random_bisymmetric_matrix(self, size: int):
+        index_cor = 0
+
+        for i in range(size):
+            self.mtrx.append([])
+            for j in range(0, index_cor):
+                if (i + j) < size:
+                    self.mtrx[i].insert(j, self.mtrx[j][i])
+            for j in range(index_cor, size - index_cor):
+                self.mtrx[i].insert(j, random.randrange(0, 9))
+            for j in range(size - index_cor, size):
+                self.mtrx[i].insert(j, self.mtrx[size-1-j][size-1-i])
+            index_cor += 1
