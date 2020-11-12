@@ -11,7 +11,10 @@ class Hashmap(object):
 
     def insert(self, key, value):
         h = self.__get_hash(key)
-        self.__obj[h] = (key, value)
+        if self.__obj[h] is not None:
+            raise KeyError("Object with key {} already in hashmap".format(key))
+        else:
+            self.__obj[h] = (key, value)
 
     def get(self, key):
         h = self.__get_hash(key)

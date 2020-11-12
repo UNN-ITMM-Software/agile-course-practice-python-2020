@@ -32,3 +32,12 @@ class TestHashmap(unittest.TestCase):
         hmap = Hashmap()
         with self.assertRaises(KeyError):
             hmap.delete(0)
+
+    def test_insert_two_items_with_same_key(self):
+        hmap = Hashmap()
+        key = 0
+        obj1 = "zero"
+        obj2 = "one"
+        hmap.insert(key, obj1)
+        with self.assertRaises(KeyError):
+            hmap.insert(key, obj2)
