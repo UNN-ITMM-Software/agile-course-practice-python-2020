@@ -34,3 +34,21 @@ class BisymmetricMatrix:
                     return False
             index_min += 1
         return True
+
+    def is_persymmetric(self) -> bool:
+
+        if len(self.mtrx) == 0:
+            return True
+
+        if not self.is_square():
+            return False
+
+        size = len(self.mtrx)
+        index_max = size
+
+        for i in range(size):
+            for j in range(index_max):
+                if self.mtrx[i][j] != self.mtrx[size-1-j][size-1-i]:
+                    return False
+            index_max -= 1
+        return True

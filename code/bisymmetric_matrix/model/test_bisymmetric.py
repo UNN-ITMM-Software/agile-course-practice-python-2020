@@ -40,3 +40,25 @@ class TestIsSymmetric(unittest.TestCase):
         not_square_matrix = BisymmetricMatrix()
         not_square_matrix.init_matrix([[1, 2], [3]])
         self.assertFalse(not_square_matrix.is_symmetric())
+
+
+class TestIsPersymmetric(unittest.TestCase):
+    def test_0_size_matrix(self):
+        empty_matrix = BisymmetricMatrix()
+        empty_matrix.init_matrix([])
+        self.assertTrue(empty_matrix.is_persymmetric())
+
+    def test_correct_persymmetric_matrix(self):
+        persymmetric_matrix = BisymmetricMatrix()
+        persymmetric_matrix.init_matrix([[1, 2, 3], [4, 1, 2], [5, 4, 1]])
+        self.assertTrue(persymmetric_matrix.is_persymmetric())
+
+    def test_not_persymmetric_matrix(self):
+        not_persymmetric_matrix = BisymmetricMatrix()
+        not_persymmetric_matrix.init_matrix([[1, 2], [1, 2]])
+        self.assertFalse(not_persymmetric_matrix.is_persymmetric())
+
+    def test_not_square_matrix(self):
+        not_square_matrix = BisymmetricMatrix()
+        not_square_matrix.init_matrix([[1, 2], [3]])
+        self.assertFalse(not_square_matrix.is_persymmetric())
