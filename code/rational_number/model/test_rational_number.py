@@ -30,3 +30,8 @@ class TestRationalNumberClass(unittest.TestCase):
     def test_reduce_rational_number2(self):
         number = RationalNumber(-27, 144)
         self.assertEquals(number, RationalNumber(3, -16))
+
+    def test_can_check_not_equality_rational_numbers(self):
+        number = RationalNumber(-1, 2)
+        self.assertNotEquals(number, RationalNumber(1, 2))
+        self.assertNotEquals(number, RationalNumber(-1, 3))
