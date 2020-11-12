@@ -111,11 +111,11 @@ class TestSuccessfulStudents(unittest.TestCase):
     def test_surnames_of_successful_students(self):
         ivanov = StudentMarks([5, 5, 4, 5, 5])
         smirnov = StudentMarks([2, 3, 5, 5, 5, 5, 5])
-        sidorov = StudentMarks([4, 5, 4, 5, 5, 5])
+        sidorov = StudentMarks([3, 5, 4, 3, 3, 3])
         petrov = StudentMarks([2, 4])
         journal = Register([ivanov, smirnov, sidorov, petrov])
         result = journal.students_who_successfully_pass()
-        self.assertEqual([ivanov, sidorov], result)
+        self.assertEqual([ivanov, smirnov, sidorov], result)
 
     def test_number_of_successful_student(self):
         ivanov = StudentMarks([5, 5, 4, 5, 5])
