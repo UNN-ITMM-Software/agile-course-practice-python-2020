@@ -2,6 +2,7 @@ import unittest
 
 from big_integer import BigInteger
 
+
 class TestBigIntegerClass(unittest.TestCase):
 
     def test_big_integer_can_create(self):
