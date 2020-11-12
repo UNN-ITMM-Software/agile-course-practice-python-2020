@@ -41,7 +41,7 @@ class TestVectorMetricsClass(unittest.TestCase):
         a = [1.2, 1.5, 1.8]
         b = [3.3, 8.7, 1.7]
         metrics_calculator = VectorMetrics()
-        calc_value = metrics_calculator.l4(a, b)
+        calc_value = metrics_calculator.linf(a, b)
         self.assertAlmostEqual(calc_value, 7.2129911)
 
     def test_can_raise_error_when_vector_not_list(self):
