@@ -36,4 +36,7 @@ class Hashmap(object):
 
     def keys(self):
         keys = []
+        for obj_item in self.__obj:
+            for item in obj_item:
+                keys.append(item[0])
         return keys

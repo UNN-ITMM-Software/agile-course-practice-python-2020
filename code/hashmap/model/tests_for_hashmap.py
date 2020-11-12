@@ -85,8 +85,16 @@ class TestHashmap(unittest.TestCase):
         with self.assertRaises(KeyError):
             hmap.update(key, obj)
 
-    def test_get_keys_empty_hashmap(self):
+    def test_get_keys_empty_hashmap_positive(self):
         hmap = Hashmap()
         keys = []
         ret_keys = hmap.keys()
         self.assertEqual(keys, ret_keys)
+
+    def test_get_keys_three_items_hashmap_positive(self):
+        hmap = Hashmap()
+        keys = [123, "asda", 1023]
+        for key in keys:
+            hmap.insert(key, "dummy")
+        ret_keys = hmap.keys()
+        self.assertEqual(keys.sort(key=lambda x: hash(x)), ret_keys.sort(key=lambda x: hash(x)))
