@@ -17,7 +17,7 @@ def get_thousand_of_number(count):
     return res
 
 
-def get_arab_to_roman_map():
+def get_roman_to_arab_map():
     return {
         "I": 1,
         "V": 5,
@@ -29,7 +29,7 @@ def get_arab_to_roman_map():
     }
 
 
-class ArabToRomanConverter:
+class ArabRomanConverter:
 
     def __init__(self, number):
         self.number = number
@@ -48,7 +48,7 @@ class ArabToRomanConverter:
         i = 0
         roman_numbers = []
         for number in numbers:
-            roman_numbers.append(float(get_arab_to_roman_map()[number]))
+            roman_numbers.append(float(get_roman_to_arab_map()[number]))
 
         while i < len(roman_numbers) - 1:
             if roman_numbers[i] < roman_numbers[i + 1]:
