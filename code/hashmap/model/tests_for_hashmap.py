@@ -97,4 +97,6 @@ class TestHashmap(unittest.TestCase):
         for key in keys:
             hmap.insert(key, "dummy")
         ret_keys = hmap.keys()
-        self.assertEqual(keys.sort(key=lambda x: hash(x)), ret_keys.sort(key=lambda x: hash(x)))
+        keys.sort(key=lambda x: hash(x))
+        ret_keys.sort(key=lambda x: hash(x))
+        self.assertEqual(keys, ret_keys)
