@@ -1,16 +1,33 @@
 class GameOfLife(object):
-    def start(self, string):
-        if string == "":
+    def start(self, string_field):
+        if string_field == "":
             return 0
         parser = GameOfLifeParser()
-        field = parser.parse(string)
-        height_field = len(field)
-        width_field = len(field[0])
-        next_field = [[0 for i in range(width_field)] for j in range(height_field)]
-        for i in range(height_field):
-            for j in range(width_field):
-                current_neighbors = self.counting_neighbors(field, i, j)
-                if field[i][j]:
+        field = parser.parse(string_field)
+        field_boundaries = self.calc_field_boundaries(field)
+        next_field = self.step_calculation(field, field_boundaries)
+        res_string = self.convert_to_string(next_field)
+        return res_string
+
+    def calc_field_boundaries(self, current_field):
+        field_boundaries = {}
+        height_field = len(current_field)
+        width_field = len(current_field[0])
+        field_boundaries["height_field"] = height_field
+        field_boundaries["width_field"] = width_field
+        return field_boundaries
+
+    def create_empty_field(self, field_boundaries):
+        next_field = [[0 for i in range(field_boundaries["width_field"])]
+                      for j in range(field_boundaries["height_field"])]
+        return next_field
+
+    def step_calculation(self, current_field, field_boundaries):
+        next_field = self.create_empty_field(field_boundaries)
+        for i in range(field_boundaries["height_field"]):
+            for j in range(field_boundaries["width_field"]):
+                current_neighbors = self.counting_neighbors(current_field, i, j)
+                if current_field[i][j]:
                     if current_neighbors == 2 or current_neighbors == 3:
                         next_field[i][j] = 1
                     else:
@@ -18,7 +35,7 @@ class GameOfLife(object):
                 else:
                     if current_neighbors == 3:
                         next_field[i][j] = 1
-        return self.convert_to_string(next_field)
+        return next_field
 
     def counting_neighbors(self, current_field, y, x):
         count = 0
