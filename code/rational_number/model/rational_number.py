@@ -29,3 +29,6 @@ class RationalNumber:
 
     def __add__(self, other):
         return RationalNumber(self._num*other._den+self._den*other._num, self._den*other._den)
+
+    def __neg__(self):
+        return RationalNumber(-self._num, self._den)
