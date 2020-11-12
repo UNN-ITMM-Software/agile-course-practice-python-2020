@@ -1,7 +1,7 @@
 class GameOfLife(object):
     def start(self, string_field):
         if string_field == "":
-            return 0
+            return ""
         parser = GameOfLifeParser()
         field = parser.parse(string_field)
         field_boundaries = self.calc_field_boundaries(field)
@@ -92,9 +92,18 @@ class GameOfLifeParser(object):
             for j in range(field_boundaries["width_field"]):
                 if field_lines[i][j] == '.':
                     next_field[i][j] = 0
-                else:
+                elif field_lines[i][j] == '*':
                     next_field[i][j] = 1
+                else:
+                        msg = "invalid character entered" + ', ' + field_lines[i][j]
+                        raise ValueError(msg)
         return next_field
+
+    def string_validation(self, field_lines):
+        for field_line in field_lines:
+            if len(field_lines[0]) != len(field_line):
+                msg = "invalid string entered"
+                raise ValueError(msg)
 
     def calc_filed_boundaries(self, field_lines):
         field_boundaries = {}

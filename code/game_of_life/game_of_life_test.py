@@ -8,7 +8,7 @@ class TestGameOfLifeClass(unittest.TestCase):
     def test_start_empty_string_is_0(self):
         strcalc = GameOfLife()
         result = strcalc.start("")
-        self.assertTrue(result == 0)
+        self.assertTrue(result == "")
 
     def test_start_2x2_all_points_are_dead(self):
         strcalc = GameOfLife()
