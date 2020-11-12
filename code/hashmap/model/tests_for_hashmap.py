@@ -8,6 +8,18 @@ class TestHashmap(unittest.TestCase):
     def test_create_hashmap_positive(self):
         Hashmap()
 
+    def test_key_not_hashable_negative(self):
+        hmap = Hashmap()
+        key = ([])
+        obj = "zero"
+        with self.assertRaises(TypeError):
+            hmap.insert(key, obj)
+
+    def test_get_item_not_exists_negative(self):
+        hmap = Hashmap()
+        with self.assertRaises(KeyError):
+            hmap.get(0)
+
     def test_insert_and_get_item_positive(self):
         hmap = Hashmap()
         key = 0
@@ -16,7 +28,7 @@ class TestHashmap(unittest.TestCase):
         res = hmap.get(key)
         self.assertEqual(obj, res)
 
-    def test_can_insert_few_items_and_get_items_positive(self):
+    def test_insert_few_items_and_get_items_positive(self):
         hmap = Hashmap()
         key1 = 0
         key2 = 1
@@ -66,9 +78,9 @@ class TestHashmap(unittest.TestCase):
         res = hmap.get(key)
         self.assertEqual(obj_updated, res)
 
-    def test_key_not_hashable_negative(self):
+    def test_update_item_not_exists_negative(self):
         hmap = Hashmap()
-        key = ([])
+        key = 0
         obj = "zero"
-        with self.assertRaises(TypeError):
-            hmap.insert(key, obj)
+        with self.assertRaises(KeyError):
+            hmap.update(key, obj)
