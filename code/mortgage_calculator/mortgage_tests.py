@@ -72,10 +72,9 @@ class TestMortgage(unittest.TestCase):
                              term=5, term_type=TermType.MONTHLY)
         self.assertNotEqual(mortgage1.calculate_monthly_payment(), mortgage2.calculate_monthly_payment())
 
-    def test_monthly_payment_calculation_without_term(self):
-        with self.assertRaises(Exception):
-            mortgage = Mortgage(2000000, 2000000, rate=5)
-            mortgage.calculate_monthly_payment()
+    def test_monthly_payment_with_no_term_specified(self):
+        mortgage = Mortgage(2000000, 1000000, rate=5, monthly_payment=10000)
+        self.assertEqual(mortgage.calculate_monthly_payment(), 10000)
 
     def test_term_calculation(self):
         mortgage = Mortgage(amount=2000000, initial_payment=500000, rate=5, monthly_payment=15910)

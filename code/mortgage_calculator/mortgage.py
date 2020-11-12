@@ -55,7 +55,7 @@ class Mortgage:
 
     def calculate_monthly_payment(self):
         if self.term is None:
-            raise Exception('To calculate monthly payment need to specify term in years or months.')
+            return self.monthly_payment
 
         monthly_rate = self._get_monthly_rate(self.rate)
         common_rate = math.pow((1 + monthly_rate), self.months_period)
