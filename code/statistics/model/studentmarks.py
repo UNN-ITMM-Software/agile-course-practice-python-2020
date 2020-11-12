@@ -54,7 +54,7 @@ class Register:
     def students_who_successfully_pass(self):
         surnames = []
         for student in self.students:
-            if student.average_of_marks() >= 4.5:
+            if student.average_of_marks() >= 3.5:
                 surnames.append(student)
         return surnames
 
