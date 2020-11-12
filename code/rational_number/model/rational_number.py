@@ -32,3 +32,6 @@ class RationalNumber:
 
     def __neg__(self):
         return RationalNumber(-self._num, self._den)
+
+    def __sub__(self, other):
+        return -other + self

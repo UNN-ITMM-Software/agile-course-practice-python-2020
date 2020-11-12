@@ -55,3 +55,8 @@ class TestRationalNumberClass(unittest.TestCase):
         number2 = RationalNumber(11, 10)
         self.assertEquals(number1, -number2)
         self.assertEquals(number2, -(-number2))
+
+    def test_subtract_rational_numbers(self):
+        number1 = RationalNumber(-1, 2)
+        number2 = RationalNumber(2, 3)
+        self.assertEquals(number1 - number2, RationalNumber(-7, 6))
