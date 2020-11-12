@@ -1,6 +1,6 @@
 class BigInteger(object):
     BASE = 10
-    SIZE = 5
+    SIZE = 100
 
     def __init__(self, digits = []):
         pass
