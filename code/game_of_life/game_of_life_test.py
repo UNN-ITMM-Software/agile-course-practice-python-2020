@@ -5,56 +5,56 @@ from game_of_life import GameOfLifeParser
 
 
 class TestGameOfLifeClass(unittest.TestCase):
-    def test_add_empty_string_is_0(self):
+    def test_start_empty_string_is_0(self):
         strcalc = GameOfLife()
-        result = strcalc.add("")
+        result = strcalc.start("")
         self.assertTrue(result == 0)
 
-    def test_add_2x2_all_points_are_dead(self):
+    def test_start_2x2_all_points_are_dead(self):
         strcalc = GameOfLife()
-        result = strcalc.add("..\n..")
+        result = strcalc.start("..\n..")
         field_test = "..\n.."
         self.assertTrue(result == field_test)
 
-    def test_add_2x2_first_point_live(self):
+    def test_start_2x2_first_point_live(self):
         strcalc = GameOfLife()
-        result = strcalc.add("*.\n..")
+        result = strcalc.start("*.\n..")
         field_test = "..\n.."
         self.assertTrue(result == field_test)
 
-    def test_add_2x2_two_points_on_the_first_line_are_live(self):
+    def test_start_2x2_two_points_on_the_first_line_are_live(self):
         strcalc = GameOfLife()
-        result = strcalc.add("**\n..")
+        result = strcalc.start("**\n..")
         field_test = "..\n.."
         self.assertTrue(result == field_test)
 
-    def test_add_2x2_last_point_is_dead(self):
+    def test_start_2x2_last_point_is_dead(self):
         strcalc = GameOfLife()
-        result = strcalc.add("**\n*.")
+        result = strcalc.start("**\n*.")
         field_test = "**\n**"
         self.assertTrue(result == field_test)
 
-    def test_add_3x3_living_square(self):
+    def test_start_3x3_living_square(self):
         strcalc = GameOfLife()
-        result = strcalc.add("**.\n*..\n...")
+        result = strcalc.start("**.\n*..\n...")
         field_test = "**.\n**.\n..."
         self.assertTrue(result == field_test)
 
-    def test_add_4x8_general_example(self):
+    def test_start_4x8_general_example(self):
         strcalc = GameOfLife()
-        result = strcalc.add("........\n....*...\n...**...\n........")
+        result = strcalc.start("........\n....*...\n...**...\n........")
         field_test = "........\n...**...\n...**...\n........"
         self.assertTrue(result == field_test)
 
-    def test_add_4x8_line(self):
+    def test_start_4x8_line(self):
         strcalc = GameOfLife()
-        result = strcalc.add("........\n...***..\n........\n........")
+        result = strcalc.start("........\n...***..\n........\n........")
         field_test = "....*...\n....*...\n....*...\n........"
         self.assertTrue(result == field_test)
 
-    def test_add_4x8_column(self):
+    def test_start_4x8_column(self):
         strcalc = GameOfLife()
-        result = strcalc.add("....*...\n....*...\n....*...\n........")
+        result = strcalc.start("....*...\n....*...\n....*...\n........")
         field_test = "........\n...***..\n........\n........"
         self.assertTrue(result == field_test)
 

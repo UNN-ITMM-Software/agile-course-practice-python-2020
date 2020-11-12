@@ -1,5 +1,5 @@
 class GameOfLife(object):
-    def add(self, string):
+    def start(self, string):
         if string == "":
             return 0
         parser = GameOfLifeParser()
