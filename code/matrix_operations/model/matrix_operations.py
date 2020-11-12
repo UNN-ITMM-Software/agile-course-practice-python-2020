@@ -37,8 +37,8 @@ class MatrixOperations(Matrix):
         result_matrix = Matrix.make_from_list(
             [[0 for i in range(second_matrix.cols)] for i in range(first_matrix.rows)])
         for i in range(first_matrix.rows):
-            for j in range(second_matrix.cols):
-                for k in range(first_matrix.cols):
+            for k in range(first_matrix.cols):
+                for j in range(second_matrix.cols):
                     result_matrix.data_lines[i][j] += first_matrix.data_lines[i][k] * \
                                                       second_matrix.data_lines[k][j]
         return result_matrix
