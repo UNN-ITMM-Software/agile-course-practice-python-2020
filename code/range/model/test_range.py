@@ -98,9 +98,9 @@ class TestRange(unittest.TestCase):
 
     def test_contain_range_wrong_type_error(self):
         range_object = Range('(-1,3]')
-        value = 'a'
+        value = [555]
         with self.assertRaises(TypeError):
-            range_object.contains_set(value)
+            range_object.contains_range(value)
 
     def test_not_contain_range(self):
         range_object = Range('(-1,4]')
@@ -123,7 +123,7 @@ class TestRange(unittest.TestCase):
         value = Range('(5,20]')
         self.assertFalse(range_object.overlaps_range(value))
 
-    def test_equals_wrong_type_error(self):
+    def test_equal_wrong_type_error(self):
         range_object = Range('(-1,3]')
         value = 'a'
         with self.assertRaises(TypeError):
@@ -148,3 +148,8 @@ class TestRange(unittest.TestCase):
         range_object = Range('(-1,4]')
         end_points = [0, 4]
         self.assertEqual(range_object.end_points(), end_points)
+
+    def test_to_string(self):
+        range_object = Range('[1,5]')
+        range_str = '[1,5]'
+        self.assertEqual(range_object.to_string(), range_str)

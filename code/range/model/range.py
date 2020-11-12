@@ -49,3 +49,6 @@ class Range:
 
     def end_points(self):
         return [self.__start_value, self.__end_value]
+
+    def to_string(self):
+        return self.__range_str
