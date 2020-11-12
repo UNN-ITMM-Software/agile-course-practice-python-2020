@@ -33,7 +33,8 @@ class Triangle(object):
     def get_area(self):
         if not self.is_triangle():
             raise TriangleError('This triangle is invalid! Check it!')
-        return 0.5 * abs((self.x2 - self.x1) * (self.y3 - self.y1) - (self.x3 - self.x1) * (self.y2 - self.y1))
+        return 0.5 * abs((self.x2 - self.x1) * (self.y3 - self.y1) -
+                         (self.x3 - self.x1) * (self.y2 - self.y1))
 
     def get_perimeter(self):  # описананя окружность
         if not self.is_triangle():
@@ -67,19 +68,21 @@ class Triangle(object):
                 self.get_ca() * (self.x2 - self.x1) + self.get_ab() * (self.x3 - self.x1))
         a2 = (self.get_bc() * (self.y1 - self.y2) + self.get_ab() * (self.y3 - self.y2)) / (
                 self.get_bc() * (self.x1 - self.x2) + self.get_ab() * (self.x3 - self.x2))
-        M1 = numpy.array([[a1, -1.0],
+        m1 = numpy.array([[a1, -1.0],
                           [a2, -1.0]])
         v1 = numpy.array(
             [-self.y1 + self.x1 * a1,
              -self.y2 + self.x2 * a2])
-        return list(numpy.linalg.solve(M1, v1))
+        return list(numpy.linalg.solve(m1, v1))
 
     def get_triangle_type_by_sides(self):
         if not self.is_triangle():
             raise TriangleError('This triangle is invalid! Check it!')
         if (abs(self.get_ab() - self.get_bc()) < 1e-10 and abs(self.get_ab() - self.get_ca()) > 1e-10) or (
-                abs(self.get_bc() - self.get_ca()) < 1e-10 and abs(self.get_ab() - self.get_ca()) > 1e-10) or (
-                abs(self.get_ab() - self.get_ca()) < 1e-10 and abs(self.get_ab() - self.get_bc()) > 1e-10):
+                abs(self.get_bc() - self.get_ca()) < 1e-10 and
+                abs(self.get_ab() - self.get_ca()) > 1e-10) or (
+                abs(self.get_ab() - self.get_ca()) < 1e-10 and
+                abs(self.get_ab() - self.get_bc()) > 1e-10):
             return "isosceles"  # равнобедренный
         elif abs(self.get_ab() - self.get_bc()) < 1e-10 and abs(self.get_bc() - self.get_ca()) < 1e-10:
             return "equilateral"  # равносторонний
