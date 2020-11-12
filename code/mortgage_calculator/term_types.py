@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class PeriodType(Enum):
+class TermType(Enum):
 
     MONTHLY = 1
     YEARLY = 2

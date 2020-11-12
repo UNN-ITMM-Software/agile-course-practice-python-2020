@@ -1,6 +1,6 @@
 import math
 
-from mortgage_calculator.period_types import PeriodType
+from mortgage_calculator.term_types import TermType
 
 
 """
@@ -13,17 +13,17 @@ Mortgage() constructor:
 
     One of the next optional parameters should be specified:
         1)  term -- desired mortgage term
-            period_type -- term type (PeriodType.YEARLY / PeriodType.MONTHLY)
-        
+            term_type -- term type (TermType.YEARLY / TermType.MONTHLY)
+
         2) monthly_payment - desired monthly payment amount
 
-        
+
 calculate_monthly_payment - can be used for mortgage monthly payment calculation.
     Note: can be used only if Mortgage object was created with 'term' specified.
 
 calculate_expected_term - can be used for expected mortgage term calculation.
     Note: can be used only if Mortgage object was created with 'monthly_payment' specified.
-    
+
 calculate_overpaid_amount - can be used to calculate mortgage overpaid amount.
 
 """
@@ -31,7 +31,8 @@ calculate_overpaid_amount - can be used to calculate mortgage overpaid amount.
 
 class Mortgage:
 
-    def __init__(self, amount, initial_payment, rate, term=None, period_type=PeriodType.YEARLY, monthly_payment=None):
+    def __init__(self, amount, initial_payment, rate,
+                 term=None, term_type=TermType.YEARLY, monthly_payment=None):
         if amount <= 0:
             raise ValueError('Incorrect amount. Should be positive value')
 
@@ -46,11 +47,11 @@ class Mortgage:
         self.mortgage_amount = amount - initial_payment
         self.rate = rate
         self.term = term
-        self.period_type = period_type
+        self.period_type = term_type
         self.monthly_payment = monthly_payment
 
         if term is not None:
-            self.months_period = term if period_type == PeriodType.MONTHLY else term * 12
+            self.months_period = term if term_type == TermType.MONTHLY else term * 12
 
     def calculate_monthly_payment(self):
         if self.term is None:
