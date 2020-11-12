@@ -26,3 +26,6 @@ class RationalNumber:
         if self._den == 1:
             return str(self._num)
         return str(self._num) + '/' + str(self._den)
+
+    def __add__(self, other):
+        return RationalNumber(self._num*other._den+self._den*other._num, self._den*other._den)
