@@ -34,7 +34,6 @@ class Line:
         Returns:
         True of False
 
-        A point is a pair of two real numbers (x, y).
         Two line segments do not intersect if they have no common points.
 
         """
