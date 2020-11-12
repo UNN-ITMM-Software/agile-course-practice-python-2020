@@ -46,5 +46,9 @@ class VectorMetrics(object):
 
     @staticmethod
     def __lp(vector_a: List, vector_b: List, p: int):
+        if not isinstance(p, int):
+            raise TypeError('Not valid argument type. Expected int.')
+        if p <= 0:
+            raise ValueError('Invalid value of parameter p. Expected p > 0.')
 
         return sum(abs(a - b)**p for a, b in zip(vector_a, vector_b))**(1 / p)

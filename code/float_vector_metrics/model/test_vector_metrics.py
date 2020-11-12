@@ -42,7 +42,7 @@ class TestVectorMetricsClass(unittest.TestCase):
         b = [3.3, 8.7, 1.7]
         metrics_calculator = VectorMetrics()
         calc_value = metrics_calculator.linf(a, b)
-        self.assertAlmostEqual(calc_value, 7.2129911)
+        self.assertAlmostEqual(calc_value, 7.19999999)
 
     def test_can_raise_error_when_vector_not_list(self):
         a = [1.2, 1.5, 1.8]
@@ -51,9 +51,30 @@ class TestVectorMetricsClass(unittest.TestCase):
         with self.assertRaises(TypeError):
             metrics_calculator.l4(a, b)
 
-    def test_can_raise_error_when_vector_of_equal_length(self):
+    def test_can_raise_error_when_vector_of_unequal_length(self):
         a = [1.2, 1.5, 1.8]
         b = [5]
         metrics_calculator = VectorMetrics()
         with self.assertRaises(ValueError):
             metrics_calculator.l3(a, b)
+
+    def test_can_raise_error_when_p_negative(self):
+        a = [1.2]
+        b = [5]
+        metrics_calculator = VectorMetrics()
+        with self.assertRaises(ValueError):
+            metrics_calculator._VectorMetrics__lp(a, b, -1)
+
+    def test_can_raise_error_when_p_is_not_int(self):
+        a = [1.2]
+        b = [5]
+        metrics_calculator = VectorMetrics()
+        with self.assertRaises(TypeError):
+            metrics_calculator._VectorMetrics__lp(a, b, 0.4)
+
+    def test_can_raise_error_when_element_vector_invalid_type(self):
+        a = ['1.2']
+        b = [5]
+        metrics_calculator = VectorMetrics()
+        with self.assertRaises(TypeError):
+            metrics_calculator.l1(a, b)
