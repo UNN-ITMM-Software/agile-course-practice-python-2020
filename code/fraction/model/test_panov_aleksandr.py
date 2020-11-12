@@ -4,7 +4,7 @@ from fraction.model.fraction import Fraction, InvalidFractionError
 
 
 class TestFractionClass(unittest.TestCase):
-    def test_can_fraction_crete(self):
+    def test_can_fraction_create(self):
         frac = Fraction(-1, 2)
         self.assertTrue(frac.is_equal(-1, 2))
 
