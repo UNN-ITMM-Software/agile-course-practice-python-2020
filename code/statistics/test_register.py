@@ -96,3 +96,53 @@ class TestNumberOfFailingStudents(unittest.TestCase):
         journal = Register([sidorov])
         result = journal.losers()
         self.assertGreaterEqual(result, 0)
+
+
+class TestNumberOfSuccessfulStudents(unittest.TestCase):
+    def test_number_of_successful_student(self):
+        ivanov = Student([5, 5, 4, 5, 5])
+        smirnov = Student([2, 3])
+        sidorov = Student([4, 5, 4, 5, 5, 5])
+        petrov = Student([2, 4])
+        journal = Register([ivanov, smirnov, sidorov, petrov])
+        result = journal.success()
+        self.assertEqual(2, result)
+
+    def test_number_of_successful_students_among_failing_student(self):
+        ivanov = Student([2, 3, 2])
+        smirnov = Student([2, 2, 2, 2, 5])
+        sidorov = Student([3, 3, 4, 3])
+        journal = Register([ivanov, smirnov, sidorov])
+        result = journal.success()
+        self.assertEqual(0, result)
+
+    def test_number_of_success_students_not_negative(self):
+        sidorov = Student([4, 5, 4, 5, 5, 5])
+        journal = Register([sidorov])
+        result = journal.success()
+        self.assertGreaterEqual(result, 0)
+
+
+class TestNumberOfExcellentStudents(unittest.TestCase):
+    def test_number_of_excellent_student(self):
+        ivanov = Student([5, 5, 4, 5, 5])
+        smirnov = Student([2, 3])
+        sidorov = Student([4, 5, 4, 5, 5, 5])
+        petrov = Student([2, 4])
+        journal = Register([ivanov, smirnov, sidorov, petrov])
+        result = journal.excellent()
+        self.assertEqual(2, result)
+
+    def test_number_of_excellent_students_among_failing_student(self):
+        ivanov = Student([2, 3, 2])
+        smirnov = Student([2, 2, 2, 2, 5])
+        sidorov = Student([3, 3, 4, 3])
+        journal = Register([ivanov, smirnov, sidorov])
+        result = journal.excellent()
+        self.assertEqual(0, result)
+
+    def test_number_of_excellent_students_not_negative(self):
+        sidorov = Student([4, 5, 4, 5, 5, 5])
+        journal = Register([sidorov])
+        result = journal.excellent()
+        self.assertGreaterEqual(result, 0)

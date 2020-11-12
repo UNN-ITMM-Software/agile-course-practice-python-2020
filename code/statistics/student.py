@@ -37,3 +37,17 @@ class Register:
             if student.average() < 3:
                 count += 1
         return count
+
+    def success(self):
+        count = 0
+        for student in self.students:
+            if student.average() >= 3.5:
+                count += 1
+        return count
+
+    def excellent(self):
+        count = 0
+        for student in self.students:
+            if student.average() >= 4.5:
+                count += 1
+        return count
