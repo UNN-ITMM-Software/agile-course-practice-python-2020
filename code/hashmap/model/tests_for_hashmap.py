@@ -65,3 +65,10 @@ class TestHashmap(unittest.TestCase):
         hmap.update(key, obj_updated)
         res = hmap.get(key)
         self.assertEqual(obj_updated, res)
+
+    def test_key_not_hashable_negative(self):
+        hmap = Hashmap()
+        key = ([])
+        obj = "zero"
+        with self.assertRaises(TypeError):
+            hmap.insert(key, obj)
