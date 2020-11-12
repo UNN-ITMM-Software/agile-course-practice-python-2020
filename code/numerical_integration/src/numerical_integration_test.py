@@ -17,7 +17,7 @@ class TestNumericalIntegratorClass(unittest.TestCase):
         def func(x): 
             return x
         result = NumericalIntegrator().trapeziumMethod(1, 2, func)
-        self.assertEqual(result, 1)
+        self.assertEqual(result, 1.5)
 
     def test_numerical_integratior_trapeziumMethod_func_difficult(self):
         def func(x): 
@@ -35,16 +35,16 @@ class TestNumericalIntegratorClass(unittest.TestCase):
         def func(x): 
             return x
         result = NumericalIntegrator().trapeziumMethod(2, 1, func)
-        self.assertEqual(result, -1)
+        self.assertEqual(result, -1.5)
 
     def test_numerical_integratior_trapeziumMethod_args_negative_sub_positive(self):
         def func(x): 
             return x
         result = NumericalIntegrator().trapeziumMethod(-2, -1, func)
-        self.assertEqual(result, 1)
+        self.assertEqual(result, 1.5)
 
 def test_numerical_integratior_trapeziumMethod_args_negative_sub_negative(self):
         def func(x): 
             return x
         result = NumericalIntegrator().trapeziumMethod(-1, -2, func)
-        self.assertEqual(result, -1)
+        self.assertEqual(result, -1.5)
