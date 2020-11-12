@@ -6,6 +6,9 @@ class BisymmetricMatrix:
     def __init__(self):
         self.mtrx = []
 
+    def __getitem__(self, item):
+        return self.mtrx[item]
+
     def init_matrix(self, mtrx: list):
         self.mtrx = mtrx
 
@@ -95,17 +98,42 @@ class BisymmetricMatrix:
             index_cor += 1
 
     @staticmethod
-    def is_correct_vector_size(size) -> bool:
+    def is_correct_vector_size(size):
 
         if not isinstance(size, int):
             raise TypeError
 
         if size == 0:
-            return True
+            return 0
 
         k = 1
         while k ** 2 <= size:
-            if size == k ** 2 or size == k * (k + 1):
-                return True
+            if size == k * k:
+                return 2 * k - 1
+            if size == k * (k + 1):
+                return 2 * k
             k += 1
-        return False
+
+        return -1
+
+    def generate_bisymmetric_matrix_by_vector(self, vector: list):
+
+        size = self.is_correct_vector_size(len(vector))
+
+        if size == -1:
+            raise ValueError
+        elif size == 0:
+            return
+
+        index_cor = 0
+
+        for i in range(size):
+            self.mtrx.append([])
+            for j in range(0, index_cor):
+                if (i + j) < size:
+                    self.mtrx[i].insert(j, self.mtrx[j][i])
+            for j in range(index_cor, size - index_cor):
+                self.mtrx[i].insert(j, vector.pop(0))
+            for j in range(size - index_cor, size):
+                self.mtrx[i].insert(j, self.mtrx[size-1-j][size-1-i])
+            index_cor += 1

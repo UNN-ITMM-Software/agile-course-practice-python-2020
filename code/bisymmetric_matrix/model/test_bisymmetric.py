@@ -132,16 +132,46 @@ class TestGenerateRandom(unittest.TestCase):
 
 class TestIsCorrectVectorSize(unittest.TestCase):
     def test_0_size_vector(self):
-        self.assertTrue(BisymmetricMatrix().is_correct_vector_size(0))
+        self.assertEqual(BisymmetricMatrix().is_correct_vector_size(0), 0)
 
     def test_correct_vector_size(self):
-        self.assertTrue(BisymmetricMatrix().is_correct_vector_size(4))
+        self.assertEqual(BisymmetricMatrix().is_correct_vector_size(4), 3)
 
     def test_incorrect_vector_size(self):
-        self.assertFalse(BisymmetricMatrix().is_correct_vector_size(3))
+        self.assertEqual(BisymmetricMatrix().is_correct_vector_size(3), -1)
 
     def test_float_vector_size(self):
         self.assertRaises(TypeError, BisymmetricMatrix().is_correct_vector_size, 2.4)
 
     def test_str_vector_size(self):
         self.assertRaises(TypeError, BisymmetricMatrix().is_correct_vector_size, 'six')
+
+
+class TestGenerateByVector(unittest.TestCase):
+    def test_generate_bisymmetric_is_symmetric(self):
+        correct_bisymmetric_matrix = BisymmetricMatrix()
+        correct_bisymmetric_matrix.generate_bisymmetric_matrix_by_vector([1])
+        self.assertTrue(correct_bisymmetric_matrix.is_symmetric())
+
+    def test_generate_bisymmetric_is_persymmetric(self):
+        correct_bisymmetric_matrix = BisymmetricMatrix()
+        correct_bisymmetric_matrix.generate_bisymmetric_matrix_by_vector([1, 2])
+        self.assertTrue(correct_bisymmetric_matrix.is_persymmetric())
+
+    def test_generate_bisymmetric_is_bisymmetric(self):
+        correct_bisymmetric_matrix = BisymmetricMatrix()
+        correct_bisymmetric_matrix.generate_bisymmetric_matrix_by_vector([1, 2, 3, 4])
+        self.assertTrue(correct_bisymmetric_matrix.is_bisymmetric())
+
+    def test_generate_by_incorrect_vector(self):
+        correct_bisymmetric_matrix = BisymmetricMatrix()
+        self.assertRaises(ValueError,
+                          correct_bisymmetric_matrix.generate_bisymmetric_matrix_by_vector, [1, 2, 3])
+
+    def test_generate_bisymmetric_is_correct(self):
+        result = BisymmetricMatrix()
+        result.generate_bisymmetric_matrix_by_vector([1, 2, 3, 4, 5, 6])
+        correct_bisymmetric_matrix = [[1, 2, 3, 4], [2, 5, 6, 3], [3, 6, 5, 2], [4, 3, 2, 1]]
+        for i in range(4):
+            for j in range(4):
+                self.assertEqual(result[i][j], correct_bisymmetric_matrix[i][j])
