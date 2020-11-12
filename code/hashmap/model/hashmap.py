@@ -33,3 +33,7 @@ class Hashmap(object):
                 self.__obj[h].remove(item)
                 return
         raise KeyError("No key {} in hashmap".format(key))
+
+    def keys(self):
+        keys = []
+        return keys

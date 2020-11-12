@@ -84,3 +84,9 @@ class TestHashmap(unittest.TestCase):
         obj = "zero"
         with self.assertRaises(KeyError):
             hmap.update(key, obj)
+
+    def test_get_keys_empty_hashmap(self):
+        hmap = Hashmap()
+        keys = []
+        ret_keys = hmap.keys()
+        self.assertEqual(keys, ret_keys)
