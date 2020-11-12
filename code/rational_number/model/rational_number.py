@@ -1,5 +1,7 @@
 class RationalNumber:
     def __init__(self, numerator, denominator):
+        if denominator == 0:
+            raise ZeroDivisionError
         self._num = numerator
         self._den = denominator
 
