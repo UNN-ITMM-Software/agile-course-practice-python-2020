@@ -2,13 +2,14 @@
 class Hashmap(object):
 
     def __init__(self):
+        self.__obj = None
         pass
 
     def insert(self, key, value):
-        pass
+        self.__obj = value
 
     def get(self, key):
-        pass
+        return self.__obj
 
     def delete(self, key):
         pass
