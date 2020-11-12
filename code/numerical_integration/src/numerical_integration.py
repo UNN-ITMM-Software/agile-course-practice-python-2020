@@ -1,9 +1,7 @@
-class NumericalIntegration:
+class NumericalIntegrator(object):
     
-    @staticmethod
-    def trapeziumMethod(self, digits = []):
+    def trapeziumMethod(self, a, b, func):
         pass
     
-    @staticmethod
-    def simpsonMethod(self, digits = []):
+    def simpsonMethod(self, a, b, func):
         pass
