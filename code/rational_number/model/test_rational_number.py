@@ -18,9 +18,12 @@ class TestRationalNumberClass(unittest.TestCase):
         with self.assertRaises(TypeError):
             RationalNumber(1, 'b')
 
-    def test_can_check_equality_rational_numbers(self):
+    def test_can_check_equality_rational_numbers1(self):
         number = RationalNumber(-1, 2)
         self.assertEquals(number, RationalNumber(-1, 2))
+
+    def test_can_check_equality_rational_numbers2(self):
+        number = RationalNumber(-1, 2)
         self.assertEquals(number, RationalNumber(1, -2))
 
     def test_reduce_zero_rational_number(self):
@@ -35,9 +38,12 @@ class TestRationalNumberClass(unittest.TestCase):
         number = RationalNumber(-27, 144)
         self.assertEquals(number, RationalNumber(3, -16))
 
-    def test_can_check_not_equality_rational_numbers(self):
+    def test_can_check_not_equality_rational_numbers1(self):
         number = RationalNumber(-1, 2)
         self.assertNotEquals(number, RationalNumber(1, 2))
+
+    def test_can_check_not_equality_rational_numbers2(self):
+        number = RationalNumber(-1, 2)
         self.assertNotEquals(number, RationalNumber(-1, 3))
 
     def test_str_rational_number1(self):
@@ -58,11 +64,14 @@ class TestRationalNumberClass(unittest.TestCase):
         number2 = RationalNumber(2, 5)
         self.assertEquals(number1 + number2, RationalNumber(3, 2))
 
-    def test_unary_minus_rational_number(self):
+    def test_unary_minus_rational_number1(self):
         number1 = RationalNumber(11, -10)
         number2 = RationalNumber(11, 10)
         self.assertEquals(number1, -number2)
-        self.assertEquals(number2, -(-number2))
+
+    def test_unary_minus_rational_number2(self):
+        number = RationalNumber(11, -10)
+        self.assertEquals(number, -(-number))
 
     def test_subtract_rational_numbers(self):
         number1 = RationalNumber(-1, 2)
