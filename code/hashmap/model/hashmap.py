@@ -9,6 +9,10 @@ class Hashmap(object):
         self.__obj = [[] for _ in range(size)]
         pass
 
+    def update(self, key, value):
+        self.delete(key)
+        self.insert(key, value)
+
     def insert(self, key, value):
         h = self.__get_hash(key)
         for item in self.__obj[h]:
@@ -28,4 +32,5 @@ class Hashmap(object):
         for item in self.__obj[h]:
             if item[0] == key:
                 self.__obj[h].remove(item)
+                return
         raise KeyError("No key {} in hashmap".format(key))

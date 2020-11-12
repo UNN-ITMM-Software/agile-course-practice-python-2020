@@ -10,9 +10,10 @@ class TestHashmap(unittest.TestCase):
 
     def test_insert_and_get_item_positive(self):
         hmap = Hashmap()
+        key = 0
         obj = "zero"
-        hmap.insert(0, obj)
-        res = hmap.get(0)
+        hmap.insert(key, obj)
+        res = hmap.get(key)
         self.assertEqual(obj, res)
 
     def test_can_insert_few_items_and_get_items_positive(self):
@@ -42,7 +43,7 @@ class TestHashmap(unittest.TestCase):
         with self.assertRaises(KeyError):
             hmap.insert(key, obj2)
 
-    def test_insert_two_items_with_same_hash(self):
+    def test_insert_two_items_with_same_hash_positive(self):
         hmap = Hashmap(1)
         key1 = 0
         key2 = 1
@@ -54,3 +55,13 @@ class TestHashmap(unittest.TestCase):
         res2 = hmap.get(key2)
         self.assertEqual(obj1, res1)
         self.assertEqual(obj2, res2)
+
+    def test_update_item_positive(self):
+        hmap = Hashmap()
+        key = 0
+        obj = "zero"
+        obj_updated = "0"
+        hmap.insert(key, obj)
+        hmap.update(key, obj_updated)
+        res = hmap.get(key)
+        self.assertEqual(obj_updated, res)
