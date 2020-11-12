@@ -48,3 +48,45 @@ class TestNumericalIntegratorClass(unittest.TestCase):
             return x
         result = NumericalIntegrator().trapeziumMethod(-1, -2, func)
         self.assertEqual(round(result,5), round(1.5,5))
+
+    def test_numerical_integratior_simpsonMethod_func_zero(self):
+        def func(x): 
+            return 0
+        result = NumericalIntegrator().simpsonMethod(1, 2, func)
+        self.assertEqual(result, 0)
+
+    def test_numerical_integratior_simpsonMethod_func_linear(self):
+        def func(x): 
+            return x
+        result = NumericalIntegrator().simpsonMethod(1, 2, func)
+        self.assertEqual(round(result,5), round(1.5,5))
+
+    def test_numerical_integratior_simpsonMethod_func_difficult(self):
+        def func(x): 
+            return x * (x + 1) + 1
+        result = NumericalIntegrator().simpsonMethod(1, 2, func)
+        self.assertEqual(round(result, 5), round(4.83333, 5))
+
+    def test_numerical_integratior_simpsonMethod_args_zero(self):
+        def func(x): 
+            return x
+        result = NumericalIntegrator().simpsonMethod(0, 0, func)
+        self.assertEqual(result, 0)
+
+    def test_numerical_integratior_simpsonMethod_args_positive_sub_negative(self):
+        def func(x): 
+            return x
+        result = NumericalIntegrator().simpsonMethod(2, 1, func)
+        self.assertEqual(round(result,5), round(-1.5,5))
+
+    def test_numerical_integratior_simpsonMethod_args_negative_sub_positive(self):
+        def func(x): 
+            return x
+        result = NumericalIntegrator().simpsonMethod(-2, -1, func)
+        self.assertEqual(round(result,5), round(-1.5,5))
+
+    def test_numerical_integratior_simpsonMethod_args_negative_sub_negative(self):
+        def func(x): 
+            return x
+        result = NumericalIntegrator().simpsonMethod(-1, -2, func)
+        self.assertEqual(round(result,5), round(1.5,5))
