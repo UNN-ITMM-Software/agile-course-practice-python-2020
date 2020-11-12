@@ -14,7 +14,7 @@ class TestSegmentTree(unittest.TestCase):
 
             st = SegmentTree('sum')
             st.build(array)
-    
+
     def test_can_create_tree_only_with_list_of_integer(self):
         with self.assertRaises(TypeError):
             array = ['solo', 3, 2, 2]
@@ -73,7 +73,7 @@ class TestSegmentTree(unittest.TestCase):
         st.build(array)
 
         with self.assertRaises(IndexError):
-             st.update(index=22, new_value=0)
+            st.update(index=22, new_value=0)
 
     def test_max_1(self):
         array = [1, 0, 8]
