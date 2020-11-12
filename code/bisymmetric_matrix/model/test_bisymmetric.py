@@ -148,6 +148,11 @@ class TestIsCorrectVectorSize(unittest.TestCase):
 
 
 class TestGenerateByVector(unittest.TestCase):
+    def test_generate_by_0_size_vector_is_bisymmetric(self):
+        empty_matrix = BisymmetricMatrix()
+        empty_matrix.generate_bisymmetric_matrix_by_vector([])
+        self.assertTrue(empty_matrix.is_bisymmetric())
+
     def test_generate_bisymmetric_is_symmetric(self):
         correct_bisymmetric_matrix = BisymmetricMatrix()
         correct_bisymmetric_matrix.generate_bisymmetric_matrix_by_vector([1])

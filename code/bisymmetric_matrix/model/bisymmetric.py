@@ -123,7 +123,7 @@ class BisymmetricMatrix:
         if size == -1:
             raise ValueError
         elif size == 0:
-            return
+            return []
 
         index_cor = 0
 
