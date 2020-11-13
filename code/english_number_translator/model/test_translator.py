@@ -122,3 +122,15 @@ class TestTranslator(unittest.TestCase):
         self.assertEqual(
             "one billion one hundred eleven million one hundred eleven thousand one hundred eleven",
             Translator.num_to_string(1111111111))
+
+    def test_not_int_raise_error(self):
+        try:
+            Translator.num_to_string(111.0)
+        except TypeError:
+            self.assertTrue(True)
+
+    def test_negative_number_raise_error(self):
+        try:
+            Translator.num_to_string(-55)
+        except ValueError:
+            self.assertTrue(True)

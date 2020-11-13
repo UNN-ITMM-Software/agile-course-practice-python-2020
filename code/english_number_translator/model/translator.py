@@ -1,6 +1,11 @@
 class Translator(object):
     @staticmethod
     def num_to_string(num):
+        if not isinstance(num, int):
+            raise TypeError
+        elif num < 0:
+            raise ValueError
+
         if num == 0:
             return "zero"
 
