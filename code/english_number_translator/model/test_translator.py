@@ -37,3 +37,18 @@ class TestTranslator(unittest.TestCase):
 
     def test_49_to_str(self):
         self.assertEquals("forty-nine", Translator.num_to_string(49))
+
+    def test_100_to_str(self):
+        self.assertEquals("one hundred", Translator.num_to_string(100))
+
+    def test_101_to_str(self):
+        self.assertEquals("one hundred one", Translator.num_to_string(101))
+
+    def test_110_to_str(self):
+        self.assertEquals("one hundred ten", Translator.num_to_string(110))
+
+    def test_111_to_str(self):
+        self.assertEquals("one hundred eleven", Translator.num_to_string(111))
+
+    def test_987_to_str(self):
+        self.assertEquals("nine hundred eighty-seven", Translator.num_to_string(987))

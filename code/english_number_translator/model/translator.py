@@ -43,14 +43,19 @@ class Translator(object):
 
         result_str = ""
         for place, dig in enumerate(reversed(dig_places)):
-            if place == 0:
-                if dig == 0:
-                    continue
-                result_str += simple_nums_to_str[dig]
+            if dig == 0:
+                continue
+            elif place == 0:
+                result_str = simple_nums_to_str[dig]
             elif place == 1:
+                if (num % 100) in simple_nums_to_str:
+                    result_str = simple_nums_to_str[num % 100]
+                    continue
                 if result_str == "":
                     result_str = second_placed_nums_to_str[dig]
                 else:
                     result_str = second_placed_nums_to_str[dig] + "-" + result_str
+            elif place == 2:
+                result_str = simple_nums_to_str[dig] + " hundred " + result_str
 
-        return result_str
+        return result_str.rstrip()
