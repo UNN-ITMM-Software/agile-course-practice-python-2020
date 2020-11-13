@@ -12,11 +12,11 @@ class CurrencyConverter:
         self.value = value
 
     def convert(self, src, dest, count=None):
-        if count is not None:
-            self.value = count
+        if count is None:
+            count = self.value
         if src == dest:
-            return self.value
-        return self.value * self.rates[src + "_to_" + dest]
+            return count
+        return count * self.rates[src + "_to_" + dest]
 
     def set_custom_rate(self, src, dest, rate):
         if rate <= 0:
