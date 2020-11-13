@@ -49,8 +49,8 @@ class Translator(object):
                 result_str += simple_nums_to_str[dig]
             elif place == 1:
                 if result_str == "":
-                    result_str = f"{second_placed_nums_to_str[dig]}"
+                    result_str = second_placed_nums_to_str[dig]
                 else:
-                    result_str = f"{second_placed_nums_to_str[dig]}-{result_str}"
+                    result_str = second_placed_nums_to_str[dig] + "-" + result_str
 
         return result_str
