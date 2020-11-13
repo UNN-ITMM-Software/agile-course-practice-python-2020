@@ -3,18 +3,19 @@
 
 import math
 
+
 class Sorting:
     # class realizes the sorting for array of numbers
-    arr =[]
+    arr = []
+
     def __init__(self, arr):
         self.arr = arr
-        
+
     def batcher_sort(self):
-        t = int(math.log(len(self.arr),2))
+        t = int(math.log(len(self.arr), 2))
         p = 2 ** (t - 1)
         while p > 0:
             q = 2 ** (t - 1)
-            r = 0
             d = p
             while q >= p:
                 i = 0
@@ -24,8 +25,8 @@ class Sorting:
                     i += 1
                 d = q - p
                 q = int(q / 2)
-                r = p
             p = p // 2
+
     def result_str(self):
         string = ''
         for j in range(len(self.arr)):
