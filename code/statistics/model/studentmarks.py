@@ -23,6 +23,11 @@ class StudentMarks(object):
     def average_of_marks(self):
         return mean(self.marks)
 
+    def add_new_marks(self, new_marks: list):
+        if self.is_correct(new_marks):
+            for mark in new_marks:
+                self.marks.append(mark)
+
 
 class Register:
     def __init__(self, students: list):

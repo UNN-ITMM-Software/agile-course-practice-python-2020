@@ -176,3 +176,31 @@ class TestExcellentStudents(unittest.TestCase):
         journal = Register([sidorov])
         result = journal.count_of_excellent()
         self.assertGreaterEqual(result, 0)
+
+
+class TestAddNewMarksToStudent(unittest.TestCase):
+    def test_correct_add_mark_to_a_student(self):
+        sidorov = StudentMarks([3, 3, 4, 3])
+        sidorov.add_new_marks([5])
+        self.assertEqual([3, 3, 4, 3, 5], sidorov.marks)
+
+    def test_add_two_marks_to_a_student(self):
+        sidorov = StudentMarks([3, 3, 4, 3])
+        sidorov.add_new_marks([5, 4])
+        self.assertEqual([3, 3, 4, 3, 5, 4], sidorov.marks)
+
+    def test_return_error_message_if_add_invalid_type_of_marks(self):
+        sidorov = StudentMarks([3, 3, 4, 3])
+        self.assertRaises(TypeError, sidorov.add_new_marks, ['two', 'three'])
+
+    def test_return_error_message_if_add_negative_marks(self):
+        sidorov = StudentMarks([3, 3, 4, 3])
+        self.assertRaises(ValueError, sidorov.add_new_marks, [-2])
+
+    def test_return_error_message_if_add_mark_less_1(self):
+        sidorov = StudentMarks([3, 3, 4, 3])
+        self.assertRaises(ValueError, sidorov.add_new_marks, [3, 0])
+
+    def test_return_error_message_if_add_mark_greater_5(self):
+        sidorov = StudentMarks([3, 3, 4, 3])
+        self.assertRaises(ValueError, sidorov.add_new_marks, [3, 7, 5])
