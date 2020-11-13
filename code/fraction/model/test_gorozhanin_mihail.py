@@ -2,6 +2,7 @@ import unittest
 
 from fraction.model.fraction import Fraction
 
+
 class TestFractionClass(unittest.TestCase):
     def test_div_sum_equal_sum_div(self):
         frac1 = Fraction(10, 2)
