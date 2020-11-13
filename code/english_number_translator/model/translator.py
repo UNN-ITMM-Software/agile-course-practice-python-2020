@@ -39,25 +39,38 @@ class Translator(object):
             9: "ninety",
         }
 
-        dig_places = list(map(int, list(str(num))))
-
         result_str = ""
-        for place, dig in enumerate(reversed(dig_places)):
-            if dig == 0:
+        dig_place_groups = []
+        while num:
+            dig_place_groups.append(num % 100)
+            num //= 100
+            dig_place_groups.append(num % 10)
+            num //= 10
+
+        group_pred = {
+            0: "",
+            1: " hundred ",
+            2: " thousand ",
+            4: " million ",
+            6: " billion ",
+            8: " trillion ",
+            10: " quadrillion ",
+            12: " quintillion ",
+            14: " sextillion ",
+            16: " septillion "
+        }
+
+        for group, gnum in enumerate(dig_place_groups):
+            if gnum == 0:
                 continue
-            elif place == 0:
-                result_str = simple_nums_to_str[dig]
-            elif place == 1:
-                if (num % 100) in simple_nums_to_str:
-                    result_str = simple_nums_to_str[num % 100]
-                    continue
-                if result_str == "":
-                    result_str = second_placed_nums_to_str[dig]
+            if group % 2 == 0:
+                if gnum in simple_nums_to_str:
+                    result_str = simple_nums_to_str[gnum] + group_pred[group] + result_str
                 else:
-                    result_str = second_placed_nums_to_str[dig] + "-" + result_str
-            elif place == 2:
-                result_str = simple_nums_to_str[dig] + " hundred " + result_str
-            elif place == 3:
-                result_str = simple_nums_to_str[dig] + " thousand " + result_str
+                    result_str = second_placed_nums_to_str[gnum // 10]\
+                                 + ("-" + simple_nums_to_str[gnum % 10] if gnum % 10 != 0 else "")\
+                                 + group_pred[group] + result_str
+            else:
+                result_str = simple_nums_to_str[gnum] + group_pred[1] + result_str
 
         return result_str.rstrip()
