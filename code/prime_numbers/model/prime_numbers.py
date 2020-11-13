@@ -30,9 +30,5 @@ def is_prime(number):
 
 
 def get_primers(prime_range):
-    primers = []
-    for number in prime_range:
-        if is_prime(number):
-            primers.append(number)
-
+    primers = list(filter(lambda x: is_prime(x), prime_range))
     return primers
