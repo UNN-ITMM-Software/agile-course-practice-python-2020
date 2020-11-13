@@ -9,9 +9,9 @@ class PriorityQueue():
             raise TypeError("Only integers are allowed")
         self.ha.append(e)
         self.arrlen += 1
-        l = self.arrlen
+        length = self.arrlen
         hb = self.hb
-        i = int(l) - 1
+        i = int(length) - 1
         j = (i - 1) // hb
         while(e < self.ha[j] and (j >= 0)):
             self.ha[i], self.ha[j] = self.ha[j], self.ha[i]
@@ -24,37 +24,36 @@ class PriorityQueue():
         if(self.arrlen == 0):
             raise RuntimeError("Attempt to pop empty PriorityQueue")
         ha = self.ha
-        l = self.arrlen - 1
+        length = self.arrlen - 1
         val = ha[0]
-        ha[0], ha[l] = ha[l], ha[0]
+        ha[0], ha[length] = ha[length], ha[0]
         ha.pop()
         self.arrlen -= 1
-        l = self.arrlen - 1
+        length = self.arrlen - 1
         idx = 0
         hb = self.hb
-        childLess = True
+        childless = True
 
-        while(childLess):
-            mChIdx = (idx * hb) + 1
-            if(mChIdx >= l):
+        while(childless):
+            mchildi = (idx * hb) + 1
+            if(mchildi >= length):
                 break
-            childLess = False
-            i, j = mChIdx, 0
-            lb = min(l, mChIdx + hb)
-            mv = min(ha[mChIdx : lb])
-            mChIdx = [i for i in range(mChIdx, lb) if(ha[i] == mv)][0]
-            if(ha[idx] > ha[mChIdx]):
-                ha[idx], ha[mChIdx] = ha[mChIdx], ha[idx]
-                indx = mChIdx
-                childLess = True
+            childless = False
+            lb = min(length, mchildi + hb)
+            mv = min(ha[mchildi:lb])
+            mchildi = [i for i in range(mchildi, lb) if(ha[i] == mv)][0]
+            if(ha[idx] > ha[mchildi]):
+                ha[idx], ha[mchildi] = ha[mchildi], ha[idx]
+                idx = mchildi
+                childless = True
             else:
-                childLess = False
+                childless = False
         return val
 
-    def merge(otherpq):
+    def merge(self, otherpq):
         if(not(type(otherpq) == PriorityQueue)):
             raise TypeError("Error on merge: unexpected arg type")
-        while(not other.pq.is_empty()):
+        while(not otherpq.is_empty()):
             self.push(otherpq.pop())
 
     def is_empty(self):

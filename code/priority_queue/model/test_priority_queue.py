@@ -2,6 +2,7 @@ import unittest
 
 from priority_queue.model.priority_queue import PriorityQueue
 
+
 class TestPriorityQueue(unittest.TestCase):
     def test_is_empty_on_creation(self):
         pq = PriorityQueue()
@@ -13,7 +14,7 @@ class TestPriorityQueue(unittest.TestCase):
         pq.pop()
         self.assertTrue(pq.is_empty())
 
-    def test_cannot_push_noninteger(self)
+    def test_cannot_push_noninteger(self):
         pq = PriorityQueue()
         with self.assertRaises(TypeError):
             pq.push("notanumber")
@@ -44,9 +45,7 @@ class TestPriorityQueue(unittest.TestCase):
 
     def test_consistent_min_after_pop(self):
         pq = PriorityQueue()
-        for v in [3, 2, 1]
+        for v in [3, 2, 1]:
             pq.push(v)
         pq.pop()
         self.assertEqual(pq.top(), 2)
-
-
