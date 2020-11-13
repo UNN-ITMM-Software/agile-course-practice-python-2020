@@ -3,21 +3,31 @@ import unittest
 from bisymmetric_matrix.model.bisymmetric import BisymmetricMatrix
 
 
-class TestIsSquare(unittest.TestCase):
+class TestIsValidAndSquare(unittest.TestCase):
     def test_0_size_matrix(self):
         empty_matrix = BisymmetricMatrix()
         empty_matrix.init_matrix([])
-        self.assertTrue(empty_matrix.is_square())
+        self.assertTrue(empty_matrix.is_valid_square_matrix())
+
+    def test_incorrect_matrix(self):
+        incorrect_matrix = BisymmetricMatrix()
+        incorrect_matrix.init_matrix([['one', 2], [2, '3']])
+        self.assertFalse(incorrect_matrix.is_valid_square_matrix())
 
     def test_correct_square_matrix(self):
         square_matrix = BisymmetricMatrix()
         square_matrix.init_matrix([[3, 2, 1], [4, 3, 2], [5, 4, 3]])
-        self.assertTrue(square_matrix.is_square())
+        self.assertTrue(square_matrix.is_valid_square_matrix())
 
     def test_not_square_matrix(self):
         not_square_matrix = BisymmetricMatrix()
         not_square_matrix.init_matrix([[3, 2, 1], [4, 3, 2]])
-        self.assertFalse(not_square_matrix.is_square())
+        self.assertFalse(not_square_matrix.is_valid_square_matrix())
+
+    def test_incorrect_size_matrix(self):
+        incorrect_size_matrix = BisymmetricMatrix()
+        incorrect_size_matrix.init_matrix([[1, 2, 3], [1, 2]])
+        self.assertFalse(incorrect_size_matrix.is_valid_square_matrix())
 
 
 class TestIsSymmetric(unittest.TestCase):
@@ -141,10 +151,10 @@ class TestIsCorrectVectorSize(unittest.TestCase):
         self.assertEqual(BisymmetricMatrix().is_correct_vector_size(3), -1)
 
     def test_float_vector_size(self):
-        self.assertRaises(TypeError, BisymmetricMatrix().is_correct_vector_size, 2.4)
+        self.assertRaises(ValueError, BisymmetricMatrix().is_correct_vector_size, 2.4)
 
     def test_str_vector_size(self):
-        self.assertRaises(TypeError, BisymmetricMatrix().is_correct_vector_size, 'six')
+        self.assertRaises(ValueError, BisymmetricMatrix().is_correct_vector_size, 'six')
 
 
 class TestGenerateByVector(unittest.TestCase):
