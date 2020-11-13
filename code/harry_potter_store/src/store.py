@@ -35,6 +35,15 @@ class Store:
             to_buy_books = self._decrement(to_buy_books, number)
         return to_buy_books, price
 
+    """
+    algorithm logic: we have discounts for several books. We give names for it: 3, 2, 1
+    and we are doing a full sort out
+    we calculate a price just with discount for 3 books
+    next for 2 books
+    next for 1 books
+    and next we calculate a price with discount for 3, 2, 1 books
+    next for 2, 1 books
+    """
     def get_price(self, to_buy_books: Dict[str, int]) -> float:
         """
         to_buy_books - dictionary from book type and book amount
@@ -42,7 +51,7 @@ class Store:
         value of dict -- book amount
         """
         self._validate(to_buy_books)
-        to_buy_books = {k: v for k, v in sorted(to_buy_books.items(), key=lambda item: item[1])}
+        to_buy_books = {k: v for k, v in sorted(to_buy_books.items(), key=lambda item: item[1], reverse=True)}
         discounts = [self._discount_wrapper(5, 0.25), self._discount_wrapper(4, 0.2),
                      self._discount_wrapper(3, 0.1), self._discount_wrapper(2, 0.05)]
         min_price = self.book_price * sum(to_buy_books.values())
@@ -50,9 +59,10 @@ class Store:
             min_price = min(min_price,
                             self._get_price(to_buy_books,
                                             [discounts[i]], len(discounts) - i, lambda x, y: x >= y))
-            min_price = min(min_price,
-                            self._get_price(to_buy_books,
-                                            discounts[0:i + 1], len(discounts) - i, lambda x, y: x == y))
+            if i != 0:
+                min_price = min(min_price,
+                                self._get_price(to_buy_books,
+                                                discounts[0:i + 1], len(discounts) - i, lambda x, y: x == y))
         return min_price
 
     def _get_price(self, to_buy_books: Dict[str, int],
