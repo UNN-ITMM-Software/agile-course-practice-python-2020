@@ -1,6 +1,9 @@
 class Translator(object):
     @staticmethod
     def num_to_string(num):
+        if num == 0:
+            return "zero"
+
         simple_nums_to_str = {
             1: "one",
             2: "two",
@@ -38,5 +41,16 @@ class Translator(object):
 
         dig_places = list(map(int, list(str(num))))
 
-        for place, dig in enumerate(dig_places):
-            second_placed_nums_to_str[0]
+        result_str = ""
+        for place, dig in enumerate(reversed(dig_places)):
+            if place == 0:
+                if dig == 0:
+                    continue
+                result_str += simple_nums_to_str[dig]
+            elif place == 1:
+                if result_str == "":
+                    result_str = f"{second_placed_nums_to_str[dig]}"
+                else:
+                    result_str = f"{second_placed_nums_to_str[dig]}-{result_str}"
+
+        return result_str

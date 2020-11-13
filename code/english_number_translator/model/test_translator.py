@@ -5,6 +5,9 @@ from model.translator import Translator
 
 class TestTranslator(unittest.TestCase):
 
+    def test_0_dig_to_str(self):
+        self.assertEquals("zero", Translator.num_to_string(0))
+
     def test_1_dig_to_str(self):
         self.assertEquals("one", Translator.num_to_string(1))
 
@@ -27,9 +30,10 @@ class TestTranslator(unittest.TestCase):
         self.assertEquals("seventeen", Translator.num_to_string(17))
 
     def test_21_to_str(self):
-        pass
-        # self.assertEquals("twenty-one", Translator.num_to_string(21))
+        self.assertEquals("twenty-one", Translator.num_to_string(21))
 
-    def test_22_to_str(self):
-        pass
-        # self.assertEquals("twenty-two", Translator.num_to_string(22))
+    def test_20_to_str(self):
+        self.assertEquals("twenty", Translator.num_to_string(20))
+
+    def test_49_to_str(self):
+        self.assertEquals("forty-nine", Translator.num_to_string(49))
