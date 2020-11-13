@@ -5,7 +5,7 @@ class PriorityQueue():
         self.arrlen = 0
 
     def push(self, e):
-        if not type(e) is int:
+        if not isinstance(e, int):
             raise TypeError("Only integers are allowed")
         self.ha.append(e)
         self.arrlen += 1
@@ -51,7 +51,7 @@ class PriorityQueue():
         return val
 
     def merge(self, otherpq):
-        if(not(type(otherpq) == PriorityQueue)):
+        if(not isinstance(otherpq, PriorityQueue)):
             raise TypeError("Error on merge: unexpected arg type")
         while(not otherpq.is_empty()):
             self.push(otherpq.pop())
