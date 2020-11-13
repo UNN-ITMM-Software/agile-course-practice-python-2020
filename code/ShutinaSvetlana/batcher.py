@@ -35,4 +35,3 @@ class Sorting:
                 space = ' '
             string += str(self.arr[j]) + space
         return string
-
