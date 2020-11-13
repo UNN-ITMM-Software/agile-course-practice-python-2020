@@ -13,6 +13,30 @@ class Translator(object):
             9: "nine",
             10: "ten",
             11: "eleven",
-            12: "twelve"
+            12: "twelve",
+            13: "thirteen",
+            14: "fourteen",
+            15: "fifteen",
+            16: "sixteen",
+            17: "seventeen",
+            18: "eighteen",
+            19: "nineteen"
         }
-        return simple_nums_to_str[num]
+        if num in simple_nums_to_str:
+            return simple_nums_to_str[num]
+
+        second_placed_nums_to_str = {
+            2: "twenty",
+            3: "thirty",
+            4: "forty",
+            5: "fifty",
+            6: "sixty",
+            7: "seventy",
+            8: "eighty",
+            9: "ninety",
+        }
+
+        dig_places = list(map(int, list(str(num))))
+
+        for place, dig in enumerate(dig_places):
+            second_placed_nums_to_str[0]
