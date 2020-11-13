@@ -57,5 +57,7 @@ class Translator(object):
                     result_str = second_placed_nums_to_str[dig] + "-" + result_str
             elif place == 2:
                 result_str = simple_nums_to_str[dig] + " hundred " + result_str
+            elif place == 3:
+                result_str = simple_nums_to_str[dig] + " thousand " + result_str
 
         return result_str.rstrip()
