@@ -132,4 +132,4 @@ class TriangleTests(unittest.TestCase):
     def test_get_type_by_andle_invalid_triangle(self):
         test_triangle = Triangle(0, 0, 0, 1, 0, 2)
         with self.assertRaises(TriangleError):
-            Triangle.get_triangle_type_by_sides(test_triangle)
+            Triangle.get_triangle_type_by_angles(test_triangle)
