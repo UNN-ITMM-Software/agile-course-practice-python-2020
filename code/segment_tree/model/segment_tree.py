@@ -5,8 +5,7 @@ import math
 class SegmentTree(object):
     def __init__(self, tree_type):
         if tree_type not in ['max', 'min', 'sum']:
-            raise TypeError(
-                'Incorrect type of segment tree. Expected: max\\min\\sum')
+            raise TypeError('Incorrect type of segment tree. Expected: max\\min\\sum')
         self.config = {
             'sum': (sum, 0),
             'min': (min, math.inf),
@@ -33,8 +32,7 @@ class SegmentTree(object):
 
         for element in array:
             if not isinstance(element, int):
-                raise TypeError(
-                    'Incorrect type of input array\'s elements. Expected: int')
+                raise TypeError('Incorrect type of input array\'s elements. Expected: int')
 
         self.array = copy.deepcopy(array)
         self.size = len(array)
