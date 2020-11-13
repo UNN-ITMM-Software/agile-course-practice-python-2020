@@ -1,4 +1,4 @@
-import statistics
+from numpy import mean
 
 
 class StudentMarks(object):
@@ -21,7 +21,7 @@ class StudentMarks(object):
         return len(self.marks)
 
     def average_of_marks(self):
-        return statistics.mean(self.marks)
+        return mean(self.marks)
 
 
 class Register:

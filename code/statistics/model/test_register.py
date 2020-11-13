@@ -1,6 +1,6 @@
 import unittest
 
-from statistics.model.studentmarks import StudentMarks, Register
+from studentmarks import StudentMarks, Register
 
 
 class TestAmountOfMarks(unittest.TestCase):
