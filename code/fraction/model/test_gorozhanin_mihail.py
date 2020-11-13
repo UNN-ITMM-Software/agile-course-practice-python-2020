@@ -16,5 +16,5 @@ class TestFractionClass(unittest.TestCase):
         frac2 = Fraction(7, 5)
         frac3 = Fraction(5, 2)
         res = (frac1 + frac2) * frac3
-        res1 = (frac1 + frac3) * (frac2 + frac3)
+        res1 = frac1 * frac3 + frac2 * frac3
         self.assertTrue(res.p == res1.p and res.q == res1.q)
