@@ -241,5 +241,5 @@ class TestFractionOperations(unittest.TestCase):
     def test_multiply_fraction_5_6_6_5(self):
         frac_1 = Fraction(5, 6)
         frac_2 = Fraction(6, 5)
-        result = frac_1 + frac_2
+        result = frac_1 * frac_2
         self.assertTrue(result.is_equal(1, 1))
