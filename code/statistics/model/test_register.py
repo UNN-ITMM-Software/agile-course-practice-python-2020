@@ -18,6 +18,9 @@ class TestAmountOfMarks(unittest.TestCase):
 
 
 class TestCorrectInputValue(unittest.TestCase):
+    def test_marks_return_error_message_if_list_is_empty(self):
+        self.assertRaisesRegex(Warning, 'Enter marks!', StudentMarks.is_correct, [])
+
     def test_marks_return_error_message_if_arguments_str(self):
         self.assertRaises(TypeError, StudentMarks.is_correct, ['two', 'three', 'four', 'five'])
 

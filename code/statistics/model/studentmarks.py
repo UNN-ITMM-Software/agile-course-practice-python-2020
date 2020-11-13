@@ -1,6 +1,11 @@
+import statistics
+
+
 class StudentMarks(object):
     @staticmethod
     def is_correct(list_of_marks):
+        if not list_of_marks:
+            raise Warning("Enter marks!")
         for mark in list_of_marks:
             if not isinstance(mark, int):
                 raise TypeError
@@ -16,11 +21,7 @@ class StudentMarks(object):
         return len(self.marks)
 
     def average_of_marks(self):
-        summary = 0
-        count = self.amount_of_marks()
-        for i in self.marks:
-            summary += i
-        return summary / count
+        return statistics.mean(self.marks)
 
 
 class Register:
