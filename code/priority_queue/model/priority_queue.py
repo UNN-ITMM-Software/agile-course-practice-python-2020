@@ -13,7 +13,7 @@ class PriorityQueue():
         hb = self.hb
         i = int(length) - 1
         j = (i - 1) // hb
-        while(e < self.ha[j] and (j >= 0)):
+        while e < self.ha[j] and j >= 0:
             self.ha[i], self.ha[j] = self.ha[j], self.ha[i]
             i, j = j, ((j - 1) // hb)
 
@@ -21,7 +21,7 @@ class PriorityQueue():
         return self.ha[0]
 
     def pop(self):
-        if(self.arrlen == 0):
+        if self.arrlen == 0:
             raise RuntimeError("Attempt to pop empty PriorityQueue")
         ha = self.ha
         length = self.arrlen - 1
@@ -34,15 +34,15 @@ class PriorityQueue():
         hb = self.hb
         childless = True
 
-        while(childless):
+        while childless:
             mchildi = (idx * hb) + 1
-            if(mchildi >= length):
+            if mchildi >= length:
                 break
             childless = False
             lb = min(length, mchildi + hb)
             mv = min(ha[mchildi:lb])
-            mchildi = [i for i in range(mchildi, lb) if(ha[i] == mv)][0]
-            if(ha[idx] > ha[mchildi]):
+            mchildi = [i for i in range(mchildi, lb) if ha[i] == mv][0]
+            if ha[idx] > ha[mchildi]:
                 ha[idx], ha[mchildi] = ha[mchildi], ha[idx]
                 idx = mchildi
                 childless = True
@@ -51,9 +51,9 @@ class PriorityQueue():
         return val
 
     def merge(self, otherpq):
-        if(not isinstance(otherpq, PriorityQueue)):
+        if not isinstance(otherpq, PriorityQueue):
             raise TypeError("Error on merge: unexpected arg type")
-        while(not otherpq.is_empty()):
+        while not otherpq.is_empty():
             self.push(otherpq.pop())
 
     def is_empty(self):
