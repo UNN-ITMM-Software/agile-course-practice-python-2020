@@ -27,10 +27,7 @@ class Range:
         return all(self.contains_value(value) for value in obj)
 
     def get_all_points(self):
-        result = []
-        for i in range(self.__start_value, self.__end_value + 1):
-            result.append(i)
-        return result
+        return list(range(self.__start_value, self.__end_value + 1))
 
     def contains_range(self, obj):
         if not isinstance(obj, Range):
