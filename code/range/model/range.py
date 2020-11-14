@@ -20,7 +20,7 @@ class Range:
 
     def contains_value(self, obj):
         if not isinstance(obj, int):
-            raise TypeError('Wrong type of obj')
+            raise TypeError('Wrong type of obj. Expected: int')
         return self.__start_value <= obj <= self.__end_value
 
     def contains_set(self, obj):
@@ -34,17 +34,17 @@ class Range:
 
     def contains_range(self, obj):
         if not isinstance(obj, Range):
-            raise TypeError('Wrong type of obj')
+            raise TypeError('Wrong type of obj. Expected: Range')
         return self.__start_value <= obj.__start_value <= obj.__end_value <= self.__end_value
 
     def overlaps_range(self, obj):
         if not isinstance(obj, Range):
-            raise TypeError('Wrong type of obj')
+            raise TypeError('Wrong type of obj. Expected: Range')
         return obj.__start_value <= self.__start_value <= self.__end_value <= obj.__end_value
 
     def equals(self, obj):
         if not isinstance(obj, Range):
-            raise TypeError('Wrong type of obj')
+            raise TypeError('Wrong type of obj. Expected: Range')
         return self.__start_value == obj.__start_value and self.__end_value == obj.__end_value
 
     def end_points(self):
