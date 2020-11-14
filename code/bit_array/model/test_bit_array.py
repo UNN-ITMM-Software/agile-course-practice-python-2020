@@ -69,11 +69,11 @@ class TestBitArray(unittest.TestCase):
         self.assertEqual(exp, bit_array._BitArray__decimal_to_binary(5))
 
     def test_set_bit_with_invalid_argument(self):
-         with self.assertRaises(TypeError):
+        with self.assertRaises(TypeError):
             BitArray(5).set_bit([9.75])
 
     def test_set_bit_with_out_of_range_argument(self):
-         with self.assertRaises(IndexError):
+        with self.assertRaises(IndexError):
             BitArray(5).set_bit(12)
 
     def test_set_bit_with_valid_argument(self):
@@ -84,11 +84,11 @@ class TestBitArray(unittest.TestCase):
         self.assertEqual(exp, bit_array._BitArray__array)
 
     def test_get_bit_with_invalid_argument(self):
-         with self.assertRaises(TypeError):
+        with self.assertRaises(TypeError):
             BitArray(5).get_bit('2')
 
     def test_get_bit_with_out_of_range_argument(self):
-         with self.assertRaises(IndexError):
+        with self.assertRaises(IndexError):
             BitArray(5).get_bit(12)
 
     def test_get_bit_with_valid_argument(self):
@@ -99,11 +99,11 @@ class TestBitArray(unittest.TestCase):
         self.assertEqual(exp, bit_array.get_bit(11))
 
     def test_clear_bit_with_invalid_argument(self):
-         with self.assertRaises(TypeError):
+        with self.assertRaises(TypeError):
             BitArray(5).clear_bit('2')
 
     def test_clear_bit_with_out_of_range_argument(self):
-         with self.assertRaises(IndexError):
+        with self.assertRaises(IndexError):
             BitArray(5).clear_bit(12)
 
     def test_clear_bit_with_valid_argument(self):
