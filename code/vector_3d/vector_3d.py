@@ -1,4 +1,5 @@
 from math import sqrt
+import math
 import warnings
 
 
@@ -10,7 +11,8 @@ class Vector3d:
         self.z = z
 
     def is_equal(self, x: float, y: float, z: float) -> bool:
-        return self.x == x and self.y == y and self.z == z
+        return math.isclose(self.x, x) and math.isclose(self.y, y)\
+               and math.isclose(self.z, z)
 
     def calc_norma(self, norma_type='euclid') -> float:
         x = self.x
