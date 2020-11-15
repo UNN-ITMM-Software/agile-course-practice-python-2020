@@ -30,7 +30,7 @@ class Triangle(object):
             return False
         return True
 
-    def get_area(self): # площадь
+    def get_area(self):  # площадь
         if not self.is_triangle():
             raise TriangleError('This triangle is invalid! Check it!')
         return 0.5 * abs((self.x2 - self.x1) * (self.y3 - self.y1) -
@@ -41,7 +41,7 @@ class Triangle(object):
             raise TriangleError('This triangle is invalid! Check it!')
         return self.get_ab() + self.get_bc() + self.get_ca()
 
-    def get_circumcircle_radius(self): # описанная окружность
+    def get_circumcircle_radius(self):  # описанная окружность
         if not self.is_triangle():
             raise TriangleError('This triangle is invalid! Check it!')
         return self.get_ab() * self.get_bc() * self.get_ca() / (4 * Triangle.get_area(self))
