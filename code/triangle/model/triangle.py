@@ -30,18 +30,18 @@ class Triangle(object):
             return False
         return True
 
-    def get_area(self):
+    def get_area(self): # площадь
         if not self.is_triangle():
             raise TriangleError('This triangle is invalid! Check it!')
         return 0.5 * abs((self.x2 - self.x1) * (self.y3 - self.y1) -
                          (self.x3 - self.x1) * (self.y2 - self.y1))
 
-    def get_perimeter(self):  # описананя окружность
+    def get_perimeter(self):  # периметр
         if not self.is_triangle():
             raise TriangleError('This triangle is invalid! Check it!')
         return self.get_ab() + self.get_bc() + self.get_ca()
 
-    def get_circumcircle_radius(self):
+    def get_circumcircle_radius(self): # описанная окружность
         if not self.is_triangle():
             raise TriangleError('This triangle is invalid! Check it!')
         return self.get_ab() * self.get_bc() * self.get_ca() / (4 * Triangle.get_area(self))
