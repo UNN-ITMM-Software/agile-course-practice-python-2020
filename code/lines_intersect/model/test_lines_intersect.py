@@ -22,7 +22,7 @@ class TestLineClass(unittest.TestCase):
 
     def test_points_of_created_line_are_float_numbers(self):
         point1 = (3.0, 2.0)
-        point2 = (1, 2.0)
+        point2 = (5, 2.0)
         line = Line(point1, point2)
         self.assertIsInstance(line.point2[0], float)
 
