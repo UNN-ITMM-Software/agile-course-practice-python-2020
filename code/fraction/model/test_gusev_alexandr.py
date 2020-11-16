@@ -12,4 +12,4 @@ class TestFraction(unittest.TestCase):
 
     def test_can_fraction_create(self):
         frac = Fraction(-1, 2)
-        self.assertTrue(frac.is_equal(-1, 3))
+        self.assertTrue(frac.is_equal(-1, 2))
