@@ -1,7 +1,7 @@
 import tkinter
 from tkinter import ttk
 
-from fraction.viewmodel.viewmodel import viewmodel
+from fraction.viewmodel import viewmodel
 
 
 class GUIView(ttk.Frame):
@@ -9,7 +9,7 @@ class GUIView(ttk.Frame):
     N_LOG_MESSAGES_TO_DISPLAY = 15
     default_sticky = tkinter.W + tkinter.E + tkinter.N + tkinter.S
 
-    view_model = viewmodel.ViewModel()
+    view_model = viewmodel.FractionViewModel()
 
     def set_weight_to_grid(self):
         self.rowconfigure(1, weight=1)
