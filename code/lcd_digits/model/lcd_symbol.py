@@ -26,10 +26,7 @@ class LcdSymbol:
             raise ValueError('Match error: no symbol match')
 
         self.__symbol = symbol
-        try:
-            self.__lcd_symbol = LcdSymbol.MATCH_DICTIONARY[symbol]
-        except KeyError:
-            raise ValueError('Match error: no symbol match in dictionary')
+        self.__lcd_symbol = LcdSymbol.MATCH_DICTIONARY[symbol]
 
     def equals(self, obj):
         if not isinstance(obj, LcdSymbol):
