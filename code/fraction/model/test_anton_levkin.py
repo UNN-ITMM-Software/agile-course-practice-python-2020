@@ -11,4 +11,4 @@ class TestFractionClass(unittest.TestCase):
     def test_mul_fraction(self):
         f0 = Fraction(1, 2)
         f1 = Fraction(0, 3)
-        self.assertTrue((f0 * f2).is_equal(0, 1))
+        self.assertTrue((f0 * f1).is_equal(0, 1))
