@@ -3,7 +3,13 @@
 def get_float_value(celsius):
     if isinstance(celsius, str):
         celsius = celsius.replace(',', '.')
-    return float(celsius)
+        try:
+            result = float(celsius)
+        except ValueError:
+            raise ValueError("Error: incorrect value")
+        return result
+    else:
+        return float(celsius)
 
 
 class TemperatureConverter:

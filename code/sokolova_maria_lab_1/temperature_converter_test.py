@@ -18,6 +18,9 @@ class TemperatureConverterTest(unittest.TestCase):
         some_string = "-15,67"
         self.assertEqual(get_float_value(some_string), -15.67)
 
+    def test_wrong_input_string(self):
+        self.assertRaises(ValueError, get_float_value, "some not a number string")
+
     # Fahrenheit
     def test_convert_from_zero_f(self):
         zero_value = TemperatureConverter(0)
