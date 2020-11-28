@@ -43,6 +43,10 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(error_message, model.get_error_message())
         self.assertIsNone(model.get_result())
 
+    def test_correct_set_value(self):
+        model = PrimeNumberViewModel()
+        model.set_start_value(1)
+        model.set_end_value(10)
 
-if __name__ == '__main__':
-    unittest.main()
+        self.assertEqual(1, model.get_start_value())
+        self.assertEqual(10, model.get_end_value())
