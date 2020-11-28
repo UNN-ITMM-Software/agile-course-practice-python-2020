@@ -85,6 +85,3 @@ class GUIView:
 
         self.res.config(text='%s\n' % (get_result_text(self.view_model.get_result())))
         self.error_field.config(text='%s\n' % (get_error_text(self.view_model.get_error_message())))
-
-
-test = GUIView()
