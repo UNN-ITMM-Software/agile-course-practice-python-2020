@@ -20,9 +20,17 @@ class GUI(ttk.Frame):
         self.plane_point_2.bind('<Button-1>', self.plane_point_clicked)
         self.plane_point_3.bind('<Button-1>', self.plane_point_clicked)
 
+
+        self.a_param.bind('<KeyRelease>', self.txt_changed)
+        self.b_param.bind('<KeyRelease>', self.txt_changed)
+        self.c_param.bind('<KeyRelease>', self.txt_changed)
+        self.d_param.bind('<KeyRelease>', self.txt_changed)
+
     def mvvm_bind(self):
         self.view_model.set_x_y_z(
             [self.txt_x_in.get(), self.txt_y_in.get(), self.txt_z_in.get()])
+
+        self.view_model.set_abcd([self.a_param.get(), self.b_param.get(), self.c_param.get(), self.d_param.get()])
 
         self.label_is_interception.config(text=self.view_model.interception_or_error_msg)
         self.label_is_interception.update_idletasks()
@@ -67,6 +75,18 @@ class GUI(ttk.Frame):
         self.txt_z_in = tk.Entry(self, width=10)
         self.txt_z_in.grid(row=3, column=2, sticky=self.default_sticky)
 
+        self.abcd_label = tk.Label(self, width=30, text="abcd params: ", borderwidth=2, relief="groove")
+        self.abcd_label.grid(row=4, column=0, columnspan=2)
+
+        self.a_param = tk.Entry(self, width=10)
+        self.a_param.grid(row=4, column=1, sticky=self.default_sticky)
+        self.b_param = tk.Entry(self, width=10)
+        self.b_param.grid(row=4, column=2, sticky=self.default_sticky)
+        self.c_param = tk.Entry(self, width=10)
+        self.c_param.grid(row=4, column=3, sticky=self.default_sticky)
+        self.d_param = tk.Entry(self, width=10)
+        self.d_param.grid(row=4, column=4, sticky=self.default_sticky)
+
         self.btn_intercept = ttk.Button(self, text='Is interception')
         self.btn_intercept.grid(row=0, column=5,
                                 sticky=self.default_sticky)
@@ -79,7 +99,7 @@ class GUI(ttk.Frame):
 
     def is_intercept_clicked(self, event):
         self.mvvm_bind()
-        self.view_model.is_intercept()
+        self.view_model.is_intersect()
         self.mvvm_back_bind()
 
     def txt_changed(self, event):

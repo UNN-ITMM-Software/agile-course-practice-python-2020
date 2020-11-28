@@ -6,6 +6,7 @@ class ViewModel:
     def __init__(self):
         self.line_point_values_dict = {}
         self.plane_point_values_dict = {}
+        self.abcd = []
         self.current_point_id = None
         self.current_dict_type = None
         self.interception_or_error_msg = ""
@@ -33,6 +34,9 @@ class ViewModel:
         else:
             self.line_point_values_dict[self.current_point_id] = x_y_z
 
+    def set_abcd(self, abcd):
+        self.abcd = abcd
+
     def get_x_y_z(self):
         if self.current_point_id is None:
             return [0, 0, 0]
@@ -42,7 +46,7 @@ class ViewModel:
             else:
                 return self.line_point_values_dict[self.current_point_id]
 
-    def is_intercept(self):
+    def is_intersect(self):
         is_validate = self._is_validate()
         if is_validate:
             self.interception_or_error_msg = str(self.intersection.have_intersection(self._get_line(), self._get_plane()))
@@ -52,6 +56,9 @@ class ViewModel:
 
     def _get_corrected_values(self, dict):
         return list(map(lambda l: list(map(int, l)), list(dict.values())))
+
+    def _get_int_list(self, list_values):
+        return list(map(int, list_values))
 
     def _get_line(self) -> Line:
         line_point_values = self._get_corrected_values(self.line_point_values_dict)
@@ -64,10 +71,15 @@ class ViewModel:
         point_1 = Point3D(plane_point_values[0])
         point_2 = Point3D(plane_point_values[1])
         point_3 = Point3D(plane_point_values[2])
-        return Plane(point_1, point_2, point_3)
+        plane = Plane(point_1, point_2, point_3)
+        plane.abcd = self._get_int_list(self.abcd)
+
+        return plane
 
     def _is_validate(self):
-        if len(self.line_point_values_dict.values()) != 2 or len(self.plane_point_values_dict.values()) != 3:
+        if len(self.line_point_values_dict.values()) != 2 \
+                or len(self.plane_point_values_dict.values()) != 3 \
+                or len(self.abcd) != 4:
             return False
         try:
 
