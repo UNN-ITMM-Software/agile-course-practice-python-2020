@@ -10,7 +10,6 @@ class MyTestCase(unittest.TestCase):
 
     def test_when_enter_both_number_button_enabled(self):
         model = PrimeNumberViewModel(1, 10)
-
         self.assertTrue(model.is_button_enable())
 
     def test_when_clear_first_number_button_disabled(self):
@@ -50,3 +49,15 @@ class MyTestCase(unittest.TestCase):
 
         self.assertEqual(1, model.get_start_value())
         self.assertEqual(10, model.get_end_value())
+
+    def test_get_interval(self):
+        model = PrimeNumberViewModel(1, 10)
+        model.perform()
+
+        self.assertEqual('range(1, 10)', model.get_interval_label())
+
+    def test_get_interval_if_no_values(self):
+        model = PrimeNumberViewModel()
+        model.perform()
+
+        self.assertEqual('', model.get_interval_label())

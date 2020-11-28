@@ -24,6 +24,7 @@ class PrimeNumbersTests(unittest.TestCase):
     def test_can_write_range_as_string(self):
         test_range = Range(0, 5)
         self.assertEqual(str(test_range), 'range(0, 5)')
+        self.assertEqual('range(0, 5)', test_range.__str__())
 
     def test_can_return_prime_numbers_in_range_0_10(self):
         test_range = Range(0, 10)

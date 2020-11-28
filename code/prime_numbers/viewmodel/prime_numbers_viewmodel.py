@@ -17,6 +17,7 @@ class PrimeNumberViewModel:
     button_enabled = 'disabled'
     result = None
     error_message = None
+    interval = None
 
     def __init__(self, start=None, end=None):
         self.start_value = start
@@ -59,8 +60,8 @@ class PrimeNumberViewModel:
     def perform(self):
         if self.is_button_enable() == "normal":
             try:
-                interval = Range(int(self.start_value), int(self.end_value))
-                self.result = get_primers(interval)
+                self.interval = Range(int(self.start_value), int(self.end_value))
+                self.result = get_primers(self.interval)
                 self.clear_error_message()
             except Exception:
                 self.clear_result()
@@ -77,3 +78,6 @@ class PrimeNumberViewModel:
 
     def clear_error_message(self):
         self.error_message = None
+
+    def get_interval_label(self):
+        return str(self.interval) if self.interval is not None else ''
