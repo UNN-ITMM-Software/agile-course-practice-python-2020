@@ -21,8 +21,7 @@ class GuiView(Tk.Frame):
         self.master.minsize(width=150, height=150)
 
         self.grid(sticky=Tk.W + Tk.E + Tk.N + Tk.S)
-        self.first_poly_label = Tk.Label(self, text=
-                                         "Enter the coefficients of the " +
+        self.first_poly_label = Tk.Label(self, text="Enter the coefficients of the " +
                                          "first polynomial (type int) using ','",
                                          fg='black', font="Arial 12", bg="light yellow")
 
@@ -37,8 +36,7 @@ class GuiView(Tk.Frame):
                                           values=self.VALID_OPERATIONS)
         self.cmb_operation.current(0)
         self.cmb_operation.pack()
-        self.second_poly_label = Tk.Label(self, text=
-                                          "Enter the coefficients of the " + 
+        self.second_poly_label = Tk.Label(self, text="Enter the coefficients of the " +
                                           "second polynomial (type int) using ','",
                                           fg='black', font="Arial 12", bg="light yellow")
 
@@ -46,7 +44,7 @@ class GuiView(Tk.Frame):
         self.second_poly_txt = Tk.Text(self, height=1, width=40)
         self.second_poly_txt.pack()
         self.calculate = Tk.Button(self, text="Calculate", width=15, height=1, font="Arial 12",
-                                   bg="light blue", command = self.clck_bttn)
+                                   bg="light blue", command=self.clck_bttn)
 
         self.calculate.pack()
         self.result_label = Tk.Label(self, text="", fg='black',
