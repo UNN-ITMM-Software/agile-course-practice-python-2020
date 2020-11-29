@@ -24,7 +24,15 @@ class TestPolyViewModel(unittest.TestCase):
 
     # COMPUTING TESTS
 
-    def test_computing(self):
+    def test_computing_add(self):
+        t = PolyViewModel()
+        t.set_first_poly('1,2,3')
+        t.set_second_poly('4,5,6,7')
+        t.set_operation('+')
+        t.computing()
+        self.assertEqual('4x^3 + 6x^2 + 8x + 10', t.get_result())
+
+    def test_computing_sub(self):
         t = PolyViewModel()
         t.set_first_poly('1,2,3')
         t.set_second_poly('4,5,6,7')
@@ -39,3 +47,11 @@ class TestPolyViewModel(unittest.TestCase):
         t.set_operation('-')
         t.computing()
         self.assertEqual('Coeff has no type int', t.get_result())
+
+    def test_computing_composition(self):
+        t = PolyViewModel()
+        t.set_first_poly('1,2,3')
+        t.set_second_poly('4,5,6,7')
+        t.set_operation('*')
+        t.computing()
+        self.assertEqual('4x^5 + 13x^4 + 28x^3 + 34x^2 + 32x + 21', t.get_result())
