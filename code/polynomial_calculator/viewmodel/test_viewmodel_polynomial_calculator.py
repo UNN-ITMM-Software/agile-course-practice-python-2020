@@ -5,7 +5,7 @@ from polynomial_calculator.viewmodel.viewmodel_polynomial_calculator import Poly
 
 class TestPolyViewModel(unittest.TestCase):
 
-    #INIT TESTS
+    # INIT TESTS
 
     def test_init_first_poly(self):
         t = PolyViewModel()
@@ -22,7 +22,7 @@ class TestPolyViewModel(unittest.TestCase):
         t.set_operation('-')
         self.assertEqual('-', t.get_operation())
 
-    #COMPUTING TESTS
+    # COMPUTING TESTS
 
     def test_computing(self):
         t = PolyViewModel()

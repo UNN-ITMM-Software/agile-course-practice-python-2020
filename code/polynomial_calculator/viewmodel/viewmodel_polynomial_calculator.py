@@ -1,4 +1,4 @@
-from polynomial_calculator.model.model_polynomial_calculator import check_zero, Polynomial
+from polynomial_calculator.model.model_polynomial_calculator import Polynomial
 
 
 class PolyViewModel:
