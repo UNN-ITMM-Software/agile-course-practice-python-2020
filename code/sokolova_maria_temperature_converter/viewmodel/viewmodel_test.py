@@ -1,6 +1,7 @@
 import unittest
 from sokolova_maria_temperature_converter.viewmodel.viewmodel import TemperatureConverterViewModel
 
+
 class MyTestCase(unittest.TestCase):
     def test_create_view_model(self):
         view_model = TemperatureConverterViewModel()
@@ -31,14 +32,14 @@ class MyTestCase(unittest.TestCase):
         view_model.set_input_value("-13,5")
         view_model.set_cast_type("kelvin")
         view_model.convert()
-        self.assertAlmostEqual(view_model.get_output_value(),  259.65)
+        self.assertAlmostEqual(view_model.get_output_value(), 259.65)
 
     def test_converting_case_newton(self):
         view_model = TemperatureConverterViewModel()
         view_model.set_input_value("-13,5")
         view_model.set_cast_type("newton")
         view_model.convert()
-        self.assertAlmostEqual(view_model.get_output_value(),  -4.455)
+        self.assertAlmostEqual(view_model.get_output_value(), -4.455)
 
     def test_error_converting_case_NaN(self):
         view_model = TemperatureConverterViewModel()
@@ -66,6 +67,3 @@ class MyTestCase(unittest.TestCase):
         view_model.convert()
         view_model.clear_error()
         self.assertEqual(view_model.get_error(), '')
-
-
-
