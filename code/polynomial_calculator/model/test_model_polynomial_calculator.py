@@ -155,7 +155,7 @@ class TestPolynomial(unittest.TestCase):
     # FROM STRING TESTS
 
     def test_from_string(self):
-        self.assertEqual(Polynomial([1,2,3]), Polynomial.from_string('1,2,3'))
+        self.assertEqual(Polynomial([1, 2, 3]), Polynomial.from_string('1,2,3'))
 
     def test_error_val(self):
         self.assertEqual(False, Polynomial.from_string('1,2,a'))
