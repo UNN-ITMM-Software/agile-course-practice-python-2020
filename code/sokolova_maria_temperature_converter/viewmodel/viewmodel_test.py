@@ -41,13 +41,13 @@ class MyTestCase(unittest.TestCase):
         view_model.convert()
         self.assertAlmostEqual(view_model.get_output_value(), -4.455)
 
-    def test_error_converting_case_NaN(self):
+    def test_error_converting_case_nan(self):
         view_model = TemperatureConverterViewModel()
         view_model.set_input_value("some not a number string")
         view_model.convert()
         self.assertEqual(view_model.get_error(), "The value is not numeric.\nEnter a numeric value.")
 
-    def test_output_converting_case_NaN(self):
+    def test_output_converting_case_nan(self):
         view_model = TemperatureConverterViewModel()
         view_model.set_input_value("some not a number string")
         view_model.convert()

@@ -36,7 +36,8 @@ class GUIView:
         self.cast_types.current(0)
         self.cast_types.pack()
 
-        self.convert = tk.Button(self, text="convert", width=15, height=1, font="Arial 14", bg="light blue", command=self.convert)
+        self.convert = tk.Button(self, text="convert", width=15, height=1, font="Arial 14", bg="light blue",
+                                 command=self.convert)
         self.convert.pack()
 
         self.result_label = tk.Label(self, text="", fg='black', font="Arial 14")
