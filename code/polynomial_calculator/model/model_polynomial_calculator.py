@@ -9,6 +9,7 @@ def check_zero(coeffs):
             i += 1
         return coeffs[i:]
 
+
 class Polynomial:
     def __init__(self, params):
         if not isinstance(params, (list, tuple, Polynomial)):
