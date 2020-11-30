@@ -41,8 +41,11 @@ class Node:
     def balance(p):
         Node.fixheight(p)
         if Node.bfactor(p) == 2:
+            print("Bfactor p = {}".format(Node.bfactor(p)))
+            print("Bfactor p.right = {}".format(Node.bfactor(p.right)))
             if Node.bfactor(p.right) < 0:
                 p.right = Node.rotateright(p.right)
+                print("FINALLLY")
             return Node.rotateleft(p)
         if Node.bfactor(p) == -2:
             if Node.bfactor(p.left) > 0:
@@ -82,7 +85,6 @@ class Node:
         else:
             q = p.left
             r = p.right
-            # del(p)
             if not r:
                 return q
             m = Node.findmin(r)
