@@ -76,6 +76,12 @@ class NodeTest(unittest.TestCase):
             a = Node.insert(a, i)
         self.assertEqual(True, Node.containskey(a, 6))
 
+    def test_contains_none(self):
+        a = Node(1)
+        for i in range(3, 9):
+            a = Node.insert(a, i)
+        self.assertEqual(False, Node.containskey(None, 2))
+
     def test_remove(self):
         a = Node(1)
         for i in range(2, 9):
