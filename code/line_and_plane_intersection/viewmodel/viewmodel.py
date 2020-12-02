@@ -49,7 +49,8 @@ class ViewModel:
     def is_intersect(self):
         is_validate = self._is_validate()
         if is_validate:
-            self.interception_or_error_msg = str(self.intersection.have_intersection(self._get_line(), self._get_plane()))
+            self.interception_or_error_msg = \
+                str(self.intersection.have_intersection(self._get_line(), self._get_plane()))
         else:
             if is_validate is not None:
                 self.interception_or_error_msg = "Not completed points."

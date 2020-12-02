@@ -23,7 +23,6 @@ class GUI(ttk.Frame):
         self.plane_point_2.bind('<Button-1>', self.plane_point_clicked)
         self.plane_point_3.bind('<Button-1>', self.plane_point_clicked)
 
-
         self.a_param.bind('<KeyRelease>', self.txt_changed)
         self.b_param.bind('<KeyRelease>', self.txt_changed)
         self.c_param.bind('<KeyRelease>', self.txt_changed)
@@ -33,7 +32,8 @@ class GUI(ttk.Frame):
         self.view_model.set_x_y_z(
             [self.txt_x_in.get(), self.txt_y_in.get(), self.txt_z_in.get()])
 
-        self.view_model.set_abcd([self.a_param.get(), self.b_param.get(), self.c_param.get(), self.d_param.get()])
+        self.view_model.set_abcd(
+            [self.a_param.get(), self.b_param.get(), self.c_param.get(), self.d_param.get()])
 
         self.label_is_interception.config(text=self.view_model.interception_or_error_msg)
         self.label_is_interception.update_idletasks()
