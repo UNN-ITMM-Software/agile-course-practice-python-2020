@@ -11,7 +11,7 @@ class Sorting:
     def __init__(self, arr):
         if not isinstance(arr, list):
             raise TypeError
-        is_elem_digit = self.is_digit(arr[0])        
+        is_elem_digit = self.is_digit(arr[0])
         if not (is_elem_digit or type(arr[0]) == str):
             raise TypeError
         for i in range(len(arr)):
@@ -48,7 +48,7 @@ class Sorting:
                 space = ' '
             string += str(self.arr[j]) + space
         return string
-    
+
     def is_digit(self, value):
         if type(value) == int or type(value) == float:
             return True
