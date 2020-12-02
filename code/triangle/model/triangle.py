@@ -16,6 +16,14 @@ class Triangle(object):
         self.x3 = x3
         self.y3 = y3
 
+    def __init__(self, vertices_list):
+        self.x1 = vertices_list[0]
+        self.y1 = vertices_list[1]
+        self.x2 = vertices_list[2]
+        self.y2 = vertices_list[3]
+        self.x3 = vertices_list[4]
+        self.y3 = vertices_list[5]
+
     def get_ab(self):
         return math.sqrt((self.x1 - self.x2) ** 2 + (self.y1 - self.y2) ** 2)
 
