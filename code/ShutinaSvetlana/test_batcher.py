@@ -31,12 +31,12 @@ class TestBatcherSortClass(unittest.TestCase):
             result.batcher_sort()
             self.assertEqual('a ad b g', str(result.result_str()))
 
-        def wrong_input(self):
+        def test_wrong_input(self):
             arr = 9
             with self.assertRaises(TypeError):
                 Sorting(arr)
 
-        def wrong_input_diff_type(self):
+        def test_wrong_input_diff_type(self):
             arr = [9, 'a']
             with self.assertRaises(TypeError):
                 Sorting(arr)
