@@ -11,11 +11,14 @@ class Sorting:
     def __init__(self, arr):
         if not isinstance(arr, list):
             raise TypeError
-        elem_type = type(arr[0])
-        if type(elem_type) != int or type(elem_type) != str:
+        is_elem_digit = self.is_digit(arr[0])        
+        if not (is_elem_digit or type(arr[0]) == str):
             raise TypeError
         for i in range(len(arr)):
-            if type(arr[i]) != elem_type:
+            if is_elem_digit:
+                if not self.is_digit(arr[i]):
+                    raise TypeError
+            elif type(arr[i]) != str:
                 raise TypeError
         self.arr = arr
 
@@ -45,3 +48,9 @@ class Sorting:
                 space = ' '
             string += str(self.arr[j]) + space
         return string
+    
+    def is_digit(self, value):
+        if type(value) == int or type(value) == float:
+            return True
+        else:
+            return False
