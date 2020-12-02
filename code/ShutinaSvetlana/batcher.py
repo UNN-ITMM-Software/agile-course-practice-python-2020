@@ -9,9 +9,13 @@ class Sorting:
     arr = []
 
     def __init__(self, arr):
+        if not isinstance(arr, list):
+            raise TypeError
         self.arr = arr
 
     def batcher_sort(self):
+        if len(self.arr) < 2:
+            return
         t = int(math.log(len(self.arr), 2))
         p = 2 ** (t - 1)
         while p > 0:

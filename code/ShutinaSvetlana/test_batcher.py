@@ -24,3 +24,14 @@ class TestBatcherSortClass(unittest.TestCase):
             result = Sorting(arr)
             result.batcher_sort()
             self.assertEqual('-2.5 0 0.5 1 2 5 6 9 10 10 20', str(result.result_str()))
+
+        def test_sort_litter(self):
+            arr = ['a', 'g', 'b', 'ad']
+            result = Sorting(arr)
+            result.batcher_sort()
+            self.assertEqual('a ad b g', str(result.result_str()))
+
+        def wrong_input(self):
+            arr = 9
+            with self.assertRaises(TypeError):
+                result = Sorting(arr)
