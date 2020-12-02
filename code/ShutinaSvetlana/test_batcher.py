@@ -34,4 +34,9 @@ class TestBatcherSortClass(unittest.TestCase):
         def wrong_input(self):
             arr = 9
             with self.assertRaises(TypeError):
-                result = Sorting(arr)
+                Sorting(arr)
+
+        def wrong_input_diff_type(self):
+            arr = [9, 'a']
+            with self.assertRaises(TypeError):
+                Sorting(arr)

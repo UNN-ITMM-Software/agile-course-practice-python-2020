@@ -11,6 +11,12 @@ class Sorting:
     def __init__(self, arr):
         if not isinstance(arr, list):
             raise TypeError
+        elem_type = type(arr[0])
+        if type(elem_type) != int or type(elem_type) != str:
+            raise TypeError
+        for i in range(len(arr)):
+            if type(arr[i]) != elem_type:
+                raise TypeError
         self.arr = arr
 
     def batcher_sort(self):
