@@ -11,11 +11,14 @@ class GUI(ttk.Frame):
 
     def bind_events(self):
         self.btn_intercept.bind('<Button-1>', self.is_intercept_clicked)
+
         self.txt_x_in.bind('<KeyRelease>', self.txt_changed)
         self.txt_y_in.bind('<KeyRelease>', self.txt_changed)
         self.txt_z_in.bind('<KeyRelease>', self.txt_changed)
+
         self.line_point_1.bind('<Button-1>', self.line_point_clicked)
         self.line_point_2.bind('<Button-1>', self.line_point_clicked)
+
         self.plane_point_1.bind('<Button-1>', self.plane_point_clicked)
         self.plane_point_2.bind('<Button-1>', self.plane_point_clicked)
         self.plane_point_3.bind('<Button-1>', self.plane_point_clicked)
