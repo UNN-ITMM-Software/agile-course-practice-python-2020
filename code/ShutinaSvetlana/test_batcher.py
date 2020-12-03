@@ -52,6 +52,6 @@ class TestBatcherSortClass(unittest.TestCase):
                 Sorting(arr)
 
         def test_wrong_elem_of_array(self):
-            arr = [[1,2], [2,3]]
+            arr = [[1, 2], [2, 3]]
             with self.assertRaises(TypeError):
                 Sorting(arr)
