@@ -48,8 +48,9 @@ class TestBatcherSortClass(unittest.TestCase):
 
         def test_1_element(self):
             arr = [9]
-            with self.assertRaises(TypeError):
-                Sorting(arr)
+            result = Sorting(arr)
+            result.batcher_sort()
+            self.assertEqual('9', str(result.result_str()))
 
         def test_wrong_elem_of_array(self):
             arr = [[1, 2], [2, 3]]
