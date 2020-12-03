@@ -4,7 +4,7 @@ from tkinter import ttk
 from sokolova_maria_temperature_converter.viewmodel.viewmodel import TemperatureConverterViewModel
 
 
-class GUIView:
+class GUIView(tk.Frame):
     CAST_TYPES = ['fahrenheit', 'kelvin', 'newton']
     view_model = TemperatureConverterViewModel()
 
@@ -16,23 +16,21 @@ class GUIView:
         self.error_label.configure(text=self.view_model.get_error())
 
     def __init__(self):
-        root = tk.Tk()
-        root.title("Temperature Converter")
-        frame = tk.Frame(root)
-        frame.pack(fill=tk.BOTH, expand=True)
-        frame.columnconfigure(1, weight=1)
-        frame.rowconfigure(1, weight=1)
+        tk.Frame.__init__(self)
+        self.master.title("Temperature converter")
+        self.master.minsize(width=150, height=150)
+        self.grid(sticky=tk.W + tk.E + tk.N + tk.S)
 
-        self.celsius_label = tk.Label(self, text="celsius", fg='black', font="Arial 14")
+        self.celsius_label = tk.Label(self, text="From celsius", fg='black', font="Arial 14")
         self.celsius_label.pack()
 
-        self.text_value = tk.Text(self, height=1, width=40)
+        self.text_value = tk.Text(self, height=1, width=30, font="Arial 14")
         self.text_value.pack()
 
         self.cast_types_label = tk.Label(self, text="to", fg='black', font="Arial 14")
         self.cast_types_label.pack()
 
-        self.cast_types = ttk.Combobox(self, height=1, width=3, values=self.CAST_TYPES)
+        self.cast_types = ttk.Combobox(self, height=1, width=30, values=self.CAST_TYPES, font="Arial 14")
         self.cast_types.current(0)
         self.cast_types.pack()
 
