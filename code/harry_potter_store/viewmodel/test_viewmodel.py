@@ -61,7 +61,8 @@ class TestFractionCalculatorViewModel(unittest.TestCase):
     def test_get_price_with_negative_amount(self):
         self.view_model.set_books_amount({0: '1', 1: '1', 2: '-1', 3: '1', 4: '1'})
         self.view_model.click_calculate()
-        self.assertEqual("ERROR: Book amount should be a positive value", self.view_model.get_result_message())
+        self.assertEqual("ERROR: Book amount should be a positive value",
+                         self.view_model.get_result_message())
 
     def test_get_price_ignore_not_number_amount(self):
         self.view_model.set_books_amount({0: '1', 1: 'test', 2: '2'})
