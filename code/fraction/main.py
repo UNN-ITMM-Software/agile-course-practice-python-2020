@@ -13,12 +13,10 @@ def parse_args():
 
 
 if __name__ == '__main__':
-    cli_view.CLIView().mainloop()
-    """
     args = parse_args()
     if args.cli:
         cli_view.CLIView().mainloop()
     elif args.gui:
         gui_view.GUIView().mainloop()
     else:
-        print('Option is required')"""
+        print('Option is required')
