@@ -27,7 +27,7 @@ class HPStoreViewModel:
                 pass
 
     def get_books_amount(self):
-        return {int(k): v for k, v in self.amount.items()}
+        return {(int(k)-1): v for k, v in self.amount.items()}
 
     def get_result_message(self):
         return self.result_message

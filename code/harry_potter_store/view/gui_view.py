@@ -62,7 +62,7 @@ class GUIView(ttk.Frame):
         books_amount = self.view_model.get_books_amount()
         for idx, val in enumerate(self.book_text):
             self.book_text[idx].delete(1.0, tkinter.END)
-            self.book_text[idx].insert(tkinter.END, books_amount.get(idx + 1, ''))
+            self.book_text[idx].insert(tkinter.END, books_amount.get(idx, ''))
 
         self.lbl_result.config(text='%s' % (self.view_model.get_result_message()))
 

@@ -68,3 +68,18 @@ class TestFractionCalculatorViewModel(unittest.TestCase):
         self.view_model.set_books_amount({0: '1', 1: 'test', 2: '2'})
         self.view_model.click_calculate()
         self.assertEqual("Total Price: 23.2", self.view_model.get_result_message())
+
+    def test_can_retrieve_book_empty_amount(self):
+        amounts_dict = {}
+        self.view_model.set_books_amount(amounts_dict)
+        self.assertEqual(amounts_dict, self.view_model.get_books_amount())
+
+    def test_can_retrieve_book_amount(self):
+        amounts_dict = {0: 1, 1: 1}
+        self.view_model.set_books_amount(amounts_dict)
+        self.assertEqual(amounts_dict, self.view_model.get_books_amount())
+
+    def test_can_retrieve_book_amount_ignored_not_nulls(self):
+        amounts_dict = {0: 1, 1: 1, 2: 'test'}
+        self.view_model.set_books_amount(amounts_dict)
+        self.assertEqual({0: 1, 1: 1}, self.view_model.get_books_amount())
