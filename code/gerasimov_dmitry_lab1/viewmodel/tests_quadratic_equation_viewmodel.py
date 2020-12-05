@@ -33,6 +33,12 @@ class MyTestCase(unittest.TestCase):
         answer = 'Answer:\n x = -1.0'
         self.assertEqual(answer, model.get_result())
 
+    def test_when_enter_incorrect_values_throw_exception(self):
+        model = QuadraticEquationViewModel(2, '@48', 2)
+        model.perform()
+        answer = 'Incorrect input'
+        self.assertEqual(answer, model.get_error_message())
+
     def test_when_enter_incorrect_values(self):
         model = QuadraticEquationViewModel('-1a', '123', 'q9')
         self.assertEqual('disabled', model.is_button_enable())
