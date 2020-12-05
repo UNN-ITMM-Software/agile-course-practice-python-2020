@@ -22,9 +22,18 @@ class TestVectorMetricsViewModel(unittest.TestCase):
         self.viewmodel.set_x('!')
         self.assertEqual('disabled', self.viewmodel.get_button_state())
 
+    def test_set_button_state_changes_state(self):
+        self.viewmodel.set_button_state('active')
+        self.assertEqual('active', self.viewmodel.get_button_state())
+
     def test_error_message_on_incorrect_value(self):
         self.viewmodel.set_y('!')
         self.assertEqual('Error: Incorrect expression, only list notations supported',
+                         self.viewmodel.get_error_message())
+
+    def test_error_message_on_incorrect_type(self):
+        self.viewmodel.set_y('3')
+        self.assertEqual('Error: Only list notations supported',
                          self.viewmodel.get_error_message())
 
     def test_button_enabled_when_correct_x_value(self):
