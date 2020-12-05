@@ -82,7 +82,7 @@ class GUI(ttk.Frame):
     def metrics_listbox_changed(self, event):
         self.mvvm_bind()
         current_selection = self.metrics_listbox.curselection()
-        if len(current_selection > 0):
+        if len(current_selection) > 0:
             self.view_model.set_metric(self.metrics[current_selection[0]])
         else:
             self.view_model.set_button_state('disabled')
