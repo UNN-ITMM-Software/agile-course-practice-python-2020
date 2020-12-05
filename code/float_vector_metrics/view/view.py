@@ -3,6 +3,7 @@ from tkinter import ttk
 
 from float_vector_metrics.viewmodel.viewmodel import VectorMetricsViewModel
 
+
 class GUI(ttk.Frame):
     default_sticky = tk.W + tk.E + tk.N + tk.S
     view_model = VectorMetricsViewModel()

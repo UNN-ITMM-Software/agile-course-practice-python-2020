@@ -4,12 +4,13 @@ from float_vector_metrics.model.float_vector_metrics import VectorMetrics
 class VectorMetricsViewModel:
     calculator = VectorMetrics()
     METRICS = {
-    'L1': calculator.l1,
-    'L2': calculator.l2,
-    'L3': calculator.l3,
-    'L4': calculator.l4,
-    'Linf': calculator.linf
-}
+        'L1': calculator.l1,
+        'L2': calculator.l2,
+        'L3': calculator.l3,
+        'L4': calculator.l4,
+        'Linf': calculator.linf
+    }
+
     def __init__(self):
         self.x = [0, 0, 0]
         self.y = [0, 0, 0]
@@ -19,7 +20,7 @@ class VectorMetricsViewModel:
         self.result = 0
         self.error_msg = ''
         self.metric = None
-    
+
     def validate(self, value):
         try:
             value = eval(value)
@@ -35,7 +36,7 @@ class VectorMetricsViewModel:
             self.error_msg = "Error: Incorrect expression, only list notations supported"
             self.button_state = "disabled"
             return False
-    
+
     def get_button_state(self):
         return self.button_state
 

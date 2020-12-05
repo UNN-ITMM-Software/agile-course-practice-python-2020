@@ -9,7 +9,7 @@ class TestVectorMetricsViewModel(unittest.TestCase):
 
     def test_button_disabled_by_default(self):
         self.assertEqual('disabled', self.viewmodel.get_button_state())
-    
+
     def test_button_enabled_when_metric_set(self):
         self.viewmodel.set_metric('L1')
         self.assertEqual('active', self.viewmodel.get_button_state())
