@@ -10,14 +10,11 @@ def is_correct_number_entered(value):
         if is_int_value is None:
             return False
         else:
-            int_value = int(value)
-            if int_value <= 0:
-                return False
             return True
 
 
 class DAViewModel:
-    def __init__(self, num_vertex=0):
+    def __init__(self):
         self.num_vertex = ''
         self.start_vertex = ''
         self.btn_create_graph_state = 'disabled'
