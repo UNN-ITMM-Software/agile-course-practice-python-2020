@@ -14,7 +14,6 @@ class GUIView:
         # self.root.resizable(width=False, height=True)
 
         self.frame = tk.Frame(self.root, bg='#fafafa')
-        self.result_frame = tk.Frame(self.root, bg='#fafafa')
         self.lbl_num_vertex = tk.Label(self.root, text="Введите число вершин графа:")
         self.input_num_vertex = tk.Entry(self.root)
         self.input_graph = tk.Button(self.root, text="Задать граф", state='disabled')
@@ -22,7 +21,6 @@ class GUIView:
         self.input_start_vertex = tk.Entry(self.root)
         self.run = tk.Button(self.root, text="Запустить алгоритм")
         self.entries = []
-        self.result = []
 
         self.set_weight_to_grid()
         self.bind_events()
@@ -36,7 +34,6 @@ class GUIView:
         self.input_start_vertex.grid(row=1, column=1)
         self.run.grid(row=1, column=2)
         self.frame.place(relx=0.2, rely=0.2, relwidth=0.6, relheight=0.6)
-        self.result_frame.place(relx=0.2, rely=0.8, relwidth=0.6, relheight=0.1)
 
     def bind_events(self):
         self.input_num_vertex.bind('<KeyRelease>', self.num_vertex_changed)
@@ -74,25 +71,34 @@ class GUIView:
 
         rows = int(self.input_num_vertex.get())
         cols = int(self.input_num_vertex.get())
+
+        header = tk.Label(self.frame, text="Вершины", bg='#fafafa')
+        header.grid(row=0, column=0)
+
+        for i in range(cols):
+            header = tk.Label(self.frame, text=str(i), bg='#fafafa')
+            header.grid(row=0, column=i + 1)
+
         for i in range(rows):
+
+            header = tk.Label(self.frame, text=str(i), bg='#fafafa')
+            header.grid(row=i + 1, column=0)
+
             self.entries.append([])
             for j in range(cols):
                 self.entries[i].append(tk.Entry(self.frame, width=3))
-                self.entries[i][j].grid(row=i, column=j)
+                self.entries[i][j].grid(row=i + 1, column=j + 1)
 
     def draw_result(self, result):
 
-        self.result_frame.destroy()
-        self.result_frame = tk.Frame(self.root, bg='#fafafa')
-        self.result_frame.place(relx=0.2, rely=0.8, relwidth=0.6, relheight=0.1)
-        self.result = []
+        rows = int(self.input_num_vertex.get())
 
-        lbl_result = tk.Label(self.result_frame, text="Кратчайшие пути до всех вершин:")
-        lbl_result.grid(row=0, column=0)
+        lbl_result = tk.Label(self.frame, text="dists", bg='#fafafa')
+        lbl_result.grid(row=rows + 1, column=0)
 
         for j, dist in enumerate(result):
-            self.result.append(tk.Label(self.result_frame, text=str(dist)))
-            self.result[-1].grid(row=0, column=j + 1)
+            dist = tk.Label(self.frame, text=str(dist), bg='#fafafa')
+            dist.grid(row=rows + 1, column=j + 1)
 
     def read_weights(self):
         rows = int(self.input_num_vertex.get())
