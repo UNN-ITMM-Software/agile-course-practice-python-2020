@@ -67,7 +67,8 @@ class GUIView(object):
                                                      style='Custom.TRadiobutton')
 
         self.build_button = tk.Button(self.frame, text='Build tree', bg='gray21', fg='white')
-        self.get_button = tk.Button(self.frame, text='Get result\n for current boards', bg='gray21', fg='white')
+        self.get_button = tk.Button(self.frame, text='Get result\n for current boards',
+                                    bg='gray21', fg='white')
 
         self.additional_option = tk.Label(self.frame, text="Change custom element in\n"
                                                            " array and build tree:", bg='gray21', fg='white')
@@ -77,7 +78,8 @@ class GUIView(object):
         self.update_value = tk.Entry(self.frame, bd="1", width="2")
 
         self.update_button = tk.Button(self.frame, text='Update array value', bg='gray21', fg='white')
-        self.result_label = tk.Label(self.frame, text='The result will be here later!', bg='gray21', fg='white')
+        self.result_label = tk.Label(self.frame, text='The result will be here later!',
+                                     bg='gray21', fg='white')
         self.error_field = tk.Label(self.frame, text='', fg='red', bg='gray21')
 
         self.update_position()
@@ -142,7 +144,8 @@ class GUIView(object):
                 self.box_list[self.view_model.get_update_index()].get() \
                 and self.view_model.get_input_array():
             self.box_list[self.view_model.get_update_index()].delete(0, tk.END)
-            self.box_list[self.view_model.get_update_index()].insert(0, str(self.view_model.get_update_value()))
+            self.box_list[self.view_model.get_update_index()].\
+                insert(0, str(self.view_model.get_update_value()))
 
     def bind_events(self):
         self.start_idx.bind('<KeyRelease>', self.write_idxs)
