@@ -146,6 +146,7 @@ class TestSegmentTreeViewModel(unittest.TestCase):
         test_view_model.calculate()
         test_view_model.set_update_index(0)
         test_view_model.set_update_value(10)
+        test_view_model.update()
         self.assertEqual(True, test_view_model.get_success_procedure())
 
     def test_calculate_max_segment_tree(self):
@@ -172,6 +173,7 @@ class TestSegmentTreeViewModel(unittest.TestCase):
         test_view_model.calculate()
         test_view_model.set_update_index(0)
         test_view_model.set_update_value(10)
+        test_view_model.update()
         self.assertEqual(True, test_view_model.get_success_procedure())
 
     def test_calculate_min_segment_tree(self):
@@ -198,4 +200,60 @@ class TestSegmentTreeViewModel(unittest.TestCase):
         test_view_model.calculate()
         test_view_model.set_update_index(0)
         test_view_model.set_update_value(10)
+        test_view_model.update()
         self.assertEqual(True, test_view_model.get_success_procedure())
+
+    def test_except_message_calculate_sum_segment_tree(self):
+        test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_array([2, 'a', 17, 3, 22])
+        test_view_model.set_method('sum')
+        test_view_model.calculate()
+        self.assertEqual('Incorrect input array', test_view_model.get_error_message())
+
+    def test_except_status_calculate_sum_segment_tree(self):
+        test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_array([2, 'a', 17, 3, 22])
+        test_view_model.set_method('sum')
+        test_view_model.calculate()
+        self.assertEqual(False, test_view_model.get_success_procedure())
+
+    def test_except_message_get_sum_segment_tree(self):
+        test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_array([2, 6, 17, 3, 22])
+        test_view_model.set_method('sum')
+        test_view_model.calculate()
+        test_view_model.set_left_border(0)
+        test_view_model.set_right_border(7)
+        test_view_model.cut_array_for_given_border()
+        self.assertEqual('Wrong indices: indices is out of bounds',
+                         test_view_model.get_error_message())
+
+    def test_except_status_get_sum_segment_tree(self):
+        test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_array([2, 6, 17, 3, 22])
+        test_view_model.set_method('sum')
+        test_view_model.calculate()
+        test_view_model.set_left_border(0)
+        test_view_model.set_right_border(7)
+        test_view_model.cut_array_for_given_border()
+        self.assertEqual(False, test_view_model.get_success_procedure())
+
+    def test_except_message_update_sum_segment_tree(self):
+        test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_array([2, 6, 17, 3, 22])
+        test_view_model.set_method('sum')
+        test_view_model.calculate()
+        test_view_model.set_update_index(-3)
+        test_view_model.set_update_value(10)
+        test_view_model.update()
+        self.assertEqual('index is out of bounds', test_view_model.get_error_message())
+
+    def test_except_status_update_sum_segment_tree(self):
+        test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_array([2, 6, 17, 3, 22])
+        test_view_model.set_method('sum')
+        test_view_model.calculate()
+        test_view_model.set_update_index(-3)
+        test_view_model.set_update_value(10)
+        test_view_model.update()
+        self.assertEqual(False, test_view_model.get_success_procedure())

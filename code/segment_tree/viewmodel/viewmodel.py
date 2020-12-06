@@ -165,7 +165,7 @@ class SegmentTreeViewModel(object):
                 self.clear_error_message()
             except Exception as except_build:
                 self.clear_output()
-                self.error_message = except_build
+                self.error_message = str(except_build)
                 self.success_procedure = False
 
     def calculate(self):
@@ -178,7 +178,7 @@ class SegmentTreeViewModel(object):
                 self.clear_error_message()
             except Exception as except_build:
                 self.clear_output()
-                self.error_message = except_build
+                self.error_message = str(except_build)
                 self.success_procedure = False
 
     def update(self):
@@ -190,5 +190,5 @@ class SegmentTreeViewModel(object):
                 self.clear_error_message()
             except Exception as except_build:
                 self.clear_output()
-                self.error_message = except_build
+                self.error_message = str(except_build)
                 self.success_procedure = False
