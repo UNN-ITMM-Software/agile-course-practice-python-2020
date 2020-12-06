@@ -28,7 +28,7 @@ class GUIView(object):
         self.error_array_size = None
 
         self.root.title('Find sum / min / max using segment tree')
-        self.root.geometry('700x850')
+        self.root.geometry('900x850')
         self.frame = tk.Frame(self.root, bg='gray21')
         self.root.resizable(width=False, height=False)
         self.state = tk.StringVar()

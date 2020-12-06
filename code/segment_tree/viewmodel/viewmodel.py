@@ -171,15 +171,10 @@ class SegmentTreeViewModel(object):
     def calculate(self):
         if self.is_build_button_enable() == "normal":
             self.success_procedure = False
-            try:
-                self.segment_tree = SegmentTree(self.method)
-                self.segment_tree.build(self.input_array)
-                self.success_procedure = True
-                self.clear_error_message()
-            except Exception as except_build:
-                self.clear_output()
-                self.error_message = str(except_build)
-                self.success_procedure = False
+            self.segment_tree = SegmentTree(self.method)
+            self.segment_tree.build(self.input_array)
+            self.success_procedure = True
+            self.clear_error_message()
 
     def update(self):
         if self.is_update_button_enable() == "normal":

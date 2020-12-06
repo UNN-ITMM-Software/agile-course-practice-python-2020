@@ -203,13 +203,6 @@ class TestSegmentTreeViewModel(unittest.TestCase):
         test_view_model.update()
         self.assertEqual(True, test_view_model.get_success_procedure())
 
-    def test_except_message_calculate_sum_segment_tree(self):
-        test_view_model = SegmentTreeViewModel()
-        test_view_model.set_input_array([2, 'a', 17, 3, 22])
-        test_view_model.set_method('sum')
-        test_view_model.calculate()
-        self.assertEqual('Incorrect input array', test_view_model.get_error_message())
-
     def test_except_status_calculate_sum_segment_tree(self):
         test_view_model = SegmentTreeViewModel()
         test_view_model.set_input_array([2, 'a', 17, 3, 22])
