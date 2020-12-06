@@ -14,12 +14,13 @@ class GUIView:
         # self.root.resizable(width=False, height=True)
 
         self.frame = tk.Frame(self.root, bg='#fafafa')
-        self.lbl_num_vertex = tk.Label(self.root, text="Введите число вершин графа:")
-        self.input_num_vertex = tk.Entry(self.root)
-        self.input_graph = tk.Button(self.root, text="Задать граф", state='disabled')
-        self.lbl_start_vertex = tk.Label(self.root, text="Введите стартовую вершину алгоритма:")
-        self.input_start_vertex = tk.Entry(self.root)
-        self.run = tk.Button(self.root, text="Запустить алгоритм")
+        self.lbl_num_vertex = tk.Label(self.root, text="vertex count:")
+        self.input_num_vertex = tk.Entry(self.root, width=3)
+        self.input_graph = tk.Button(self.root, text="create graph", state='disabled')
+        self.errors = tk.Label(self.root, text="", bg='#fafafa')
+        self.lbl_start_vertex = tk.Label(self.root, text="start vertex:")
+        self.input_start_vertex = tk.Entry(self.root, width=3)
+        self.run = tk.Button(self.root, text="run dijksta")
         self.entries = []
 
         self.set_weight_to_grid()
@@ -29,10 +30,11 @@ class GUIView:
     def set_weight_to_grid(self):
         self.lbl_num_vertex.grid(row=0, column=0)
         self.input_num_vertex.grid(row=0, column=1)
-        self.input_graph.grid(row=0, column=2)
-        self.lbl_start_vertex.grid(row=1, column=0)
-        self.input_start_vertex.grid(row=1, column=1)
-        self.run.grid(row=1, column=2)
+        self.input_graph.grid(row=1, column=0)
+        self.lbl_start_vertex.grid(row=0, column=2)
+        self.input_start_vertex.grid(row=0, column=3)
+        self.errors.grid(row=1, column=2, columnspan=3)
+        self.run.grid(row=1, column=1)
         self.frame.place(relx=0.2, rely=0.2, relwidth=0.6, relheight=0.6)
 
     def bind_events(self):
@@ -123,3 +125,5 @@ class GUIView:
 
         self.input_start_vertex.delete(0, tk.END)
         self.input_start_vertex.insert(tk.END, self.view_model.get_start_vertex())
+
+        self.errors.config(text='%s\n' % (self.view_model.get_error()))

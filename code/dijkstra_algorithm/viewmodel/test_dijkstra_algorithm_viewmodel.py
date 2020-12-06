@@ -54,3 +54,23 @@ class TestDAViewModel(unittest.TestCase):
         matrix = [['0', '2', '1'], ['2', '0', '3'], ['1', '3', '0']]
 
         self.assertEqual(model.run_dijkstra(matrix), [1, 3, 0])
+
+    def test_run_dijkstra_with_un_correct_weights_return_error(self):
+        model = DAViewModel()
+
+        model.set_num_vertex('3')
+        model.set_start_vertex('2')
+        matrix = [['0', '2', '1'], ['2', 'error', '3'], ['1', '3', '0']]
+        model.run_dijkstra(matrix)
+
+        self.assertEqual(model.get_error(), "Smth wrong with weights or start vertex")
+
+    def test_run_dijkstra_with_un_correct_start_vertex_return_error(self):
+        model = DAViewModel()
+
+        model.set_num_vertex('3')
+        model.set_start_vertex('-2')
+        matrix = [['0', '2', '1'], ['2', '0', '3'], ['1', '3', '0']]
+        model.run_dijkstra(matrix)
+
+        self.assertEqual(model.get_error(), "Smth wrong with weights or start vertex")
