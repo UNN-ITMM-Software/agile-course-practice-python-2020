@@ -18,9 +18,8 @@ def is_correct_number_entered(value):
 
 class DAViewModel:
     def __init__(self, num_vertex=0):
-        self.graph = None
-        self.num_vertex = 0
-        self.start_vertex = 0
+        self.num_vertex = ''
+        self.start_vertex = ''
         self.btn_create_graph_state = 'disabled'
 
     def set_num_vertex(self, value):
@@ -42,3 +41,14 @@ class DAViewModel:
 
     def get_btn_create_graph_state(self):
         return self.btn_create_graph_state
+
+    def set_start_vertex(self, start):
+        self.start_vertex = start
+
+    def get_start_vertex(self):
+        return self.start_vertex
+
+    def run_dijkstra(self, matrix):
+        weights = [[int(val) for val in row] for row in matrix]
+        graph = Graph(int(self.num_vertex), weights)
+        return graph.dijkstra(int(self.start_vertex))
