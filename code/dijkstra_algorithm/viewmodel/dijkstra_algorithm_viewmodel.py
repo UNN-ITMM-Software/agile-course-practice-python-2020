@@ -18,9 +18,10 @@ def is_correct_number_entered(value):
 
 class DAViewModel:
     def __init__(self, num_vertex=0):
+        self.graph = None
         self.num_vertex = 0
+        self.start_vertex = 0
         self.btn_create_graph_state = 'disabled'
-        # self.graph = Graph(vertices=num_vertex, graph=[])
 
     def set_num_vertex(self, value):
         self.num_vertex = value
