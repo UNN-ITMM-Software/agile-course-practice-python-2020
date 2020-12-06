@@ -10,9 +10,10 @@ class GUIView:
         self.root = tk.Tk()
         self.root['bg'] = '#fafafa'
         self.root.title('Алгоритм Дейкстры')
-        self.root.geometry('600x400')
+        self.root.geometry('630x400')
         # self.root.resizable(width=False, height=True)
 
+        self.frame = tk.Frame(self.root, bg='#fafafa')
         self.lbl_num_vertex = tk.Label(self.root, text="Введите число вершин графа:")
         self.input_num_vertex = tk.Entry(self.root)
         self.input_graph = tk.Button(self.root, text="Задать граф", state='disabled')
@@ -24,7 +25,7 @@ class GUIView:
 
         self.set_weight_to_grid()
         self.bind_events()
-
+        self.frame.place(relx=0.2, rely=0.2, relwidth=0.6, relheight=0.6)
         self.root.mainloop()
 
     def set_weight_to_grid(self):
@@ -34,6 +35,7 @@ class GUIView:
         self.lbl_start_vertex.grid(row=1, column=0)
         self.input_start_vertex.grid(row=1, column=1)
         self.run.grid(row=1, column=2)
+        self.frame.place(relx=60, rely=60, relwidth=0.9, relheight=0.9)
 
     def bind_events(self):
         self.input_num_vertex.bind('<KeyRelease>', self.num_vertex_changed)
@@ -41,7 +43,6 @@ class GUIView:
         self.input_graph.bind('<Button-1>', self.input_graph_clicked)
 
     def num_vertex_changed(self, event):
-        self.entries = []
         self.mvvm_bind()
         self.mvvm_back_bind()
 
@@ -59,24 +60,19 @@ class GUIView:
         if self.view_model.get_btn_create_graph_state() == 'disabled':
             return
 
+        self.frame.destroy()
+        self.frame = self.frame = tk.Frame(self.root, bg='#fafafa')
+        self.frame.place(relx=0.2, rely=0.2, relwidth=0.6, relheight=0.6)
         self.entries = []
 
-        x2 = 0
-        y2 = 0
         rows = int(self.input_num_vertex.get())
         cols = int(self.input_num_vertex.get())
-        print(rows)
-        print(cols)
         for i in range(rows):
             self.entries.append([])
             for j in range(cols):
-                # append your StringVar and Entry
-                self.entries[i].append(tk.Entry(self.root, width=3))
-                self.entries[i][j].place(x=60 + x2, y=80 + y2)
-                x2 += 30
 
-            y2 += 30
-            x2 = 0
+                self.entries[i].append(tk.Entry(self.frame, width=3))
+                self.entries[i][j].grid(row=i, column=j)
 
     def mvvm_bind(self):
         self.view_model.set_num_vertex(self.input_num_vertex.get())
