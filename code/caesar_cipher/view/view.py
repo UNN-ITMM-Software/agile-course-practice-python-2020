@@ -17,7 +17,7 @@ class GUIView(tk.Frame):
         self.view_model.set_input_text(self.input_value.get("1.0", tk.END))
         self.view_model.decipher()
         self.output_label.configure(text=self.view_model.get_output_text())
-    
+
     def __init__(self):
         tk.Frame.__init__(self)
         self.master.title("Caesar Cipher")
