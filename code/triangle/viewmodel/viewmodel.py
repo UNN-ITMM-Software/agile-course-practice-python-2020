@@ -1,6 +1,17 @@
 from triangle.model.triangle import Triangle
 
 
+def is_valid(vert):
+    if vert.isdigit():
+        return True
+    else:
+        try:
+            float(vert)
+            return True
+        except ValueError:
+            return False
+
+
 class TriangleViewModel:
     def __init__(self):
         self.vertices_list = []
@@ -12,13 +23,15 @@ class TriangleViewModel:
         return self.vertices_list
 
     def set_vertices(self, vertices):
-        if (len(vertices) == 6 and '' not in vertices):
-            self.triangle = Triangle([int(vertices[0]), int(vertices[1]),
-                                      int(vertices[2]), int(vertices[3]),
-                                      int(vertices[4]), int(vertices[5])])
         self.vertices_list = vertices
-        self.validate_text()
-
+        all_vertices_are_digits = sum([is_valid(vert) for vert in vertices])
+        if (all_vertices_are_digits == 6):
+            self.triangle = Triangle(float(vertices[0]), float(vertices[1]),
+                                     float(vertices[2]), float(vertices[3]),
+                                     float(vertices[4]), float(vertices[5]))
+            self.validate_text()
+        else:
+            self.set_btn_disabled()
 
     def set_answer(self, answer_str):
         self.answer = answer_str
@@ -46,10 +59,6 @@ class TriangleViewModel:
 
     def set_operation(self, operation):
         self.operation = operation
-        # if operation == 'Convert to continuous':
-        #     self.set_second_fraction_text_disabled()
-        # else:
-        #     self.set_second_fraction_text_enabled()
 
     def click_button(self):
         if self.operation == 'get ab':
@@ -63,10 +72,10 @@ class TriangleViewModel:
         elif self.operation == 'get perimeter':
             self.answer = str(self.triangle.get_perimeter())
         elif self.operation == 'get circumcircle':
-            self.answer = str(self.triangle.get_circumcircle_center()) + ' ' + str(
+            self.answer = str(self.triangle.get_circumcircle_center()) + '    ' + str(
                 self.triangle.get_circumcircle_radius())
         elif self.operation == 'get incircle':
-            self.answer = str(self.triangle.get_incircle_center()) + ' ' + str(self.triangle.get_incircle_radius())
+            self.answer = str(self.triangle.get_incircle_center()) + '    ' + str(self.triangle.get_incircle_radius())
         elif self.operation == 'get side type':
             self.answer = str(self.triangle.get_triangle_type_by_sides())
         elif self.operation == 'get angle type':

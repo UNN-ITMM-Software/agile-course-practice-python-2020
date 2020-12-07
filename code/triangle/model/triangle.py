@@ -16,13 +16,13 @@ class Triangle(object):
         self.x3 = x3
         self.y3 = y3
 
-    def __init__(self, vertices_list):
-        self.x1 = vertices_list[0]
-        self.y1 = vertices_list[1]
-        self.x2 = vertices_list[2]
-        self.y2 = vertices_list[3]
-        self.x3 = vertices_list[4]
-        self.y3 = vertices_list[5]
+    # def __init__(self, vertices_list):
+    #     self.x1 = vertices_list[0]
+    #     self.y1 = vertices_list[1]
+    #     self.x2 = vertices_list[2]
+    #     self.y2 = vertices_list[3]
+    #     self.x3 = vertices_list[4]
+    #     self.y3 = vertices_list[5]
 
     def get_ab(self):
         return math.sqrt((self.x1 - self.x2) ** 2 + (self.y1 - self.y2) ** 2)
@@ -96,12 +96,12 @@ class Triangle(object):
     def get_triangle_type_by_angles(self):
         if not self.is_triangle():
             raise TriangleError('This triangle is invalid! Check it!')
-        if (self.get_ab() ** 2 + self.get_bc() ** 2 == self.get_ca() ** 2) or (
-                self.get_ab() ** 2 + self.get_ca() ** 2 == self.get_bc() ** 2) or (
-                self.get_ca() ** 2 + self.get_bc() ** 2 == self.get_ab() ** 2):
+        if (abs(self.get_ab() ** 2 + self.get_bc() ** 2 - self.get_ca() ** 2) < 1e-10) or (
+                abs(self.get_ab() ** 2 + self.get_ca() ** 2 - self.get_bc() ** 2) < 1e-10) or (
+                abs(self.get_ca() ** 2 + self.get_bc() ** 2 - self.get_ab() ** 2) < 1e-10):
             return "right"  # прямоугольный
-        elif (self.get_ab() ** 2 + self.get_bc() ** 2 > self.get_ca() ** 2) and (
-                self.get_ab() ** 2 + self.get_ca() ** 2 > self.get_bc() ** 2) and (
-                self.get_ca() ** 2 + self.get_bc() ** 2 > self.get_ab() ** 2):
+        elif (self.get_ab() ** 2 + self.get_bc() ** 2 - self.get_ca() ** 2 > 1e-10) and (
+                self.get_ab() ** 2 + self.get_ca() ** 2 - self.get_bc() ** 2 > 1e-10) and (
+                self.get_ca() ** 2 + self.get_bc() ** 2 - self.get_ab() ** 2 > 1e-10):
             return "acute"  # остроугольный
         return "obtuse"  # тупоугольный
