@@ -3,54 +3,25 @@ from triangle.model.triangle import Triangle
 
 class TriangleViewModel:
     def __init__(self):
-        # self.triangle = Triangle([0,0,0,0,0,0])
         self.vertices_list = []
         self.answer = ''
         self.operation = 'get ab'
         self.set_btn_disabled()
 
     def get_vertices(self):
-        # return [self.triangle.x1, self.triangle.y1, self.triangle.x2, self.triangle.y2,
-        #        self.triangle.x3, self.triangle.y3]
         return self.vertices_list
 
     def set_vertices(self, vertices):
-        if (len(vertices) == 6):
+        if (len(vertices) == 6 and '' not in vertices):
             self.triangle = Triangle([int(vertices[0]), int(vertices[1]),
                                       int(vertices[2]), int(vertices[3]),
                                       int(vertices[4]), int(vertices[5])])
-            self.vertices_list = vertices
-            self.validate_text()
+        self.vertices_list = vertices
+        self.validate_text()
+
 
     def set_answer(self, answer_str):
         self.answer = answer_str
-
-    # def get_triangle_ab(self):
-    #     return self.triangle.get_ab()
-    #
-    # def get_triangle_bc(self):
-    #     return self.triangle.get_bc()
-    #
-    # def get_triangle_ca(self):
-    #     return self.triangle.get_ca()
-    #
-    # def get_triangle_area(self):
-    #     return self.triangle.get_area()
-    #
-    # def get_triangle_perimeter(self):
-    #     return self.triangle.get_perimeter()
-    #
-    # def get_triangle_circumcircle(self):
-    #     return {"center": self.triangle.get_circumcircle_center(), "radius": self.triangle.get_circumcircle_radius()}
-    #
-    # def get_triangle_incircle(self):
-    #     return {"center": self.triangle.get_incircle_center(), "radius": self.triangle.get_incircle_radius()}
-    #
-    # def get_triangle_type_by_sides(self):
-    #     return self.triangle.get_triangle_type_by_sides()
-    #
-    # def get_triangle_type_by_angles(self):
-    #     return self.triangle.get_triangle_type_by_angles()
 
     def get_button_convert_state(self):
         return self.button_convert_state
@@ -65,7 +36,9 @@ class TriangleViewModel:
         return self.answer
 
     def validate_text(self):
-        is_triangle = Triangle.is_triangle(self.triangle)
+        is_triangle = False
+        if ('' not in self.vertices_list):
+            is_triangle = Triangle.is_triangle(self.triangle)
         if is_triangle:
             self.set_btn_enabled()
         else:

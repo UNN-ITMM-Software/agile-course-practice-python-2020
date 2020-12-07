@@ -56,13 +56,13 @@ class GuiView(ttk.Frame):
         self.mvvm_back_bind()
 
     def mvvm_bind(self):
-        p = re.compile('\d+.?\d*\n')
+        p = re.compile('\d?.?\d*\n')
         if (p.match(self.x1.get("1.0", Tk.END)) and p.match(self.y1.get("1.0", Tk.END)) and
                 p.match(self.x2.get("1.0", Tk.END)) and p.match(self.y2.get("1.0", Tk.END)) and
                 p.match(self.x3.get("1.0", Tk.END)) and p.match(self.y3.get("1.0", Tk.END))):
-            self.viewmodel.set_vertices([self.x1.get("1.0", Tk.END), self.y1.get("1.0", Tk.END),
-                                         self.x2.get("1.0", Tk.END), self.y2.get("1.0", Tk.END),
-                                         self.x3.get("1.0", Tk.END), self.y3.get("1.0", Tk.END)])
+            self.viewmodel.set_vertices([self.x1.get("1.0", Tk.END).strip(), self.y1.get("1.0", Tk.END).strip(),
+                                         self.x2.get("1.0", Tk.END).strip(), self.y2.get("1.0", Tk.END).strip(),
+                                         self.x3.get("1.0", Tk.END).strip(), self.y3.get("1.0", Tk.END).strip()])
         self.viewmodel.set_operation(
             self.VALID_OPERATIONS[self.cmb_operation.current()])
 
@@ -123,5 +123,5 @@ class GuiView(ttk.Frame):
             self.x3.insert(Tk.END, self.viewmodel.get_vertices()[4])
             self.y3.delete(1.0, Tk.END)
             self.y3.insert(Tk.END, self.viewmodel.get_vertices()[5])
-            self.do_button.config(state=self.viewmodel.get_button_convert_state())
-            self.result_label.config(text=self.viewmodel.get_answer())
+        self.do_button.config(state=self.viewmodel.get_button_convert_state())
+        self.result_label.config(text=self.viewmodel.get_answer())
