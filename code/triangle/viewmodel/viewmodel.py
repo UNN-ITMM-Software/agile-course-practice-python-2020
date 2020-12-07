@@ -75,7 +75,8 @@ class TriangleViewModel:
             self.answer = str(self.triangle.get_circumcircle_center()) + '    ' + str(
                 self.triangle.get_circumcircle_radius())
         elif self.operation == 'get incircle':
-            self.answer = str(self.triangle.get_incircle_center()) + '    ' + str(self.triangle.get_incircle_radius())
+            self.answer = str(self.triangle.get_incircle_center()) + '    ' + \
+                          str(self.triangle.get_incircle_radius())
         elif self.operation == 'get side type':
             self.answer = str(self.triangle.get_triangle_type_by_sides())
         elif self.operation == 'get angle type':

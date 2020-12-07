@@ -60,9 +60,12 @@ class GuiView(ttk.Frame):
         if (p.match(self.x1.get("1.0", Tk.END)) and p.match(self.y1.get("1.0", Tk.END)) and
                 p.match(self.x2.get("1.0", Tk.END)) and p.match(self.y2.get("1.0", Tk.END)) and
                 p.match(self.x3.get("1.0", Tk.END)) and p.match(self.y3.get("1.0", Tk.END))):
-            self.viewmodel.set_vertices([self.x1.get("1.0", Tk.END).strip(), self.y1.get("1.0", Tk.END).strip(),
-                                         self.x2.get("1.0", Tk.END).strip(), self.y2.get("1.0", Tk.END).strip(),
-                                         self.x3.get("1.0", Tk.END).strip(), self.y3.get("1.0", Tk.END).strip()])
+            self.viewmodel.set_vertices([self.x1.get("1.0", Tk.END).strip(),
+                                         self.y1.get("1.0", Tk.END).strip(),
+                                         self.x2.get("1.0", Tk.END).strip(),
+                                         self.y2.get("1.0", Tk.END).strip(),
+                                         self.x3.get("1.0", Tk.END).strip(),
+                                         self.y3.get("1.0", Tk.END).strip()])
         self.viewmodel.set_operation(
             self.VALID_OPERATIONS[self.cmb_operation.current()])
 
