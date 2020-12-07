@@ -8,7 +8,7 @@ class CaesarCipherViewModel:
         self.output_text = ''
     
     def set_offset(self, value):
-        self.offset = value
+        self.offset = int(value)
     
     def set_input_text(self, value):
         self.input_text = value
