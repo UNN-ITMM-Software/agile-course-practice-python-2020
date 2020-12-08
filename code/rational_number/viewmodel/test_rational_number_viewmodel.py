@@ -76,3 +76,28 @@ class TestRationalNumberViewModel(unittest.TestCase):
         viewmodel.set_second_number("2/7")
         viewmodel.set_operation("+")
         self.assertEqual("disabled", viewmodel.get_calculate_button_state())
+
+    def test_number_updated_result_empty(self):
+        viewmodel = RationalNumberViewModel()
+        viewmodel.set_first_number("12/3")
+        viewmodel.set_second_number("2/7")
+        viewmodel.set_operation("+")
+        viewmodel.calculate()
+        viewmodel.set_first_number("12/11")
+        self.assertEqual("", viewmodel.get_result())
+
+    def test_operation_division_second_numerator_zero_calculate_button_disabled(self):
+        viewmodel = RationalNumberViewModel()
+        viewmodel.set_first_number("12/3")
+        viewmodel.set_second_number("0/1")
+        viewmodel.set_operation("/")
+        self.assertEqual("disabled", viewmodel.get_calculate_button_state())
+
+
+    def test_operation_division_second_numerator_zero_info_message_correct(self):
+        viewmodel = RationalNumberViewModel()
+        viewmodel.set_first_number("12/3")
+        viewmodel.set_second_number("0/1")
+        viewmodel.set_operation("/")
+        self.assertEqual("Numerator of second number is zero. Division by zero is not allowed.",
+                         viewmodel.get_info_message())

@@ -6,6 +6,7 @@ class RationalNumberViewModel:
     VALID_OPERATIONS = ['+', '-', '*', '/']
     RATIONAL_NUMBER_REGEX = r"([-]?\d+)\/([-]?\d+)"
     DENOMINATOR_ZERO_REGEX = r"([-]?\d+)\/([-]?0)"
+    NUMERATOR_ZERO_REGEX = r"([-]?0)\/([-]?\d+)"
 
     def __init__(self):
         self.__first_number = ""
@@ -23,11 +24,19 @@ class RationalNumberViewModel:
     def is_denominator_zero(value):
         return re.match(RationalNumberViewModel.DENOMINATOR_ZERO_REGEX, value)
 
+    @staticmethod
+    def is_numerator_zero(value):
+        return re.match(RationalNumberViewModel.NUMERATOR_ZERO_REGEX, value)
+
     def validate_input(self):
         self.__info_message = self.validate_operation() + self.validate_input_numbers()
 
         if not self.__info_message:
-            self.enable_calculate_button()
+            if self.__operation == "/" and self.is_numerator_zero(self.__second_number):
+                self.__info_message = "Numerator of second number is zero. Division by zero is not allowed."
+                self.disable_calculate_button()
+            else:
+                self.enable_calculate_button()
         else:
             self.disable_calculate_button()
 
@@ -94,6 +103,9 @@ class RationalNumberViewModel:
         return number
 
     def calculate(self):
+        if self.get_calculate_button_state() == "disabled":
+            raise RuntimeError("Calculate button disabled")
+
         num1 = self.str_to_rational_number(self.__first_number)
         num2 = self.str_to_rational_number(self.__second_number)
 
