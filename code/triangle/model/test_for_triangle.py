@@ -129,6 +129,7 @@ class TriangleTests(unittest.TestCase):
         test_triangle = Triangle(0, 0, 0, 3, 4, -1)
         self.assertEqual(Triangle.get_triangle_type_by_angles(test_triangle), "obtuse")
 
+
     def test_get_type_by_angle_invalid_triangle(self):
         test_triangle = Triangle(0, 0, 0, 1, 0, 2)
         with self.assertRaises(TriangleError):
