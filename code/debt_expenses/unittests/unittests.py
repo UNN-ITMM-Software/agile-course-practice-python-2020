@@ -1,6 +1,6 @@
 import unittest
 
-from kuznetsov_victor_lab1.debt import DebtExpenses
+from debt_expenses.debt import DebtExpenses
 
 
 class TestDebtExpensesClass(unittest.TestCase):
