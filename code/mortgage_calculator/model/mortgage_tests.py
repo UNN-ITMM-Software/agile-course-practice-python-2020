@@ -1,7 +1,7 @@
 import unittest
 
-from mortgage_calculator.mortgage import Mortgage
-from mortgage_calculator.term_types import TermType
+from mortgage_calculator.model.mortgage import Mortgage
+from mortgage_calculator.model.term_types import TermType
 
 
 class TestMortgage(unittest.TestCase):
