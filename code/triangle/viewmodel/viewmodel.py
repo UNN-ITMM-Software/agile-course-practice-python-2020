@@ -62,22 +62,22 @@ class TriangleViewModel:
 
     def click_button(self):
         if self.operation == 'get ab':
-            self.answer = str(self.triangle.get_ab())
+            self.set_answer(str(self.triangle.get_ab()))
         elif self.operation == 'get bc':
-            self.answer = str(self.triangle.get_bc())
+            self.set_answer(str(self.triangle.get_bc()))
         elif self.operation == 'get ca':
-            self.answer = str(self.triangle.get_ca())
+            self.set_answer(str(self.triangle.get_ca()))
         elif self.operation == 'get area':
-            self.answer = str(self.triangle.get_area())
+            self.set_answer(str(self.triangle.get_area()))
         elif self.operation == 'get perimeter':
-            self.answer = str(self.triangle.get_perimeter())
+            self.set_answer(str(self.triangle.get_perimeter()))
         elif self.operation == 'get circumcircle':
-            self.answer = str(self.triangle.get_circumcircle_center()) + '    ' + str(
-                self.triangle.get_circumcircle_radius())
+            self.set_answer(str(self.triangle.get_circumcircle_center()) + '    ' + str(
+                self.triangle.get_circumcircle_radius()))
         elif self.operation == 'get incircle':
-            self.answer = str(self.triangle.get_incircle_center()) + '    ' + \
-                          str(self.triangle.get_incircle_radius())
+            self.set_answer(str(self.triangle.get_incircle_center()) + '    ' + \
+                          str(self.triangle.get_incircle_radius()))
         elif self.operation == 'get side type':
-            self.answer = str(self.triangle.get_triangle_type_by_sides())
+            self.set_answer(str(self.triangle.get_triangle_type_by_sides()))
         elif self.operation == 'get angle type':
-            self.answer = str(self.triangle.get_triangle_type_by_angles())
+            self.set_answer(str(self.triangle.get_triangle_type_by_angles()))
