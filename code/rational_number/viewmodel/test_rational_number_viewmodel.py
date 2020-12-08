@@ -2,6 +2,7 @@ import unittest
 
 from rational_number.viewmodel.rational_number_viewmodel import RationalNumberViewModel
 
+
 class TestRationalNumberViewModel(unittest.TestCase):
 
     def test_calculate_button_disabled_by_default(self):
@@ -92,7 +93,6 @@ class TestRationalNumberViewModel(unittest.TestCase):
         viewmodel.set_second_number("0/1")
         viewmodel.set_operation("/")
         self.assertEqual("disabled", viewmodel.get_calculate_button_state())
-
 
     def test_operation_division_second_numerator_zero_info_message_correct(self):
         viewmodel = RationalNumberViewModel()

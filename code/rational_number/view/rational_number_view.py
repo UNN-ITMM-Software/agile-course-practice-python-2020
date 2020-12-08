@@ -1,9 +1,8 @@
 import tkinter
 from tkinter import ttk
 
-import sys
-sys.path.append("../../")
 from rational_number.viewmodel.rational_number_viewmodel import RationalNumberViewModel
+
 
 class GUIView(ttk.Frame):
     default_sticky = tkinter.W + tkinter.E + tkinter.N + tkinter.S
@@ -48,7 +47,8 @@ class GUIView(ttk.Frame):
         self.txt_first_number = tkinter.Text(self, height=1, width=10, borderwidth=2, relief="groove")
         self.txt_first_number.grid(row=0, column=0, sticky=self.default_sticky)
 
-        self.cmb_operation = ttk.Combobox(self, height=1, width=5, values=RationalNumberViewModel.VALID_OPERATIONS,
+        self.cmb_operation = ttk.Combobox(self, height=1, width=5,
+                                          values=RationalNumberViewModel.VALID_OPERATIONS,
                                           state="readonly")
         self.cmb_operation.current(0)
         self.cmb_operation.grid(row=0, column=1, sticky=self.default_sticky)
@@ -89,6 +89,3 @@ class GUIView(ttk.Frame):
     def operation_changed(self, event):
         self.mvvm_bind()
         self.mvvm_back_bind()
-
-
-GUIView().mainloop()
