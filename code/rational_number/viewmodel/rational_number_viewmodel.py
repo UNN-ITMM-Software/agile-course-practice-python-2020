@@ -103,9 +103,6 @@ class RationalNumberViewModel:
         return number
 
     def calculate(self):
-        if self.get_calculate_button_state() == "disabled":
-            raise RuntimeError("Calculate button disabled")
-
         num1 = self.str_to_rational_number(self.__first_number)
         num2 = self.str_to_rational_number(self.__second_number)
 

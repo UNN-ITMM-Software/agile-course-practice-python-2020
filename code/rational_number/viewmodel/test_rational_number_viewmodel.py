@@ -102,6 +102,13 @@ class TestRationalNumberViewModel(unittest.TestCase):
         viewmodel.set_operation("+")
         self.assertEqual("disabled", viewmodel.get_calculate_button_state())
 
+    def test_denominators_of_numbers_are_zero_info_message_correct(self):
+        viewmodel = RationalNumberViewModel()
+        viewmodel.set_first_number("13/0")
+        viewmodel.set_second_number("7/0")
+        self.assertEqual("Denominator of first number is zero.Denominator of second number is zero.",
+                         viewmodel.get_info_message())
+
     def test_number_updated_result_empty(self):
         viewmodel = RationalNumberViewModel()
         viewmodel.set_first_number("12/3")
