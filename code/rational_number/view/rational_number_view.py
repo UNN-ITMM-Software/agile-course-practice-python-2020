@@ -6,7 +6,6 @@ sys.path.append("../../")
 from rational_number.viewmodel.rational_number_viewmodel import RationalNumberViewModel
 
 class GUIView(ttk.Frame):
-    VALID_OPERATIONS = ['+', '-', '*', '/']
     default_sticky = tkinter.W + tkinter.E + tkinter.N + tkinter.S
 
     viewmodel = RationalNumberViewModel()
@@ -35,8 +34,8 @@ class GUIView(ttk.Frame):
 
     def mvvm_back_bind(self):
         self.btn_calculate.config(state=self.viewmodel.get_calculate_button_state())
-
         self.lbl_message.config(text=self.viewmodel.get_info_message())
+        self.lbl_result.config(text=self.viewmodel.get_result())
 
     def __init__(self):
         ttk.Frame.__init__(self)
@@ -76,6 +75,7 @@ class GUIView(ttk.Frame):
 
     def calculate_clicked(self, event):
         self.mvvm_bind()
+        self.viewmodel.calculate()
         self.mvvm_back_bind()
 
     def txt_first_number_changed(self, event):

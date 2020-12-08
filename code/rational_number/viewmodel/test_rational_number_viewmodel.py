@@ -61,3 +61,18 @@ class TestRationalNumberViewModel(unittest.TestCase):
         viewmodel = RationalNumberViewModel()
         viewmodel.set_operation("%")
         self.assertEqual("disabled", viewmodel.get_calculate_button_state())
+
+    def test_first_valid_second_valid_plus_calculate(self):
+        viewmodel = RationalNumberViewModel()
+        viewmodel.set_first_number("12/3")
+        viewmodel.set_second_number("2/7")
+        viewmodel.set_operation("+")
+        viewmodel.calculate()
+        self.assertEqual("30/7", viewmodel.get_result())
+
+    def test_denominator_of_number_zero_calculate_button_disabled(self):
+        viewmodel = RationalNumberViewModel()
+        viewmodel.set_first_number("12/0")
+        viewmodel.set_second_number("2/7")
+        viewmodel.set_operation("+")
+        self.assertEqual("disabled", viewmodel.get_calculate_button_state())
