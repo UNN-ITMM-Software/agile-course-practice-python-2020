@@ -7,7 +7,6 @@ from rational_number.viewmodel.rational_number_viewmodel import RationalNumberVi
 
 class GUIView(ttk.Frame):
     VALID_OPERATIONS = ['+', '-', '*', '/']
-    N_LOG_MESSAGES_TO_DISPLAY = 15
     default_sticky = tkinter.W + tkinter.E + tkinter.N + tkinter.S
 
     viewmodel = RationalNumberViewModel()
@@ -24,20 +23,20 @@ class GUIView(ttk.Frame):
         self.columnconfigure(4, weight=1)
 
     def bind_events(self):
-        self.btn_calculate.bind('<Button-1>', self.calculate_clicked)
         self.txt_first_number.bind('<KeyRelease>', self.txt_first_number_changed)
         self.txt_second_number.bind('<KeyRelease>', self.txt_second_number_changed)
         self.cmb_operation.bind('<<ComboboxSelected>>', self.operation_changed)
+        self.btn_calculate.bind('<Button-1>', self.calculate_clicked)
 
     def mvvm_bind(self):
         self.viewmodel.set_first_number(self.txt_first_number.get("1.0", tkinter.END))
         self.viewmodel.set_second_number(self.txt_second_number.get("1.0", tkinter.END))
+        self.viewmodel.set_operation(self.cmb_operation.get())
 
     def mvvm_back_bind(self):
         self.btn_calculate.config(state=self.viewmodel.get_calculate_button_state())
 
         self.lbl_message.config(text=self.viewmodel.get_info_message())
-
 
     def __init__(self):
         ttk.Frame.__init__(self)
@@ -50,7 +49,8 @@ class GUIView(ttk.Frame):
         self.txt_first_number = tkinter.Text(self, height=1, width=10, borderwidth=2, relief="groove")
         self.txt_first_number.grid(row=0, column=0, sticky=self.default_sticky)
 
-        self.cmb_operation = ttk.Combobox(self, height=1, width=5, values=self.VALID_OPERATIONS)
+        self.cmb_operation = ttk.Combobox(self, height=1, width=5, values=RationalNumberViewModel.VALID_OPERATIONS,
+                                          state="readonly")
         self.cmb_operation.current(0)
         self.cmb_operation.grid(row=0, column=1, sticky=self.default_sticky)
 

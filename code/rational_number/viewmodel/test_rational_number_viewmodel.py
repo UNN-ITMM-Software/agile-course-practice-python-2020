@@ -56,3 +56,8 @@ class TestRationalNumberViewModel(unittest.TestCase):
         viewmodel.set_first_number("aaa")
         viewmodel.set_second_number("bbbb")
         self.assertEqual("First number is invalid.Second number is invalid.", viewmodel.get_info_message())
+
+    def test_operation_invalid_calculate_button_disabled(self):
+        viewmodel = RationalNumberViewModel()
+        viewmodel.set_operation("%")
+        self.assertEqual("disabled", viewmodel.get_calculate_button_state())
