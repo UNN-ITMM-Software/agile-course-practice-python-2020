@@ -20,3 +20,9 @@ class TestRationalNumberViewModel(unittest.TestCase):
         viewmodel.set_second_number("2/7")
         viewmodel.set_second_number("")
         self.assertEqual("disabled", viewmodel.get_calculate_button_state())
+
+    def test_numbers_invalid_calculate_button_disabled_positive(self):
+        viewmodel = RationalNumberViewModel()
+        viewmodel.set_first_number("a")
+        viewmodel.set_second_number("2/7")
+        self.assertEqual("disabled", viewmodel.get_calculate_button_state())

@@ -1,4 +1,4 @@
-
+import re
 
 class RationalNumberViewModel:
 
@@ -6,10 +6,16 @@ class RationalNumberViewModel:
         self.__first_number = ""
         self.__second_number = ""
         self.__calculate_button_state = "disabled"
+        self._info_message = ""
+
+    def is_number_valid(self, value):
+        return re.match(r"\d+\/\d+", value)
 
     def validate_input_numbers(self):
-        print(self.__first_number, self.__second_number)
-        if self.__first_number and self.__second_number:
+        first_number_valid = self.is_number_valid(self.__first_number)
+        second_number_valid = self.is_number_valid(self.__second_number)
+
+        if first_number_valid and second_number_valid:
             self.enable_calculate_button()
         else:
             self.disable_calculate_button()
