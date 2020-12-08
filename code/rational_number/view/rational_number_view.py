@@ -36,13 +36,8 @@ class GUIView(ttk.Frame):
     def mvvm_back_bind(self):
         self.btn_calculate.config(state=self.viewmodel.get_calculate_button_state())
 
-        # self.txt_first_number.delete(1.0, tkinter.END)
-        # self.txt_first_number.insert(
-        #     tkinter.END, self.viewmodel.get_first_number())
-        #
-        # self.txt_second_number.delete(1.0, tkinter.END)
-        # self.txt_second_number.insert(
-        #     tkinter.END, self.viewmodel.get_second_number())
+        self.lbl_message.config(text=self.viewmodel.get_info_message())
+
 
     def __init__(self):
         ttk.Frame.__init__(self)
