@@ -24,8 +24,12 @@ class GUIView:
         self.period_value = tk.Entry(self.frame, bg='white')
         self.year_value = tk.Entry(self.frame, bg='white')
 
-        self.amounts_res_button = tk.Button(self.frame, text='Calculate Equal amounts repayment', bg='snow2')
-        self.payments_res_button = tk.Button(self.frame, text='Calculate Equal payments repayment', bg='snow2')
+        self.amounts_res_button = tk.Button(self.frame,
+                                            text='Calculate Equal amounts repayment',
+                                            bg='snow2')
+        self.payments_res_button = tk.Button(self.frame,
+                                             text='Calculate Equal payments repayment',
+                                             bg='snow2')
 
         self.res = tk.Label(self.frame, text='Result : ', bg='pale green', font=32)
         self.error_field = tk.Label(self.frame, text='', font=28, bg='ghost white')
@@ -113,5 +117,5 @@ class GUIView:
         self.res.config(text='Payment: {} - Expenses: {}'.format(format(payment, ".0f") if payment else '',
                                                                  format(expenses, ".0f") if expenses else ''))
 
-        error_msg = view_model.get_error_message()
+        error_msg = self.view_model.get_error_message()
         self.error_field.config(text='{}'.format(error_msg if error_msg else 'Normal work'))
