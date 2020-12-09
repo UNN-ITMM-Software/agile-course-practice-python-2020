@@ -76,19 +76,19 @@ class GUIView:
         header = tk.Label(self.frame, text="Вершины", bg='#fafafa')
         header.grid(row=0, column=0)
 
-        for i in range(cols):
-            header = tk.Label(self.frame, text=str(i), bg='#fafafa')
-            header.grid(row=0, column=i + 1)
+        for column_id in range(cols):
+            header = tk.Label(self.frame, text=str(column_id), bg='#fafafa')
+            header.grid(row=0, column=column_id + 1)
 
-        for i in range(rows):
+        for row_id in range(rows):
 
-            header = tk.Label(self.frame, text=str(i), bg='#fafafa')
-            header.grid(row=i + 1, column=0)
+            header = tk.Label(self.frame, text=str(row_id), bg='#fafafa')
+            header.grid(row=row_id + 1, column=0)
 
             self.entries.append([])
-            for j in range(cols):
-                self.entries[i].append(tk.Entry(self.frame, width=3))
-                self.entries[i][j].grid(row=i + 1, column=j + 1)
+            for column_id in range(cols):
+                self.entries[row_id].append(tk.Entry(self.frame, width=3))
+                self.entries[row_id][column_id].grid(row=row_id + 1, column=column_id + 1)
 
     def draw_result(self, result):
 
@@ -97,9 +97,9 @@ class GUIView:
         lbl_result = tk.Label(self.frame, text="dists", bg='#fafafa')
         lbl_result.grid(row=rows + 1, column=0)
 
-        for j, dist in enumerate(result):
+        for column_id, dist in enumerate(result):
             dist = tk.Label(self.frame, text=str(dist), bg='#fafafa')
-            dist.grid(row=rows + 1, column=j + 1)
+            dist.grid(row=rows + 1, column=column_id + 1)
 
     def read_weights(self):
         rows = int(self.input_num_vertex.get())
