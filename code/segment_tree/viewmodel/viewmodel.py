@@ -7,6 +7,7 @@ class SegmentTreeViewModel(object):
         self.method = None
         self.input_array = None
         self.segment_tree = None
+        self.input_size = None
 
         self.left_border = None
         self.right_border = None
@@ -32,19 +33,19 @@ class SegmentTreeViewModel(object):
         return self.buttons["update_button_enabled"]
 
     def validate_data_build_button(self):
-        if self.input_array:
+        if isinstance(self.input_size, int) and self.input_size > 0:
             self.set_build_btn_enabled()
         else:
             self.set_build_btn_disabled()
 
     def validate_data_get_button(self):
-        if isinstance(self.left_border, int) and isinstance(self.right_border, int):
+        if isinstance(self.left_border, int) and isinstance(self.right_border, int) and self.input_array:
             self.set_get_btn_enabled()
         else:
             self.set_get_btn_disabled()
 
     def validate_data_update_button(self):
-        if isinstance(self.update_index, int) and isinstance(self.update_value, int):
+        if isinstance(self.update_index, int) and isinstance(self.update_value, int) and self.input_array:
             self.set_update_btn_enabled()
         else:
             self.set_update_btn_disabled()
@@ -66,6 +67,22 @@ class SegmentTreeViewModel(object):
 
     def set_update_btn_disabled(self):
         self.buttons["update_button_enabled"] = 'disabled'
+
+    def set_input_size(self, input_size):
+        try:
+            self.input_size = None
+            self.input_size = int(input_size)
+            if self.input_size <= 0:
+                self.error_message = 'Incorrect value of input size'
+                self.success_procedure = False
+        except Exception:
+            self.clear_output()
+            self.error_message = 'Incorrect type of input size'
+            self.success_procedure = False
+        self.validate_data_build_button()
+
+    def get_input_size(self):
+        return self.input_size
 
     def set_input_array(self, input_array):
         try:
@@ -91,7 +108,6 @@ class SegmentTreeViewModel(object):
         try:
             self.left_border = None
             self.left_border = int(left)
-            self.clear_error_message()
         except Exception:
             self.clear_output()
             self.error_message = 'Incorrect left border'
@@ -105,7 +121,6 @@ class SegmentTreeViewModel(object):
         try:
             self.right_border = None
             self.right_border = int(right)
-            self.clear_error_message()
         except Exception:
             self.clear_output()
             self.error_message = 'Incorrect right border'
@@ -171,10 +186,15 @@ class SegmentTreeViewModel(object):
     def calculate(self):
         if self.is_build_button_enable() == "normal":
             self.success_procedure = False
-            self.segment_tree = SegmentTree(self.method)
-            self.segment_tree.build(self.input_array)
-            self.success_procedure = True
-            self.clear_error_message()
+            try:
+                self.segment_tree = SegmentTree(self.method)
+                self.segment_tree.build(self.input_array)
+                self.success_procedure = True
+                self.clear_error_message()
+            except Exception as except_build:
+                self.clear_output()
+                self.error_message = str(except_build)
+                self.success_procedure = False
 
     def update(self):
         if self.is_update_button_enable() == "normal":

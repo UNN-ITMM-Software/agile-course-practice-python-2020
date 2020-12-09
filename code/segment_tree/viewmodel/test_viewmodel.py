@@ -22,25 +22,31 @@ class TestSegmentTreeViewModel(unittest.TestCase):
 
     def test_build_button_enabled_after_input_array(self):
         test_view_model = SegmentTreeViewModel()
-        test_view_model.set_input_array([1, 2, 3])
-        test_view_model.set_method('sum')
+        test_view_model.set_input_size(4)
         self.assertEqual('normal', test_view_model.is_build_button_enable())
 
     def test_get_button_enabled_after_input_array(self):
         test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_array([1, 2, 3])
         test_view_model.set_left_border(0)
         test_view_model.set_right_border(3)
         self.assertEqual('normal', test_view_model.is_get_button_enable())
 
     def test_update_button_enabled_after_input_array(self):
         test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_array([1, 2, 3])
         test_view_model.set_update_index(0)
         test_view_model.set_update_value(3)
         self.assertEqual('normal', test_view_model.is_update_button_enable())
 
-    def test_build_button_disable(self):
+    def test_build_button_disable_value_error(self):
         test_view_model = SegmentTreeViewModel()
-        test_view_model.set_input_array(None)
+        test_view_model.set_input_size(-1)
+        self.assertEqual('disabled', test_view_model.is_build_button_enable())
+
+    def test_build_button_disable_type_error(self):
+        test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_size('q')
         self.assertEqual('disabled', test_view_model.is_build_button_enable())
 
     def test_get_button_disable_left_border(self):
@@ -66,6 +72,21 @@ class TestSegmentTreeViewModel(unittest.TestCase):
         test_model.set_update_index(1)
         test_model.set_update_value('a')
         self.assertEqual('disabled', test_model.is_update_button_enable())
+
+    def test_init_array_size(self):
+        test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_size(5)
+        self.assertEqual(5, test_view_model.get_input_size())
+
+    def test_init_wrong_value_array_size(self):
+        test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_size(-5)
+        self.assertEqual('Incorrect value of input size', test_view_model.get_error_message())
+
+    def test_init_wrong_type_array_size(self):
+        test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_size('abc')
+        self.assertEqual('Incorrect type of input size', test_view_model.get_error_message())
 
     def test_init_array(self):
         test_view_model = SegmentTreeViewModel()
@@ -124,6 +145,7 @@ class TestSegmentTreeViewModel(unittest.TestCase):
 
     def test_calculate_sum_segment_tree(self):
         test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_size(5)
         test_view_model.set_input_array([2, 6, 17, 3, 22])
         test_view_model.set_method('sum')
         test_view_model.calculate()
@@ -131,6 +153,7 @@ class TestSegmentTreeViewModel(unittest.TestCase):
 
     def test_get_sum_segment_tree(self):
         test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_size(5)
         test_view_model.set_input_array([2, 6, 17, 3, 22])
         test_view_model.set_method('sum')
         test_view_model.calculate()
@@ -141,6 +164,7 @@ class TestSegmentTreeViewModel(unittest.TestCase):
 
     def test_update_sum_segment_tree(self):
         test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_size(5)
         test_view_model.set_input_array([2, 6, 17, 3, 22])
         test_view_model.set_method('sum')
         test_view_model.calculate()
@@ -151,6 +175,7 @@ class TestSegmentTreeViewModel(unittest.TestCase):
 
     def test_calculate_max_segment_tree(self):
         test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_size(5)
         test_view_model.set_input_array([2, 6, 17, 3, 22])
         test_view_model.set_method('max')
         test_view_model.calculate()
@@ -158,6 +183,7 @@ class TestSegmentTreeViewModel(unittest.TestCase):
 
     def test_get_max_segment_tree(self):
         test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_size(5)
         test_view_model.set_input_array([2, 6, 17, 3, 22])
         test_view_model.set_method('max')
         test_view_model.calculate()
@@ -168,6 +194,7 @@ class TestSegmentTreeViewModel(unittest.TestCase):
 
     def test_update_max_segment_tree(self):
         test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_size(5)
         test_view_model.set_input_array([2, 6, 17, 3, 22])
         test_view_model.set_method('max')
         test_view_model.calculate()
@@ -178,6 +205,7 @@ class TestSegmentTreeViewModel(unittest.TestCase):
 
     def test_calculate_min_segment_tree(self):
         test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_size(5)
         test_view_model.set_input_array([2, 6, 17, 3, 22])
         test_view_model.set_method('min')
         test_view_model.calculate()
@@ -185,6 +213,7 @@ class TestSegmentTreeViewModel(unittest.TestCase):
 
     def test_get_min_segment_tree(self):
         test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_size(5)
         test_view_model.set_input_array([2, 6, 17, 3, 22])
         test_view_model.set_method('min')
         test_view_model.calculate()
@@ -195,6 +224,7 @@ class TestSegmentTreeViewModel(unittest.TestCase):
 
     def test_update_min_segment_tree(self):
         test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_size(5)
         test_view_model.set_input_array([2, 6, 17, 3, 22])
         test_view_model.set_method('min')
         test_view_model.calculate()
@@ -203,8 +233,18 @@ class TestSegmentTreeViewModel(unittest.TestCase):
         test_view_model.update()
         self.assertEqual(True, test_view_model.get_success_procedure())
 
+    def test_except_message_calculate_sum_segment_tree(self):
+        test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_size(5)
+        test_view_model.set_input_array([2, 'a', 17, 3, 22])
+        test_view_model.set_method('sum')
+        test_view_model.calculate()
+        self.assertEqual('Incorrect type of input array. Expected: list',
+                         test_view_model.get_error_message())
+
     def test_except_status_calculate_sum_segment_tree(self):
         test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_size(5)
         test_view_model.set_input_array([2, 'a', 17, 3, 22])
         test_view_model.set_method('sum')
         test_view_model.calculate()
@@ -212,6 +252,7 @@ class TestSegmentTreeViewModel(unittest.TestCase):
 
     def test_except_message_get_sum_segment_tree(self):
         test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_size(5)
         test_view_model.set_input_array([2, 6, 17, 3, 22])
         test_view_model.set_method('sum')
         test_view_model.calculate()
@@ -223,6 +264,7 @@ class TestSegmentTreeViewModel(unittest.TestCase):
 
     def test_except_status_get_sum_segment_tree(self):
         test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_size(5)
         test_view_model.set_input_array([2, 6, 17, 3, 22])
         test_view_model.set_method('sum')
         test_view_model.calculate()
@@ -233,6 +275,7 @@ class TestSegmentTreeViewModel(unittest.TestCase):
 
     def test_except_message_update_sum_segment_tree(self):
         test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_size(5)
         test_view_model.set_input_array([2, 6, 17, 3, 22])
         test_view_model.set_method('sum')
         test_view_model.calculate()
@@ -243,6 +286,7 @@ class TestSegmentTreeViewModel(unittest.TestCase):
 
     def test_except_status_update_sum_segment_tree(self):
         test_view_model = SegmentTreeViewModel()
+        test_view_model.set_input_size(5)
         test_view_model.set_input_array([2, 6, 17, 3, 22])
         test_view_model.set_method('sum')
         test_view_model.calculate()
