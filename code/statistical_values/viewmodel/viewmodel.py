@@ -20,14 +20,48 @@ class StatisticalValuesViewModel:
 
     def set_x(self, values):
         self.x_in = values
-        self.x = values
+        is_valid = True
+        try:
+            values = eval(values)
+            if isinstance(values, (list, tuple, int, float)):
+                self.button_state = "active"
+                self.error_msg = ''
+            else:
+                self.error_msg = "Error: only list or tuple input supported in Values List"
+                self.button_state = "disabled"
+                is_valid = False
+        except Exception as exp:
+            self.error_msg = "Error: incorrect expression in Values List"
+            self.button_state = "disabled"
+            is_valid = False
+
+        if is_valid:
+            self.x = values
+        return is_valid
 
     def get_x(self):
         return self.x_in
 
     def set_k(self, value):
         self.k_in = value
-        self.k = value
+        is_valid = True
+        try:
+            value = eval(value)
+            if isinstance(value, (int, float)):
+                self.button_state = "active"
+                self.error_msg = ''
+            else:
+                self.error_msg = "Error: only int or float input supported in k"
+                self.button_state = "disabled"
+                is_valid = False
+        except Exception as exp:
+            self.error_msg = "Error: incorrect value k"
+            self.button_state = "disabled"
+            is_valid = False
+
+        if is_valid:
+            self.k = value
+        return is_valid
 
     def get_k(self):
         return self.k_in
