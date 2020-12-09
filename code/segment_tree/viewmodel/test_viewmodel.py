@@ -27,7 +27,6 @@ class TestSegmentTreeViewModel(unittest.TestCase):
 
     def test_get_button_enabled_after_input_array(self):
         test_view_model = SegmentTreeViewModel()
-        test_view_model.set_input_array([1, 2, 3])
         test_view_model.set_left_border(0)
         test_view_model.set_right_border(3)
         self.assertEqual('normal', test_view_model.is_get_button_enable())

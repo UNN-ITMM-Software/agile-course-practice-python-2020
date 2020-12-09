@@ -39,7 +39,7 @@ class SegmentTreeViewModel(object):
             self.set_build_btn_disabled()
 
     def validate_data_get_button(self):
-        if isinstance(self.left_border, int) and isinstance(self.right_border, int) and self.input_array:
+        if isinstance(self.left_border, int) and isinstance(self.right_border, int):
             self.set_get_btn_enabled()
         else:
             self.set_get_btn_disabled()
