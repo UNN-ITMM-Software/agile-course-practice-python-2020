@@ -3,7 +3,7 @@ import unittest
 from debt_expenses.debt import DebtExpenses
 
 
-class TestDebtExpensesClass(unittest.TestCase):
+class TestDebtExpenses(unittest.TestCase):
     def test_equal_amounts_repayment_with_invalid_req_sum(self):
         with self.assertRaises(ValueError):
             DebtExpenses(-333, 0.14, 4)

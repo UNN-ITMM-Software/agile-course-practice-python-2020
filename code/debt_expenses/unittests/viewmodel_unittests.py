@@ -3,7 +3,7 @@ import unittest
 from debt_expenses.viewmodel.debt_viewmodel import DebtViewModel
 
 
-class TestDebtExpensesViewModelClass(unittest.TestCase):
+class TestDebtExpensesViewModel(unittest.TestCase):
     def test_by_default_error_is_true(self):
         test_example = DebtViewModel()
         self.assertEqual('Please enter data', test_example.get_error_message())
@@ -37,7 +37,7 @@ class TestDebtExpensesViewModelClass(unittest.TestCase):
         self.assertTrue('Error: Incorrect input', test_example.get_error_message())
 
 
-class TestEqualAmountsRepaymentViewModelClass(unittest.TestCase):
+class TestEqualAmountsRepaymentViewModel(unittest.TestCase):
     def test_equal_amounts_repayment_for_1_year(self):
         test_example = DebtViewModel(req_sum=200000, percent_rate=0.14, period=4, year=1)
         test_example.perform_repayment('equal_amounts')
@@ -83,7 +83,7 @@ class TestEqualAmountsRepaymentViewModelClass(unittest.TestCase):
                                                                      format(expenses, '.0f')))
 
 
-class TestEqualPaymentsRepaymentViewModelClass(unittest.TestCase):
+class TestEqualPaymentsRepaymentViewModel(unittest.TestCase):
     def test_equal_payments_repayment_for_1_year(self):
         test_example = DebtViewModel(req_sum=200000, percent_rate=0.14, period=4, year=1)
         test_example.perform_repayment('equal_payments')
