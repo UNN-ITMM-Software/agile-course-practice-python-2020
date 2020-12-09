@@ -1,15 +1,16 @@
 import tkinter as tk
 from tkinter import ttk
 
+from mortgage_calculator.viewmodel.viewmodel import MortgageViewModel
+
 
 class GUI(ttk.Frame):
     default_sticky = tk.W + tk.E + tk.N + tk.S
     TERM_TYPES = ['months', 'years']
 
+    view_model = MortgageViewModel()
+
     def bind_events(self):
-        self.btn_calculate_monthly_payment.bind('<Button-1>', self.calculate_monthly_payment_clicked)
-        self.btn_calculate_expected_term.bind('<Button-1>', self.calculate_expected_term_clicked)
-        self.btn_calculate_overpaid_amount.bind('<Button-1>', self.calculate_overpaid_amount_clicked)
         self.amount_textbox.bind('<KeyRelease>', self.amount_textbox_changed)
         self.initial_payment_textbox.bind('<KeyRelease>', self.initial_payment_textbox_changed)
         self.rate_textbox.bind('<KeyRelease>', self.rate_textbox_changed)
@@ -17,11 +18,22 @@ class GUI(ttk.Frame):
         self.monthly_payment_textbox.bind('<KeyRelease>', self.monthly_payment_textbox_changed)
         self.term_type_combobox.bind('<<ComboboxSelected>>', self.term_type_changed)
 
+        self.button_calculate_monthly_payment.bind('<Button-1>', self.calculate_monthly_payment_clicked)
+        self.button_calculate_expected_term.bind('<Button-1>', self.calculate_expected_term_clicked)
+        self.button_calculate_overpaid_amount.bind('<Button-1>', self.calculate_overpaid_amount_clicked)
+
     def mvvm_bind(self):
         pass
 
     def mvvm_back_bind(self):
-        pass
+        self.button_calculate_monthly_payment.config(
+            state=self.view_model.get_button_calculate_monthly_payment_state())
+
+        self.button_calculate_expected_term.config(
+            state=self.view_model.get_button_calculate_expected_term_state())
+
+        self.button_calculate_overpaid_amount.config(
+            state=self.view_model.get_button_calculate_overpaid_amount_state())
 
     def __init__(self):
         ttk.Frame.__init__(self)
@@ -79,8 +91,8 @@ class GUI(ttk.Frame):
         self.calculate_monthly_payment_result = tk.Label(self, text='')
         self.calculate_monthly_payment_result.grid(row=6, column=1, sticky="w")
 
-        self.btn_calculate_monthly_payment = ttk.Button(self, text='calculate')
-        self.btn_calculate_monthly_payment.grid(row=6, column=2, rowspan=1, sticky=self.default_sticky)
+        self.button_calculate_monthly_payment = ttk.Button(self, text='calculate')
+        self.button_calculate_monthly_payment.grid(row=6, column=2, rowspan=1, sticky=self.default_sticky)
 
         # Calculate expected term
         self.calculate_expected_term_label = tk.Label(self, text='Expected term:')
@@ -89,8 +101,8 @@ class GUI(ttk.Frame):
         self.calculate_expected_term_result = tk.Label(self, text='')
         self.calculate_expected_term_result.grid(row=7, column=1, sticky="w")
 
-        self.btn_calculate_expected_term = ttk.Button(self, text='calculate')
-        self.btn_calculate_expected_term.grid(row=7, column=2, rowspan=1, sticky=self.default_sticky)
+        self.button_calculate_expected_term = ttk.Button(self, text='calculate')
+        self.button_calculate_expected_term.grid(row=7, column=2, rowspan=1, sticky=self.default_sticky)
 
         # Calculate overpaid amount
         self.calculate_overpaid_amount_label = tk.Label(self, text='Overpaid amount:')
@@ -99,8 +111,8 @@ class GUI(ttk.Frame):
         self.calculate_overpaid_amount_result = tk.Label(self, text='')
         self.calculate_overpaid_amount_result.grid(row=8, column=1, sticky="w")
 
-        self.btn_calculate_overpaid_amount = ttk.Button(self, text='calculate')
-        self.btn_calculate_overpaid_amount.grid(row=8, column=2, rowspan=1, sticky=self.default_sticky)
+        self.button_calculate_overpaid_amount = ttk.Button(self, text='calculate')
+        self.button_calculate_overpaid_amount.grid(row=8, column=2, rowspan=1, sticky=self.default_sticky)
 
         # Error message
         self.txt_error_message = tk.Label(self, height=3, width=15, wraplength=150)
