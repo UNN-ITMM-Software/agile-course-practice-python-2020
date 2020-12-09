@@ -4,7 +4,7 @@ import unittest
 from triangle.viewmodel.viewmodel import TriangleViewModel
 
 
-class TestFractionCalculatorViewModel(unittest.TestCase):
+class TestTriangleCalculatorViewModel(unittest.TestCase):
 
     def setUp(self):
         self.view_model = TriangleViewModel()

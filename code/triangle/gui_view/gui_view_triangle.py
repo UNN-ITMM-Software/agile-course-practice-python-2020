@@ -56,7 +56,7 @@ class GuiView(ttk.Frame):
         self.mvvm_back_bind()
 
     def mvvm_bind(self):
-        p = re.compile('\d?.?\d*\n')
+        p = re.compile('[-]?\\d.?\\d*\n')
         if (p.match(self.x1.get("1.0", Tk.END)) and p.match(self.y1.get("1.0", Tk.END)) and
                 p.match(self.x2.get("1.0", Tk.END)) and p.match(self.y2.get("1.0", Tk.END)) and
                 p.match(self.x3.get("1.0", Tk.END)) and p.match(self.y3.get("1.0", Tk.END))):
@@ -71,12 +71,12 @@ class GuiView(ttk.Frame):
 
     def bind_events(self):
         self.do_button.bind('<Button-1>', self.button_clicked)
-        self.x1.bind('<KeyRelease>', self.x1_txt_changed)
-        self.y1.bind('<KeyRelease>', self.y1_txt_changed)
-        self.x2.bind('<KeyRelease>', self.x2_txt_changed)
-        self.y2.bind('<KeyRelease>', self.y2_txt_changed)
-        self.x3.bind('<KeyRelease>', self.x3_txt_changed)
-        self.y3.bind('<KeyRelease>', self.y3_txt_changed)
+        self.x1.bind('<Motion>', self.x1_txt_changed)
+        self.y1.bind('<Motion>', self.y1_txt_changed)
+        self.x2.bind('<Motion>', self.x2_txt_changed)
+        self.y2.bind('<Motion>', self.y2_txt_changed)
+        self.x3.bind('<Motion>', self.x3_txt_changed)
+        self.y3.bind('<Motion>', self.y3_txt_changed)
         self.cmb_operation.bind('<<ComboboxSelected>>', self.operation_changed)
 
     def button_clicked(self, event):
