@@ -3,7 +3,7 @@ import unittest
 from harry_potter_store.viewmodel.viewmodel import HPStoreViewModel
 
 
-class TestFractionCalculatorViewModel(unittest.TestCase):
+class TestHPStoreViewModel(unittest.TestCase):
 
     def setUp(self):
         self.view_model = HPStoreViewModel()
