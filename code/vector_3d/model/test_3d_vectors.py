@@ -1,5 +1,5 @@
 import unittest
-from vector_3d.vector_3d import Vector3d
+from vector_3d.model.vector_3d import Vector3d
 
 
 class TestVector3d(unittest.TestCase):
