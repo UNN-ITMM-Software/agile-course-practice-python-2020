@@ -11,7 +11,6 @@ class GUIView:
         self.root['bg'] = '#fafafa'
         self.root.title('Алгоритм Дейкстры')
         self.root.geometry('630x400')
-        # self.root.resizable(width=False, height=True)
 
         self.frame = tk.Frame(self.root, bg='#fafafa')
         self.lbl_num_vertex = tk.Label(self.root, text="vertex count:")
