@@ -12,9 +12,9 @@ class Store:
     def _validate(self, to_buy_books: Dict[str, int]):
         for book_type, amount in to_buy_books.items():
             if book_type not in Store.book_types:
-                raise ValueError(f"Book type {book_type} must be in {Store.book_types}")
+                raise ValueError("Book type %s must be in %s" % (book_type, Store.book_types))
             if amount <= 0:
-                raise ValueError(f"Book amount {amount} for type {book_type} must be > 0")
+                raise ValueError("Book amount %s for type %s must be > 0" % (amount, book_type))
 
     def _clean(self, to_buy_books: Dict[str, int]) -> dict:
         return dict(filter(lambda item: item[1] > 0 and item[0] in Store.book_types, to_buy_books.items()))
