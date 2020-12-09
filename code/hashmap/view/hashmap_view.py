@@ -46,7 +46,6 @@ class GUIView(ttk.Frame):
         self.entry_value.config(state=self.view_model.get_value_textbox_state())
 
         self.lbl_result.config(text=self.view_model.get_message_text())
-        print("lbl", "+", self.lbl_result.cget("text"), "+", self.view_model.get_message_text())
 
     def __init__(self):
         ttk.Frame.__init__(self)

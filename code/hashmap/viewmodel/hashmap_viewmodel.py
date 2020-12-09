@@ -16,7 +16,7 @@ class State(Enum):
 
 class HashmapViewModel:
     MSG_TYPES = {
-        "insert_msg": "Insert: key is '%s', value is '%s",
+        "insert_msg": "Insert: key is '%s', value is '%s'",
         "delete_msg": "Delete: key is '%s'",
         "get_msg": "Get: key is '%s', found value is '%s'",
         "update_msg": "Update: key is '%s', value is '%s'",
@@ -91,6 +91,8 @@ class HashmapViewModel:
         self.validate_text()
 
     def click_run_button(self):
+        if self.button_run_state == State.DISABLED:
+            return
         if self.operation == HashmapOperation.INSERT:
             try:
                 self.hashmap.insert(self.key, self.value)
