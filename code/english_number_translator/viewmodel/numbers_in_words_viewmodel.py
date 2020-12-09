@@ -38,7 +38,7 @@ class NumberInWordsViewModel:
         if re.match("\\d+$", str(self.number)):
             self.button_enabled = 'normal'
         else:
-            if self.number != '':
+            if self.get_number_value() != '':
                 self.err_msg = 'Only numbers'
             self.button_enabled = 'disabled'
 
