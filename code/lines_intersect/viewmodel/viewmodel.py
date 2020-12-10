@@ -14,4 +14,10 @@ class LinesIntersectViewModel:
 
     @staticmethod
     def is_valid_coord(value):
-        return re.fullmatch(LinesIntersectViewModel.VALID_COORD, value) != None
+        return re.fullmatch(LinesIntersectViewModel.VALID_COORD, value) is not None
+    
+    def set_line(val):
+        if LinesIntersectViewModel.is_valid_coord(val):
+            self.__line1 = val.split()[0]
+            self.__line2 = val.split()[1]
+
