@@ -68,3 +68,79 @@ class TestMortgageViewModel(unittest.TestCase):
         self.view_model.click_calculate_overpaid_amount()
 
         self.assertEqual('0.0', self.view_model.get_click_calculate_overpaid_amount_result())
+
+    def test_set_and_get_button_calculate_monthly_payment_state(self):
+        value = 'enable'
+
+        self.view_model.set_button_calculate_monthly_payment_state(value)
+        result = self.view_model.get_button_calculate_monthly_payment_state()
+
+        self.assertEqual(value, result)
+
+    def test_set_and_get_button_calculate_expected_term_state(self):
+        value = 'enable'
+
+        self.view_model.set_button_calculate_expected_term_state(value)
+        result = self.view_model.get_button_calculate_expected_term_state()
+
+        self.assertEqual(value, result)
+
+    def test_set_and_get_button_calculate_overpaid_amount_state(self):
+        value = 'enable'
+
+        self.view_model.set_button_calculate_overpaid_amount_state(value)
+        result = self.view_model.get_button_calculate_overpaid_amount_state()
+
+        self.assertEqual(value, result)
+
+    def test_set_and_get_amount(self):
+        value = '1'
+
+        self.view_model.set_amount(value)
+        result = self.view_model.get_amount()
+
+        self.assertEqual(value, result)
+
+    def test_set_and_get_initial_payment(self):
+        value = '1'
+
+        self.view_model.set_initial_payment(value)
+        result = self.view_model.get_initial_payment()
+
+        self.assertEqual(value, result)
+
+    def test_set_and_get_rate(self):
+        value = '1'
+
+        self.view_model.set_rate(value)
+        result = self.view_model.get_rate()
+
+        self.assertEqual(value, result)
+
+    def test_set_and_get_term(self):
+        value = '1'
+
+        self.view_model.set_term(value)
+        result = self.view_model.get_term()
+
+        self.assertEqual(value, result)
+
+    def test_set_and_get_monthly_payment(self):
+        value = '1'
+
+        self.view_model.set_monthly_payment(value)
+        result = self.view_model.get_monthly_payment()
+
+        self.assertEqual(value, result)
+
+    def test_set_and_get_term_type(self):
+        value = 'months'
+
+        self.view_model.set_term_type(value)
+        result = self.view_model.get_term_type()
+
+        self.assertEqual(value, result)
+
+    def test_get_error_message(self):
+        message = 'Errors: \n\tamount: \n\tinitial_payment: \n\trate: \n\tterm: \n\tmonthly_payment: \n'
+        self.assertEqual(message, self.view_model.get_error_message())
