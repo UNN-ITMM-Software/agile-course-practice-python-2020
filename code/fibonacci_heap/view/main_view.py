@@ -34,10 +34,10 @@ class GUIView(ttk.Frame):
 
     def mvvm_back_bind(self):
         self.entry_key.delete(0, tkinter.END)
-        self.entry_key.insert(0, self.view_model.get_key())
+        self.entry_key.insert(0, self.view_model.key)
 
         self.entry_value.delete(0, tkinter.END)
-        self.entry_value.insert(0, self.view_model.get_value())
+        self.entry_value.insert(0, self.view_model.value)
 
         self.btn_run.config(state=self.view_model.get_main_button_state())
         self.entry_value.config(state=self.view_model.get_value_textbox_state())

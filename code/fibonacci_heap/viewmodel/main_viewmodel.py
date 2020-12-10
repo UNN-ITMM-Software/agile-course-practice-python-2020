@@ -24,8 +24,6 @@ class HeapViewModel:
         'find': 'Found node: key - %s, value - %s',
         'key_invalid': 'ERROR: key %s does not exist or has invalid format',
         'key_mess': 'ERROR: key %s already exists',
-        'value_invalid': 'ERROR: value %s does not exist',
-        'operation_invalid': 'ERROR: selected operation isn\'t completed - %s'
     }
     MAX_MESSAGE_NUMBER = 100
 
@@ -161,13 +159,9 @@ class HeapViewModel:
             return
         if self.operation == NodeOperations.INSERT:
             try:
-                if self.key in self.unique_keys:
-                    raise KeyError
                 self.heap.insert(int(self.key), self.value)
                 self.unique_keys.append(self.key)
                 self.update_messages(self.INFO_MSG['insert'] % (self.key, self.value))
-            except KeyError:
-                self.update_messages(self.INFO_MSG['key_mess'] % self.key)
             except ValueError:
                 self.update_messages(self.INFO_MSG['key_invalid'] % self.key)
 
@@ -180,9 +174,6 @@ class HeapViewModel:
                 self.update_messages(self.INFO_MSG['key_invalid'] % self.key)
 
         elif self.operation == NodeOperations.FIND_MIN:
-            try:
-                min_node = self.heap.find_min()
-                key, val = min_node.key, min_node.val
-                self.update_messages(self.INFO_MSG['find'] % (key, val))
-            except (ValueError, AssertionError) as e:
-                self.update_messages(self.INFO_MSG['operation_invalid'] % e)
+            min_node = self.heap.find_min()
+            key, val = min_node.key, min_node.val
+            self.update_messages(self.INFO_MSG['find'] % (key, val))
