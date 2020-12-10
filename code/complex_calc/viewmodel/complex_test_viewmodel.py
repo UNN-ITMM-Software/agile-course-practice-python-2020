@@ -105,6 +105,15 @@ class TestComplexNumCalculatorViewModel(unittest.TestCase):
         c_n = complex(str_c_n)
         self.assertTrue(abs(c_n.real - 0.6) < 1e-10 and abs(c_n.imag + 0.2) < 1e-10)
 
+    def test_div_neg1_1_and_12(self):
+        self.view_model.set_first_complex_num('-1+1i')
+        self.view_model.set_second_complex_num('1+2i')
+        self.view_model.set_operation('/')
+        self.view_model.click_convert()
+        str_c_n = ''.join(self.view_model.get_answer_text().split()).replace('i', 'j')
+        c_n = complex(str_c_n)
+        self.assertTrue(abs(c_n.real - 0.2) < 1e-10 and abs(c_n.imag - 0.6) < 1e-10)
+
     def test_can_div_11_and_1(self):
         self.view_model.set_first_complex_num('1+1i')
         self.view_model.set_second_complex_num('1')
