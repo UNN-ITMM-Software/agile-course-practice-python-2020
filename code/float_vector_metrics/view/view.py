@@ -5,7 +5,6 @@ from float_vector_metrics.viewmodel.viewmodel import VectorMetricsViewModel
 
 
 class GUI(ttk.Frame):
-    default_sticky = tk.W + tk.E + tk.N + tk.S
     view_model = VectorMetricsViewModel()
     metrics = ['L1', 'L2', 'L3', 'L4', 'Linf']
 
