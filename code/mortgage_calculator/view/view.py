@@ -49,6 +49,16 @@ class GUI(ttk.Frame):
         self.monthly_payment_textbox.delete(0, tk.END)
         self.monthly_payment_textbox.insert(tk.INSERT, self.view_model.get_monthly_payment())
 
+        self.calculate_monthly_payment_result.configure(
+            text=self.view_model.get_click_calculate_monthly_payment_result())
+        self.calculate_expected_term_result.configure(
+            text=self.view_model.get_click_calculate_expected_term_result())
+        self.calculate_overpaid_amount_result.configure(
+            text=self.view_model.get_click_calculate_overpaid_amount_result())
+
+        self.txt_error_message.configure(
+            text=self.view_model.get_error_message())
+
     def __init__(self):
         ttk.Frame.__init__(self)
         self.master.title('Mortgage calculator')
@@ -129,22 +139,25 @@ class GUI(ttk.Frame):
         self.button_calculate_overpaid_amount.grid(row=8, column=2, rowspan=1, sticky=self.default_sticky)
 
         # Error message
-        self.txt_error_message = tk.Label(self, height=3, width=15, wraplength=150)
-        self.txt_error_message.grid(row=9, column=2, rowspan=3)
+        self.txt_error_message = tk.Label(self, height=30, width=50, wraplength=150)
+        self.txt_error_message.grid(row=9, column=1, rowspan=3, sticky="w")
 
         self.bind_events()
         self.mvvm_back_bind()
 
     def calculate_monthly_payment_clicked(self, event):
         self.mvvm_bind()
+        self.view_model.click_calculate_monthly_payment()
         self.mvvm_back_bind()
 
     def calculate_expected_term_clicked(self, event):
         self.mvvm_bind()
+        self.view_model.click_calculate_expected_term()
         self.mvvm_back_bind()
 
     def calculate_overpaid_amount_clicked(self, event):
         self.mvvm_bind()
+        self.view_model.click_calculate_overpaid_amount()
         self.mvvm_back_bind()
 
     def amount_textbox_changed(self, event):

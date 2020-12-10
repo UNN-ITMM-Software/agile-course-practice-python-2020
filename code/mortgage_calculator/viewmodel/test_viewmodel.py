@@ -35,3 +35,36 @@ class TestMortgageViewModel(unittest.TestCase):
         self.assertEqual('disabled', self.view_model.get_button_calculate_monthly_payment_state())
         self.assertEqual('disabled', self.view_model.get_button_calculate_expected_term_state())
         self.assertEqual('disabled', self.view_model.get_button_calculate_overpaid_amount_state())
+
+    def test_can_calculate_monthly_payment(self):
+        self.view_model.set_amount('1')
+        self.view_model.set_initial_payment('1')
+        self.view_model.set_rate('1')
+        self.view_model.set_term('1')
+        self.view_model.set_monthly_payment('1')
+
+        self.view_model.click_calculate_monthly_payment()
+
+        self.assertEqual('0.0', self.view_model.get_click_calculate_monthly_payment_result())
+
+    def test_can_calculate_expected_term(self):
+        self.view_model.set_amount('1')
+        self.view_model.set_initial_payment('1')
+        self.view_model.set_rate('1')
+        self.view_model.set_term('1')
+        self.view_model.set_monthly_payment('1')
+
+        self.view_model.click_calculate_expected_term()
+
+        self.assertEqual('0', self.view_model.get_click_calculate_expected_term_result())
+
+    def test_can_calculate_overpaid_amount(self):
+        self.view_model.set_amount('1')
+        self.view_model.set_initial_payment('1')
+        self.view_model.set_rate('1')
+        self.view_model.set_term('1')
+        self.view_model.set_monthly_payment('1')
+
+        self.view_model.click_calculate_overpaid_amount()
+
+        self.assertEqual('0.0', self.view_model.get_click_calculate_overpaid_amount_result())
