@@ -3,7 +3,7 @@ from lines_intersect.model.lines_intersect import Line
 
 
 class LinesIntersectViewModel:
-    VALID_COORD = r"([-]?\d+[\.]?\d*[ ][-]?\d+[\.]?\d*)"
+    VALID_COORD = r"([-]?\d+[\.]?\d* [-]?\d+[\.]?\d*)"
 
     def __init__(self):
         self.__line1 = ""
