@@ -8,15 +8,15 @@ class GUIView:
 
     def __init__(self):
         self.root = tk.Tk()
-        self.root['bg'] = '#fafafa'
+        self.root['bg'] = 'snow'
         self.root.title('Алгоритм Дейкстры')
         self.root.geometry('630x400')
 
-        self.frame = tk.Frame(self.root, bg='#fafafa')
+        self.frame = tk.Frame(self.root, bg='snow')
         self.lbl_num_vertex = tk.Label(self.root, text="vertex count:")
         self.input_num_vertex = tk.Entry(self.root, width=3)
         self.input_graph = tk.Button(self.root, text="create graph", state='disabled')
-        self.errors = tk.Label(self.root, text="", bg='#fafafa')
+        self.errors = tk.Label(self.root, text="", bg='snow')
         self.lbl_start_vertex = tk.Label(self.root, text="start vertex:")
         self.input_start_vertex = tk.Entry(self.root, width=3)
         self.run = tk.Button(self.root, text="run dijksta")
@@ -66,23 +66,23 @@ class GUIView:
             return
 
         self.frame.destroy()
-        self.frame = self.frame = tk.Frame(self.root, bg='#fafafa')
+        self.frame = self.frame = tk.Frame(self.root, bg='snow')
         self.frame.place(relx=0.2, rely=0.2, relwidth=0.6, relheight=0.6)
         self.entries = []
 
         rows = int(self.input_num_vertex.get())
         cols = int(self.input_num_vertex.get())
 
-        header = tk.Label(self.frame, text="Вершины", bg='#fafafa')
+        header = tk.Label(self.frame, text="Вершины", bg='snow')
         header.grid(row=0, column=0)
 
         for column_id in range(cols):
-            header = tk.Label(self.frame, text=str(column_id), bg='#fafafa')
+            header = tk.Label(self.frame, text=str(column_id), bg='snow')
             header.grid(row=0, column=column_id + 1)
 
         for row_id in range(rows):
 
-            header = tk.Label(self.frame, text=str(row_id), bg='#fafafa')
+            header = tk.Label(self.frame, text=str(row_id), bg='snow')
             header.grid(row=row_id + 1, column=0)
 
             self.entries.append([])
@@ -94,11 +94,11 @@ class GUIView:
 
         rows = int(self.input_num_vertex.get())
 
-        lbl_result = tk.Label(self.frame, text="dists", bg='#fafafa')
+        lbl_result = tk.Label(self.frame, text="dists", bg='snow')
         lbl_result.grid(row=rows + 1, column=0)
 
         for column_id, dist in enumerate(result):
-            dist = tk.Label(self.frame, text=str(dist), bg='#fafafa')
+            dist = tk.Label(self.frame, text=str(dist), bg='snow')
             dist.grid(row=rows + 1, column=column_id + 1)
 
     def read_weights(self):
@@ -125,4 +125,4 @@ class GUIView:
         self.input_start_vertex.delete(0, tk.END)
         self.input_start_vertex.insert(tk.END, self.view_model.get_start_vertex())
 
-        self.errors.config(text='%s\n' % (self.view_model.get_error()))
+        self.errors.config(text='{}\n'.format(self.view_model.get_error()))

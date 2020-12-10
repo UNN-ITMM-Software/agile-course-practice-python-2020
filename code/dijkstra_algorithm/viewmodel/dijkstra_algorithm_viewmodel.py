@@ -1,16 +1,12 @@
 from dijkstra_algorithm.model.dijkstra import Graph
-import re
 
 
 def is_correct_vertex_number(value):
-    if value is None or len(str(value).strip()) == 0:
+    try:
+        value = int(value)
+        return True if value > 0 else False
+    except (ValueError, TypeError):
         return False
-    else:
-        is_int_value = re.match("[1-9]\\d*$", str(value))
-        if is_int_value is None:
-            return False
-        else:
-            return True
 
 
 class DAViewModel:
@@ -55,6 +51,6 @@ class DAViewModel:
             result = graph.dijkstra(int(self.start_vertex))
             self.errors = ''
             return result
-        except Exception:
-            self.errors = "Smth wrong with weights or start vertex"
+        except Exception as e:
+            self.errors = str(e)
             return []

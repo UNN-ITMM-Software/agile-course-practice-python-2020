@@ -28,9 +28,9 @@ class TestDAViewModel(unittest.TestCase):
 
         self.assertEqual('disabled', model.get_btn_create_graph_state())
 
-    def test_when_enter_un_correct_number_button_create_graph_keeps_disabled(self):
+    def test_when_enter_incorrect_number_button_create_graph_keeps_disabled(self):
         model = DAViewModel()
-        model.set_num_vertex('some un correct input')
+        model.set_num_vertex('some incorrect input')
 
         self.assertEqual('disabled', model.get_btn_create_graph_state())
 
@@ -55,7 +55,7 @@ class TestDAViewModel(unittest.TestCase):
 
         self.assertEqual(model.run_dijkstra(matrix), [1, 3, 0])
 
-    def test_run_dijkstra_with_un_correct_weights_return_error(self):
+    def test_run_dijkstra_with_incorrect_weights_return_error(self):
         model = DAViewModel()
 
         model.set_num_vertex('3')
@@ -65,7 +65,7 @@ class TestDAViewModel(unittest.TestCase):
 
         self.assertEqual(model.get_error(), "Smth wrong with weights or start vertex")
 
-    def test_run_dijkstra_with_un_correct_start_vertex_return_error(self):
+    def test_run_dijkstra_with_incorrect_start_vertex_return_error(self):
         model = DAViewModel()
 
         model.set_num_vertex('3')
