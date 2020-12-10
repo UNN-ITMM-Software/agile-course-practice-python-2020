@@ -23,7 +23,11 @@ class GUI(ttk.Frame):
         self.button_calculate_overpaid_amount.bind('<Button-1>', self.calculate_overpaid_amount_clicked)
 
     def mvvm_bind(self):
-        pass
+        self.view_model.set_amount(self.amount_textbox.get())
+        self.view_model.set_initial_payment(self.initial_payment_textbox.get())
+        self.view_model.set_rate(self.rate_textbox.get())
+        self.view_model.set_term(self.term_textbox.get())
+        self.view_model.set_monthly_payment(self.monthly_payment_textbox.get())
 
     def mvvm_back_bind(self):
         self.button_calculate_monthly_payment.config(

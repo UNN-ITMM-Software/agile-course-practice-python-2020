@@ -43,12 +43,17 @@ class MortgageViewModel:
         initial_payment_correct = self.validate_text_number(self.initial_payment, 'initial_payment')
         rate_correct = self.validate_text_number(self.rate, 'rate')
         term_correct = self.validate_text_number(self.term, 'term')
-        monthly_payment = self.validate_text_number(self.monthly_payment, 'monthly_payment')
+        monthly_payment_correct = self.validate_text_number(self.monthly_payment, 'monthly_payment')
 
-        if amount_correct and initial_payment_correct and rate_correct:
+        if amount_correct and initial_payment_correct and rate_correct and\
+                term_correct and monthly_payment_correct:
             self.set_button_calculate_monthly_payment_state('enabled')
+            self.set_button_calculate_expected_term_state('enabled')
+            self.set_button_calculate_overpaid_amount_state('enabled')
         else:
             self.set_button_calculate_monthly_payment_state('disabled')
+            self.set_button_calculate_expected_term_state('disabled')
+            self.set_button_calculate_overpaid_amount_state('disabled')
 
     def get_button_calculate_monthly_payment_state(self):
         return self.button_calculate_monthly_payment_state
@@ -89,4 +94,16 @@ class MortgageViewModel:
         self.rate = value
         self.check_numbers()
 
+    def get_term(self):
+        return self.term
 
+    def set_term(self, value):
+        self.term = value
+        self.check_numbers()
+
+    def get_monthly_payment(self):
+        return self.monthly_payment
+
+    def set_monthly_payment(self, value):
+        self.monthly_payment = value
+        self.check_numbers()
