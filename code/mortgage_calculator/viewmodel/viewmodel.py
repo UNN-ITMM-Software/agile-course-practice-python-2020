@@ -107,3 +107,9 @@ class MortgageViewModel:
     def set_monthly_payment(self, value):
         self.monthly_payment = value
         self.check_numbers()
+
+    def get_term_type(self):
+        return self.term_type_to_str[self.term_type]
+
+    def set_term_type(self, value):
+        self.term_type = self.str_to_term_type[value]

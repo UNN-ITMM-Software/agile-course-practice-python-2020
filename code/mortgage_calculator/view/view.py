@@ -28,16 +28,26 @@ class GUI(ttk.Frame):
         self.view_model.set_rate(self.rate_textbox.get())
         self.view_model.set_term(self.term_textbox.get())
         self.view_model.set_monthly_payment(self.monthly_payment_textbox.get())
+        self.view_model.set_term_type(self.term_type_combobox.get())
 
     def mvvm_back_bind(self):
         self.button_calculate_monthly_payment.config(
             state=self.view_model.get_button_calculate_monthly_payment_state())
-
         self.button_calculate_expected_term.config(
             state=self.view_model.get_button_calculate_expected_term_state())
-
         self.button_calculate_overpaid_amount.config(
             state=self.view_model.get_button_calculate_overpaid_amount_state())
+
+        self.amount_textbox.delete(0, tk.END)
+        self.amount_textbox.insert(tk.INSERT, self.view_model.get_amount())
+        self.initial_payment_textbox.delete(0, tk.END)
+        self.initial_payment_textbox.insert(tk.INSERT, self.view_model.get_initial_payment())
+        self.rate_textbox.delete(0, tk.END)
+        self.rate_textbox.insert(tk.INSERT, self.view_model.get_rate())
+        self.term_textbox.delete(0, tk.END)
+        self.term_textbox.insert(tk.INSERT, self.view_model.get_term())
+        self.monthly_payment_textbox.delete(0, tk.END)
+        self.monthly_payment_textbox.insert(tk.INSERT, self.view_model.get_monthly_payment())
 
     def __init__(self):
         ttk.Frame.__init__(self)
