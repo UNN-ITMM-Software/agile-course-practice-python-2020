@@ -75,8 +75,6 @@ class ComplexNumViewModel:
             self.answer_text = str(first_complex_num == second_complex_num)
         elif self.operation == '!=':
             self.answer_text = str(first_complex_num != second_complex_num)
-        else:
-            self.answer_text = "!!!!"
 
     def get_answer_text(self):
         return self.answer_text
