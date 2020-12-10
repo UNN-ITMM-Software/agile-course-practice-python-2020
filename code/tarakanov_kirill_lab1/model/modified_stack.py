@@ -1,6 +1,6 @@
-class ModifyStack:
+class ModifiedStack:
     """
-    Class ModifyStack implements a data structure modified stack
+    Class ModifiedStack implements a data structure modified stack
     Stack works works with int and float only
     The following operations are supported:
     * Insertion O(1)
