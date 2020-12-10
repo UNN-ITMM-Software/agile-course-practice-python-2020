@@ -100,13 +100,6 @@ class HeapViewModel:
         """
         return self.value_textbox_state.value
 
-    def get_key(self):
-        """
-        Get key value
-        :return: its value
-        """
-        return self.key
-
     def set_key(self, key):
         """
         Set key value
@@ -114,13 +107,6 @@ class HeapViewModel:
         """
         self.key = key
         self.validate_text()
-
-    def get_value(self):
-        """
-        Get node value
-        :return: its value
-        """
-        return self.value
 
     def set_value(self, value):
         """
@@ -174,26 +160,23 @@ class HeapViewModel:
         if self.main_button_state == State.DISABLED:
             return
         if self.operation == NodeOperations.INSERT:
-            if self.key in self.unique_keys:
+            try:
+                if self.key in self.unique_keys:
+                    raise KeyError
+                self.heap.insert(int(self.key), self.value)
+                self.unique_keys.append(self.key)
+                self.update_messages(self.INFO_MSG['insert'] % (self.key, self.value))
+            except KeyError:
                 self.update_messages(self.INFO_MSG['key_mess'] % self.key)
-            else:
-                try:
-                    self.heap.insert(int(self.key), self.value)
-                    self.unique_keys.append(self.key)
-                    self.update_messages(self.INFO_MSG['insert'] % (self.key, self.value))
-                except ValueError:
-                    self.update_messages(self.INFO_MSG['key_invalid'] % self.key)
-                except AssertionError as e:
-                    self.update_messages(self.INFO_MSG['operation_invalid'] % e)
+            except ValueError:
+                self.update_messages(self.INFO_MSG['key_invalid'] % self.key)
 
         elif self.operation == NodeOperations.DELETE:
             try:
                 node = _Node(int(self.key), self.value)
                 self.heap.delete(node)
-                if self.unique_keys:
-                    self.unique_keys.remove(self.key)
                 self.update_messages(self.INFO_MSG['delete'] % self.key)
-            except AssertionError:
+            except (ValueError, AssertionError):
                 self.update_messages(self.INFO_MSG['key_invalid'] % self.key)
 
         elif self.operation == NodeOperations.FIND_MIN:
@@ -201,5 +184,5 @@ class HeapViewModel:
                 min_node = self.heap.find_min()
                 key, val = min_node.key, min_node.val
                 self.update_messages(self.INFO_MSG['find'] % (key, val))
-            except Exception as e:
+            except (ValueError, AssertionError) as e:
                 self.update_messages(self.INFO_MSG['operation_invalid'] % e)
