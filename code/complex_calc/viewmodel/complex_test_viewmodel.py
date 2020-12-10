@@ -3,7 +3,7 @@ import unittest
 from complex_calc.viewmodel.complex_viewmodel import ComplexNumViewModel
 
 
-class TestFractionCalculatorViewModel(unittest.TestCase):
+class TestComplexNumCalculatorViewModel(unittest.TestCase):
 
     def setUp(self):
         self.view_model = ComplexNumViewModel()

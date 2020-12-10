@@ -11,7 +11,6 @@ class ComplexNumViewModel:
         self.second_complex_num = ''
         self.operation = '+'
         self.set_btn_disabled()
-        self.set_second_complex_num_text_enabled()
 
     def get_button_convert_state(self):
         return self.button_convert_state
@@ -34,12 +33,6 @@ class ComplexNumViewModel:
     def set_btn_disabled(self):
         self.button_convert_state = 'disabled'
 
-    def set_second_complex_num_text_enabled(self):
-        self.second_fraction_text_state = 'normal'
-
-    def set_second_complex_num_text_disabled(self):
-        self.second_complex_num_text_state = 'disabled'
-
     def get_second_complex_num(self):
         return self.second_complex_num
 
@@ -58,38 +51,32 @@ class ComplexNumViewModel:
 
     def get_complex_num_as_list_from_string(self, string):
         complex_string = ''.join(string.split()).replace('i', 'j')
-        try:
-            c_n = complex(complex_string)
-            return c_n
-        except:
-            self.answer_text = "WRONG COMPLEX FORMAT"
+        c_n = complex(complex_string)
+        return c_n
 
     def click_convert(self):
-        try:
-            first_c_n = self.get_complex_num_as_list_from_string(self.first_complex_num)
-            first_complex_num = ComplexNum(first_c_n.real, first_c_n.imag)
-            second_c_n = self.get_complex_num_as_list_from_string(self.second_complex_num)
-            second_complex_num = ComplexNum(second_c_n.real, second_c_n.imag)
-            if self.operation == '+':
-                self.answer_text = str(first_complex_num + second_complex_num)
-            elif self.operation == '-':
-                self.answer_text = str(first_complex_num - second_complex_num)
-            elif self.operation == '*':
-                self.answer_text = str(first_complex_num * second_complex_num)
-            elif self.operation == '/':
-                try:
-                    self.answer_text = str(first_complex_num / second_complex_num)
-                except:
-                    result = 'Error! Cannot divide by zero!'
-                    self.answer_text = str(result)
-            elif self.operation == '==':
-                self.answer_text = str(first_complex_num == second_complex_num)
-            elif self.operation == '!=':
-                self.answer_text = str(first_complex_num != second_complex_num)
-            else:
-                self.answer_text = "!!!!"
-        except:
-            self.answer_text = "WRONG COMPLEX FORMAT"
+        first_c_n = self.get_complex_num_as_list_from_string(self.first_complex_num)
+        first_complex_num = ComplexNum(first_c_n.real, first_c_n.imag)
+        second_c_n = self.get_complex_num_as_list_from_string(self.second_complex_num)
+        second_complex_num = ComplexNum(second_c_n.real, second_c_n.imag)
+        if self.operation == '+':
+            self.answer_text = str(first_complex_num + second_complex_num)
+        elif self.operation == '-':
+            self.answer_text = str(first_complex_num - second_complex_num)
+        elif self.operation == '*':
+            self.answer_text = str(first_complex_num * second_complex_num)
+        elif self.operation == '/':
+            try:
+                self.answer_text = str(first_complex_num / second_complex_num)
+            except:
+                result = 'Error! Cannot divide by zero!'
+                self.answer_text = str(result)
+        elif self.operation == '==':
+            self.answer_text = str(first_complex_num == second_complex_num)
+        elif self.operation == '!=':
+            self.answer_text = str(first_complex_num != second_complex_num)
+        else:
+            self.answer_text = "!!!!"
 
     def get_answer_text(self):
         return self.answer_text
