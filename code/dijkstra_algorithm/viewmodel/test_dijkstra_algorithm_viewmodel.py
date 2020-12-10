@@ -60,10 +60,10 @@ class TestDAViewModel(unittest.TestCase):
 
         model.set_num_vertex('3')
         model.set_start_vertex('2')
-        matrix = [['0', '2', '1'], ['2', 'error', '3'], ['1', '3', '0']]
+        matrix = [['0', '5', '1'], ['2', '0', '3'], ['1', '3', '0']]
         model.run_dijkstra(matrix)
 
-        self.assertEqual(model.get_error(), "Smth wrong with weights or start vertex")
+        self.assertEqual(model.get_error(), "Matrix is not symmetric")
 
     def test_run_dijkstra_with_incorrect_start_vertex_return_error(self):
         model = DAViewModel()
@@ -73,4 +73,4 @@ class TestDAViewModel(unittest.TestCase):
         matrix = [['0', '2', '1'], ['2', '0', '3'], ['1', '3', '0']]
         model.run_dijkstra(matrix)
 
-        self.assertEqual(model.get_error(), "Smth wrong with weights or start vertex")
+        self.assertEqual(model.get_error(), "Wrong value of source vertex")
