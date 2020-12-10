@@ -73,11 +73,29 @@ class TestStatisticalValuesViewModel(unittest.TestCase):
         self.viewmodel.set_x('[1, 2, 3, 4]')
         self.assertEqual('', self.viewmodel.get_error_message())
 
-    def test_can_compute_statistic(self):
+    def test_can_compute_mean(self):
+        self.viewmodel.set_x('[1, 2, 3, 2]')
+        self.viewmodel.set_statistic('mean')
+        self.viewmodel.compute()
+        self.assertEqual('Result: 2.0', self.viewmodel.get_result())
+
+    def test_can_compute_variance(self):
         self.viewmodel.set_x('[1, 2, 3, 2]')
         self.viewmodel.set_statistic('variance')
         self.viewmodel.compute()
         self.assertEqual('Result: 0.5', self.viewmodel.get_result())
+
+    def test_can_compute_median(self):
+        self.viewmodel.set_x('[1, 2, 3, 2]')
+        self.viewmodel.set_statistic('median')
+        self.viewmodel.compute()
+        self.assertEqual('Result: 2.0', self.viewmodel.get_result())
+
+    def test_can_compute_begining_moment(self):
+        self.viewmodel.set_x('[1, 2, 3, 2]')
+        self.viewmodel.set_statistic('begining moment')
+        self.viewmodel.compute()
+        self.assertEqual('Result: 2.0', self.viewmodel.get_result())
 
     def test_error_message_is_shown_when_catch_operation_throw(self):
         self.viewmodel.set_x('[1, 2, 13, 1]')
