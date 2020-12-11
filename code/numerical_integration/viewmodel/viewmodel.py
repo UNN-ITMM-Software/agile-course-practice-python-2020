@@ -1,7 +1,5 @@
-import re
 from enum import Enum
 
-import numpy as np
 
 from numerical_integration.model.numerical_integration import NumericalIntegrator
 
