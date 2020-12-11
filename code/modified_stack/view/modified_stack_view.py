@@ -150,7 +150,7 @@ class GUIView:
             self.box_list.append(tk.Entry(self.array_frame, bg='gray21', fg='white', bd='1', width='3'))
             self.box_list[-1].grid(row=0, column=2 + current_size - 1, pady=5, padx=(0, 10))
             self.view_model.set_error_message(None)
-        except Exception as e:
+        except Exception:
             self.view_model.set_error_message('Error: wrong array size')
 
         self.mvvm_back_bind()
