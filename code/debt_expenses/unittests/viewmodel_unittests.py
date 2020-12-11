@@ -121,5 +121,4 @@ class TestEqualPaymentsRepaymentViewModel(unittest.TestCase):
         expenses = test_example.get_expenses()
 
         answer = 'Payment: 68641 - Expenses: 60211'
-        self.assertEqual(answer, 'Payment: {} - Expenses: {}'.format(format(payment, '.0f'),
-                                                                     format(expenses, '.0f')))
+        self.assertEqual(answer, 'Payment: {:.0f} - Expenses: {:.0f}'.format(payment, expenses))
