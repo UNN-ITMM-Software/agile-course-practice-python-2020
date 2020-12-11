@@ -22,60 +22,60 @@ class GUIView:
 
         self.canvas = tk.Canvas(self.frame)
         self.scrollbar = ttk.Scrollbar(self.frame, orient='horizontal', command=self.canvas.xview)
-        self.scrollable_frame = ttk.Frame(self.canvas)
+        self.scroll_frame = ttk.Frame(self.canvas)
 
-        self.scrollable_frame.bind(
+        self.scroll_frame.bind(
             '<Configure>',
             lambda e: self.canvas.configure(
                 scrollregion=self.canvas.bbox('all')
             )
         )
 
-        self.canvas.create_window((0, 0), window=self.scrollable_frame, anchor='nw')
+        self.canvas.create_window((0, 0), window=self.scroll_frame, anchor='nw')
         self.canvas.configure(yscrollcommand=self.scrollbar.set)
         self.canvas.pack(side='bottom', fill='both', expand=True)
         self.scrollbar.pack(side='bottom', fill='x')
 
         self.frame.grid(row=0, column=0)
-        self.array_frame = tk.Frame(self.scrollable_frame, bg='LightBlue1')
+        self.array_frame = tk.Frame(self.scroll_frame, bg='LightBlue1')
 
         self.pop_state = tk.StringVar(value='One')
         self.push_state = tk.StringVar(value='One')
 
-        self.top = tk.Button(self.scrollable_frame, text='top', state='normal', bg='Azure', width=10, height=1)
-        self.min = tk.Button(self.scrollable_frame, text='min', state='normal', bg='Azure', width=10, height=1)
-        self.pop = tk.Button(self.scrollable_frame, text='pop', state='normal', bg='Azure', width=10, height=3)
-        self.push = tk.Button(self.scrollable_frame, text='push', state='normal', bg='Azure', width=10, height=3)
+        self.top = tk.Button(self.scroll_frame, text='top', state='normal', bg='Azure', width=10, height=1)
+        self.min = tk.Button(self.scroll_frame, text='min', state='normal', bg='Azure', width=10, height=1)
+        self.pop = tk.Button(self.scroll_frame, text='pop', state='normal', bg='Azure', width=10, height=3)
+        self.push = tk.Button(self.scroll_frame, text='push', state='normal', bg='Azure', width=10, height=3)
 
         self.pop_one_element = ttk.Radiobutton(
-            self.scrollable_frame, text='One element', variable=self.pop_state,
+            self.scroll_frame, text='One element', variable=self.pop_state,
             value='One', width=15, command=self.pop_strategy)
         self.pop_n_elements = ttk.Radiobutton(
-            self.scrollable_frame, text='N element', variable=self.pop_state,
+            self.scroll_frame, text='N element', variable=self.pop_state,
             value='N', width=15, command=self.pop_strategy)
 
         self.push_one_element = ttk.Radiobutton(
-            self.scrollable_frame, text='One value', variable=self.push_state,
+            self.scroll_frame, text='One value', variable=self.push_state,
             value='One', width=15, command=self.push_strategy)
         self.push_n_elements = ttk.Radiobutton(
-            self.scrollable_frame, text='Array', variable=self.push_state,
+            self.scroll_frame, text='Array', variable=self.push_state,
             value='N', width=15, command=self.push_strategy)
 
-        self.stack_size = tk.Label(self.scrollable_frame, text='Stack size: 0', bg='Gray21', fg='White')
+        self.stack_size = tk.Label(self.scroll_frame, text='Stack size: 0', bg='Gray21', fg='White')
 
-        self.pushed_value = tk.Entry(self.scrollable_frame, width=10)
-        self.pop_size = tk.Entry(self.scrollable_frame, width=10)
-        self.array_size = tk.Entry(self.scrollable_frame, width=10)
+        self.pushed_value = tk.Entry(self.scroll_frame, width=10)
+        self.pop_size = tk.Entry(self.scroll_frame, width=10)
+        self.array_size = tk.Entry(self.scroll_frame, width=10)
 
-        self.min_value = tk.Label(self.scrollable_frame, text='')
-        self.top_value = tk.Label(self.scrollable_frame, text='')
+        self.min_value = tk.Label(self.scroll_frame, text='')
+        self.top_value = tk.Label(self.scroll_frame, text='')
 
-        self.enter_array = tk.Label(self.scrollable_frame, text='Please, enter array size:')
+        self.enter_array = tk.Label(self.scroll_frame, text='Please, enter array size:')
         self.title = tk.Label(self.array_frame, text='Enter your array: ', bg='Gray21', fg='White')
 
         self.box_list = []
 
-        self.error = tk.Label(self.scrollable_frame, text='Error', bg='Gray21', fg='Red')
+        self.error = tk.Label(self.scroll_frame, text='Error', bg='Gray21', fg='Red')
         self.is_error = False
 
         self.set_weight_to_grid()

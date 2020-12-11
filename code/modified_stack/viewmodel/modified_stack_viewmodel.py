@@ -3,8 +3,7 @@ from modified_stack.model.modified_stack import ModifiedStack
 
 def to_int(value):
     try:
-        value = int(value)
-        return value
+        return int(value)
     except ValueError:
         raise ValueError('Input contains non int value')
 
@@ -31,26 +30,26 @@ class ModifiedStackViewModel(object):
             elif self.push_state == 'N':
                 self.modified_stack.push([to_int(element) for element in self.input_array])
         except Exception as e:
-            self.error_message = str(e)
+            self.set_error_message(str(e))
 
     def pop(self):
         self.clear_error_message()
         try:
             self.modified_stack.pop(to_int(self.pop_size))
         except Exception as e:
-            self.error_message = str(e)
+            self.set_error_message(str(e))
 
     def get_top(self):
         self.clear_error_message()
         if self.modified_stack.is_empty():
-            self.error_message = 'Stack is empty'
+            self.set_error_message('Stack is empty')
         else:
             self.top = self.modified_stack.look_top()
 
     def get_min(self):
         self.clear_error_message()
         if self.modified_stack.is_empty():
-            self.error_message = 'Stack is empty'
+            self.set_error_message('Stack is empty')
         else:
             self.min = self.modified_stack.find_min()
 
