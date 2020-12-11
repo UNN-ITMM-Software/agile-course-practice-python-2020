@@ -16,7 +16,7 @@ class GuiView(ttk.Frame):
         self.label1 = ttk.Label(self, text="Students:")
         self.label1.grid(row=0, column=0, sticky=self.default_sticky)
 
-        self.label2 = ttk.Label(self, text="Masrks:")
+        self.label2 = ttk.Label(self, text="Marks:")
         self.label2.grid(row=0, column=1, sticky=self.default_sticky)
 
         self.stud1_label = ttk.Label(self, text="Stud 1")
@@ -59,7 +59,9 @@ class GuiView(ttk.Frame):
         self.mvvm_back_bind()
 
     def mvvm_bind(self):
-        self.viewmodel.set_instr(self.stud1_txt.get("1.0", tkinter.END).strip())
+        self.viewmodel.set_instr(self.stud1_txt.get("1.0", tkinter.END).strip(),
+                                 self.stud2_txt.get("1.0", tkinter.END).strip(),
+                                 self.stud3_txt.get("1.0", tkinter.END).strip())
 
     def mvvm_back_bind(self):
         self.stud1_txt.delete(1.0, tkinter.END)
