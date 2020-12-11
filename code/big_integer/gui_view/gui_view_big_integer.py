@@ -3,7 +3,7 @@ import tkinter as Tk
 from big_integer.viewmodel import viewmodel
 from big_integer.viewmodel.viewmodel import Operation
 from big_integer.viewmodel.viewmodel import CalculateState
-from tkinter import ttk, messagebox
+from tkinter import ttk
 
 
 class GuiView(ttk.Frame):

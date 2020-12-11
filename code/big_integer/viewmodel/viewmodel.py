@@ -1,6 +1,5 @@
 import re
 from enum import Enum
-from tkinter import messagebox
 
 import numpy as np
 
