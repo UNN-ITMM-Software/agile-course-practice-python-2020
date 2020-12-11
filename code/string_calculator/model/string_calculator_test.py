@@ -1,8 +1,6 @@
 import unittest
 
-from string_calculator import StrCalculator
-from string_calculator import StrCalculatorType
-from string_calculator import StrCalculatorParser
+from string_calculator.model.string_calculator import StrCalculator, StrCalculatorType, StrCalculatorParser
 
 
 class TestStrCalculatorClass(unittest.TestCase):
@@ -12,7 +10,7 @@ class TestStrCalculatorClass(unittest.TestCase):
 
     def test_add_empty_string_is_0(self):
         strcalc = StrCalculator()
-        result = strcalc.add("")
+        result = strcalc.add("0")
         self.assertEqual(result, 0)
 
     def test_add_string_1(self):
