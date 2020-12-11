@@ -43,6 +43,16 @@ class TestDHeapViewModel(unittest.TestCase):
         self.view_model.set_input_data('2', '~2 3 4 1')
         self.assertEqual('disabled', self.view_model.get_create_btn_state())
 
+    def test_cant_create_heap_with_wrong_data3(self):
+        self.view_model.set_input_data('0', '2 3 4 1')
+        self.assertEqual('disabled', self.view_model.get_create_btn_state())
+
+    def test_cant_decrease_key_with_wrong_data(self):
+        self.view_model.set_input_data('2', '2 3 4 1')
+        self.view_model.create_btn_clicked()
+        self.view_model.set_decreasing_elem('0 _2')
+        self.assertEqual('disabled', self.view_model.get_decrease_btn_state())
+
     def test_can_insert_in_heap(self):
         self.view_model.set_input_data('2', '2 3 4 1')
         self.view_model.create_btn_clicked()

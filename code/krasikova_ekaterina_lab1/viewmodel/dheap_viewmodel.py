@@ -69,7 +69,7 @@ class DHeapViewModel:
             try:
                 decrease_data = [float(i) for i in elem.split(' ')]
                 self.decrease_key = int(decrease_data[0])
-                self.decrease_value = int(decrease_data[1])
+                self.decrease_value = float(decrease_data[1])
                 self.set_decrease_btn_enabled()
             except:
                 self.set_decrease_btn_disabled()
