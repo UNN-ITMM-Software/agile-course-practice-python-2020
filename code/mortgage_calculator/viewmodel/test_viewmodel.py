@@ -144,3 +144,14 @@ class TestMortgageViewModel(unittest.TestCase):
     def test_get_error_message(self):
         message = 'Errors: \n\tamount: \n\tinitial_payment: \n\trate: \n\tterm: \n\tmonthly_payment: \n'
         self.assertEqual(message, self.view_model.get_error_message())
+
+    def test_errors_when_parse_string_with_incorrect_number(self):
+        self.view_model.set_amount('1a')
+        self.view_model.set_initial_payment('')
+        self.view_model.set_rate('1akhbakdc')
+        self.view_model.set_term('sdvsbdj')
+        self.view_model.set_monthly_payment('sslnsnk')
+
+        errors_not_empty = 'Incorrect values' in self.view_model.get_error_message()
+
+        self.assertTrue(errors_not_empty)
