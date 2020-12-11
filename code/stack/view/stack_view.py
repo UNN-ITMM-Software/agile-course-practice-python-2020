@@ -3,6 +3,7 @@ import tkinter.scrolledtext as ScrolledText
 
 from stack.viewmodel.stack_viewmodel import StackViewModel
 
+
 class GUIView:
     view_model = StackViewModel()
 
@@ -69,7 +70,6 @@ class GUIView:
         self.size_button.bind('<Button-1>', self.size_button_clicked)
         self.input_button.bind('<Button-1>', self.input_button_clicked)
         self.output_button.bind('<Button-1>', self.output_button_clicked)
-
 
     def input_changed(self, event):
         self.mvvm_bind()

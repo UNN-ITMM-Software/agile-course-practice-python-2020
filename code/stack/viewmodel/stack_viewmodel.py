@@ -1,5 +1,6 @@
 from stack.model.stack import Stack
 
+
 class StackViewModel:
     def __init__(self, size=None):
         self.push_button_enabled = 'disabled'
@@ -48,16 +49,16 @@ class StackViewModel:
 
     def input_click(self):
         if self.is_input_button_enable() == 'normal' and self.validate_input():
-           try:
-               self.clear_pop_result()
-               self.clear_error()
-               self.stack.push(self.input_value)
-               self.set_output_button_enabled()
-               if self.stack.isFull():
-                   self.set_input_button_disabled()
-                   self.error = 'Стэк переполнен'
-           except:
-               self.error = 'Ошибка добавления числа'
+            try:
+                self.clear_pop_result()
+                self.clear_error()
+                self.stack.push(self.input_value)
+                self.set_output_button_enabled()
+                if self.stack.isFull():
+                    self.set_input_button_disabled()
+                    self.error = 'Стэк переполнен'
+            except:
+                self.error = 'Ошибка добавления числа'
         else:
             self.error = 'Введение данные неверного типа'
 
@@ -80,7 +81,6 @@ class StackViewModel:
                 self.stack.set_size(self.input_size)
             except:
                 self.error = 'Ошибка изменения размера стека'
-
 
     def set_input_value(self, value):
         try:
