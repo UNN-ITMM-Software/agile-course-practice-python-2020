@@ -12,10 +12,10 @@ class Stack:
 
     def is_empty(self):
         return len(self.stack) == 0
-    
+
     def is_full(self):
         return len(self.stack) == self.max_size
-    
+
     def push(self, items):
         if hasattr(items, '__iter__'):
             for item in items:
@@ -32,8 +32,8 @@ class Stack:
     def top(self):
         if self.is_empty():
             raise Exception('Stack is empty')
-            else:
-                return self.stack[-1]
+        else:
+            return self.stack[-1]
 
     def pop(self):
         top = self.top()

@@ -6,11 +6,11 @@ class StackTestClass(unittest.TestCase):
     def test_create_stack_without_params(self):
         stack = Stack()
         self.assertIsInstance(stack, Stack)
-    
+
     def test_create_with_valid_size(self):
         stack = Stack(10)
         self.assertIsInstance(stack, Stack)
-    
+
     def test_create_with_invalid_size_float(self):
         with self.assertRaises(TypeError):
             Stack(0.5)
@@ -47,25 +47,25 @@ class StackTestClass(unittest.TestCase):
         stack = Stack(10)
         stack.push(10)
         self.assertEqual(10, stack.pop())
-    
+
     def test_push_more_item(self):
         stack = Stack(10)
         stack.push(7)
         stack.push(8)
         stack.push(9)
         self.assertEqual(stack.pop(), 9)
-    
+
     def test_push_array(self):
         stack = Stack(10)
         stack.push([7, 8, 9])
         self.assertEqual(stack.pop(), 9)
-    
+
     def test_push_str(self):
         stack = Stack(10)
         stack.push([7, 8, 9])
         stack.push('string')
         self.assertEqual(stack.pop(), 'g')
-    
+
     def test_oversize_push(self):
         stack = Stack(2)
         with self.assertRaises(Exception):
@@ -76,21 +76,21 @@ class StackTestClass(unittest.TestCase):
         stack.push({7, 8, 9, 10, 11})
         stack.push({1: '2'})
         self.assertEqual(stack.pop(), 1)
-    
+
     def test_get_default_size_stack(self):
         stack = Stack()
         self.assertEqual(stack.get_stack_max_size(), 100)
-    
+
     def test_get_size_stack(self):
         stack = Stack()
         stack.push({7, 8, 9, 10, 11})
         self.assertEqual(stack.get_stack_size(), 5)
-    
+
     def test_set_size_stack(self):
         stack = Stack()
         stack.set_size(200)
         self.assertEqual(stack.get_stack_max_size(), 200)
-    
+
     def test_set_invalid_size_stack(self):
         stack = Stack()
         with self.assertRaises(TypeError):
