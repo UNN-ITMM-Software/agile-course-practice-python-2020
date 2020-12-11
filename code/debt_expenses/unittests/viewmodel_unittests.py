@@ -100,8 +100,7 @@ class TestEqualPaymentsRepaymentViewModel(unittest.TestCase):
         expenses = test_example.get_expenses()
 
         answer = 'Payment: 68641 - Expenses: 46331'
-        self.assertEqual(answer, 'Payment: {} - Expenses: {}'.format(format(payment, '.0f'),
-                                                                     format(expenses, '.0f')))
+        self.assertEqual(answer, 'Payment: {:.0f} - Expenses: {:.0f}'.format(payment, expenses))
 
     def test_equal_payments_repayment_for_3_year(self):
         test_example = DebtViewModel(req_sum=200000, percent_rate=0.14, period=4, year=3)
