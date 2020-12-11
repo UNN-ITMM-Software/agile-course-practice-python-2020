@@ -55,4 +55,3 @@ class Application(tk.Frame):
         self.mvvm_bind()
         self.view_model.start_sort()
         self.mvvm_back_bind()
-
