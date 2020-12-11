@@ -115,7 +115,7 @@ class GUIView:
         payment = self.view_model.get_payment()
         expenses = self.view_model.get_expenses()
         self.res.config(text='Payment: {:.0f} - Expenses: {:.0f}'.format(payment if payment else '',
-                                                                                              expenses if expenses else ''))
+                                                                         expenses if expenses else ''))
 
         error_msg = self.view_model.get_error_message()
         self.error_field.config(text='{}'.format(error_msg if error_msg else 'Normal work'))
