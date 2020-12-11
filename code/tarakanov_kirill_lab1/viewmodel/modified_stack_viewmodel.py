@@ -6,7 +6,9 @@ class ModifiedStackViewModel(object):
         self.pushed_element = None
         self.top = None
         self.min = None
+        self.pop_size = None
         self.modified_stack = ModifiedStack()
+        self.error_message = None
 
     def set_pushed_element(self, value):
         self.pushed_element = int(value)
@@ -15,7 +17,11 @@ class ModifiedStackViewModel(object):
         self.modified_stack.push(self.pushed_element)
 
     def pop(self):
-        self.modified_stack.pop()
+        try:
+            self.modified_stack.pop(int(self.pop_size))
+            self.clear_error_message()
+        except Exception as e:
+            self.error_message = str(e)
 
     def get_top(self):
         self.top = self.modified_stack.look_top()
@@ -23,6 +29,14 @@ class ModifiedStackViewModel(object):
     def get_min(self):
         self.min = self.modified_stack.find_min()
 
+    def set_pop_size(self, size):
+        self.pop_size = size
+
+    def get_error_message(self):
+        return self.error_message
+
+    def clear_error_message(self):
+        self.error_message = None
 
 # def is_correct_vertex_number(value):
 #     if value is None or len(str(value).strip()) == 0:

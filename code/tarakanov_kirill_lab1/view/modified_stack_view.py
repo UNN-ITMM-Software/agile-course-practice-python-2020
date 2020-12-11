@@ -4,6 +4,10 @@ from tkinter import ttk
 from tarakanov_kirill_lab1.viewmodel.modified_stack_viewmodel import ModifiedStackViewModel
 
 
+def get_error_text(value):
+    return value if value else ''
+
+
 class GUIView:
     view_model = ModifiedStackViewModel()
 
@@ -150,8 +154,9 @@ class GUIView:
         self.mvvm_back_bind_min()
 
     def pop_button_clicked(self, event):
-        self.hide_all_labels()
+        self.mvvm_bind_btn_pop()
         self.view_model.pop()
+        self.mvvm_back_bind_bth_pop()
 
     def push_button_clicked(self, event):
         self.hide_all_labels()
@@ -166,6 +171,19 @@ class GUIView:
     def mvvm_back_bind_min(self):
         self.min_value.grid(row=5, column=1)
         self.min_value.config(text=f'Min value: {self.view_model.min}')
+
+    def mvvm_bind_btn_pop(self):
+        self.hide_all_labels()
+        if self.state_pop.get() == 'One':
+            self.view_model.set_pop_size(1)
+        elif self.state_pop.get() == 'N':
+            self.view_model.set_pop_size(self.pop_size.get())
+
+    def mvvm_back_bind_bth_pop(self):
+        message = get_error_text(self.view_model.get_error_message())
+        if message:
+            self.error.config(text=f'{message}\n')
+            self.error.grid(row=1, column=1, rowspan=2, columnspan=2)
 
     def mvvm_bind_btn_push(self):
         self.view_model.set_pushed_element(self.pushed_value.get())
