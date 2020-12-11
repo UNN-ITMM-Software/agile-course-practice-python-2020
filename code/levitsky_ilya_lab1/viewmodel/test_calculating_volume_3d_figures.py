@@ -13,12 +13,12 @@ class MyTest(unittest.TestCase):
         model = VolumeViewModel(3, 5)
         self.assertTrue(model.is_button_enable())
 
-    def test_button_disabled_None_5(self):
+    def test_button_disabled_none_5(self):
         model = VolumeViewModel(3, 5)
         model.set_start_value(None)
         self.assertEqual('disabled', model.is_button_enable())
 
-    def test_button_disabled_3_None(self):
+    def test_button_disabled_3_none(self):
         model = VolumeViewModel(3, 5)
         model.set_end_value(None)
         self.assertEqual('disabled', model.is_button_enable())
