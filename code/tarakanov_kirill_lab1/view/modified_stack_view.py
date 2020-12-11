@@ -128,7 +128,6 @@ class GUIView:
     def create_windows_array_elements(self, event):
         self.array_frame.grid(row=11, column=0, columnspan=1000, pady=5, padx=10)
 
-
         array_size = int(self.array_size.get())
         for box in self.box_list:
             box.destroy()
@@ -141,9 +140,9 @@ class GUIView:
             self.box_list[-1].grid(row=0, column=2 + current_box)
 
         self.box_list.append(tk.Entry(self.array_frame, bg='gray21', fg='white', bd='1', width='3'))
-        self.box_list[-1].grid(row=0, column=2 + current_size - 1, pady=5, padx=(0,10))
-                # self.dif += current_size
-                # self.update_position()
+        self.box_list[-1].grid(row=0, column=2 + current_size - 1, pady=5, padx=(0, 10))
+        # self.dif += current_size
+        # self.update_position()
 
     def top_button_clicked(self, event):
         self.view_model.get_top()
