@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 
-from tarakanov_kirill_lab1.viewmodel.modified_stack_viewmodel import ModifiedStackViewModel
+from modified_stack.viewmodel.modified_stack_viewmodel import ModifiedStackViewModel
 
 
 def get_error_text(value):
@@ -17,8 +17,6 @@ class GUIView:
         self.root.title('Модифицированный стек')
         self.root.geometry('700x400')
         self.root.resizable(width=False, height=False)
-
-        self.box_list = []
 
         self.frame = tk.Frame(self.root, bg='White')
 
@@ -41,8 +39,8 @@ class GUIView:
         self.frame.grid(row=0, column=0)
         self.array_frame = tk.Frame(self.scrollable_frame, bg='LightBlue1')
 
-        self.state_pop = tk.StringVar(value='One')
-        self.state_push = tk.StringVar(value='One')
+        self.pop_state = tk.StringVar(value='One')
+        self.push_state = tk.StringVar(value='One')
 
         self.top = tk.Button(self.scrollable_frame, text='top', state='normal', bg='Azure', width=10, height=1)
         self.min = tk.Button(self.scrollable_frame, text='min', state='normal', bg='Azure', width=10, height=1)
@@ -50,18 +48,20 @@ class GUIView:
         self.push = tk.Button(self.scrollable_frame, text='push', state='normal', bg='Azure', width=10, height=3)
 
         self.pop_one_element = ttk.Radiobutton(
-            self.scrollable_frame, text='One element', variable=self.state_pop,
+            self.scrollable_frame, text='One element', variable=self.pop_state,
             value='One', width=15, command=self.pop_strategy)
         self.pop_n_elements = ttk.Radiobutton(
-            self.scrollable_frame, text='N element', variable=self.state_pop,
+            self.scrollable_frame, text='N element', variable=self.pop_state,
             value='N', width=15, command=self.pop_strategy)
 
         self.push_one_element = ttk.Radiobutton(
-            self.scrollable_frame, text='One value', variable=self.state_push,
+            self.scrollable_frame, text='One value', variable=self.push_state,
             value='One', width=15, command=self.push_strategy)
         self.push_n_elements = ttk.Radiobutton(
-            self.scrollable_frame, text='Array', variable=self.state_push,
+            self.scrollable_frame, text='Array', variable=self.push_state,
             value='N', width=15, command=self.push_strategy)
+
+        self.stack_size = tk.Label(self.scrollable_frame, text='Stack size: 0', bg='Gray21', fg='White')
 
         self.pushed_value = tk.Entry(self.scrollable_frame, width=10)
         self.pop_size = tk.Entry(self.scrollable_frame, width=10)
@@ -73,7 +73,10 @@ class GUIView:
         self.enter_array = tk.Label(self.scrollable_frame, text='Please, enter array size:')
         self.title = tk.Label(self.array_frame, text='Enter your array: ', bg='Gray21', fg='White')
 
+        self.box_list = []
+
         self.error = tk.Label(self.scrollable_frame, text='Error', bg='Gray21', fg='Red')
+        self.is_error = False
 
         self.set_weight_to_grid()
         self.bind_events()
@@ -82,8 +85,9 @@ class GUIView:
     def set_weight_to_grid(self):
         self.root.grid_rowconfigure(2, minsize=30)
         self.root.grid_rowconfigure(5, minsize=30, weight=60)
-        self.frame.place(relx=0.05, rely=0.05, relwidth=0.9, relheight=0.9)
+        self.frame.place(relx=0.025, rely=0.025, relwidth=0.95, relheight=0.95)
 
+        self.stack_size.grid(row=2, column=0, pady=5)
         self.top.grid(row=3, column=0, pady=5)
         self.min.grid(row=5, column=0, pady=5)
         self.pop.grid(row=7, column=0, pady=5, rowspan=2)
@@ -97,105 +101,136 @@ class GUIView:
 
         self.pushed_value.grid(row=9, column=2, pady=5, padx=10)
 
-        # self.error.grid(row=1, column=1, rowspan=2, columnspan=2)
-        # self.hide_all_labels()
+    def pop_strategy(self):
+        self.clean_input()
+
+        state = self.pop_state.get()
+        if state == 'One':
+            self.pop_size.grid_forget()
+        elif state == 'N':
+            self.pop_size.grid(row=8, column=2, pady=5, padx=10)
+
+    def push_strategy(self):
+        self.clean_input()
+
+        state = self.push_state.get()
+        if state == 'One':
+            self.enter_array.grid_forget()
+            self.array_size.grid_forget()
+            self.array_frame.grid_forget()
+            self.pushed_value.grid(row=9, column=2, pady=5, padx=10)
+        elif state == 'N':
+            self.pushed_value.grid_forget()
+            self.enter_array.grid(row=10, column=2, pady=5, padx=10)
+            self.array_size.grid(row=10, column=3, pady=5, padx=10)
 
     def bind_events(self):
         self.array_size.bind('<KeyRelease>', self.create_windows_array_elements)
-
         self.top.bind('<Button-1>', self.top_button_clicked)
         self.min.bind('<Button-1>', self.min_button_clicked)
         self.pop.bind('<Button-1>', self.pop_button_clicked)
         self.push.bind('<Button-1>', self.push_button_clicked)
 
-    def pop_strategy(self):
-        if self.state_pop.get() == 'One':
-            self.pop_size.grid_forget()
-        elif self.state_pop.get() == 'N':
-            self.pop_size.grid(row=8, column=2, pady=5, padx=10)
-
-    def push_strategy(self):
-        if self.state_push.get() == 'One':
-            self.pushed_value.grid(row=9, column=2, pady=5, padx=10)
-            self.enter_array.grid_forget()
-            self.array_size.grid_forget()
-            self.array_frame.grid_forget()
-        elif self.state_push.get() == 'N':
-            self.pushed_value.grid_forget()
-            self.enter_array.grid(row=10, column=2, pady=5, padx=10)
-            self.array_size.grid(row=10, column=3, pady=5, padx=10)
-
     def create_windows_array_elements(self, event):
         self.array_frame.grid(row=11, column=0, columnspan=1000, pady=5, padx=10)
-
-        array_size = int(self.array_size.get())
         for box in self.box_list:
             box.destroy()
+
         self.box_list = []
-        current_size = array_size
-        self.title.grid(row=0, column=0, pady=5, padx=10)
+        try:
+            array_size = int(self.array_size.get())
 
-        for current_box in range(current_size - 1):
+            current_size = array_size
+            self.title.grid(row=0, column=0, pady=5, padx=10)
+
+            for current_box in range(current_size - 1):
+                self.box_list.append(tk.Entry(self.array_frame, bg='gray21', fg='white', bd='1', width='3'))
+                self.box_list[-1].grid(row=0, column=2 + current_box)
+
             self.box_list.append(tk.Entry(self.array_frame, bg='gray21', fg='white', bd='1', width='3'))
-            self.box_list[-1].grid(row=0, column=2 + current_box)
+            self.box_list[-1].grid(row=0, column=2 + current_size - 1, pady=5, padx=(0, 10))
+            self.view_model.set_error_message(None)
+        except Exception as e:
+            self.view_model.set_error_message('Error: wrong array size')
 
-        self.box_list.append(tk.Entry(self.array_frame, bg='gray21', fg='white', bd='1', width='3'))
-        self.box_list[-1].grid(row=0, column=2 + current_size - 1, pady=5, padx=(0, 10))
-        # self.dif += current_size
-        # self.update_position()
+        self.mvvm_back_bind()
 
     def top_button_clicked(self, event):
         self.view_model.get_top()
         self.mvvm_back_bind_top()
+        self.clean_input()
 
     def min_button_clicked(self, event):
         self.view_model.get_min()
         self.mvvm_back_bind_min()
+        self.clean_input()
 
     def pop_button_clicked(self, event):
         self.mvvm_bind_btn_pop()
         self.view_model.pop()
-        self.mvvm_back_bind_bth_pop()
+        self.mvvm_back_bind()
+        self.clean_input()
 
     def push_button_clicked(self, event):
-        self.hide_all_labels()
         self.mvvm_bind_btn_push()
         self.view_model.push()
-        self.mvvm_back_bind_push()
+        self.mvvm_back_bind()
+        self.clean_input()
 
     def mvvm_back_bind_top(self):
-        self.top_value.grid(row=3, column=1)
-        self.top_value.config(text=f'Top value: {self.view_model.top}')
+        self.mvvm_back_bind()
+        if not self.is_error:
+            self.top_value.grid(row=3, column=1)
+            self.top_value.config(text=f'Top value: {self.view_model.top}')
 
     def mvvm_back_bind_min(self):
-        self.min_value.grid(row=5, column=1)
-        self.min_value.config(text=f'Min value: {self.view_model.min}')
+        self.mvvm_back_bind()
+        if not self.is_error:
+            self.min_value.grid(row=5, column=1)
+            self.min_value.config(text=f'Min value: {self.view_model.min}')
 
     def mvvm_bind_btn_pop(self):
         self.hide_all_labels()
-        if self.state_pop.get() == 'One':
+
+        if self.pop_state.get() == 'One':
             self.view_model.set_pop_size(1)
-        elif self.state_pop.get() == 'N':
+        elif self.pop_state.get() == 'N':
             self.view_model.set_pop_size(self.pop_size.get())
 
-    def mvvm_back_bind_bth_pop(self):
-        message = get_error_text(self.view_model.get_error_message())
-        if message:
-            self.error.config(text=f'{message}\n')
-            self.error.grid(row=1, column=1, rowspan=2, columnspan=2)
-
     def mvvm_bind_btn_push(self):
-        self.view_model.set_pushed_element(self.pushed_value.get())
+        self.hide_all_labels()
+        self.view_model.set_push_state(self.push_state.get())
 
-    def mvvm_back_bind_push(self):
-        pass
+        if self.push_state.get() == 'One':
+            self.view_model.set_pushed_element(self.pushed_value.get())
+        elif self.push_state.get() == 'N':
+            box_values = [box.get() for box in self.box_list]
+            self.view_model.set_input_array(box_values)
+
+    def mvvm_back_bind(self):
+        message = get_error_text(self.view_model.get_error_message())
+        self.is_error = False
+        if message:
+            self.error.config(text=f'Error: {message}\n')
+            self.error.grid(row=1, column=1, rowspan=2, columnspan=2)
+            self.is_error = True
+        else:
+            self.error.grid_forget()
+        self.stack_size.config(text=f'Stack size: {self.view_model.size()}\n')
+
+    def clean_input(self):
+        self.pop_size.delete(0, tk.END)
+        self.pop_size.insert(0, '')
+
+        self.pushed_value.delete(0, tk.END)
+        self.pushed_value.insert(0, '')
+
+        self.array_size.delete(0, tk.END)
+        self.array_size.insert(0, '')
+
+        self.array_frame.grid_forget()
 
     def hide_all_labels(self):
         self.top_value.grid_forget()
         self.min_value.grid_forget()
         self.error.grid_forget()
-
-    def mvvm_bind(self, event):
-        error_message = 'Error'
-        self.error.grid()
-        self.error.config(text=f'{error_message}\n')

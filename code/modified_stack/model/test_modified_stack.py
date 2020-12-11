@@ -1,6 +1,6 @@
 import unittest
 
-from tarakanov_kirill_lab1.model.modified_stack import ModifiedStack
+from modified_stack.model.modified_stack import ModifiedStack
 
 
 class TestModifiedStack(unittest.TestCase):

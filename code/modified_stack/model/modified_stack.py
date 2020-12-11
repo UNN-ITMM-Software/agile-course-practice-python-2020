@@ -40,7 +40,6 @@ class ModifiedStack:
         self._min_stack.append(elem)
 
     def _push_one(self, elem):
-        top_elem = self.look_top()
         self._stack.append(elem)
         if elem < self.find_min():
             self._min_stack.append(elem)
