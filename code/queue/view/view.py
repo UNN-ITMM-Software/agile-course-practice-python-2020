@@ -14,7 +14,7 @@ class QueueView:
         self.root.resizable(width=False, height=False)
 
         self.frame = tk.Frame(self.root)
-        self.start_message = tk.Label(self.root, text="Enter anything and press 'Arrive' button. Each input info is one element")
+        self.start_message = tk.Label(self.root, text="Enter anything and press 'Arrive' button")
         self.input_info_label = tk.Label(self.root, text="Write an element for the queue:")
         self.input_info = tk.Entry(self.root, width=50)
         self.arrive_btn = tk.Button(self.root, text="Arrive", state='disabled')
