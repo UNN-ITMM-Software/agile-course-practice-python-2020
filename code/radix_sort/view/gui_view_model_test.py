@@ -13,6 +13,10 @@ class MyTestCase(ut.TestCase):
         self.model.set_input_data("1 3 5 2")
         self.assertEqual('active', self.model.get_sort_button_state())
 
+    def test_set_correct_input_data(self):
+        self.model.set_input_data("1 3 5 2")
+        self.assertEqual("1 3 5 2", self.model.get_input_data())
+
     def test_sort_space_delimiter_array(self):
         self.model.set_input_data("1 3 5 2")
         self.model.start_sort()
