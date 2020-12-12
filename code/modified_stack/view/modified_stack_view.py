@@ -21,8 +21,7 @@ class GUIView:
         self.frame = tk.Frame(self.root, bg='White')
 
         self.canvas = tk.Canvas(self.frame)
-        self.scrollbar = ttk.Scrollbar(
-            self.frame, orient='horizontal', command=self.canvas.xview)
+        self.scrollbar = ttk.Scrollbar(self.frame, orient='horizontal', command=self.canvas.xview)
         self.scroll_frame = ttk.Frame(self.canvas)
 
         self.scroll_frame.bind(
@@ -43,14 +42,10 @@ class GUIView:
         self.pop_state = tk.StringVar(value='One')
         self.push_state = tk.StringVar(value='One')
 
-        self.top = tk.Button(self.scroll_frame, text='top',
-                             state='normal', bg='Azure', width=10, height=1)
-        self.min = tk.Button(self.scroll_frame, text='min',
-                             state='normal', bg='Azure', width=10, height=1)
-        self.pop = tk.Button(self.scroll_frame, text='pop',
-                             state='normal', bg='Azure', width=10, height=3)
-        self.push = tk.Button(self.scroll_frame, text='push',
-                              state='normal', bg='Azure', width=10, height=3)
+        self.top = tk.Button(self.scroll_frame, text='top', state='normal', bg='Azure', width=10, height=1)
+        self.min = tk.Button(self.scroll_frame, text='min', state='normal', bg='Azure', width=10, height=1)
+        self.pop = tk.Button(self.scroll_frame, text='pop', state='normal', bg='Azure', width=10, height=3)
+        self.push = tk.Button(self.scroll_frame, text='push', state='normal', bg='Azure', width=10, height=3)
 
         self.pop_one_element = ttk.Radiobutton(
             self.scroll_frame, text='One element', variable=self.pop_state,
@@ -130,8 +125,7 @@ class GUIView:
             self.array_size.grid(row=10, column=3, pady=5, padx=10)
 
     def bind_events(self):
-        self.array_size.bind(
-            '<KeyRelease>', self.create_windows_array_elements)
+        self.array_size.bind('<KeyRelease>', self.create_windows_array_elements)
         self.top.bind('<Button-1>', self.top_button_clicked)
         self.min.bind('<Button-1>', self.min_button_clicked)
         self.pop.bind('<Button-1>', self.pop_button_clicked)
