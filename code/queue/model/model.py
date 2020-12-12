@@ -3,9 +3,9 @@ class Queue():
     def __init__(self):
         self.queue = list()
 
-    def add_to_queue(self,value):
+    def add_to_queue(self, value):
         if value not in self.queue:
-            self.queue.insert(0,value)
+            self.queue.insert(0, value)
             return True
         return False
 
