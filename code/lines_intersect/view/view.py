@@ -18,7 +18,7 @@ class GUIView(tk.Frame):
         self.grid(sticky=self.default_sticky)
 
         self.btn_calculate = tk.Button(self, text='Calculate')
-        self.btn_calculate.grid(row=0, column=4, pady = 5, sticky=self.default_sticky)
+        self.btn_calculate.grid(row=0, column=4, pady=5, sticky=self.default_sticky)
 
         self.text1 = ttk.Label(self, background="bisque", text=' a: ')
         self.text1.grid(row=0, column=0, sticky=self.default_sticky)
@@ -46,7 +46,7 @@ class GUIView(tk.Frame):
 
         self.res = ttk.Label(self, width=20, background="white")
         self.res.grid(row=1, column=4, sticky=self.default_sticky)
-        
+
         self.bind_events()
         self.mvvm_bind()
         self.mvvm_back_bind()
@@ -67,18 +67,18 @@ class GUIView(tk.Frame):
     def mvvm_back_bind(self):
         self.point1.delete(0, tk.END)
         self.point1.insert(0, self.view_model.get_point1())
-        
+
         self.point2.delete(0, tk.END)
         self.point2.insert(0, self.view_model.get_point2())
-        
+
         self.point3.delete(0, tk.END)
         self.point3.insert(0, self.view_model.get_point3())
-        
+
         self.point4.delete(0, tk.END)
         self.point4.insert(0, self.view_model.get_point4())
-        
+
         self.btn_calculate.config(state=self.view_model.get_button_calculate_state())
-        
+
         self.res.config(text=self.view_model.get_result())
 
     def calculate_clicked(self, event):
