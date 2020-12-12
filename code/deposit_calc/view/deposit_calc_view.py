@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from deposit_calc.viewmodel import  viewmodel
+from deposit_calc.viewmodel import viewmodel
 
 
 class GUIView(object):
@@ -72,21 +72,27 @@ class GUIView(object):
 
     def start_depo_changed(self, event):
         self.mvvm_bind()
+        self.mvvm_back_bind()
 
     def depo_time_changed(self, event):
         self.mvvm_bind()
+        self.mvvm_back_bind()
 
     def rate_value_changed(self, event):
         self.mvvm_bind()
+        self.mvvm_back_bind()
 
     def capitalization_changed(self, event):
         self.mvvm_bind()
+        self.mvvm_back_bind()
 
     def replenishment_freq_changed(self, event):
         self.mvvm_bind()
+        self.mvvm_back_bind()
 
     def replenishment_size_changed(self, event):
         self.mvvm_bind()
+        self.mvvm_back_bind()
 
     def handle_btn_clicked(self, event):
         self.mvvm_bind()

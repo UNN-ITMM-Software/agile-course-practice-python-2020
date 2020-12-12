@@ -63,6 +63,9 @@ class DepositCalcViewModel:
         except:
             self.set_handle_btn_disabled()
 
+    def get_start_depo(self):
+        return self.start_depo
+
     def get_result(self):
         return self.result
 
