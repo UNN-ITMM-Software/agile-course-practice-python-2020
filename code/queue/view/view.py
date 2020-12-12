@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from viewmodel.viewmodel import QueueViewModel
+from queue.viewmodel.viewmodel import QueueViewModel
 
 
 class QueueView:

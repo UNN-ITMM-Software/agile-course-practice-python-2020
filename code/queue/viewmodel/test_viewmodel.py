@@ -1,7 +1,7 @@
 import unittest
 
 from queue.viewmodel.viewmodel import QueueViewModel
-from model.model import Queue
+from queue.model.model import Queue
 
 
 class TestQueueViewModel(unittest.TestCase):

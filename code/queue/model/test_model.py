@@ -1,25 +1,25 @@
 import unittest
 
-from model import Queue
+from queue.model.model import Queue
 
 
 class QueueTest(unittest.TestCase):
     def test_cat_create_queue(self):
         queue = Queue()
         self.assertTrue(isinstance(queue, Queue))
-    
+
     def test_can_add_to_queue_first(self):
         queue = Queue()
         queue.addToQueue(1)
         queue.addToQueue(2)
         self.assertEqual('2 1', queue.get_elements())
-      
+
     def test_can_add_to_queue_second(self):
         queue = Queue()
         queue.addToQueue('worker')
         queue.addToQueue('student')
         self.assertEqual('student worker', queue.get_elements())
-        
+
     def test_can_add_to_queue_third(self):
         queue = Queue()
         queue.addToQueue('a')
