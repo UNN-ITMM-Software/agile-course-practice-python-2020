@@ -28,8 +28,7 @@ class ModifiedStackViewModel(object):
             if self.push_state == 'One':
                 self.modified_stack.push(to_int(self.pushed_element))
             elif self.push_state == 'N':
-                self.modified_stack.push([to_int(element)
-                                          for element in self.input_array])
+                self.modified_stack.push([to_int(element) for element in self.input_array])
         except Exception as e:
             self.set_error_message(str(e))
 

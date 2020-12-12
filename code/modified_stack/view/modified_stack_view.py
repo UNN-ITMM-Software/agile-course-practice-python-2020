@@ -32,8 +32,7 @@ class GUIView:
             )
         )
 
-        self.canvas.create_window(
-            (0, 0), window=self.scroll_frame, anchor='nw')
+        self.canvas.create_window((0, 0), window=self.scroll_frame, anchor='nw')
         self.canvas.configure(yscrollcommand=self.scrollbar.set)
         self.canvas.pack(side='bottom', fill='both', expand=True)
         self.scrollbar.pack(side='bottom', fill='x')
@@ -67,8 +66,7 @@ class GUIView:
             self.scroll_frame, text='Array', variable=self.push_state,
             value='N', width=15, command=self.push_strategy)
 
-        self.stack_size = tk.Label(
-            self.scroll_frame, text='Stack size: 0', bg='Gray21', fg='White')
+        self.stack_size = tk.Label(self.scroll_frame, text='Stack size: 0', bg='Gray21', fg='White')
 
         self.pushed_value = tk.Entry(self.scroll_frame, width=10)
         self.pop_size = tk.Entry(self.scroll_frame, width=10)
@@ -77,15 +75,12 @@ class GUIView:
         self.min_value = tk.Label(self.scroll_frame, text='')
         self.top_value = tk.Label(self.scroll_frame, text='')
 
-        self.enter_array = tk.Label(
-            self.scroll_frame, text='Please, enter array size:')
-        self.title = tk.Label(
-            self.array_frame, text='Enter your array: ', bg='Gray21', fg='White')
+        self.enter_array = tk.Label(self.scroll_frame, text='Please, enter array size:')
+        self.title = tk.Label(self.array_frame, text='Enter your array: ', bg='Gray21', fg='White')
 
         self.box_list = []
 
-        self.error = tk.Label(
-            self.scroll_frame, text='Error', bg='Gray21', fg='Red')
+        self.error = tk.Label(self.scroll_frame, text='Error', bg='Gray21', fg='Red')
         self.is_error = False
 
         self.set_weight_to_grid()
@@ -143,8 +138,7 @@ class GUIView:
         self.push.bind('<Button-1>', self.push_button_clicked)
 
     def create_windows_array_elements(self, event):
-        self.array_frame.grid(
-            row=11, column=0, columnspan=1000, pady=5, padx=10)
+        self.array_frame.grid(row=11, column=0, columnspan=1000, pady=5, padx=10)
         for box in self.box_list:
             box.destroy()
 
@@ -156,14 +150,11 @@ class GUIView:
             self.title.grid(row=0, column=0, pady=5, padx=10)
 
             for current_box in range(current_size - 1):
-                self.box_list.append(
-                    tk.Entry(self.array_frame, bg='gray21', fg='white', bd='1', width='3'))
+                self.box_list.append(tk.Entry(self.array_frame, bg='gray21', fg='white', bd='1', width='3'))
                 self.box_list[-1].grid(row=0, column=2 + current_box)
 
-            self.box_list.append(
-                tk.Entry(self.array_frame, bg='gray21', fg='white', bd='1', width='3'))
-            self.box_list[-1].grid(row=0, column=2 +
-                                   current_size - 1, pady=5, padx=(0, 10))
+            self.box_list.append(tk.Entry(self.array_frame, bg='gray21', fg='white', bd='1', width='3'))
+            self.box_list[-1].grid(row=0, column=2 + current_size - 1, pady=5, padx=(0, 10))
             self.view_model.set_error_message(None)
         except Exception:
             self.view_model.set_error_message('Error: wrong array size')
@@ -196,13 +187,13 @@ class GUIView:
         self.mvvm_back_bind()
         if not self.is_error:
             self.top_value.grid(row=3, column=1)
-            self.top_value.config(text=f'Top value: {self.view_model.top}')
+            self.top_value.config(text='Top value: {}'.format(self.view_model.top))
 
     def mvvm_back_bind_min(self):
         self.mvvm_back_bind()
         if not self.is_error:
             self.min_value.grid(row=5, column=1)
-            self.min_value.config(text=f'Min value: {self.view_model.min}')
+            self.min_value.config(text='Min value: {}'.format(self.view_model.top))
 
     def mvvm_bind_btn_pop(self):
         self.hide_all_labels()
@@ -226,12 +217,12 @@ class GUIView:
         message = get_error_text(self.view_model.get_error_message())
         self.is_error = False
         if message:
-            self.error.config(text=f'Error: {message}\n')
+            self.error.config(text='Error: {}\n'.format(message))
             self.error.grid(row=1, column=1, rowspan=2, columnspan=2)
             self.is_error = True
         else:
             self.error.grid_forget()
-        self.stack_size.config(text=f'Stack size: {self.view_model.size()}\n')
+        self.stack_size.config(text='Stack size: {}\n'.format(self.view_model.size()))
 
     def clean_input(self):
         self.pop_size.delete(0, tk.END)
