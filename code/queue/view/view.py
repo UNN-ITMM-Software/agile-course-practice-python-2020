@@ -1,11 +1,11 @@
 import tkinter as tk
 
-from queue_task.viewmodel import viewmodel
+from viewmodel.viewmodel import QueueViewModel
 
 
 class QueueView:
 
-    view_model = viewmodel.QueueViewModel()
+    view_model = QueueViewModel()
 
     def __init__(self):
         self.root = tk.Tk()

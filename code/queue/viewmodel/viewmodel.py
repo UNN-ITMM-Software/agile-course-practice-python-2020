@@ -1,8 +1,9 @@
-from queue_task.model.model import Queue
+from queue.model.model import Queue
 
 
 class QueueViewModel:
     def __init__(self):
+        self.queue = Queue()
         self.input_info = ''
         self.arrived_info = ''
         self.set_arrive_btn_disabled()
