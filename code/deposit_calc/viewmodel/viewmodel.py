@@ -7,6 +7,8 @@ class DepositCalcViewModel:
         self.depo_time = 0.0
         self.rate = 0.0
         self.capitalization = 0.0
+        self.replenishment_freq = 0.0
+        self.replenishment_size = 0.0
         self.result = ''
         self.set_handle_btn_disabled()
 
@@ -47,6 +49,20 @@ class DepositCalcViewModel:
         except:
             self.set_handle_btn_disabled()
 
+    def set_replenishment_freq(self, replenishment_freq):
+        try:
+            self.replenishment_freq = int(replenishment_freq)
+            self.set_handle_btn_enabled()
+        except:
+            self.set_handle_btn_disabled()
+
+    def set_replenishment_size(self, replenishment_size):
+        try:
+            self.replenishment_size = int(replenishment_size)
+            self.set_handle_btn_enabled()
+        except:
+            self.set_handle_btn_disabled()
+
     def get_result(self):
         return self.result
 
@@ -57,7 +73,12 @@ class DepositCalcViewModel:
             r=self.rate,
             is_add_to_depo=True,
             capitalization_freq=self.capitalization,
-            replenishment_freq=2
+            replenishment_freq=self.replenishment_freq
         )
-        #calc.revenue(values=[10000, 10000, 10000])
-        self.result = str(calc.revenue(values=[5000, 10000, 10000, 10000]))
+        arr = []
+        range_val = int(self.depo_time * self.replenishment_freq)
+
+        for i in range(range_val):
+            arr.append(self.replenishment_size)
+
+        self.result = str(calc.revenue(values=arr))
