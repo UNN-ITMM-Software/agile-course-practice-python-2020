@@ -59,7 +59,8 @@ class TestModifiedStackViewModel(unittest.TestCase):
         model.set_pushed_element('PUSH ME')
         model.push()
 
-        self.assertEqual('Input contains non int value', model.get_error_message())
+        self.assertEqual('Input contains non int value',
+                         model.get_error_message())
 
     def test_when_pop_size_non_int(self):
         model = ModifiedStackViewModel()
@@ -67,5 +68,5 @@ class TestModifiedStackViewModel(unittest.TestCase):
         model.set_pop_size('AND THEN JUST POP ME')
         model.pop()
 
-        self.assertEqual('Input contains non int value', model.get_error_message())
-
+        self.assertEqual('Input contains non int value',
+                         model.get_error_message())

@@ -21,7 +21,8 @@ class GUIView:
         self.frame = tk.Frame(self.root, bg='White')
 
         self.canvas = tk.Canvas(self.frame)
-        self.scrollbar = ttk.Scrollbar(self.frame, orient='horizontal', command=self.canvas.xview)
+        self.scrollbar = ttk.Scrollbar(
+            self.frame, orient='horizontal', command=self.canvas.xview)
         self.scroll_frame = ttk.Frame(self.canvas)
 
         self.scroll_frame.bind(
@@ -31,7 +32,8 @@ class GUIView:
             )
         )
 
-        self.canvas.create_window((0, 0), window=self.scroll_frame, anchor='nw')
+        self.canvas.create_window(
+            (0, 0), window=self.scroll_frame, anchor='nw')
         self.canvas.configure(yscrollcommand=self.scrollbar.set)
         self.canvas.pack(side='bottom', fill='both', expand=True)
         self.scrollbar.pack(side='bottom', fill='x')
@@ -42,10 +44,14 @@ class GUIView:
         self.pop_state = tk.StringVar(value='One')
         self.push_state = tk.StringVar(value='One')
 
-        self.top = tk.Button(self.scroll_frame, text='top', state='normal', bg='Azure', width=10, height=1)
-        self.min = tk.Button(self.scroll_frame, text='min', state='normal', bg='Azure', width=10, height=1)
-        self.pop = tk.Button(self.scroll_frame, text='pop', state='normal', bg='Azure', width=10, height=3)
-        self.push = tk.Button(self.scroll_frame, text='push', state='normal', bg='Azure', width=10, height=3)
+        self.top = tk.Button(self.scroll_frame, text='top',
+                             state='normal', bg='Azure', width=10, height=1)
+        self.min = tk.Button(self.scroll_frame, text='min',
+                             state='normal', bg='Azure', width=10, height=1)
+        self.pop = tk.Button(self.scroll_frame, text='pop',
+                             state='normal', bg='Azure', width=10, height=3)
+        self.push = tk.Button(self.scroll_frame, text='push',
+                              state='normal', bg='Azure', width=10, height=3)
 
         self.pop_one_element = ttk.Radiobutton(
             self.scroll_frame, text='One element', variable=self.pop_state,
@@ -61,7 +67,8 @@ class GUIView:
             self.scroll_frame, text='Array', variable=self.push_state,
             value='N', width=15, command=self.push_strategy)
 
-        self.stack_size = tk.Label(self.scroll_frame, text='Stack size: 0', bg='Gray21', fg='White')
+        self.stack_size = tk.Label(
+            self.scroll_frame, text='Stack size: 0', bg='Gray21', fg='White')
 
         self.pushed_value = tk.Entry(self.scroll_frame, width=10)
         self.pop_size = tk.Entry(self.scroll_frame, width=10)
@@ -70,12 +77,15 @@ class GUIView:
         self.min_value = tk.Label(self.scroll_frame, text='')
         self.top_value = tk.Label(self.scroll_frame, text='')
 
-        self.enter_array = tk.Label(self.scroll_frame, text='Please, enter array size:')
-        self.title = tk.Label(self.array_frame, text='Enter your array: ', bg='Gray21', fg='White')
+        self.enter_array = tk.Label(
+            self.scroll_frame, text='Please, enter array size:')
+        self.title = tk.Label(
+            self.array_frame, text='Enter your array: ', bg='Gray21', fg='White')
 
         self.box_list = []
 
-        self.error = tk.Label(self.scroll_frame, text='Error', bg='Gray21', fg='Red')
+        self.error = tk.Label(
+            self.scroll_frame, text='Error', bg='Gray21', fg='Red')
         self.is_error = False
 
         self.set_weight_to_grid()
@@ -125,14 +135,16 @@ class GUIView:
             self.array_size.grid(row=10, column=3, pady=5, padx=10)
 
     def bind_events(self):
-        self.array_size.bind('<KeyRelease>', self.create_windows_array_elements)
+        self.array_size.bind(
+            '<KeyRelease>', self.create_windows_array_elements)
         self.top.bind('<Button-1>', self.top_button_clicked)
         self.min.bind('<Button-1>', self.min_button_clicked)
         self.pop.bind('<Button-1>', self.pop_button_clicked)
         self.push.bind('<Button-1>', self.push_button_clicked)
 
     def create_windows_array_elements(self, event):
-        self.array_frame.grid(row=11, column=0, columnspan=1000, pady=5, padx=10)
+        self.array_frame.grid(
+            row=11, column=0, columnspan=1000, pady=5, padx=10)
         for box in self.box_list:
             box.destroy()
 
@@ -144,11 +156,14 @@ class GUIView:
             self.title.grid(row=0, column=0, pady=5, padx=10)
 
             for current_box in range(current_size - 1):
-                self.box_list.append(tk.Entry(self.array_frame, bg='gray21', fg='white', bd='1', width='3'))
+                self.box_list.append(
+                    tk.Entry(self.array_frame, bg='gray21', fg='white', bd='1', width='3'))
                 self.box_list[-1].grid(row=0, column=2 + current_box)
 
-            self.box_list.append(tk.Entry(self.array_frame, bg='gray21', fg='white', bd='1', width='3'))
-            self.box_list[-1].grid(row=0, column=2 + current_size - 1, pady=5, padx=(0, 10))
+            self.box_list.append(
+                tk.Entry(self.array_frame, bg='gray21', fg='white', bd='1', width='3'))
+            self.box_list[-1].grid(row=0, column=2 +
+                                   current_size - 1, pady=5, padx=(0, 10))
             self.view_model.set_error_message(None)
         except Exception:
             self.view_model.set_error_message('Error: wrong array size')
