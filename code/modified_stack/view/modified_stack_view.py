@@ -42,10 +42,10 @@ class GUIView:
         self.pop_state = tk.StringVar(value='One')
         self.push_state = tk.StringVar(value='One')
 
-        self.top = tk.Button(self.scroll_frame, text='top', state='normal', bg='Azure', width=10, height=1)
-        self.min = tk.Button(self.scroll_frame, text='min', state='normal', bg='Azure', width=10, height=1)
-        self.pop = tk.Button(self.scroll_frame, text='pop', state='normal', bg='Azure', width=10, height=3)
-        self.push = tk.Button(self.scroll_frame, text='push', state='normal', bg='Azure', width=10, height=3)
+        self.top = tk.Button(self.scroll_frame, text='top', bg='Azure', width=10, height=1)
+        self.min = tk.Button(self.scroll_frame, text='min', bg='Azure', width=10, height=1)
+        self.pop = tk.Button(self.scroll_frame, text='pop', bg='Azure', width=10, height=3)
+        self.push = tk.Button(self.scroll_frame, text='push', bg='Azure', width=10, height=3)
 
         self.pop_one_element = ttk.Radiobutton(
             self.scroll_frame, text='One element', variable=self.pop_state,
@@ -187,7 +187,7 @@ class GUIView:
         self.mvvm_back_bind()
         if not self.is_error:
             self.min_value.grid(row=5, column=1)
-            self.min_value.config(text='Min value: {}'.format(self.view_model.top))
+            self.min_value.config(text='Min value: {}'.format(self.view_model.min))
 
     def mvvm_bind_btn_pop(self):
         self.hide_all_labels()
