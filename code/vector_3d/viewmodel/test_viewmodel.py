@@ -86,10 +86,24 @@ class Vector3dViewModelTests(unittest.TestCase):
         result = 14
         self.assertAlmostEqual(result, self.model.get_dot_product())
 
+    def test_dot_product_with_negative_numbers(self):
+        self.model.set_product_vectors(-1.0, -2.0, -3.0, -4.0, -5.0, -6.0)
+        self.model.calc_products()
+        result = 44
+        self.assertAlmostEqual(result, self.model.get_dot_product())
+
     def test_cross_product(self):
         self.model.set_product_vectors(1.0, 3.0, 2.0, 2.0, 3.0, 1.0)
         self.model.calc_products()
-        result = [-4.0, -8.0, -4.0]
+        result = [-4.0, 8.0, -4.0]
+        cross_product = self.model.get_cross_product()
+        for val1, val2 in zip(result, cross_product):
+            self.assertAlmostEqual(val1, val2)
+
+    def test_cross_product_with_negative_numbers(self):
+        self.model.set_product_vectors(-1.0, -2.0, -3.0, -4.0, -5.0, -6.0)
+        self.model.calc_products()
+        result = [-2.0, 4.0, -2.0]
         cross_product = self.model.get_cross_product()
         for val1, val2 in zip(result, cross_product):
             self.assertAlmostEqual(val1, val2)

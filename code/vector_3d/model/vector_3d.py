@@ -54,5 +54,5 @@ class Vector3d:
         res_x = self.y * vec_z - vec_y * self.z
         res_y = self.x * vec_z - vec_x * self.z
         res_z = self.x * vec_y - vec_x * self.y
-        result = [res_x, res_y, res_z]
+        result = [res_x, -res_y, res_z]
         return result
