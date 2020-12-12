@@ -18,6 +18,13 @@ class TestModifiedStackViewModel(unittest.TestCase):
 
         self.assertEqual('count should be positive', model.get_error_message())
 
+    def test_get_min_from_empty_stack(self):
+        model = ModifiedStackViewModel()
+
+        model.get_min()
+
+        self.assertEqual('Stack is empty', model.get_error_message())
+
     def test_look_top_from_empty_stack(self):
         model = ModifiedStackViewModel()
 
@@ -49,7 +56,16 @@ class TestModifiedStackViewModel(unittest.TestCase):
         model = ModifiedStackViewModel()
 
         model.set_push_state('One')
-        model.set_pushed_element('PUSH ME AND THEN JUST MERGE ME, SATISFACTION')
+        model.set_pushed_element('PUSH ME')
         model.push()
 
         self.assertEqual('Input contains non int value', model.get_error_message())
+
+    def test_when_pop_size_non_int(self):
+        model = ModifiedStackViewModel()
+
+        model.set_pop_size('AND THEN JUST POP ME')
+        model.pop()
+
+        self.assertEqual('Input contains non int value', model.get_error_message())
+
