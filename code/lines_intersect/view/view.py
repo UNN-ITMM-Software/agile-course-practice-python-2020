@@ -11,7 +11,7 @@ class GUIView(tk.Frame):
 
     def __init__(self):
         tk.Frame.__init__(self, background="bisque")
-        self.master.geometry("460x115")
+        self.master.geometry("460x90")
         self.master.title("GUI")
 
         self.master.rowconfigure(0, weight=1)
@@ -50,6 +50,7 @@ class GUIView(tk.Frame):
         self.res.insert(0, "wait result")
 
     def bind_events(self):
+        self.btn_run.bind('<Button-1>', self.convert_clicked)
         pass
 
     def mvvm_bind(self):
@@ -57,3 +58,8 @@ class GUIView(tk.Frame):
 
     def mvvm_back_bind(self):
         pass
+
+    def convert_clicked(self, event):
+        self.mvvm_bind()
+        self.view_model.click_convert()
+        self.mvvm_back_bind()
