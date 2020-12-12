@@ -29,10 +29,10 @@ class TestQueueViewModel(unittest.TestCase):
 
     def test_work_correctly_with_left_info(self):
         queue = Queue()
-        queue.addToQueue(1)
-        queue.addToQueue(2)
-        queue.addToQueue(3)
-        queue.removefromQueue()
+        queue.add_to_queue(1)
+        queue.add_to_queue(2)
+        queue.add_to_queue(3)
+        queue.remove_from_queue()
         self.assertEqual('3 2', queue.get_elements())
 
 if __name__ == '__main__':

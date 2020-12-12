@@ -43,9 +43,9 @@ class QueueViewModel:
             self.set_leave_btn_disabled()
 
     def arrive_btn_clicked(self):
-        self.queue.addToQueue(self.input_info)
+        self.queue.add_to_queue(self.input_info)
         self.arrived_info = self.queue.get_elements()
 
     def leave_btn_clicked(self):
-        self.queue.removefromQueue()
+        self.queue.remove_from_queue()
         self.arrived_info = self.queue.get_elements()
