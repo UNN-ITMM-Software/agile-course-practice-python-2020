@@ -28,7 +28,7 @@ class TestVectorMetricsViewModel(unittest.TestCase):
 
     def test_error_message_on_incorrect_value(self):
         self.viewmodel.set_y('!')
-        self.assertEqual('Error: Incorrect expression, only list notations supported',
+        self.assertEqual('Error: Incorrect expression, only list of float or int values supported',
                          self.viewmodel.get_error_message())
 
     def test_error_message_on_incorrect_type(self):

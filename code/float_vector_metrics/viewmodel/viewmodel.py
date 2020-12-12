@@ -33,7 +33,7 @@ class VectorMetricsViewModel:
                 self.button_state = "disabled"
                 return False
         except Exception as exp:
-            self.error_msg = "Error: Incorrect expression, only list notations supported"
+            self.error_msg = "Error: Incorrect expression, only list of float or int values supported"
             self.button_state = "disabled"
             return False
 
@@ -68,7 +68,7 @@ class VectorMetricsViewModel:
 
     def set_metric(self, value):
         self.metric = self.METRICS.get(value, None)
-        if self.metric is not None:
+        if self.metric is not None and self.error_msg == '':
             self.button_state = 'active'
 
     def compute(self):

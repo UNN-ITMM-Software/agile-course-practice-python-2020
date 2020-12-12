@@ -49,8 +49,11 @@ class GUI(ttk.Frame):
 
     def mvvm_bind(self):
         x_set = self.view_model.set_x(self.x_vector.get())
+        if not x_set:
+            self.view_model.set_button_state('disabled')
+            return
         y_set = self.view_model.set_y(self.y_vector.get())
-        if not x_set or not y_set:
+        if not y_set:
             self.view_model.set_button_state('disabled')
 
     def mvvm_back_bind(self):
