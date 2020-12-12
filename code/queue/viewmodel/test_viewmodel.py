@@ -24,7 +24,7 @@ class TestQueueViewModel(unittest.TestCase):
 
     def test_work_correctly_with_arrived_info(self):
         self.view_model.set_input_info('power')
-        self.view_model.arrive_btn_state()
+        self.view_model.arrive_btn_clicked()
         self.assertEqual('power', self.view_model.get_arrived_info())
 
     def test_work_correctly_with_left_info(self):
