@@ -5,15 +5,19 @@ class StatisticsViewModel:
     def __init__(self):
         self.instr = ''
         self.answer = ''
-        self.journal = Register([])
         self.set_btn_disabled()
-        self.marks1 = ([])
-        self.marks2 = ([])
-        self.marks3 = ([])
+        self.marks1 = []
+        self.marks2 = []
+        self.marks3 = []
         self.txt_from_stud1_txt = ''
         self.txt_from_stud2_txt = ''
         self.txt_from_stud3_txt = ''
-        self.count_active_student_textboxes = 1
+        self.count_of_losers = 0
+        self.count_of_students_who_successfully_pass = 0
+        self.count_of_excellent = 0
+        self.answer_of_losers = 0
+        self.answer_of_students_who_successfully_pass = 0
+        self.answer_of_excellent = 0
 
     def get_button_convert_state(self):
         return self.button_convert_state
@@ -25,33 +29,30 @@ class StatisticsViewModel:
         self.button_convert_state = 'disabled'
 
     def validate_text(self):
-        journal = Register([])
-        if self.count_active_student_textboxes >= 1:
-            try:
-                self.marks1 = self.parser_marks(self.txt_from_stud1_txt)
-                journal.add_new_student(self.marks1)
-            except:
-                self.set_btn_disabled()
-            else:
-                self.set_btn_enabled()
+        try:
+            self.marks1 = self.parser_marks(self.txt_from_stud1_txt)
+            stud1 = StudentMarks(self.marks1)
+            self.marks2 = self.parser_marks(self.txt_from_stud2_txt)
+            stud2 = StudentMarks(self.marks2)
+            self.marks3 = self.parser_marks(self.txt_from_stud3_txt)
+            stud3 = StudentMarks(self.marks3)
+        except:
+            self.set_btn_disabled()
+        else:
+            self.set_btn_enabled()
+            journal = Register([stud1, stud2, stud3])
+            self.count_of_losers = journal.count_of_losers()
+            self.count_of_students_who_successfully_pass = journal.count_of_students_who_successfully_pass()
+            self.count_of_excellent = journal.count_of_excellent()
 
-        if self.count_active_student_textboxes >= 2:
-            try:
-                self.marks2 = self.parser_marks(self.txt_from_stud2_txt)
-                journal.add_new_student(self.marks2)
-            except:
-                self.set_btn_disabled()
-            else:
-                self.set_btn_enabled()
+    def get_count_of_losers(self):
+        return self.count_of_losers
 
-        if self.count_active_student_textboxes >= 3:
-            try:
-                self.marks3 = self.parser_marks(self.txt_from_stud3_txt)
-                journal.add_new_student(self.marks3)
-            except:
-                self.set_btn_disabled()
-            else:
-                self.set_btn_enabled()            
+    def get_count_of_students_who_successfully_pass(self):
+        return self.count_of_students_who_successfully_pass
+
+    def get_count_of_excellent(self):
+        return self.count_of_excellent
 
     def set_instr(self, stud1_txt, stud2_txt, stud3_txt):
         self.txt_from_stud1_txt = stud1_txt
@@ -65,14 +66,34 @@ class StatisticsViewModel:
     def get_stud1_txt(self):
         return self.txt_from_stud1_txt
 
-    def set_answer(self, answer_str):
-        self.answer = self.journal.count_of_losers()
+    def get_stud2_txt(self):
+        return self.txt_from_stud2_txt
 
-    def get_answer(self):
-        return self.answer
+    def get_stud3_txt(self):
+        return self.txt_from_stud3_txt
+
+    def set_answer1(self, answer_str):
+        self.answer_of_losers = self.count_of_losers
+
+    def set_answer2(self, answer_str):
+        self.answer_of_students_who_successfully_pass = self.count_of_students_who_successfully_pass
+
+    def set_answer3(self, answer_str):
+        self.answer_of_excellent = self.count_of_excellent
+
+    def get_answer1(self):
+        return self.answer_of_losers
+
+    def get_answer2(self):
+        return self.answer_of_students_who_successfully_pass
+
+    def get_answer3(self):
+        return self.answer_of_excellent
 
     def click_button(self):
-        self.set_answer(self.instr)
+        self.set_answer1(self.instr)
+        self.set_answer2(self.instr)
+        self.set_answer3(self.instr)
 
     def parser_marks(self, string):
         marks_str = string.split()
