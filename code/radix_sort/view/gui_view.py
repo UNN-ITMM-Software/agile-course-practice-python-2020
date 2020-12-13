@@ -1,5 +1,5 @@
 import tkinter as tk
-from radix_sort.view.view.gui_view_model import RadixSortViewModel
+from radix_sort.view_model.gui_view_model import RadixSortViewModel
 
 
 class Application(tk.Frame):

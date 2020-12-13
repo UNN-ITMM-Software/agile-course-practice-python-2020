@@ -1,5 +1,5 @@
 import unittest as ut
-from radix_sort.view.gui_view_model import RadixSortViewModel
+from radix_sort.view_model.gui_view_model import RadixSortViewModel
 
 
 class MyTestCase(ut.TestCase):
