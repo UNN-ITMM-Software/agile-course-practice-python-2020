@@ -3,8 +3,6 @@ from statistics.model.studentmarks import StudentMarks, Register
 
 class StatisticsViewModel:
     def __init__(self):
-        self.instr = ''
-        self.answer = ''
         self.set_btn_disabled()
         self.marks1 = []
         self.marks2 = []
@@ -45,23 +43,11 @@ class StatisticsViewModel:
             self.count_of_students_who_successfully_pass = journal.count_of_students_who_successfully_pass()
             self.count_of_excellent = journal.count_of_excellent()
 
-    def get_count_of_losers(self):
-        return self.count_of_losers
-
-    def get_count_of_students_who_successfully_pass(self):
-        return self.count_of_students_who_successfully_pass
-
-    def get_count_of_excellent(self):
-        return self.count_of_excellent
-
     def set_instr(self, stud1_txt, stud2_txt, stud3_txt):
         self.txt_from_stud1_txt = stud1_txt
         self.txt_from_stud2_txt = stud2_txt
         self.txt_from_stud3_txt = stud3_txt
         self.validate_text()
-
-    def get_instr(self):
-        return self.instr
 
     def get_stud1_txt(self):
         return self.txt_from_stud1_txt
@@ -72,28 +58,28 @@ class StatisticsViewModel:
     def get_stud3_txt(self):
         return self.txt_from_stud3_txt
 
-    def set_answer1(self, answer_str):
+    def set_answer_losers(self):
         self.answer_of_losers = self.count_of_losers
 
-    def set_answer2(self, answer_str):
+    def set_answer_successfully(self):
         self.answer_of_students_who_successfully_pass = self.count_of_students_who_successfully_pass
 
-    def set_answer3(self, answer_str):
+    def set_answer_excellent(self):
         self.answer_of_excellent = self.count_of_excellent
 
-    def get_answer1(self):
+    def get_answer_losers(self):
         return self.answer_of_losers
 
-    def get_answer2(self):
+    def get_answer_successfully(self):
         return self.answer_of_students_who_successfully_pass
 
-    def get_answer3(self):
+    def get_answer_excellent(self):
         return self.answer_of_excellent
 
     def click_button(self):
-        self.set_answer1(self.instr)
-        self.set_answer2(self.instr)
-        self.set_answer3(self.instr)
+        self.set_answer_losers()
+        self.set_answer_successfully()
+        self.set_answer_excellent()
 
     def parser_marks(self, string):
         marks_str = string.split()

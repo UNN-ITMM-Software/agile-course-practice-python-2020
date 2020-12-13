@@ -43,20 +43,20 @@ class GuiView(ttk.Frame):
         self.count_of_losers_label = ttk.Label(self, text="Количество двоечников: ")
         self.count_of_losers_label.grid(row=5, column=0, sticky=self.default_sticky)
 
-        self.result_label1 = ttk.Label(self, text="")
-        self.result_label1.grid(row=5, column=1, sticky=self.default_sticky)
-
-        self.count_of_students_who_successfully_pass_label = ttk.Label(self, text="Количество хорошистов: ")
-        self.count_of_students_who_successfully_pass_label.grid(row=6, column=0, sticky=self.default_sticky)
-
-        self.result_label2 = ttk.Label(self, text="")
-        self.result_label2.grid(row=6, column=1, sticky=self.default_sticky)
+        self.result_of_losers_label = ttk.Label(self, text="")
+        self.result_of_losers_label.grid(row=5, column=1, sticky=self.default_sticky)
 
         self.count_of_excellent_label = ttk.Label(self, text="Количество отличников: ")
-        self.count_of_excellent_label.grid(row=7, column=0, sticky=self.default_sticky)
+        self.count_of_excellent_label.grid(row=6, column=0, sticky=self.default_sticky)
 
-        self.result_label3 = ttk.Label(self, text="")
-        self.result_label3.grid(row=7, column=1, sticky=self.default_sticky)
+        self.result_of_excellent_label = ttk.Label(self, text="")
+        self.result_of_excellent_label.grid(row=6, column=1, sticky=self.default_sticky)
+
+        self.count_of_students_who_successfully_pass_label = ttk.Label(self, text="Количество сдавших: ")
+        self.count_of_students_who_successfully_pass_label.grid(row=7, column=0, sticky=self.default_sticky)
+
+        self.result_successfully_label = ttk.Label(self, text="")
+        self.result_successfully_label.grid(row=7, column=1, sticky=self.default_sticky)
 
         self.bind_events()
         self.mvvm_back_bind()
@@ -74,9 +74,9 @@ class GuiView(ttk.Frame):
         self.stud3_txt.delete(1.0, tkinter.END)
         self.stud3_txt.insert(tkinter.END, self.viewmodel.get_stud3_txt())
 
-        self.result_label1.config(text=self.viewmodel.get_answer1())
-        self.result_label2.config(text=self.viewmodel.get_answer2())
-        self.result_label3.config(text=self.viewmodel.get_answer3())
+        self.result_of_losers_label.config(text=self.viewmodel.get_answer_losers())
+        self.result_successfully_label.config(text=self.viewmodel.get_answer_successfully())
+        self.result_of_excellent_label.config(text=self.viewmodel.get_answer_excellent())
         self.calc_button.config(state=self.viewmodel.get_button_convert_state())
 
     def button_clicked(self, event):

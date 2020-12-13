@@ -24,10 +24,20 @@ class TestStatisticsViewModel(unittest.TestCase):
         instr = self.view_model.get_stud1_txt()
         self.assertEqual("5 5", instr)
 
-    def test_can_get_answer(self):
+    def test_can_get_answer1(self):
         self.view_model.set_instr("5 5", "5 5", "5 5")
         self.view_model.click_button()
-        self.assertEqual(0, self.view_model.get_answer1())
+        self.assertEqual(0, self.view_model.get_answer_losers())
+
+    def test_can_get_answer2(self):
+        self.view_model.set_instr("5 5", "5 5", "5 5")
+        self.view_model.click_button()
+        self.assertEqual(3, self.view_model.get_answer_successfully())
+
+    def test_can_get_answer3(self):
+        self.view_model.set_instr("5 5", "5 5", "5 5")
+        self.view_model.click_button()
+        self.assertEqual(3, self.view_model.get_answer_excellent())
 
     def test_add_empty_string_is_0(self):
         self.view_model.set_instr("", "", "")
