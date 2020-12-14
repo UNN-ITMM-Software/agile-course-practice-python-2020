@@ -1,6 +1,17 @@
 from bisymmetric_matrix.model.bisymmetric import BisymmetricMatrix
 
 
+def is_correct_vector_size(size):
+    k = 1
+    while k ** 2 <= size:
+        if size == k * k:
+            return 2 * k - 1
+        if size == k * (k + 1):
+            return 2 * k
+        k += 1
+    return -1
+
+
 class BisymmetricMatrixViewModel:
     def __init__(self):
         self.vector = []
@@ -36,9 +47,16 @@ class BisymmetricMatrixViewModel:
     def set_vector(self, input_vector):
         if input_vector == '':
             self.set_button_disabled()
+        elif not input_vector.isdigit():
+            self.set_button_disabled()
+        elif is_correct_vector_size(len(input_vector)) == -1:
+            self.set_button_disabled()
         else:
             self.vector = input_vector
             self.set_button_enabled()
+
+    def get_input_vector(self):
+        return self.vector
 
     def set_matrix_size(self, value):
         self.matrix_size = value
@@ -48,15 +66,20 @@ class BisymmetricMatrixViewModel:
         if self.button_convert_state == 'normal':
             matrix = BisymmetricMatrix()
             if self.matrix_size == '2x2':
-                self.set_created_random_matrix(self.convert_matrix_in_str1(matrix.generate_random_bisym_matrix(2)))
+                self.set_created_random_matrix(
+                    self.convert_matrix_in_str1(matrix.generate_random_bisymmetric_matrix(2)))
             elif self.matrix_size == '3x3':
-                self.set_created_random_matrix(self.convert_matrix_in_str1(matrix.generate_random_bisym_matrix(3)))
+                self.set_created_random_matrix(
+                    self.convert_matrix_in_str1(matrix.generate_random_bisymmetric_matrix(3)))
             elif self.matrix_size == '4x4':
-                self.set_created_random_matrix(self.convert_matrix_in_str1(matrix.generate_random_bisym_matrix(4)))
+                self.set_created_random_matrix(
+                    self.convert_matrix_in_str1(matrix.generate_random_bisymmetric_matrix(4)))
             elif self.matrix_size == '5x5':
-                self.set_created_random_matrix(self.convert_matrix_in_str1(matrix.generate_random_bisym_matrix(5)))
+                self.set_created_random_matrix(
+                    self.convert_matrix_in_str1(matrix.generate_random_bisymmetric_matrix(5)))
             elif self.matrix_size == '6x6':
-                self.set_created_random_matrix(self.convert_matrix_in_str1(matrix.generate_random_bisym_matrix(6)))
+                self.set_created_random_matrix(
+                    self.convert_matrix_in_str1(matrix.generate_random_bisymmetric_matrix(6)))
 
     def convert_matrix_in_str1(self, matrix: list):
         for i in range(int(self.matrix_size[0])):
@@ -67,7 +90,7 @@ class BisymmetricMatrixViewModel:
 
     def convert_matrix_in_str2(self, matrix: list):
         for i in range(len(matrix)):
-            for j in range(len(matrix[0])):
+            for j in range(len(matrix)):
                 self.str_matrix_from_vector += str(matrix[i][j])
             self.str_matrix_from_vector += '\n'
         return self.str_matrix_from_vector
@@ -76,7 +99,8 @@ class BisymmetricMatrixViewModel:
         if self.button_convert_state == 'normal':
             matrix = BisymmetricMatrix()
             parametr = self.convert_str_vector_to_list(self.vector)
-            self.set_created_matrix_from_vector(self.convert_matrix_in_str2(matrix.generate_bisymmetric_matrix_by_vector(parametr)))
+            self.set_created_matrix_from_vector(
+                self.convert_matrix_in_str2(matrix.generate_bisymmetric_matrix_by_vector(parametr)))
 
     def convert_str_vector_to_list(self, input_str_vector):
         self.vector_list = [int(x) for x in input_str_vector]

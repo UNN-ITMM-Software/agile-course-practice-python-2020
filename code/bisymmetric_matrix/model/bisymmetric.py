@@ -74,7 +74,7 @@ class BisymmetricMatrix:
             return self.is_symmetric() and self.is_persymmetric()
         return False
 
-    def generate_random_bisym_matrix(self, size: int):
+    def generate_random_bisymmetric_matrix(self, size: int):
         index_cor = 0
         for i in range(size):
             self.mtrx.append([])
