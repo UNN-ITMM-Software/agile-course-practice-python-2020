@@ -21,7 +21,8 @@ class GUIView(object):
         self.frame2 = tk.LabelFrame(self.root, text='Создание бисимметричной матрицы из заданного вектора',
                                     bg='#619eb3', bd=5)
         self.label1 = tk.Label(self.frame1, text='Выбор размера матрицы')
-        self.select_size_of_matrix = ttk.Combobox(self.frame1, state="readonly", values=self.value_of_combobox)
+        self.select_size_of_matrix = ttk.Combobox(self.frame1, state="readonly",
+                                                  values=self.value_of_combobox)
         self.button1 = tk.Button(self.frame1, text='Создать')
         self.result1 = tk.Label(self.frame1, height=10, width=30)
         self.label2 = tk.Label(self.frame2, text='Ввод вектора')
