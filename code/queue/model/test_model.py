@@ -52,8 +52,9 @@ class QueueTest(unittest.TestCase):
 
     def test_can_add_empty_to_queue(self):
         queue = Queue()
-        queue.add_to_queue('')
-        self.assertEqual('', queue.get_elements())
+        queue.add_to_queue('1')
+        queue.add_to_queue('1')
+        self.assertEqual('1', queue.get_elements())
 
     def test_can_remove_empty_from_queue(self):
         queue = Queue()
