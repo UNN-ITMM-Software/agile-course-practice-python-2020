@@ -82,8 +82,6 @@ class GUIView(object):
         self.mvvm_back_bind_from_vector()
 
     def mvvm_back_bind_from_vector(self):
-        # self.input_vector.delete(1.0, tk.END)
-        # self.input_vector.insert(tk.END, self.view_model.get_input_vector())
         self.button2.config(state=self.view_model.get_button_convert_state())
         self.result2.config(text=self.view_model.get_created_matrix_from_vector())
 
