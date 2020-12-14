@@ -50,5 +50,18 @@ class QueueTest(unittest.TestCase):
         queue.remove_from_queue()
         self.assertEqual('wall 13', queue.get_elements())
 
-if __name__ == '__main__':
-    unittest.main()
+    def test_can_add_empty_to_queue(self):
+        queue = Queue()
+        queue.add_to_queue('')
+        self.assertEqual('', queue.get_elements())
+
+    def test_can_remove_empty_from_queue(self):
+        queue = Queue()
+        queue.remove_from_queue()
+        self.assertEqual('', queue.get_elements())
+
+    def test_can_get_queue_size(self):
+        queue = Queue()
+        queue.add_to_queue('anxiety')
+        queue.size()
+        self.assertTrue(queue.size() > 0)

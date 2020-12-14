@@ -28,12 +28,20 @@ class TestQueueViewModel(unittest.TestCase):
         self.assertEqual('power', self.view_model.get_arrived_info())
 
     def test_work_correctly_with_left_info(self):
-        queue = Queue()
-        queue.add_to_queue(1)
-        queue.add_to_queue(2)
-        queue.add_to_queue(3)
-        queue.remove_from_queue()
-        self.assertEqual('3 2', queue.get_elements())
+        self.view_model.set_input_info('replace')
+        self.view_model.arrive_btn_clicked()
+        self.view_model.leave_btn_clicked()
+        self.assertEqual('', self.view_model.get_arrived_info())
 
-if __name__ == '__main__':
-    unittest.main()
+    def test_are_there_no_arrived_info(self):
+        arrived_info = self.view_model.get_arrived_info()
+        self.assertFalse(self.view_model.set_arrived_info(arrived_info))
+
+    def test_are_there_any_arrived_info(self):
+        self.view_model.set_input_info('power')
+        self.view_model.arrive_btn_clicked()
+        self.view_model.get_arrived_info()
+        arrived_info = self.view_model.get_arrived_info()
+        self.view_model.set_arrived_info(arrived_info)
+        self.assertEqual('normal', self.view_model.get_arrive_btn_state())
+        self.assertEqual('normal', self.view_model.get_leave_btn_state())

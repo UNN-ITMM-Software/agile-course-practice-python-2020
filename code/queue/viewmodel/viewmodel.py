@@ -43,6 +43,7 @@ class QueueViewModel:
             self.set_leave_btn_disabled()
 
     def set_arrived_info(self, arrived_info):
+        self.arrived_info = self.queue.get_elements()
         if self.queue.size() > 0:
             self.set_leave_btn_enabled()
         else:
