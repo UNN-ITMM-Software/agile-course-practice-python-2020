@@ -1,6 +1,6 @@
 import unittest
 
-from bisymmetric.viewmodel.viewmodel import BisymmetricMatrixViewModel
+from bisymmetric_matrix.viewmodel.viewmodel import BisymmetricMatrixViewModel
 
 
 class TestCreateBisymmetricMatrixFromVector(unittest.TestCase):
