@@ -2,6 +2,7 @@
 import unittest
 
 from lcd_digits.view_model.view_model import LcdDigitViewModel
+from lcd_digits.model.lcd_digits_model import LcdDigitsModel
 
 
 class TestLcdDigitViewModel(unittest.TestCase):
@@ -38,3 +39,12 @@ class TestLcdDigitViewModel(unittest.TestCase):
         self.view_model.set_digits('100')
         self.view_model.set_digits('')
         self.assertEqual('disabled', self.view_model.get_button_convert_state())
+
+    def test_get_lcd_digits(self):
+        self.view_model.set_digits('1')
+        self.view_model.click_convert()
+        self.assertEqual('... \n..| \n..| \n', self.view_model.get_msg_text())
+
+    def test_get_string_from_lcd_digits(self):
+        lcd_digits = LcdDigitsModel('1')
+        self.assertEqual('... \n..| \n..| \n', LcdDigitViewModel.get_string(lcd_digits.lcd_numbers))
