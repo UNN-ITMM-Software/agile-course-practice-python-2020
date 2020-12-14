@@ -1,11 +1,9 @@
-from enum import Enum
-
-
-class Operation(Enum):
-    NONE = 0
-    OR = 1
-    AND = 2
-    XOR = 3
-    EQ = 4
-    NEQ = 5
-    INVERT = 6
+class Operation:
+    NONE = 'NONE'
+    OR = 'OR'
+    AND = 'AND'
+    XOR = 'XOR'
+    EQ = 'EQ'
+    NEQ = 'NEQ'
+    INVERT = 'INVERT'
+    ALL = [NONE, OR, AND, XOR, EQ, NEQ, INVERT]
