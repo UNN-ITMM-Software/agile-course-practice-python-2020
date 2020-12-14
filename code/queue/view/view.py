@@ -52,6 +52,7 @@ class QueueView:
         self.mvvm_bind()
         self.view_model.arrive_btn_clicked()
         self.mvvm_arrive_bind()
+        self.mvvm_leave_bind()
 
     def leave_btn_clicked(self, event):
         self.mvvm_bind()
