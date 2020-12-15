@@ -53,5 +53,5 @@ class TestSortingViewModel(unittest.TestCase):
 
     def test_correct_sorting_float_numbers(self):
         self.view_model.set_input_array('0.25 3.2 5.4 5')
-        view_model.sort_btn_clicked()
+        self.view_model.sort_btn_clicked()
         self.assertEqual('0.25 3.2 5 5.4', self.view_model.get_sorted_array())
