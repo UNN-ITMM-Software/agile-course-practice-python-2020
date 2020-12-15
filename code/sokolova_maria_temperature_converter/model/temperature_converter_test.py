@@ -1,7 +1,7 @@
 import unittest
 
-from sokolova_maria_lab_1.temperature_converter import TemperatureConverter
-from sokolova_maria_lab_1.temperature_converter import get_float_value
+from sokolova_maria_temperature_converter.model.temperature_converter import TemperatureConverter
+from sokolova_maria_temperature_converter.model.temperature_converter import get_float_value
 
 
 class TemperatureConverterTest(unittest.TestCase):
