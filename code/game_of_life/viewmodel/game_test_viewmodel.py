@@ -46,8 +46,11 @@ class TestGameOfLifeViewModel(unittest.TestCase):
     def test_can_remove_column_if_more_than_2_columns(self):
         self.assertEqual('normal', self.view_model.get_remove_column_btn_state(5))
 
-    def test_by_default_field_is_empty(self):
+    def test_by_default_current_field_is_empty(self):
         self.assertEqual([], self.view_model.get_current_color_field())
+
+    def test_by_default_next_field_is_empty(self):
+        self.assertEqual([], self.view_model.get_next_color_field())
 
     def test_when_field_is_set_next_step_btn_is_enabled(self):
         self.view_model.set_current_color_field(fake_default_field_for_tests())
@@ -101,3 +104,33 @@ class TestGameOfLifeViewModel(unittest.TestCase):
         for i in range(2):
             for j in range(2):
                 self.assertEqual(result[i][j]['bg'], self.view_model.next_color_field[i][j]['bg'])
+
+    def test_no_changes_if_try_reduce_2_rows(self):
+        self.view_model.set_number_of_rows(2)
+        self.view_model.clicked_remove('row')
+        self.assertEqual(2, self.view_model.get_number_of_rows())
+
+    def test_no_changes_if_try_reduce_2_columns(self):
+        self.view_model.set_number_of_columns(2)
+        self.view_model.clicked_remove('column')
+        self.assertEqual(2, self.view_model.get_number_of_columns())
+
+    def test_remove_clicked_if_more_2_rows(self):
+        self.view_model.set_number_of_rows(3)
+        self.view_model.clicked_remove('row')
+        self.assertEqual(2, self.view_model.get_number_of_rows())
+
+    def test_remove_clicked_if_more_2_columns(self):
+        self.view_model.set_number_of_columns(11)
+        self.view_model.clicked_remove('column')
+        self.assertEqual(10, self.view_model.get_number_of_columns())
+
+    def test_add_rows_clicked(self):
+        self.view_model.set_number_of_rows(3)
+        self.view_model.clicked_add('row')
+        self.assertEqual(4, self.view_model.get_number_of_rows())
+
+    def test_add_columns_clicked(self):
+        self.view_model.set_number_of_columns(11)
+        self.view_model.clicked_add('column')
+        self.assertEqual(12, self.view_model.get_number_of_columns())
