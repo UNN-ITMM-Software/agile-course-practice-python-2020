@@ -1,6 +1,6 @@
-class ModifyStack:
+class ModifiedStack:
     """
-    Class ModifyStack implements a data structure modified stack
+    Class ModifiedStack implements a data structure modified stack
     Stack works works with int and float only
     The following operations are supported:
     * Insertion O(1)
@@ -40,12 +40,11 @@ class ModifyStack:
         self._min_stack.append(elem)
 
     def _push_one(self, elem):
-        top_elem = self.look_top()
         self._stack.append(elem)
-        if elem < top_elem:
+        if elem < self.find_min():
             self._min_stack.append(elem)
         else:
-            self._min_stack.append(top_elem)
+            self._min_stack.append(self.find_min())
 
     def push(self, val):
         if isinstance(val, list):

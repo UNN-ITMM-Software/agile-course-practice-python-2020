@@ -1,6 +1,6 @@
 import unittest
 
-from sorting.sorting import Sorting
+from sorting.model.sorting import Sorting
 
 FIRST_CASE = [0, 7, 4]
 SECOND_CASE = [0, 45, 1,  8, 2, 4]
