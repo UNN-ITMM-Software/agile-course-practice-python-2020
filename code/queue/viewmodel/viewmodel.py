@@ -34,13 +34,9 @@ class QueueViewModel:
         return self.arrived_info
 
     def set_input_info(self, input_info):
-        try:
-            self.input_info = input_info
-            self.set_arrive_btn_enabled()
-            self.set_leave_btn_enabled()
-        except:
-            self.set_arrive_btn_disabled()
-            self.set_leave_btn_disabled()
+        self.input_info = input_info
+        self.set_arrive_btn_enabled()
+        self.set_leave_btn_enabled()
 
     def set_arrived_info(self, arrived_info):
         self.arrived_info = self.queue.get_elements()
