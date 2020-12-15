@@ -6,4 +6,4 @@ class Operation:
     EQ = 'EQ'
     NEQ = 'NEQ'
     INVERT = 'INVERT'
-    ALL = [NONE, OR, AND, XOR, EQ, NEQ, INVERT]
+    ALL = [OR, AND, XOR, EQ, NEQ, INVERT]

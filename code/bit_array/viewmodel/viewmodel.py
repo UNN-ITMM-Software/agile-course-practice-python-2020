@@ -7,7 +7,7 @@ class BitArrayViewModel:
     def __init__(self):
         self.__left_bit_array = None
         self.__right_bit_array = None
-        self.__operation = Operation.NONE
+        self.__operation = Operation.OR
         self.__result = None
         self.__left_bit_array_enabled = True
 
@@ -31,13 +31,25 @@ class BitArrayViewModel:
     def get_result(self):
         return self.__result
 
+    def clear_result(self):
+        self.__result = None
+
+    def get_result_string(self):
+        if self.__result is None:
+            return ''
+        return self.__result.to_string()[-self.__result.get_length():]
+
     def set_left_bit_array(self, left_bit_array):
         self.__left_bit_array = self.bit_array_from_string(left_bit_array)
 
-    def get_left_bit_array(self):
+    def get_left_bit_array_string(self):
+        if self.__left_bit_array is None:
+            return ''
         return self.__left_bit_array.to_string()[-self.__left_bit_array.get_length():]
 
-    def get_right_bit_array(self):
+    def get_right_bit_array_string(self):
+        if self.__right_bit_array is None:
+            return ''
         return self.__right_bit_array.to_string()[-self.__right_bit_array.get_length():]
 
     def set_right_bit_array(self, right_bit_array):

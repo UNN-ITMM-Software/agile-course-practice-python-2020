@@ -35,7 +35,7 @@ class TestBitArrayViewModel(unittest.TestCase):
 
     def test_default_operation(self):
         view_model = BitArrayViewModel()
-        self.assertEqual(view_model.get_operation(), Operation.NONE)
+        self.assertEqual(view_model.get_operation(), Operation.OR)
 
     def test_set_operation_disable_left_bit_array(self):
         view_model = BitArrayViewModel()
@@ -51,25 +51,25 @@ class TestBitArrayViewModel(unittest.TestCase):
         string = '000110011'
         view_model = BitArrayViewModel()
         view_model.set_left_bit_array(string)
-        self.assertTrue(isinstance(view_model.get_left_bit_array(), str))
+        self.assertTrue(isinstance(view_model.get_left_bit_array_string(), str))
 
     def test_set_right_bit_array(self):
         string = '000110011'
         view_model = BitArrayViewModel()
         view_model.set_right_bit_array(string)
-        self.assertTrue(isinstance(view_model.get_right_bit_array(), str))
+        self.assertTrue(isinstance(view_model.get_right_bit_array_string(), str))
 
     def test_get_left_bit_array(self):
         string = '000110011'
         view_model = BitArrayViewModel()
         view_model.set_left_bit_array(string)
-        self.assertEqual(view_model.get_left_bit_array(), string)
+        self.assertEqual(view_model.get_left_bit_array_string(), string)
 
     def test_get_right_bit_array(self):
         string = '000110011'
         view_model = BitArrayViewModel()
         view_model.set_right_bit_array(string)
-        self.assertEqual(view_model.get_right_bit_array(), string)
+        self.assertEqual(view_model.get_right_bit_array_string(), string)
 
     def test_calculate_and(self):
         left_bit_array_string = '1010111111'
@@ -145,3 +145,21 @@ class TestBitArrayViewModel(unittest.TestCase):
         view_model.set_right_bit_array(right_bit_array_string)
         view_model.calculate()
         self.assertEqual(result, view_model.get_result())
+
+    def test_get_string_result(self):
+        right_bit_array_string = '00000111'
+        view_model = BitArrayViewModel()
+        result = '11111000'
+        view_model.set_operation(Operation.INVERT)
+        view_model.set_right_bit_array(right_bit_array_string)
+        view_model.calculate()
+        self.assertEqual(result, view_model.get_result_string())
+
+    def test_clear_result(self):
+        right_bit_array_string = '00000111'
+        view_model = BitArrayViewModel()
+        view_model.set_operation(Operation.INVERT)
+        view_model.set_right_bit_array(right_bit_array_string)
+        view_model.calculate()
+        view_model.clear_result()
+        self.assertEqual(view_model.get_result(), None)
