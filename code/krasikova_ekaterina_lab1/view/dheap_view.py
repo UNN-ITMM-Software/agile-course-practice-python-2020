@@ -15,8 +15,8 @@ class DHeapView:
 
         self.frame = tk.Frame(self.root)
 
-        self.d_label = tk.Label(self.root, text="D:")
-        self.d = tk.Entry(self.root, width=10)
+        self.entry_param_d_label = tk.Label(self.root, text="D:")
+        self.entry_param_d = tk.Entry(self.root, width=10)
         self.input_data_label = tk.Label(self.root, text="Input data:")
         self.input_data = tk.Entry(self.root, width=60)
         self.create_btn = tk.Button(self.root, text="Create", state='disabled')
@@ -42,8 +42,8 @@ class DHeapView:
 
     def set_weight_to_grid(self):
         self.frame.place(relx=0.2, rely=0.2, relwidth=0.8, relheight=0.8)
-        self.d.grid(row=0, column=1, stick='wens', padx=5, pady=5)
-        self.d_label.grid(row=0, column=0, stick='wens', padx=5, pady=5)
+        self.entry_param_d.grid(row=0, column=1, stick='wens', padx=5, pady=5)
+        self.entry_param_d_label.grid(row=0, column=0, stick='wens', padx=5, pady=5)
         self.input_data_label.grid(row=0, column=2, stick='wens', padx=5, pady=5)
         self.input_data.grid(row=0, column=3, stick='wens', padx=5, pady=5)
         self.create_btn.grid(row=0, column=4, stick='wens', padx=5, pady=5)
@@ -63,7 +63,7 @@ class DHeapView:
         self.decrease_btn.grid(row=4, column=2, stick='wens', padx=5, pady=5)
 
     def bind_events(self):
-        self.d.bind('<KeyRelease>', self.input_data_changed)
+        self.entry_param_d.bind('<KeyRelease>', self.input_data_changed)
         self.input_data.bind('<KeyRelease>', self.input_data_changed)
         self.insert_data.bind('<KeyRelease>', self.insert_data_changed)
         self.delete_data.bind('<KeyRelease>', self.delete_data_changed)
@@ -111,7 +111,7 @@ class DHeapView:
         self.mvvm_decrease_back_bind()
 
     def mvvm_create_bind(self):
-        self.view_model.set_input_data(self.d.get(), self.input_data.get())
+        self.view_model.set_input_data(self.entry_param_d.get(), self.input_data.get())
 
     def mvvm_insert_bind(self):
         self.view_model.set_inserting_elem(self.insert_data.get())
