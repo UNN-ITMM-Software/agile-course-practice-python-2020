@@ -163,3 +163,7 @@ class TestBitArrayViewModel(unittest.TestCase):
         view_model.calculate()
         view_model.clear_result()
         self.assertEqual(view_model.get_result(), None)
+
+    def test_get_empty_result(self):
+        view_model = BitArrayViewModel()
+        self.assertEqual(view_model.get_result_string(), '')

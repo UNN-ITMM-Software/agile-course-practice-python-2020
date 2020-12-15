@@ -12,6 +12,7 @@ class GUIView(ttk.Frame):
         self.view_model.set_operation(Operation.OR)
         ttk.Frame.__init__(self)
         self.master.title("Bit array")
+        self.master.geometry("450x100")
 
         self.left_bit_array_label = ttk.Label(text="Left bit array", font="Arial 16")
         self.left_bit_array_label.grid(row=0, column=0)
@@ -34,38 +35,35 @@ class GUIView(ttk.Frame):
         self.calc_button.grid(row=2, column=0)
 
         self.result_entry = ttk.Label()
-        self.result_entry.grid(row=2, column=1)
+        self.result_entry.grid(row=2, column=1, columnspan=3)
 
         self.bind_events()
         self.mvvm_bind()
 
     def bind_events(self):
-        self.left_bit_array_entry.bind('<KeyRelease>', self.input_changed)
-        self.right_bit_array_entry.bind('<KeyRelease>', self.input_changed)
-        self.operation_combobox.bind('<<ComboboxSelected>>', self.input_changed)
+        self.operation_combobox.bind('<<ComboboxSelected>>', self.operation_changed)
         self.calc_button.bind('<Button-1>', self.calculate_clicked)
 
-    def input_changed(self, event):
-        try:
-            self.mvvm_back_bind()
-        except ValueError:
-            self.result_entry.configure(text='wrong input')
-            return
-        self.mvvm_bind()
+    def operation_changed(self, event):
+        self.view_model.set_operation(self.operation_combobox.get())
+        if self.view_model.get_left_bit_array_enabled():
+            self.left_bit_array_entry.configure(state=tk.NORMAL)
+        else:
+            self.left_bit_array_entry.configure(state=tk.DISABLED)
 
     def calculate_clicked(self, event):
         try:
             self.mvvm_back_bind()
         except ValueError:
-            self.result_entry.configure(text='wrong input')
+            self.result_entry.configure(text='Wrong input. Expected: word of 0 and 1.')
             return
         self.view_model.calculate()
         self.mvvm_bind()
 
     def mvvm_bind(self):
+        self.update_text(self.left_bit_array_entry, self.view_model.get_left_bit_array_string())
         self.operation_combobox.set(self.view_model.get_operation())
-        self.left_bit_array_entry.configure(text=self.view_model.get_left_bit_array_string())
-        self.right_bit_array_entry.configure(text=self.view_model.get_right_bit_array_string())
+        self.update_text(self.right_bit_array_entry, self.view_model.get_right_bit_array_string())
         self.result_entry.configure(text=self.view_model.get_result_string())
         if self.view_model.get_left_bit_array_enabled():
             self.left_bit_array_entry.configure(state=tk.NORMAL)
@@ -77,3 +75,8 @@ class GUIView(ttk.Frame):
         self.view_model.set_operation(self.operation_combobox.get())
         self.view_model.set_left_bit_array(self.left_bit_array_entry.get())
         self.view_model.set_right_bit_array(self.right_bit_array_entry.get())
+
+    @staticmethod
+    def update_text(obj, text):
+        obj.delete(0, tk.END)
+        obj.insert(0, text)
