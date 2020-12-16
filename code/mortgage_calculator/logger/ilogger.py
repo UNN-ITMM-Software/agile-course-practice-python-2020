@@ -6,4 +6,3 @@ class ILogger(object):
     # abstractmethod
     def get_log(self):
         raise NotImplementedError
-

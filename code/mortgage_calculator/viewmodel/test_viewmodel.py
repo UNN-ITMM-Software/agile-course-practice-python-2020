@@ -234,7 +234,7 @@ class TestMortgageLogger(unittest.TestCase):
                "Set monthly state: disabled\nSet expected state: disabled\n" \
                "Set overpaid state: disabled\nSet monthly state: enabled\n" \
                "Set expected state: enabled\nSet overpaid state: enabled\n" \
-               f"Set {first_state} state: enabled\nClick calculate {second_state}"
+               "Set %s state: enabled\nClick calculate %s" % (first_state, second_state)
 
     def _set_init_values(self):
         self.view_model.set_amount('1')

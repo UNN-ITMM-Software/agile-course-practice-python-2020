@@ -41,21 +41,21 @@ class MortgageViewModel:
         return self.button_calculate_monthly_payment_state
 
     def set_button_calculate_monthly_payment_state(self, state):
-        self.logger.log(f"Set monthly state: {state}")
+        self.logger.log("Set monthly state: %s" % state)
         self.button_calculate_monthly_payment_state = state
 
     def get_button_calculate_expected_term_state(self):
         return self.button_calculate_expected_term_state
 
     def set_button_calculate_expected_term_state(self, state):
-        self.logger.log(f"Set expected state: {state}")
+        self.logger.log("Set expected state: %s" % state)
         self.button_calculate_expected_term_state = state
 
     def get_button_calculate_overpaid_amount_state(self):
         return self.button_calculate_overpaid_amount_state
 
     def set_button_calculate_overpaid_amount_state(self, state):
-        self.logger.log(f"Set overpaid state: {state}")
+        self.logger.log("Set overpaid state: %s" % state)
         self.button_calculate_overpaid_amount_state = state
 
     def get_amount(self):
@@ -69,7 +69,7 @@ class MortgageViewModel:
         return self.initial_payment
 
     def set_initial_payment(self, value):
-        self.logger.log(f"Set initial payment: {value}")
+        self.logger.log("Set initial payment: %s" % value)
         self.initial_payment = value
         self.__check_numbers()
 
