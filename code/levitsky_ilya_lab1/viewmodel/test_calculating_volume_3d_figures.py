@@ -3,7 +3,7 @@ import unittest
 from levitsky_ilya_lab1.viewmodel.viewmodel import VolumeViewModel
 
 
-class MyTest(unittest.TestCase):
+class TestVolumeViewModel(unittest.TestCase):
 
     def test_default_button_is_disable(self):
         model = VolumeViewModel()
