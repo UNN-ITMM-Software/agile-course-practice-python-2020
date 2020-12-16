@@ -1,5 +1,5 @@
 import unittest
-from vector_3d.vector_3d import Vector3d
+from vector_3d.model.vector_3d import Vector3d
 
 
 class TestVector3d(unittest.TestCase):
@@ -138,7 +138,7 @@ class TestVector3d(unittest.TestCase):
         vec1 = Vector3d(1.0, 2.0, 3.0)
         vec2 = Vector3d(3.0, 2.0, 1.0)
         vector_product = vec1.vector_product(vec2.x, vec2.y, vec2.z)
-        vec_params = [-4.0, -8.0, -4.0]
+        vec_params = [-4.0, 8.0, -4.0]
         for val1, val2 in zip(vector_product, vec_params):
             self.assertAlmostEqual(val1, val2, 0)
 
@@ -146,7 +146,7 @@ class TestVector3d(unittest.TestCase):
         vec1 = Vector3d(-4.3, 2.5, -3.0)
         vec2 = Vector3d(3.6, 2.0, -6.6)
         vector_product = vec1.vector_product(vec2.x, vec2.y, vec2.z)
-        vec_params = [-10.5, 39.18, -17.6]
+        vec_params = [-10.5, -39.18, -17.6]
         for val1, val2 in zip(vector_product, vec_params):
             self.assertAlmostEqual(val1, val2, 2)
 
