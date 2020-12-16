@@ -31,7 +31,7 @@ class SortingViewModel:
             self.input_array = input_array
 
     def set_sort_btn_clicked_ok(self):
-        self.sort_btn_clicked = 'Ok'
+        self.sort_btn_clicked = 'OK'
 
     def set_sort_btn_clicked_error(self):
         self.sort_btn_clicked = 'Error'
