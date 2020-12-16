@@ -1,6 +1,7 @@
 import unittest
 
 from harry_potter_store.viewmodel.viewmodel import HPStoreViewModel
+from harry_potter_store.logger.fakelogger import FakeLogger
 
 
 class TestHPStoreViewModel(unittest.TestCase):
@@ -83,3 +84,29 @@ class TestHPStoreViewModel(unittest.TestCase):
         amounts_dict = {0: 1, 1: 1, 2: 'test'}
         self.view_model.set_books_amount(amounts_dict)
         self.assertEqual({0: 1, 1: 1}, self.view_model.get_books_amount())
+
+
+class TestViewModelFakeLogging(unittest.TestCase):
+    def setUp(self):
+        self.view_model = HPStoreViewModel(FakeLogger())
+
+    def test_logging_init(self):
+        self.assertEqual('Welcome to Harry Potter Store', self.view_model.logger.get_last_message())
+
+    def test_logging_changing_first_fraction(self):
+        self.view_model.set_books_amount({0: '1', 1: '1', 2: '1', 3: '1', 4: '1'})
+        self.assertEqual('For book #4 set amount 1', self.view_model.logger.get_last_message())
+
+    def test_logging_calculate_price(self):
+        expected_messages = ['Welcome to Harry Potter Store',
+                             'For book #0 set amount 1',
+                             'For book #1 set amount 1',
+                             'For book #2 set amount 1',
+                             'For book #3 set amount 1',
+                             'For book #4 set amount 1',
+                             'Correct price calculation!']
+
+        self.view_model.set_books_amount({0: '1', 1: '1', 2: '1', 3: '1', 4: '1'})
+        self.view_model.click_calculate()
+
+        self.assertEqual(expected_messages, self.view_model.logger.get_log_messages())
