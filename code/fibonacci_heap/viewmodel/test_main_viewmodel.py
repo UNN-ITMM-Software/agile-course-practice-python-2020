@@ -3,7 +3,7 @@ import unittest
 from fibonacci_heap.viewmodel.main_viewmodel import HeapViewModel, State, NodeOperations
 
 
-class TestFractionCalculatorViewModel(unittest.TestCase):
+class TestFibonacciHeapViewModel(unittest.TestCase):
 
     def setUp(self):
         self.view_model = HeapViewModel()
