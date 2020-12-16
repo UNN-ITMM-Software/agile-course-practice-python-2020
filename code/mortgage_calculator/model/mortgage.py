@@ -1,6 +1,6 @@
 import math
 
-from mortgage_calculator.term_types import TermType
+from mortgage_calculator.model.term_types import TermType
 
 
 """
