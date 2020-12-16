@@ -20,7 +20,7 @@ class SortingViewModel:
     def __init__(self):
         self.input_array = ''
         self.sorted_array = ''
-        sort_btn_clicked = ''
+        self.sort_btn_clicked = ''
 
     def get_input_array(self):
         return self.input_array
