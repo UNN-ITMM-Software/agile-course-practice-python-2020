@@ -1,6 +1,6 @@
 import unittest
 
-from radix_sort.radix_sort import RadixSort
+from radix_sort.model.radix_sort import RadixSort
 from random import randint
 
 

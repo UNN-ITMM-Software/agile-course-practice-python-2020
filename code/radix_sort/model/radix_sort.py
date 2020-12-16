@@ -2,7 +2,7 @@ from itertools import chain
 from math import log10
 
 
-class RadixSort():
+class RadixSort:
     def __init__(self, arr):
         if not isinstance(arr, list):
             raise TypeError("%s is not a list" % type(arr))
