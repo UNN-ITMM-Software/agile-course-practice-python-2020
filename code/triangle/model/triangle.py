@@ -41,7 +41,7 @@ class Triangle(object):
             raise TriangleError('This triangle is invalid! Check it!')
         return self.get_ab() + self.get_bc() + self.get_ca()
 
-    def get_circumcircle_radius(self):  # описанная окружность
+    def get_circumcircle_radius(self):  # описаннaя окружность
         if not self.is_triangle():
             raise TriangleError('This triangle is invalid! Check it!')
         return self.get_ab() * self.get_bc() * self.get_ca() / (4 * Triangle.get_area(self))
@@ -78,7 +78,8 @@ class Triangle(object):
     def get_triangle_type_by_sides(self):
         if not self.is_triangle():
             raise TriangleError('This triangle is invalid! Check it!')
-        if (abs(self.get_ab() - self.get_bc()) < 1e-10 and abs(self.get_ab() - self.get_ca()) > 1e-10) or (
+        if (abs(self.get_ab() - self.get_bc()) < 1e-10 and
+            abs(self.get_ab() - self.get_ca()) > 1e-10) or (
                 abs(self.get_bc() - self.get_ca()) < 1e-10 and
                 abs(self.get_ab() - self.get_ca()) > 1e-10) or (
                 abs(self.get_ab() - self.get_ca()) < 1e-10 and
@@ -91,12 +92,12 @@ class Triangle(object):
     def get_triangle_type_by_angles(self):
         if not self.is_triangle():
             raise TriangleError('This triangle is invalid! Check it!')
-        if (self.get_ab() ** 2 + self.get_bc() ** 2 == self.get_ca() ** 2) or (
-                self.get_ab() ** 2 + self.get_ca() ** 2 == self.get_bc() ** 2) or (
-                self.get_ca() ** 2 + self.get_bc() ** 2 == self.get_ab() ** 2):
+        if (abs(self.get_ab() ** 2 + self.get_bc() ** 2 - self.get_ca() ** 2) < 1e-10) or (
+                abs(self.get_ab() ** 2 + self.get_ca() ** 2 - self.get_bc() ** 2) < 1e-10) or (
+                abs(self.get_ca() ** 2 + self.get_bc() ** 2 - self.get_ab() ** 2) < 1e-10):
             return "right"  # прямоугольный
-        elif (self.get_ab() ** 2 + self.get_bc() ** 2 > self.get_ca() ** 2) and (
-                self.get_ab() ** 2 + self.get_ca() ** 2 > self.get_bc() ** 2) and (
-                self.get_ca() ** 2 + self.get_bc() ** 2 > self.get_ab() ** 2):
+        elif (self.get_ab() ** 2 + self.get_bc() ** 2 - self.get_ca() ** 2 > 1e-10) and (
+                self.get_ab() ** 2 + self.get_ca() ** 2 - self.get_bc() ** 2 > 1e-10) and (
+                self.get_ca() ** 2 + self.get_bc() ** 2 - self.get_ab() ** 2 > 1e-10):
             return "acute"  # остроугольный
         return "obtuse"  # тупоугольный
