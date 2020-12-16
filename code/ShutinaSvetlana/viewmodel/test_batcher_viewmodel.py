@@ -50,6 +50,7 @@ class TestSortingViewModel(unittest.TestCase):
 
     def test_correct_input_float_num_check_btn_result(self):
         self.view_model.set_input_array('0.25 3.2 5.4 5')
+        self.view_model.sort_btn_click()
         self.assertEqual('OK', self.view_model.get_sort_btn_clicked_result())
 
     def test_correct_sorting_float_numbers(self):
