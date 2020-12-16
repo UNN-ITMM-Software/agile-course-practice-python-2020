@@ -1,6 +1,7 @@
 import operator
 import numpy as np
 
+from mortgage_calculator.logger.real_logger import Logger
 from mortgage_calculator.model.mortgage import Mortgage
 from mortgage_calculator.model.term_types import TermType
 
@@ -13,7 +14,8 @@ class MortgageViewModel:
     def is_positive_number(number: str) -> bool:
         return number != '' and np.all(list(map(operator.methodcaller("isdigit"), number)))
 
-    def __init__(self):
+    def __init__(self, logger=Logger()):
+        self.logger = logger
         self.error_message = {'amount': '',
                               'initial_payment': '',
                               'rate': '',
@@ -39,18 +41,21 @@ class MortgageViewModel:
         return self.button_calculate_monthly_payment_state
 
     def set_button_calculate_monthly_payment_state(self, state):
+        self.logger.log(f"Set monthly state: {state}")
         self.button_calculate_monthly_payment_state = state
 
     def get_button_calculate_expected_term_state(self):
         return self.button_calculate_expected_term_state
 
     def set_button_calculate_expected_term_state(self, state):
+        self.logger.log(f"Set expected state: {state}")
         self.button_calculate_expected_term_state = state
 
     def get_button_calculate_overpaid_amount_state(self):
         return self.button_calculate_overpaid_amount_state
 
     def set_button_calculate_overpaid_amount_state(self, state):
+        self.logger.log(f"Set overpaid state: {state}")
         self.button_calculate_overpaid_amount_state = state
 
     def get_amount(self):
@@ -64,6 +69,7 @@ class MortgageViewModel:
         return self.initial_payment
 
     def set_initial_payment(self, value):
+        self.logger.log(f"Set initial payment: {value}")
         self.initial_payment = value
         self.__check_numbers()
 
@@ -111,18 +117,21 @@ class MortgageViewModel:
 
     def click_calculate_monthly_payment(self):
         if self.button_calculate_monthly_payment_state != 'disabled':
+            self.logger.log("Click calculate monthly payment")
             mc = self.__get_mortgage_calculator()
             result = mc.calculate_monthly_payment()
             self.click_calculate_monthly_payment_result = str(result)
 
     def click_calculate_expected_term(self):
         if self.button_calculate_expected_term_state != 'disabled':
+            self.logger.log("Click calculate expected term")
             mc = self.__get_mortgage_calculator()
             result = mc.calculate_expected_term()
             self.click_calculate_expected_term_result = str(result)
 
     def click_calculate_overpaid_amount(self):
         if self.button_calculate_overpaid_amount_state != 'disabled':
+            self.logger.log("Click calculate overpaid amount")
             mc = self.__get_mortgage_calculator()
             result = mc.calculate_overpaid_amount()
             self.click_calculate_overpaid_amount_result = str(result)
