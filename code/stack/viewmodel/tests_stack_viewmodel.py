@@ -3,7 +3,7 @@ import unittest
 from stack.viewmodel.stack_viewmodel import StackViewModel
 
 
-class MyTestCase(unittest.TestCase):
+class TestStackViewModel(unittest.TestCase):
     def test_default_enable_input_button(self):
         model = StackViewModel()
         self.assertEqual('disabled', model.is_input_button_enable())
