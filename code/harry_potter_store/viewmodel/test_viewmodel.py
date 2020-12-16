@@ -2,6 +2,7 @@ import unittest
 
 from harry_potter_store.viewmodel.viewmodel import HPStoreViewModel
 from harry_potter_store.logger.fakelogger import FakeLogger
+from harry_potter_store.logger.reallogger import RealLogger
 
 
 class TestHPStoreViewModel(unittest.TestCase):
@@ -110,3 +111,8 @@ class TestViewModelFakeLogging(unittest.TestCase):
         self.view_model.click_calculate()
 
         self.assertEqual(expected_messages, self.view_model.logger.get_log_messages())
+
+
+class TestViewModelRealLogging(TestViewModelFakeLogging):
+    def setUp(self):
+        self.view_model = HPStoreViewModel(RealLogger())

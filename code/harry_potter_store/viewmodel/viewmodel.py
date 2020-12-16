@@ -1,9 +1,12 @@
+import os
+
 from harry_potter_store.src.store import Store
-from harry_potter_store.logger.fakelogger import FakeLogger
+from harry_potter_store.logger.reallogger import RealLogger
 
 
 class HPStoreViewModel:
-    def __init__(self, logger=FakeLogger()):
+    def __init__(self,
+                 logger=RealLogger(os.path.join('..', '..', 'tmp', 'harry_potter_store.log'))):
         self.logger = logger
         self.store = Store()
         self.message_text = ''
