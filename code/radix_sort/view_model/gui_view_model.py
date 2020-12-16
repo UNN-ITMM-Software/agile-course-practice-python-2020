@@ -2,7 +2,7 @@ from radix_sort.model.radix_sort import RadixSort
 
 
 def convert_list_into_string(array: list) -> str:
-    return str(" ".join([str(i) for i in array]))
+    return str(", ".join([str(i) for i in array]))
 
 
 class RadixSortViewModel:
@@ -21,7 +21,7 @@ class RadixSortViewModel:
             result_array = RadixSort(start_array).sort()
             self.output_data = convert_list_into_string(result_array)
         except ValueError:
-            self.output_data = "Please, check correct input data"
+            self.output_data = "Incorrect input!"
 
     def set_input_data(self, data: str):
         if data:
