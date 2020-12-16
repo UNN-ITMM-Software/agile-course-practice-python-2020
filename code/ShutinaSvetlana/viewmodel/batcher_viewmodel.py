@@ -8,6 +8,7 @@ def is_int(value):
     except ValueError:
         return False
 
+
 def is_float(value):
     try:
         float(value)
