@@ -53,6 +53,11 @@ class TestStatisticsViewModel(unittest.TestCase):
         self.view_model.set_instr("", "", "")
         self.assertNotEqual('normal', self.view_model.get_button_convert_state())
 
+    def test_add_empty_string_after_correct_input(self):
+        self.view_model.set_instr("5 5", "5 5", "5 5")
+        self.view_model.set_instr("", "", "")
+        self.assertEqual('disabled', self.view_model.get_button_convert_state())
+
     def test_add_negative_marks(self):
         self.view_model.set_instr("5 5", "-5 -5", "5 5")
         self.assertNotEqual('normal', self.view_model.get_button_convert_state())
