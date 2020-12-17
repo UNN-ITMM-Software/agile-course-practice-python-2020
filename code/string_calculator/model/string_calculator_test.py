@@ -10,7 +10,7 @@ class TestStrCalculatorClass(unittest.TestCase):
 
     def test_add_empty_string_is_0(self):
         strcalc = StrCalculator()
-        result = strcalc.add("0")
+        result = strcalc.add("")
         self.assertEqual(result, 0)
 
     def test_add_string_1(self):
