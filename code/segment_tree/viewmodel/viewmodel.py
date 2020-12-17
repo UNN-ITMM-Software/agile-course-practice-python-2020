@@ -1,9 +1,11 @@
 from segment_tree.model.segment_tree import SegmentTree
+from segment_tree.logger.fakelogger import FakeLogger
 
 
 class SegmentTreeViewModel(object):
 
-    def __init__(self):
+    def __init__(self, logger=FakeLogger()):
+        self.logger = logger
         self.method = None
         self.input_array = None
         self.segment_tree = None
@@ -22,6 +24,8 @@ class SegmentTreeViewModel(object):
         self.buttons = {"build_button_enabled": "disabled",
                         "get_button_enabled": "disabled",
                         "update_button_enabled": "disabled"}
+
+        self.logger.log('Welcome to segment tree application')
 
     def is_build_button_enable(self):
         return self.buttons["build_button_enabled"]
@@ -75,10 +79,12 @@ class SegmentTreeViewModel(object):
             if self.input_size <= 0:
                 self.error_message = 'Incorrect value of input size'
                 self.success_procedure = False
+            self.logger.log('Set tree size = {}'.format(self.input_size))
         except Exception:
             self.clear_output()
             self.error_message = 'Incorrect type of input size'
             self.success_procedure = False
+            self.logger.log('{}'.format(self.error_message))
         self.validate_data_build_button()
 
     def get_input_size(self):
@@ -89,10 +95,12 @@ class SegmentTreeViewModel(object):
             self.input_array = None
             self.input_array = [int(element) for element in input_array]
             self.clear_error_message()
+            self.logger.log('Set array for tree {}'.format(self.input_array))
         except Exception:
             self.clear_output()
             self.error_message = 'Incorrect input array'
             self.success_procedure = False
+            self.logger.log('{}'.format(self.error_message))
         self.validate_data_build_button()
 
     def get_input_array(self):
@@ -100,6 +108,7 @@ class SegmentTreeViewModel(object):
 
     def set_method(self, method):
         self.method = method
+        self.logger.log('Set method {}'.format(self.method))
 
     def get_method(self):
         return self.method
@@ -108,10 +117,12 @@ class SegmentTreeViewModel(object):
         try:
             self.left_border = None
             self.left_border = int(left)
+            self.logger.log('Set left border = {}'.format(self.left_border))
         except Exception:
             self.clear_output()
             self.error_message = 'Incorrect left border'
             self.success_procedure = False
+            self.logger.log('{}'.format(self.error_message))
         self.validate_data_get_button()
 
     def get_left_border(self):
@@ -121,10 +132,12 @@ class SegmentTreeViewModel(object):
         try:
             self.right_border = None
             self.right_border = int(right)
+            self.logger.log('Set right border = {}'.format(self.right_border))
         except Exception:
             self.clear_output()
             self.error_message = 'Incorrect right border'
             self.success_procedure = False
+            self.logger.log('{}'.format(self.error_message))
         self.validate_data_get_button()
 
     def get_right_border(self):
@@ -134,10 +147,12 @@ class SegmentTreeViewModel(object):
         try:
             self.update_index = None
             self.update_index = int(index)
+            self.logger.log('Set update index = {}'.format(self.update_index))
         except Exception:
             self.clear_output()
             self.error_message = 'Incorrect update index'
             self.success_procedure = False
+            self.logger.log('{}'.format(self.error_message))
         self.validate_data_update_button()
 
     def get_update_index(self):
@@ -147,10 +162,12 @@ class SegmentTreeViewModel(object):
         try:
             self.update_value = None
             self.update_value = int(new_value)
+            self.logger.log('Set update value = {}'.format(self.update_value))
         except Exception:
             self.clear_output()
             self.error_message = 'Incorrect update value'
             self.success_procedure = False
+            self.logger.log('{}'.format(self.error_message))
         self.validate_data_update_button()
 
     def get_update_value(self):
@@ -178,10 +195,12 @@ class SegmentTreeViewModel(object):
                 self.calculate_result = self.segment_tree.get(self.left_border, self.right_border)
                 self.success_procedure = True
                 self.clear_error_message()
+                self.logger.log('Cut array for given border, result: {}'.format(self.calculate_result))
             except Exception as except_build:
                 self.clear_output()
                 self.error_message = str(except_build)
                 self.success_procedure = False
+                self.logger.log('{}'.format(self.error_message))
 
     def calculate(self):
         if self.is_build_button_enable() == "normal":
@@ -191,10 +210,12 @@ class SegmentTreeViewModel(object):
                 self.segment_tree.build(self.input_array)
                 self.success_procedure = True
                 self.clear_error_message()
+                self.logger.log('Build segment tree')
             except Exception as except_build:
                 self.clear_output()
                 self.error_message = str(except_build)
                 self.success_procedure = False
+                self.logger.log('{}'.format(self.error_message))
 
     def update(self):
         if self.is_update_button_enable() == "normal":
@@ -203,7 +224,9 @@ class SegmentTreeViewModel(object):
                 self.segment_tree.update(self.update_index, self.update_value)
                 self.success_procedure = True
                 self.clear_error_message()
+                self.logger.log('Element updated')
             except Exception as except_build:
                 self.clear_output()
                 self.error_message = str(except_build)
                 self.success_procedure = False
+                self.logger.log('{}'.format(self.error_message))
