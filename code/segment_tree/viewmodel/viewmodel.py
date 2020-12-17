@@ -1,10 +1,13 @@
+import os
+
+
 from segment_tree.model.segment_tree import SegmentTree
-from segment_tree.logger.fakelogger import FakeLogger
+from segment_tree.logger.reallogger import RealLogger
 
 
 class SegmentTreeViewModel(object):
 
-    def __init__(self, logger=FakeLogger()):
+    def __init__(self, logger=RealLogger(os.path.join('..', '..', 'tmp', 'segment_tree.log'))):
         self.logger = logger
         self.method = None
         self.input_array = None

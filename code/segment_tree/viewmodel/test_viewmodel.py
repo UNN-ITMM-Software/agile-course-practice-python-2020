@@ -2,6 +2,7 @@ import unittest
 
 from segment_tree.viewmodel.viewmodel import SegmentTreeViewModel
 from segment_tree.logger.fakelogger import FakeLogger
+from segment_tree.logger.reallogger import RealLogger
 
 
 class TestSegmentTreeViewModel(unittest.TestCase):
@@ -335,7 +336,7 @@ class TestViewModelFakeLogging(unittest.TestCase):
         self.assertEqual('Incorrect type of segment tree. Expected: max\min\sum',
                          self.view_model.logger.get_last_message())
 
-    def test_logging_set_method (self):
+    def test_logging_set_method(self):
         self.view_model.set_method('sum')
 
         self.assertEqual('Set method sum', self.view_model.logger.get_last_message())
@@ -429,7 +430,6 @@ class TestViewModelFakeLogging(unittest.TestCase):
 
         self.assertEqual('Wrong indices: indices is out of bounds', self.view_model.logger.get_last_message())
 
-
     def test_logging_build_tree_full(self):
         expected_messages = ['Welcome to segment tree application',
                              'Set tree size = 5',
@@ -443,3 +443,8 @@ class TestViewModelFakeLogging(unittest.TestCase):
         self.view_model.calculate()
 
         self.assertEqual(expected_messages, self.view_model.logger.get_log_messages())
+
+
+class TestViewModelRealLogging(TestViewModelFakeLogging):
+    def setUp(self):
+        self.view_model = SegmentTreeViewModel(RealLogger())
