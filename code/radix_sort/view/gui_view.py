@@ -27,13 +27,16 @@ class Application(tk.Frame):
         self.text_input = tk.Entry(self.radix, width=50, font=60)
         self.text_output = tk.Label(self.radix, width=50, font=60, anchor='w')
         self.sort_button = tk.Button(self, text="Sort", font=60)
+        self.label_log = tk.Label(self, text="Logging", font=60)
 
     def setup_grid(self):
-        self.rowconfigure(0, weight=1)
-        self.rowconfigure(1, weight=1)
+        self.rowconfigure(0, weight=2)
+        self.rowconfigure(1, weight=2)
+        self.rowconfigure(2, weight=1)
         self.columnconfigure(0, weight=1)
         self.radix.grid(row=0, column=0, sticky='swe')
         self.sort_button.grid(row=1, column=0, sticky='n', pady=20)
+        self.label_log.grid(row=2, column=0, sticky='s', pady=10)
 
         self.radix.rowconfigure(0, weight=1)
         self.radix.rowconfigure(1, weight=1)
@@ -57,6 +60,8 @@ class Application(tk.Frame):
         self.text_input.insert(tk.END, self.view_model.get_input_data())
         self.text_output.config(text=str(self.view_model.get_output_data()))
         self.sort_button.config(state=self.view_model.get_sort_button_state())
+        logger_text = '\n'.join(self.view_model.logger.get_last_messages(3))
+        self.label_log.config(text=logger_text)
 
     def text_input_changed(self, event):
         self.mvvm_bind()
