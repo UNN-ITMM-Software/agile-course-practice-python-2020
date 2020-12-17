@@ -16,23 +16,23 @@ class TestDepositCalcViewModel(unittest.TestCase):
         self.assertNotEqual('disabled', self.view_model.get_handle_btn_state())
 
     def test_when_entered_correct_depo_time_button_enabled(self):
-        self.view_model.set_start_depo('1.5')
+        self.view_model.set_depo_time('1.5')
         self.assertNotEqual('disabled', self.view_model.get_handle_btn_state())
 
     def test_when_entered_correct_rate_button_enabled(self):
-        self.view_model.set_start_depo('0.05')
+        self.view_model.set_rate('0.05')
         self.assertNotEqual('disabled', self.view_model.get_handle_btn_state())
 
     def test_when_entered_correct_capitalization_freq_button_enabled(self):
-        self.view_model.set_start_depo('4')
+        self.view_model.set_capitalization('4')
         self.assertNotEqual('disabled', self.view_model.get_handle_btn_state())
 
     def test_when_entered_correct_replenishment_freq_button_enabled(self):
-        self.view_model.set_start_depo('2')
+        self.view_model.set_replenishment_freq('2')
         self.assertNotEqual('disabled', self.view_model.get_handle_btn_state())
 
     def test_when_entered_correct_replemishment_size_button_enabled(self):
-        self.view_model.set_start_depo('10000')
+        self.view_model.set_replenishment_size('10000')
         self.assertNotEqual('disabled', self.view_model.get_handle_btn_state())
 
     def test_can_retrieve_start_depo_text(self):
