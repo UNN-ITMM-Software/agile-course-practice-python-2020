@@ -64,7 +64,17 @@ class TestCreateRandomBisymmetricMatrix(unittest.TestCase):
         self.view_model.set_matrix_size('2')
         self.view_model.create_random_matrix()
         result = len(self.view_model.get_str_created_random_matrix())
-        self.assertEqual(10, result)
+        self.assertEqual((2+2)*2+2, result)
+
+    def test_when_enter_size_clear_enter_invalid_size_button_is_disabled(self):
+        self.view_model.set_matrix_size('2')
+        self.view_model.set_matrix_size('e3')
+        self.assertEqual('disabled', self.view_model.get_button_convert_state())
+
+    def test_when_delete_vector_create_matrix_from_vector_button_is_disabled(self):
+        self.view_model.set_matrix_size('3')
+        self.view_model.set_matrix_size('')
+        self.assertEqual('disabled', self.view_model.get_button_convert_state())
 
 
 class TestAdditionalMethod(unittest.TestCase):
