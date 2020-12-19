@@ -6,6 +6,7 @@ from modified_stack.logger.ilogger import ILogger
 TEST_FILEPATH = '../../tmp/'
 LOG_FILEPATH = '../../tmp/modified_stack.log'
 
+
 class RealLogger(ILogger):
     def __init__(self):
         super(RealLogger, self).__init__()
