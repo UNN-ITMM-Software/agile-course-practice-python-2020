@@ -3,11 +3,12 @@ from tkinter import ttk
 
 from polynomial_calculator.viewmodel.viewmodel_polynomial_calculator import PolyViewModel
 
+
 class GuiView(Tk.Frame):
     VALID_OPERATIONS = ['+', '-', '*']
     N_LOG_MESSAGES_TO_DISPLAY = 8
     view_model = PolyViewModel()
-    
+
     def convert_clicked(self, event):
             self.mvvm_bind()
             self.view_model.computing()
@@ -23,7 +24,7 @@ class GuiView(Tk.Frame):
 
     def operation_changed(self, event):
             self.mvvm_bind()
-            self.mvvm_back_bind()     
+            self.mvvm_back_bind()
 
     def bind_events(self):
         self.calculate.bind('<Button-1>', self.convert_clicked)
@@ -90,4 +91,4 @@ class GuiView(Tk.Frame):
 
         self.bind_events()
         self.mvvm_bind()
-        self.mvvm_back_bind()   
+        self.mvvm_back_bind()
