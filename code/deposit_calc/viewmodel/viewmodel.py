@@ -25,34 +25,40 @@ class DepositCalcViewModel:
         return self.handle_btn_state
 
     def set_start_depo(self, start_depo):
-        self.start_depo = float(start_depo)
-        self.logger.log('Setting start deposit to %s' % self.start_depo)
-        self.set_handle_btn_enabled()
+        if start_depo != '':
+            self.start_depo = float(start_depo)
+            self.logger.log('Setting start deposit to %s' % self.start_depo)
+            self.set_handle_btn_enabled()
 
     def set_depo_time(self, depo_time):
-        self.depo_time = float(depo_time)
-        self.logger.log('Setting deposit time to %s' % self.depo_time)
-        self.set_handle_btn_enabled()
+        if depo_time != '':
+            self.depo_time = float(depo_time)
+            self.logger.log('Setting deposit time to %s' % self.depo_time)
+            self.set_handle_btn_enabled()
 
     def set_rate(self, rate):
-        self.rate = float(rate)
-        self.logger.log('Setting interest rate to %s' % self.rate)
-        self.set_handle_btn_enabled()
+        if rate != '':
+            self.rate = float(rate)
+            self.logger.log('Setting interest rate to %s' % self.rate)
+            self.set_handle_btn_enabled()
 
     def set_capitalization(self, capitalization):
-        self.capitalization = int(capitalization)
-        self.logger.log('Setting capitalization frequency to %s' % self.capitalization)
-        self.set_handle_btn_enabled()
+        if capitalization != '':
+            self.capitalization = int(capitalization)
+            self.logger.log('Setting capitalization frequency to %s' % self.capitalization)
+            self.set_handle_btn_enabled()
 
     def set_replenishment_freq(self, replenishment_freq):
-        self.replenishment_freq = int(replenishment_freq)
-        self.logger.log('Setting replenishment frequency to %s' % self.replenishment_freq)
-        self.set_handle_btn_enabled()
+        if replenishment_freq != '':
+            self.replenishment_freq = int(replenishment_freq)
+            self.logger.log('Setting replenishment frequency to %s' % self.replenishment_freq)
+            self.set_handle_btn_enabled()
 
     def set_replenishment_size(self, replenishment_size):
-        self.replenishment_size = int(replenishment_size)
-        self.logger.log('Setting replenishment size to %s' % self.replenishment_size)
-        self.set_handle_btn_enabled()
+        if replenishment_size != '':
+            self.replenishment_size = int(replenishment_size)
+            self.logger.log('Setting replenishment size to %s' % self.replenishment_size)
+            self.set_handle_btn_enabled()
 
     def get_start_depo(self):
         return self.start_depo

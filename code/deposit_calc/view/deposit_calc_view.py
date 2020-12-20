@@ -6,11 +6,12 @@ from deposit_calc.viewmodel import viewmodel
 class GUIView(object):
 
     view_model = viewmodel.DepositCalcViewModel()
+    N_LOG_MESSAGES_TO_DISPLAY = 8
 
     def __init__(self):
         self.root = tk.Tk()
         self.root.title('Deposit Calculator')
-        self.root.geometry('900x500')
+        self.root.geometry('900x600')
         self.root.resizable(width=False, height=False)
 
         self.frame = tk.Frame(self.root)
@@ -31,6 +32,8 @@ class GUIView(object):
         self.handle_btn = tk.Button(self.root, text="handle", state='disabled')
         self.result_label = tk.Label(self.root, text="Result:")
         self.result = tk.Entry(self.root, width=50)
+
+        self.lbl_result = tk.Label(self.root, text="Here will be your result")
 
         self.set_weight_to_grid()
         self.bind_events()
@@ -60,6 +63,8 @@ class GUIView(object):
 
         self.result_label.grid(row=16, column=0, stick='wens', padx=5, pady=5)
         self.result.grid(row=16, column=1, stick='wens', padx=5, pady=5)
+
+        self.lbl_result.grid(row=17, column=0, stick='wens', padx=5, pady=5)
 
     def bind_events(self):
         self.start_depo_value.bind('<KeyRelease>', self.start_depo_changed)
@@ -112,3 +117,5 @@ class GUIView(object):
             state=self.view_model.get_handle_btn_state())
         self.result.delete(0, tk.END)
         self.result.insert(tk.END, self.view_model.get_result())
+        logger_text = '\n'.join(self.view_model.logger.get_log_messages()[:-self.N_LOG_MESSAGES_TO_DISPLAY:-1])
+        self.lbl_result.config(text=logger_text)
