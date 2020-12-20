@@ -1,4 +1,6 @@
 import logging
+import os
+import os.path
 
 from lcd_digits.logger.ilogger import ILogger
 
@@ -9,7 +11,9 @@ class RealLogger(ILogger):
         self.logger = logging.getLogger("lcd_digits.logger.RealLogger")
         self.logger.setLevel(logging.INFO)
 
-        fh = logging.FileHandler("../../tmp/lcd_digits.log")
+        if not os.path.exists("../../tmp/"):
+            os.makedirs("../../tmp/")
+        fh = logging.FileHandler("../../tmp/digits.log", mode='a', encoding='utf-8')
 
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         fh.setFormatter(formatter)
