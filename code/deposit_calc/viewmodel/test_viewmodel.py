@@ -2,6 +2,7 @@ import unittest
 
 from deposit_calc.viewmodel.viewmodel import DepositCalcViewModel
 from deposit_calc.logger.fakelogger import FakeLogger
+from deposit_calc.logger.reallogger import RealLogger
 
 
 class TestDepositCalcViewModel(unittest.TestCase):
@@ -95,3 +96,8 @@ class TestViewModelFakeLogging(unittest.TestCase):
         self.view_model.handle_btn_clicked()
 
         self.assertEqual(expected_messages, self.view_model.logger.get_log_messages()[-2:])
+
+
+class TestViewModelRealLogging(TestViewModelFakeLogging):
+    def setUp(self):
+        self.view_model = DepositCalcViewModel(RealLogger())

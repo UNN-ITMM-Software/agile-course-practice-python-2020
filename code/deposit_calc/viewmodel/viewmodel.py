@@ -1,9 +1,9 @@
 from deposit_calc.model.deposit_calc import DepositCalc
-from fraction.logger.fakelogger import FakeLogger
+from fraction.logger.reallogger import RealLogger
 
 
 class DepositCalcViewModel:
-    def __init__(self, logger=FakeLogger()):
+    def __init__(self, logger=RealLogger()):
         self.logger = logger
         self.start_depo = 0.0
         self.depo_time = 0.0
