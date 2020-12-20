@@ -101,29 +101,34 @@ class TestViewModelFakeLogging(unittest.TestCase):
         self.view_model = ViewModel(FakeLogger())
 
     def test_logging_init(self):
-        self.assertEqual('Line-Plane intersection application init', self.view_model.logger.get_last_message())
+        self.assertEqual('Line-Plane intersection application init',
+                         self.view_model.logger.get_last_message())
 
     def test_logging_set_current_plane_point(self):
-        self.view_model.set_current_point_for_plane(1)
-        self.assertEqual('Current plane point = 1', self.view_model.logger.get_last_message())
+        self.view_model.set_current_point_for_plane("plane_point_1")
+        self.assertEqual('Current plane point = plane_point_1',
+                         self.view_model.logger.get_last_message())
 
     def test_logging_set_current_line_point(self):
-        self.view_model.set_current_point_for_line(5)
-        self.assertEqual('Current line point = 5', self.view_model.logger.get_last_message())
+        self.view_model.set_current_point_for_line("line_point_1")
+        self.assertEqual('Current line point = line_point_1',
+                         self.view_model.logger.get_last_message())
 
     def test_logging_set_line_xyz(self):
-        self.view_model.set_current_point_for_line(5)
+        self.view_model.set_current_point_for_line("line_point_1")
         self.view_model.set_x_y_z([1, 2, 3])
-        self.assertEqual('dict_type = line, x_y_z set = [1, 2, 3]', self.view_model.logger.get_last_message())
+        self.assertEqual('dict_type = line, x_y_z set = [1, 2, 3]',
+                         self.view_model.logger.get_last_message())
 
     def test_logging_set_plane_xyz(self):
-        self.view_model.set_current_point_for_plane(5)
+        self.view_model.set_current_point_for_plane("plane_point_1")
         self.view_model.set_x_y_z([1, 2, 3])
-        self.assertEqual('dict_type = plane, x_y_z set = [1, 2, 3]', self.view_model.logger.get_last_message())
+        self.assertEqual('dict_type = plane, x_y_z set = [1, 2, 3]',
+                         self.view_model.logger.get_last_message())
 
     def test_logging_set_abcd(self):
-        self.view_model.set_abcd(10)
-        self.assertEqual('abcd set = 10', self.view_model.logger.get_last_message())
+        self.view_model.set_abcd([2, -3, -3, 12])
+        self.assertEqual('abcd set = [2, -3, -3, 12]', self.view_model.logger.get_last_message())
 
     def test_logging_intersection_check(self):
         expected_messages = ['Line-Plane intersection application init',
@@ -167,7 +172,8 @@ class TestViewModelFakeLogging(unittest.TestCase):
                              'Current plane point = plane_point_3',
                              'dict_type = plane, x_y_z set = [1, 13, 1]',
                              'abcd set = [2, -3, -3, 12]',
-                             'Get result: Line::init - Incorrect value. Line is defined by two different points']
+                             'Get result: Line::init - Incorrect value. '
+                             'Line is defined by two different points']
 
         self.view_model.set_current_point_for_line("line_point_1")
         self.view_model.set_x_y_z([1, 5, -1])
