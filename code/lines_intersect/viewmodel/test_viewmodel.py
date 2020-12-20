@@ -101,7 +101,7 @@ class TestLinesIntersectFakeLogger(unittest.TestCase):
         self.assertEqual(["Calculate clicked", "Intersection: False"], log)
 
 
-class TestLinesIntersectRealLogger(unittest.TestCase):
+class TestLinesIntersectRealLogger(TestLinesIntersectFakeLogger):
 
     def setUp(self):
         self.view_model = LinesIntersectViewModel(logger=RealLogger())

@@ -47,22 +47,22 @@ class LinesIntersectViewModel:
         return self._point4
 
     def set_point1(self, value):
-        self.logger.log(f"Set point 1 to {value}")
+        self.logger.log("Set point 1 to %s" % value)
         self._point1 = value
         self.validate_text()
 
     def set_point2(self, value):
-        self.logger.log(f"Set point 2 to {value}")
+        self.logger.log("Set point 2 to %s" % value)
         self._point2 = value
         self.validate_text()
 
     def set_point3(self, value):
-        self.logger.log(f"Set point 3 to {value}")
+        self.logger.log("Set point 3 to %s" % value)
         self._point3 = value
         self.validate_text()
 
     def set_point4(self, value):
-        self.logger.log(f"Set point 4 to {value}")
+        self.logger.log("Set point 4 to %s" % value)
         self._point4 = value
         self.validate_text()
 
