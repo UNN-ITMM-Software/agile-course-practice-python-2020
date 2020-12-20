@@ -78,4 +78,3 @@ class DepositCalcViewModel:
 
         self.result = str(calc.revenue(values=arr))
         self.logger.log('Result: %s' % self.result)
-
