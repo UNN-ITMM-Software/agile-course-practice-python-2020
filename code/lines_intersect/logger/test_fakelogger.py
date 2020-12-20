@@ -1,17 +1,6 @@
 import unittest
 
-from lines_intersect.logger.fakelogger import ILogger, FakeLogger
-
-
-class TestILogger(unittest.TestCase):
-    def setUp(self):
-        self.logger = ILogger()
-
-    def test_cant_call_log(self):
-        self.assertRaises(NotImplementedError, self.logger.log, "Test")
-
-    def test_cant_call_get_logs(self):
-        self.assertRaises(NotImplementedError, self.logger.get_logs)
+from lines_intersect.logger.fakelogger import FakeLogger
 
 
 class TestFakeLogger(unittest.TestCase):

@@ -1,12 +1,10 @@
-import abc
+class ILogger(object):
 
+    def __init__(self):
+        self.logs = []
 
-class ILogger(object, metaclass=abc.ABCMeta):
-
-    @abc.abstractclassmethod
     def get_logs(self, num=0):
-        raise NotImplementedError
+        return self.logs[(-1) * num:]
 
-    @abc.abstractclassmethod
     def log(self, message):
-        raise NotImplementedError
+        self.logs.append(message)
