@@ -1,5 +1,4 @@
 from lcd_digits.model.lcd_digits_model import LcdDigitsModel
-from lcd_digits.logger.reallogger import RealLogger
 from lcd_digits.logger.log import Log_types
 
 
