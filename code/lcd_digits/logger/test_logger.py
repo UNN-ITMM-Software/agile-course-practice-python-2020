@@ -28,9 +28,13 @@ class TestLoggerAndLog(unittest.TestCase):
         log = self.logger.get_log_messages()
         self.assertEqual(log, [])
 
-    def test_after_logging_message_in_log(self):
+    def test_can_add_info(self):
         self.logger.add_log('Test', Log_types.Info)
         self.assertEqual(['Test'], self.logger.get_log_messages())
+
+    def test_can_add_error(self):
+        self.logger.add_log('Test error', Log_types.Error)
+        self.assertEqual(['Test error'], self.logger.get_log_messages())
 
     def test_can_log_several_messages(self):
         self.logger.add_log('Test', Log_types.Info)

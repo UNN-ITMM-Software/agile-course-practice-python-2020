@@ -87,6 +87,11 @@ class TestViewModelFakeLogging(unittest.TestCase):
         self.view_model.click_convert(26)
         self.assertEqual(expected_messages, self.view_model.logger.get_log_messages())
 
+    def test_logging_get_lcd_digit_with_incorrect_value(self):
+        self.view_model.set_digits('a10')
+        self.view_model.click_convert(26)
+        self.assertEqual(ValueError('Input error: wrong format').__str__(), self.view_model.logger.get_last_log_message())
+
 
 class TestViewModelRealLogging(TestViewModelFakeLogging):
     def setUp(self):

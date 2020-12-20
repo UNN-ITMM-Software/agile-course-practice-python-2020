@@ -42,7 +42,7 @@ class LcdDigitViewModel:
             self.message_text = LcdDigitViewModel.get_string(lcd_digits.lcd_numbers, digit_number)
             self.logger.add_log('The answer:\n' + self.message_text, Log_types.Info)
         except ValueError as exception:
-            self.logger.add_log(exception, Log_types.Error)
+            self.logger.add_log(exception.__str__(), Log_types.Error)
 
     def get_msg_text(self):
         return self.message_text
