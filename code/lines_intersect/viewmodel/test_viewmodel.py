@@ -1,5 +1,6 @@
 import unittest
 from lines_intersect.logger.fakelogger import FakeLogger
+from lines_intersect.logger.reallogger import RealLogger
 from lines_intersect.viewmodel.viewmodel import LinesIntersectViewModel
 
 
@@ -55,7 +56,8 @@ class TestLinesIntersectViewModel(unittest.TestCase):
         self.view_model.click_calculate()
         self.assertEqual("", self.view_model.get_result())
 
-class TestLinesIntersectLogger(unittest.TestCase):
+
+class TestLinesIntersectFakeLogger(unittest.TestCase):
 
     def setUp(self):
         self.view_model = LinesIntersectViewModel(logger=FakeLogger())
@@ -97,3 +99,9 @@ class TestLinesIntersectLogger(unittest.TestCase):
         self.view_model.click_calculate()
         log = self.view_model.logger.get_logs(2)
         self.assertEqual(["Calculate clicked", "Intersection: False"], log)
+
+
+class TestLinesIntersectRealLogger(unittest.TestCase):
+
+    def setUp(self):
+        self.view_model = LinesIntersectViewModel(logger=RealLogger())

@@ -87,4 +87,3 @@ class LinesIntersectViewModel:
 
         self._result = self.RESULT_STR % (str(Line.is_intersect(line1, line2)))
         self.logger.log(self._result)
-
