@@ -117,5 +117,6 @@ class GUIView(object):
             state=self.view_model.get_handle_btn_state())
         self.result.delete(0, tk.END)
         self.result.insert(tk.END, self.view_model.get_result())
-        logger_text = '\n'.join(self.view_model.logger.get_log_messages()[:-self.N_LOG_MESSAGES_TO_DISPLAY:-1])
+        logger_text = '\n'.join(
+            self.view_model.logger.get_log_messages()[:-self.N_LOG_MESSAGES_TO_DISPLAY:-1])
         self.lbl_result.config(text=logger_text)
