@@ -50,7 +50,8 @@ class GUI(ttk.Frame):
         self.x_vector.bind('<FocusOut>', self.x_vector_changed)
         self.y_vector.bind('<FocusOut>', self.y_vector_changed)
         self.metrics_listbox.bind('<<ListboxSelect>>', self.metrics_listbox_changed)
-        logger_text = '\n'.join(self.view_model.logger.get_log_messages()[:-self.N_LOG_MESSAGES_TO_DISPLAY:-1])
+        logger_text =\
+            '\n'.join(self.view_model.logger.get_log_messages()[:-self.N_LOG_MESSAGES_TO_DISPLAY:-1])
         self.lbl_result.config(text=logger_text)
 
     def mvvm_bind(self):
