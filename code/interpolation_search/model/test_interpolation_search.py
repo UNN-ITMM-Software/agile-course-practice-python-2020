@@ -9,6 +9,7 @@ third_case = (32, 43, 54, 65, 76, 87, 98)
 fourth_case = (101, 202, 303, 404, 505, 606)
 fifth_case = (3, 20, 44, 75, 92, 106, 709)
 
+
 class TestInterpolationSearchClass(unittest.TestCase):
     def test_can_create_interpolation_search(self):
         search = InterpolationSearch()

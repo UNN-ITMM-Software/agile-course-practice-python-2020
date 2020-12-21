@@ -7,11 +7,11 @@ class InterpolationSearch():
         low = 0
         high = (len(lst) - 1)
         while low <= high and val >= lst[low] and val <= lst[high]:
-            index = low + int(((float(high - low) / ( lst[high] - lst[low])) * ( val - lst[low])))
+            index = low + int(((float(high - low) / (lst[high] - lst[low])) * (val - lst[low])))
             if lst[index] == val:
                 return index
             elif lst[index] < val:
-                low = index + 1;
+                low = index + 1
             else:
-                high = index - 1;
+                high = index - 1
         return -1
