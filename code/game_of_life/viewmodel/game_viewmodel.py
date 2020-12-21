@@ -17,8 +17,6 @@ class GameOfLifeViewModel:
         self.next_binary_field = []
         self.next_color_field = []
 
-        self.logger.log('Welcome to Game of Life')
-
     def set_number_of_rows(self, rows):
         self.rows = rows
         self.logger.log('Setting number of rows to %s' % self.rows)
