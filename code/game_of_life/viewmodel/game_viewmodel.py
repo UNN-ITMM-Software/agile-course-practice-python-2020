@@ -1,8 +1,10 @@
 from game_of_life.model.game_of_life import GameOfLife
+from game_of_life.logger.reallogger import RealLogger
 
 
 class GameOfLifeViewModel:
-    def __init__(self):
+    def __init__(self, logger=RealLogger()):
+        self.logger = logger
         self.next_step_btn_state = 'disabled'
         self.remove_row_btn_state = 'disabled'
         self.remove_column_btn_state = 'disabled'
@@ -15,14 +17,18 @@ class GameOfLifeViewModel:
         self.next_binary_field = []
         self.next_color_field = []
 
+        self.logger.log('Welcome to Game of Life')
+
     def set_number_of_rows(self, rows):
         self.rows = rows
+        self.logger.log('Setting number of rows to %s' % self.rows)
 
     def get_number_of_rows(self):
         return self.rows
 
     def set_number_of_columns(self, columns):
         self.columns = columns
+        self.logger.log('Setting number of columns to %s' % self.columns)
 
     def get_number_of_columns(self):
         return self.columns
@@ -87,8 +93,10 @@ class GameOfLifeViewModel:
                     self.next_color_field[i][j]['bg'] = "Black"
                 else:
                     self.next_color_field[i][j]['bg'] = "White"
+                self.logger.log('Next color field is %s' % self.next_color_field[i][j]['bg'])
 
     def compute_next_step(self):
+        self.logger.log('Button clicked')
         game = GameOfLife()
         self.convert_field_to_binary(self.current_color_field)
         self.next_binary_field = game.start(self.current_binary_field)

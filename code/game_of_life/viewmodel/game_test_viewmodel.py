@@ -1,5 +1,7 @@
 import unittest
 
+from game_of_life.logger.fakelogger import FakeLogger
+from game_of_life.logger.reallogger import RealLogger
 from game_of_life.viewmodel.game_viewmodel import GameOfLifeViewModel
 
 
@@ -134,3 +136,40 @@ class TestGameOfLifeViewModel(unittest.TestCase):
         self.view_model.set_number_of_columns(11)
         self.view_model.clicked_add('column')
         self.assertEqual(12, self.view_model.get_number_of_columns())
+
+
+class TestViewModelFakeLogging(unittest.TestCase):
+    def setUp(self):
+        self.view_model = GameOfLifeViewModel(FakeLogger())
+
+    def test_logging_init(self):
+        self.assertEqual('Welcome to Game of Life', self.view_model.logger.get_last_message())
+
+    def test_logging_changing_number_of_rows(self):
+        self.view_model.set_number_of_rows('2')
+        self.assertEqual('Setting number of rows to 2', self.view_model.logger.get_last_message())
+
+    def test_logging_changing_number_of_columns(self):
+        self.view_model.set_number_of_columns('3')
+        self.assertEqual('Setting number of columns to 3', self.view_model.logger.get_last_message())
+
+    def test_logging_all(self):
+        self.view_model.set_current_color_field(fake_default_field_for_tests())
+        self.view_model.set_next_color_field(fake_default_field_for_tests())
+        self.view_model.color_changed(0, 0)
+        self.view_model.color_changed(0, 1)
+        self.view_model.color_changed(1, 0)
+
+        self.view_model.compute_next_step()
+
+        self.view_model.color_changed(1, 1)
+        result = ['Welcome to Game of Life', 'Button clicked']
+        for i in range(2):
+            for j in range(2):
+                result.append('Next color field is %s' % self.view_model.next_color_field[i][j]['bg'])
+        self.assertEqual(result, self.view_model.logger.get_log_messages())
+
+
+class TestViewModelRealLogging(TestViewModelFakeLogging):
+    def setUp(self):
+        self.view_model = GameOfLifeViewModel(RealLogger())
