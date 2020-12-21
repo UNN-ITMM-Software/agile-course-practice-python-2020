@@ -1,5 +1,7 @@
 import unittest
 
+from statistics.logger.fakelogger import FakeLogger
+from statistics.logger.reallogger import RealLogger
 from statistics.viewmodel.viewmodel import StatisticsViewModel
 
 
@@ -65,3 +67,13 @@ class TestStatisticsViewModel(unittest.TestCase):
     def test_add_marks_over_5(self):
         self.view_model.set_instr("5 7", "5 5", "5 5")
         self.assertNotEqual('normal', self.view_model.get_button_convert_state())
+
+
+class TestViewModelFakeLogging(unittest.TestCase):
+    def setUp(self):
+        self.view_model = StatisticsViewModel(FakeLogger())
+
+
+class TestViewModelRealLogging(TestViewModelFakeLogging):
+    def setUp(self):
+        self.view_model = StatisticsViewModel(RealLogger())

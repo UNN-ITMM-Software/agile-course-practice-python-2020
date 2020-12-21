@@ -1,8 +1,11 @@
 from statistics.model.studentmarks import StudentMarks, Register
+from statistics.logger.reallogger import RealLogger
 
 
 class StatisticsViewModel:
-    def __init__(self):
+    def __init__(self, logger=RealLogger()):
+        self.logger = logger
+
         self.set_btn_disabled()
         self.marks1 = []
         self.marks2 = []
