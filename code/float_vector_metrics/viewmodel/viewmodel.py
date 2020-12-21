@@ -2,6 +2,7 @@ from float_vector_metrics.model.float_vector_metrics import VectorMetrics
 
 from float_vector_metrics.logger.fakelogger import FakeLogger
 
+
 class VectorMetricsViewModel:
     calculator = VectorMetrics()
     METRICS = {
