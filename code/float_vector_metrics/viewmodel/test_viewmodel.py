@@ -4,10 +4,12 @@ from float_vector_metrics.viewmodel.viewmodel import VectorMetricsViewModel
 
 from float_vector_metrics.logger.fakelogger import FakeLogger
 
+from float_vector_metrics.logger.reallogger import RealLogger
+
 
 class TestVectorMetricsViewModel(unittest.TestCase):
     def setUp(self):
-        self.viewmodel = VectorMetricsViewModel()
+        self.viewmodel = VectorMetricsViewModel(FakeLogger())
 
     def test_button_disabled_by_default(self):
         self.assertEqual('disabled', self.viewmodel.get_button_state())
@@ -119,3 +121,8 @@ class TestViewModelFakeLogging(unittest.TestCase):
         self.view_model.compute()
 
         self.assertEqual(expected_messages, self.view_model.logger.get_log_messages()[-2:])
+
+
+class TestViewModelRealLogging(TestViewModelFakeLogging):
+    def setUp(self):
+        self.view_model = VectorMetricsViewModel(RealLogger())

@@ -1,6 +1,6 @@
 from float_vector_metrics.model.float_vector_metrics import VectorMetrics
 
-from float_vector_metrics.logger.fakelogger import FakeLogger
+from float_vector_metrics.logger.reallogger import RealLogger
 
 
 class VectorMetricsViewModel:
@@ -13,7 +13,7 @@ class VectorMetricsViewModel:
         'Linf': calculator.linf
     }
 
-    def __init__(self, logger=FakeLogger()):
+    def __init__(self, logger=RealLogger()):
         self.logger = logger
         self.logger.log('Welcome to The Float Vector Metrics Calculator!')
         self.x = [0, 0, 0]

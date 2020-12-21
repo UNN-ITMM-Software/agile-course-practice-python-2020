@@ -1,14 +1,14 @@
 import unittest
 
-from float_vector_metrics.logger.fakelogger import FakeLogger as Logger
+from float_vector_metrics.logger.fakelogger import FakeLogger
 
 
-class TestLogger(unittest.TestCase):
+class TestViewModelFakeLogging(unittest.TestCase):
     def setUp(self):
-        self.logger = Logger()
+        self.logger = FakeLogger()
 
     def test_can_create_logger(self):
-        self.assertTrue(isinstance(self.logger, Logger))
+        self.assertTrue(isinstance(self.logger, FakeLogger))
 
     def test_by_default_log_is_empty(self):
         log = self.logger.get_log_messages()
