@@ -5,12 +5,14 @@ from float_vector_metrics.viewmodel.viewmodel import VectorMetricsViewModel
 
 
 class GUI(ttk.Frame):
+    N_LOG_MESSAGES_TO_DISPLAY = 6
     view_model = VectorMetricsViewModel()
     metrics = ['L1', 'L2', 'L3', 'L4', 'Linf']
 
     def __init__(self):
         ttk.Frame.__init__(self)
         self.master.title("Vector metrics calculator")
+        self.master.geometry('450x450')
 
         self.x_label = tk.Label(self.master, text="First vector")
         self.x_label.grid(row=0, column=0)
@@ -34,6 +36,8 @@ class GUI(ttk.Frame):
 
         self.result = tk.Label(self.master, text='Result: ')
         self.result.grid(row=2, column=0, columnspan=2)
+        self.lbl_result = tk.Label(self.master, text="Here will be result")
+        self.lbl_result.grid(row=3, column=0)
 
         self.error_message = tk.Label(self.master, text='', wraplength=150)
         self.error_message.grid(row=3, column=0, columnspan=2)
@@ -46,6 +50,8 @@ class GUI(ttk.Frame):
         self.x_vector.bind('<FocusOut>', self.x_vector_changed)
         self.y_vector.bind('<FocusOut>', self.y_vector_changed)
         self.metrics_listbox.bind('<<ListboxSelect>>', self.metrics_listbox_changed)
+        logger_text = '\n'.join(self.view_model.logger.get_log_messages()[:-self.N_LOG_MESSAGES_TO_DISPLAY:-1])
+        self.lbl_result.config(text=logger_text)
 
     def mvvm_bind(self):
         x_set = self.view_model.set_x(self.x_vector.get())
