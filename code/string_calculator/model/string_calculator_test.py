@@ -1,8 +1,6 @@
 import unittest
 
-from string_calculator import StrCalculator
-from string_calculator import StrCalculatorType
-from string_calculator import StrCalculatorParser
+from string_calculator.model.string_calculator import StrCalculator, StrCalculatorType, StrCalculatorParser
 
 
 class TestStrCalculatorClass(unittest.TestCase):
