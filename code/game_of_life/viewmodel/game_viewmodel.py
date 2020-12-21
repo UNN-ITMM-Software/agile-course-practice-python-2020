@@ -110,12 +110,20 @@ class GameOfLifeViewModel:
 
     def clicked_remove(self, new):
         if new == 'row' and self.rows > 2:
+            self.logger.log('Remove row button clicked')
             self.rows -= 1
+            self.logger.log('Current amount of rows is %s' % self.rows)
         if new == 'column' and self.columns > 2:
+            self.logger.log('Remove column button clicked')
             self.columns -= 1
+            self.logger.log('Current amount of columns is %s' % self.columns)
 
     def clicked_add(self, new):
         if new == 'row':
+            self.logger.log('Add row button clicked')
             self.rows += 1
+            self.logger.log('Current amount of rows is %s' % self.rows)
         if new == 'column':
+            self.logger.log('Add column button clicked')
             self.columns += 1
+            self.logger.log('Current amount of columns is %s' % self.columns)
