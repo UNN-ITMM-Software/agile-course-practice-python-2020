@@ -1,5 +1,8 @@
+import os
+
+
 from bisymmetric_matrix.model.bisymmetric import BisymmetricMatrix
-from bisymmetric_matrix.logger.fakelogger import FakeLogger
+from bisymmetric_matrix.logger.reallogger import RealLogger
 
 
 def is_correct_vector_size(size):
@@ -14,7 +17,8 @@ def is_correct_vector_size(size):
 
 
 class BisymmetricMatrixViewModel:
-    def __init__(self, logger=FakeLogger()):
+    def __init__(self,
+                 logger=RealLogger(os.path.join('..', '..', 'tmp', 'harry_potter_store.log'))):
         self.logger = logger
         self.logger.log('Welcome')
 

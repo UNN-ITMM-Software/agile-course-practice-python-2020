@@ -2,6 +2,7 @@ import unittest
 
 from bisymmetric_matrix.viewmodel.viewmodel import BisymmetricMatrixViewModel
 from bisymmetric_matrix.logger.fakelogger import FakeLogger
+from bisymmetric_matrix.logger.reallogger import RealLogger
 
 
 class TestCreateBisymmetricMatrixFromVector(unittest.TestCase):
@@ -122,3 +123,8 @@ class TestViewModelFakeLogging(unittest.TestCase):
         result2 = self.view_model.convert_random_matrix_to_str(matrix2)
         all_res = ['Welcome', result1, result2]
         self.assertEqual(all_res, self.view_model.logger.get_log_messages())
+
+
+class TestViewModelRealLogging(TestViewModelFakeLogging):
+    def setUp(self):
+        self.view_model = BisymmetricMatrixViewModel(RealLogger())
