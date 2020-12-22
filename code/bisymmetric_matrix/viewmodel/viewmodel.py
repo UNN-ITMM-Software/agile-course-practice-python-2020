@@ -1,4 +1,5 @@
 from bisymmetric_matrix.model.bisymmetric import BisymmetricMatrix
+from bisymmetric_matrix.logger.fakelogger import FakeLogger
 
 
 def is_correct_vector_size(size):
@@ -13,7 +14,10 @@ def is_correct_vector_size(size):
 
 
 class BisymmetricMatrixViewModel:
-    def __init__(self):
+    def __init__(self, logger=FakeLogger()):
+        self.logger = logger
+        self.logger.log('Welcome')
+
         self.button_convert_state = 'disabled'
 
         self.vector = []
@@ -35,9 +39,11 @@ class BisymmetricMatrixViewModel:
 
     def set_created_random_matrix(self, matrix):
         self.created_random_matrix = matrix
+        self.logger.log(self.convert_random_matrix_to_str(self.created_random_matrix))
 
     def set_created_matrix_by_vector(self, matrix):
         self.created_matrix_by_vector = matrix
+        self.logger.log(self.convert_matrix_by_vector_to_str(self.created_matrix_by_vector))
 
     def get_str_created_random_matrix(self):
         return self.convert_random_matrix_to_str(self.created_random_matrix)
