@@ -10,7 +10,7 @@ class LcdSymbol:
 
     MATCH_DICTIONARY = {
         '0': ['._.', '|.|', '|_|'],
-        '1': ['...', '..|', '.._'],
+        '1': ['...', '..|', '..|'],
         '2': ['._.', '._|', '|_.'],
         '3': ['._.', '._|', '._|'],
         '4': ['...', '|_|', '..|'],
@@ -21,14 +21,16 @@ class LcdSymbol:
         '9': ['._.', '|_|', '..|']
     }
 
+    lcd_symbol = []
+
     def __init__(self, symbol):
         if not re.fullmatch(LcdSymbol.IS_SYMBOL, symbol):
             raise ValueError('Match error: no symbol match')
 
         self.__symbol = symbol
-        self.__lcd_symbol = LcdSymbol.MATCH_DICTIONARY[symbol]
+        self.lcd_symbol = LcdSymbol.MATCH_DICTIONARY[symbol]
 
     def equals(self, obj):
         if not isinstance(obj, LcdSymbol):
             raise TypeError('Wrong type of obj. Expected: LcdSymbol')
-        return self.__symbol == obj.__symbol and self.__lcd_symbol == obj.__lcd_symbol
+        return self.__symbol == obj.__symbol and self.lcd_symbol == obj.lcd_symbol
