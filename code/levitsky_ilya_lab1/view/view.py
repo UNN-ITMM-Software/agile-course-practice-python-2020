@@ -4,8 +4,6 @@ from levitsky_ilya_lab1.viewmodel.viewmodel import VolumeViewModel
 
 def get_result_text(value):
     if value is None:
-        return "0"
-    elif not value:
         return "NaN"
     else:
         return value
@@ -16,9 +14,7 @@ def get_error_text(value):
 
 
 def get_log_messages(messages):
-    result_str = ''
-    for i in range(len(messages)):
-        result_str += ('%s\n' % messages[i])
+    result_str = '\n'.join([message for message in messages])
     return result_str
 
 
