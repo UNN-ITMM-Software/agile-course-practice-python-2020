@@ -79,6 +79,13 @@ class TestRangeViewModel(unittest.TestCase):
         rang.make_operation()
         self.assertEqual(rang.get_result_string(), 'Yes')
 
+    def test_make_contains_operation_with_range(self):
+        rang = RangeViewModel()
+        rang.set_value_1('[1,5]')
+        rang.set_value_2('[1,3]')
+        rang.make_operation()
+        self.assertEqual(rang.get_result_string(), 'Yes')
+
     def test_overlap_operation(self):
         rang = RangeViewModel()
         rang.set_operation(Operation.OVERLAP)
