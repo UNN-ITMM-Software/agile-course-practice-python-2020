@@ -112,3 +112,11 @@ class TestRangeViewModel(unittest.TestCase):
     def test_get_result_string(self):
         rang = RangeViewModel()
         self.assertEqual(rang.get_result_string(), '')
+
+    def test_clear_result(self):
+        rang = RangeViewModel()
+        rang.set_value_1('(1,5)')
+        rang.set_operation(Operation.END_POINTS)
+        rang.make_operation()
+        rang.clear_result()
+        self.assertEqual(rang.get_result_string(), '')
