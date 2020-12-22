@@ -1,5 +1,7 @@
 import unittest
 
+from calculate_area.logger.fakelogger import FakeLogger
+from calculate_area.logger.reallogger import RealLogger
 from calculate_area.viewmodel.calculate_area_viewmodel import CalculateAreaViewModel
 
 
@@ -145,3 +147,46 @@ class TestCalculateAreaViewModel(unittest.TestCase):
         self.viewmodel.set_h("4.2")
         self.viewmodel.calculate()
         self.assertEqual("93.934", self.viewmodel.get_area())
+
+
+class TestViewModelFakeLogging(unittest.TestCase):
+    def setUp(self):
+        self.view_model = CalculateAreaViewModel(FakeLogger())
+
+    def test_logging_init(self):
+        self.assertEqual('Starting...', self.view_model.logger.get_last_message())
+
+    def test_logging_changing_side(self):
+        self.view_model.set_a('1')
+        self.assertEqual('Setting the side to 1', self.view_model.logger.get_last_message())
+
+    def test_logging_changing_radius(self):
+        self.view_model.set_h('2')
+        self.assertEqual('Setting the height to 2', self.view_model.logger.get_last_message())
+
+    def test_logging_changing_height(self):
+        self.view_model.set_r('3')
+        self.assertEqual('Setting the radius to 3', self.view_model.logger.get_last_message())
+
+    def test_logging_changing_length_of_reference(self):
+        self.view_model.set_l('4')
+        self.assertEqual('Setting the length of reference to 4', self.view_model.logger.get_last_message())
+
+    def test_logging_changing_figure_type(self):
+        self.view_model.set_figure_type("CUBE")
+        self.assertEqual('Setting figure type to CUBE', self.view_model.logger.get_last_message())
+
+    def test_logging_calculating_area(self):
+        expected_messages = ['Button clicked', 'Selected figure type to CYLINDER', 'Result: 93.934']
+
+        self.view_model.set_r("2.3")
+        self.view_model.set_h("4.2")
+        self.view_model.set_figure_type("CYLINDER")
+        self.view_model.calculate()
+
+        self.assertEqual(expected_messages, self.view_model.logger.get_log_messages()[-3:])
+
+
+class TestViewModelRealLogging(TestViewModelFakeLogging):
+    def setUp(self):
+        self.view_model = CalculateAreaViewModel(RealLogger())
