@@ -174,11 +174,11 @@ class TestViewModelFakeLogging(unittest.TestCase):
     def test_logging_init(self):
         self.assertEqual('Welcome!', self.view_model.logger.get_last_message())
 
-    def test_logging_changing_first_fraction(self):
+    def test_logging_changing_first_complex_num(self):
         self.view_model.set_first_complex_num('2+3i')
         self.assertEqual('Setting first complex number to 2+3i', self.view_model.logger.get_last_message())
 
-    def test_logging_changing_second_fraction(self):
+    def test_logging_changing_second_complex_num(self):
         self.view_model.set_second_complex_num('3+2i')
         self.assertEqual('Setting second complex number to 3+2i', self.view_model.logger.get_last_message())
 
