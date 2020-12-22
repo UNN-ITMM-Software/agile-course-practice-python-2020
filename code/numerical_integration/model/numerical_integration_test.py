@@ -1,6 +1,6 @@
 import unittest
 
-from numerical_integration import NumericalIntegrator
+from numerical_integration.model.numerical_integration import NumericalIntegrator
 
 
 class TestNumericalIntegratorClass(unittest.TestCase):
