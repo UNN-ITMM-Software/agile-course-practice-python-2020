@@ -63,11 +63,11 @@ class StackViewModel:
             self.error = 'Введение данные неверного типа'
 
     def output_click(self):
-        if self.is_output_button_enable() and not self.stack.isEmpty():
+        if self.is_output_button_enable() and not self.stack.is_empty():
             try:
                 self.clear_error()
                 self.pop_result = self.stack.pop()
-                if self.stack.isEmpty():
+                if self.stack.is_empty():
                     self.set_output_button_disabled()
                     self.error = 'Стэк пуст'
             except:
