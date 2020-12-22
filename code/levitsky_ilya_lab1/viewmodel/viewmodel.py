@@ -73,12 +73,15 @@ class VolumeViewModel:
         if self.figure_type == 0:
             self.logger.log('Radiobutton 0 (cube) selected')
             self.result = calculate_volume_cube(int(self.height_val))
+            self.logger.log('Result = %s' % self.result)
         elif self.figure_type == 1:
             self.logger.log('Radiobutton 1 (sphere) selected')
             self.result = calculate_volume_sphere(int(self.rad_val))
+            self.logger.log('Result = %s' % self.result)
         elif self.figure_type == 2:
             self.logger.log('Radiobutton 2 (cylinder) selected')
             self.result = calculate_volume_cylinder(int(self.rad_val), int(self.height_val))
+            self.logger.log('Result = %s' % self.result)
 
     def get_result(self):
         return self.result
