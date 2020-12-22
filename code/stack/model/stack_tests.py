@@ -1,4 +1,4 @@
-from stack import Stack
+from stack.model.stack import Stack
 import unittest
 
 
