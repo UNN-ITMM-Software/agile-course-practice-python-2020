@@ -1,4 +1,4 @@
-from fraction.logger.ilogger import ILogger
+from my_set.logger.ilogger import ILogger
 
 
 class FakeLogger(ILogger):
