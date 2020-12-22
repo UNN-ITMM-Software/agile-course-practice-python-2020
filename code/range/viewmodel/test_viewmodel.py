@@ -1,8 +1,8 @@
 import unittest
 
-from range.model.range import Range
 from range.viewmodel.operation import Operation
 from range.viewmodel.viewmodel import RangeViewModel
+
 
 class TestRangeViewModel(unittest.TestCase):
 

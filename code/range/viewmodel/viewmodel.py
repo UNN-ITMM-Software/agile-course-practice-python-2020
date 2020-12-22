@@ -1,6 +1,5 @@
 from range.model.range import Range
 from range.viewmodel.operation import Operation
-import re
 
 
 class RangeViewModel:
@@ -63,7 +62,7 @@ class RangeViewModel:
         if self.__result is None:
             return ''
         if isinstance(self.__result, bool):
-            return 'Yes' if self.__result == True else 'No'
+            return 'Yes' if self.__result else 'No'
         if isinstance(self.__result, list):
             return ' '.join([str(x) for x in self.__result])
 
@@ -94,4 +93,3 @@ class RangeViewModel:
             self.__value_2 = result
         else:
             self.__value_2 = Range(input_obj)
-
