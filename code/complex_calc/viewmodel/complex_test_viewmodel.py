@@ -1,5 +1,6 @@
 import unittest
-
+from complex_calc.logger.fakelogger import FakeLogger
+from complex_calc.logger.reallogger import RealLogger
 from complex_calc.viewmodel.complex_viewmodel import ComplexNumViewModel
 
 
@@ -164,3 +165,34 @@ class TestComplexNumCalculatorViewModel(unittest.TestCase):
         self.view_model.set_operation('!=')
         self.view_model.click_convert()
         self.assertEqual('True', self.view_model.get_answer_text())
+
+
+class TestViewModelFakeLogging(unittest.TestCase):
+    def setUp(self):
+        self.view_model = ComplexNumViewModel(FakeLogger())
+
+    def test_logging_init(self):
+        self.assertEqual('Welcome!', self.view_model.logger.get_last_message())
+
+    def test_logging_changing_first_fraction(self):
+        self.view_model.set_first_complex_num('2+3i')
+        self.assertEqual('Setting first complex number to 2+3i', self.view_model.logger.get_last_message())
+
+    def test_logging_changing_second_fraction(self):
+        self.view_model.set_second_complex_num('3+2i')
+        self.assertEqual('Setting second complex number to 3+2i', self.view_model.logger.get_last_message())
+
+    def test_logging_performing_operation(self):
+        expected_messages = ['Button clicked', 'Selected operation is +', 'Result: 3.0 + 4.0i']
+
+        self.view_model.set_first_complex_num('1+2i')
+        self.view_model.set_second_complex_num('2+2i')
+        self.view_model.set_operation('+')
+        self.view_model.click_convert()
+
+        self.assertEqual(expected_messages, self.view_model.logger.get_log_messages()[-3:])
+
+
+class TestViewModelRealLogging(TestViewModelFakeLogging):
+    def setUp(self):
+        self.view_model = ComplexNumViewModel(RealLogger())
