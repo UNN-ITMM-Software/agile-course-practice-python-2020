@@ -1,6 +1,7 @@
 import tkinter
 
 from tkinter import ttk
+
 from statistics.viewmodel import viewmodel
 
 
