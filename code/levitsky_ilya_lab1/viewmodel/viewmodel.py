@@ -41,8 +41,6 @@ class VolumeViewModel:
             self.set_btn_disabled()
 
     def set_start_value(self, value):
-        self.rad_val = value
-        self.validate_values()
         if self.rad_val != value:
             self.rad_val = value
             self.logger.log('Setting radius value - %s' % self.rad_val)
