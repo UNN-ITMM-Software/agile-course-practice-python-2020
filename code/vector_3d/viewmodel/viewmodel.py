@@ -11,7 +11,7 @@ def is_float(value):
 
 
 class Vector3dViewModel:
-    def __init__(self, logger=RealLogger):
+    def __init__(self, logger=RealLogger()):
         self.button_norms = 'disabled'
         self.button_products = 'disabled'
         self.norm_vector = None
@@ -62,12 +62,13 @@ class Vector3dViewModel:
                 self.second_vector = Vector3d(float(x2), float(y2), float(z2))
 
                 self.logger.log('First product vector: x = {0}, y = {1}, z = {2},'
-                                ' Second product vector: x = {0}, y = {1}, z = {2},'.format(self.first_vector.x,
-                                                                                            self.first_vector.y,
-                                                                                            self.first_vector.z,
-                                                                                            self.second_vector.x,
-                                                                                            self.second_vector.y,
-                                                                                            self.second_vector.z))
+                                ' Second product vector: x = {0}, y = {1},'
+                                ' z = {2},'.format(self.first_vector.x,
+                                                   self.first_vector.y,
+                                                   self.first_vector.z,
+                                                   self.second_vector.x,
+                                                   self.second_vector.y,
+                                                   self.second_vector.z))
 
     def calc_norms(self):
         self.euclid_norm = self.norm_vector.calc_norma(norma_type='euclid')

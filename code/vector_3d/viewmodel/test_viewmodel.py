@@ -120,24 +120,28 @@ class TestVector3dViewModelFakeLogger(unittest.TestCase):
 
     def test_norms_button_is_disabled_by_default(self):
         self.model.get_norms_button_state()
-        self.assertEqual('Norm button state: {}'.format(self.model.button_norms), self.model.logger.get_last_message())
+        self.assertEqual('Norm button state: {}'.format(self.model.button_norms),
+                         self.model.logger.get_last_message())
 
     def test_setting_norms_vector_enables_norms_button(self):
         self.model.set_norm_vector(1.0, 2.0, 3.0)
         self.model.get_norms_button_state()
-        self.assertEqual('Norm button state: {}'.format(self.model.button_norms), self.model.logger.get_last_message())
+        self.assertEqual('Norm button state: {}'.format(self.model.button_norms),
+                         self.model.logger.get_last_message())
 
     def test_setting_norms_vector_with_incorrect_values_disables_norms_button(self):
         self.model.set_norm_vector('a', 'b', 'c')
         self.model.get_norms_button_state()
-        self.assertEqual('Norm button state: {}'.format(self.model.button_norms), self.model.logger.get_last_message())
+        self.assertEqual('Norm button state: {}'.format(self.model.button_norms),
+                         self.model.logger.get_last_message())
 
     def test_set_norm_vector(self):
         self.model.set_norm_vector(1.0, 2.0, 3.0)
         self.assertEqual(['Logging', 'Set norm vector: x = {0}, y = {1}, z = {2}'.format(1.0, 2.0, 3.0),
-                          'Norm vector coordinates: x = {0}, y = {1}, z = {2}'.format(self.model.norm_vector.x,
-                                                                                      self.model.norm_vector.y,
-                                                                                      self.model.norm_vector.z)],
+                          'Norm vector coordinates: x = {0}, y = {1},'
+                          ' z = {2}'.format(self.model.norm_vector.x,
+                                            self.model.norm_vector.y,
+                                            self.model.norm_vector.z)],
                          self.model.logger.get_log_messages())
 
     def test_coordinates_norm_vector(self):
@@ -172,12 +176,13 @@ class TestVector3dViewModelFakeLogger(unittest.TestCase):
         self.assertEqual(['Logging', 'Set product vectors: x1 = {0}, y1 = {1}, z1 = {2},'
                                      ' x2 = {3}, y2 = {4}, z2 = {5}'.format(1.0, 3.0, 5.0, 2.0, 4.0, 6.0),
                           'First product vector: x = {0}, y = {1}, z = {2},'
-                          ' Second product vector: x = {0}, y = {1}, z = {2},'.format(self.model.first_vector.x,
-                                                                                      self.model.first_vector.y,
-                                                                                      self.model.first_vector.z,
-                                                                                      self.model.second_vector.x,
-                                                                                      self.model.second_vector.y,
-                                                                                      self.model.second_vector.z)],
+                          ' Second product vector: x = {0}, y = {1},'
+                          ' z = {2},'.format(self.model.first_vector.x,
+                                             self.model.first_vector.y,
+                                             self.model.first_vector.z,
+                                             self.model.second_vector.x,
+                                             self.model.second_vector.y,
+                                             self.model.second_vector.z)],
                          self.model.logger.get_log_messages())
 
     def test_coordinates_first_product_vector(self):
@@ -218,7 +223,8 @@ class TestVector3dViewModelFakeLogger(unittest.TestCase):
         z = 3.0
         self.model.set_norm_vector(x, y, z)
         self.model.get_euclid_norm()
-        self.assertEqual('Euclid norm: {}'.format(self.model.euclid_norm), self.model.logger.get_last_message())
+        self.assertEqual('Euclid norm: {}'.format(self.model.euclid_norm),
+                         self.model.logger.get_last_message())
 
     def test_manhattan_norm(self):
         x = 1.0
@@ -226,7 +232,8 @@ class TestVector3dViewModelFakeLogger(unittest.TestCase):
         z = 3.0
         self.model.set_norm_vector(x, y, z)
         self.model.get_manhattan_norm()
-        self.assertEqual('Manhattan norm: {}'.format(self.model.manhattan_norm), self.model.logger.get_last_message())
+        self.assertEqual('Manhattan norm: {}'.format(self.model.manhattan_norm),
+                         self.model.logger.get_last_message())
 
     def test_chebyshev_norm(self):
         x = 1.0
@@ -234,7 +241,8 @@ class TestVector3dViewModelFakeLogger(unittest.TestCase):
         z = 3.0
         self.model.set_norm_vector(x, y, z)
         self.model.get_chebyshev_norm()
-        self.assertEqual('Chebyshev norm: {}'.format(self.model.chebyshev_norm), self.model.logger.get_last_message())
+        self.assertEqual('Chebyshev norm: {}'.format(self.model.chebyshev_norm),
+                         self.model.logger.get_last_message())
 
     def test_normalized_vector(self):
         x = 1.0
