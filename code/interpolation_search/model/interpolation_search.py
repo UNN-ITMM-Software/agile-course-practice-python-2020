@@ -1,7 +1,7 @@
 
 class InterpolationSearch():
     def __init__(self):
-        self.search = list()
+        pass
 
     def interpolation_search(self, lst, val):
         low = 0
