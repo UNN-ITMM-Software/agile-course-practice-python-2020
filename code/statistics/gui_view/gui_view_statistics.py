@@ -61,27 +61,31 @@ class GuiView(ttk.Frame):
         self.result_successfully_label.grid(row=8, column=1, sticky=self.default_sticky)
 
         self.bind_events()
-        self.mvvm_back_bind()
+        self.mvvm_back_bind_btn()
+        self.mvvm_back_bind_lbls()
 
     def mvvm_bind(self):
         self.viewmodel.set_instr(self.stud1_txt.get("1.0", tkinter.END).strip(),
                                  self.stud2_txt.get("1.0", tkinter.END).strip(),
                                  self.stud3_txt.get("1.0", tkinter.END).strip())
 
-    def mvvm_back_bind(self):
+    def mvvm_back_bind_btn(self):
+        self.calc_button.config(state=self.viewmodel.get_button_convert_state())
+
+    def mvvm_back_bind_lbls(self):
         self.result_of_losers_label.config(text=self.viewmodel.get_answer_losers())
         self.result_successfully_label.config(text=self.viewmodel.get_answer_successfully())
         self.result_of_excellent_label.config(text=self.viewmodel.get_answer_excellent())
-        self.calc_button.config(state=self.viewmodel.get_button_convert_state())
 
     def button_clicked(self, event):
         self.mvvm_bind()
         self.viewmodel.click_button()
-        self.mvvm_back_bind()
+        self.mvvm_back_bind_lbls()
 
     def instr_txt_changed(self, event):
         self.mvvm_bind()
-        self.mvvm_back_bind()
+        self.viewmodel.validate_text()
+        self.mvvm_back_bind_btn()
 
     def bind_events(self):
         self.calc_button.bind('<Button-1>', self.button_clicked)
