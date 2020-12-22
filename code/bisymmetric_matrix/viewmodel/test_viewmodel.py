@@ -94,6 +94,11 @@ class TestAdditionalMethod(unittest.TestCase):
         for i in range(21):
             self.assertEqual(self.view_model.convert_random_matrix_to_str(matrix)[i], result[i])
 
+    def test_convert_matrix_to_str(self):
+        matrix = [[1, 2, 3], [2, 3, 4], [5, 6, 7]]
+        result = ' 1 2 3\n 2 3 4\n 5 6 7\n'
+        self.assertEqual(result, self.view_model.convert_matrix_to_str(matrix))
+
 
 class TestViewModelFakeLogging(unittest.TestCase):
     def setUp(self):
@@ -102,25 +107,71 @@ class TestViewModelFakeLogging(unittest.TestCase):
     def test_logging_init(self):
         self.assertEqual('Welcome', self.view_model.logger.get_last_message())
 
-    def test_logging_changing_first_fraction(self):
-        matrix = [[1, 2, 3], [2, 3, 4], [5, 6, 7]]
-        self.view_model.set_created_random_matrix(matrix)
-        result = self.view_model.convert_random_matrix_to_str(matrix)
+    def test_logging_set_matrix_size(self):
+        self.view_model.set_matrix_size('3')
+        result = ['Welcome', 'trying to set the matrix size', 'matrix size is set: 3']
+        self.assertEqual(result, self.view_model.logger.get_log_messages())
+
+    def test_logging_set_matrix_size_empty(self):
+        self.view_model.set_matrix_size('')
+        result = ['Welcome', 'trying to set the matrix size', 'matrix size empty']
+        self.assertEqual(result, self.view_model.logger.get_log_messages())
+
+    def test_logging_set_matrix_size_empty_is_not_correct(self):
+        self.view_model.set_matrix_size('z')
+        result = ['Welcome', 'trying to set the matrix size', 'matrix size is not correct']
+        self.assertEqual(result, self.view_model.logger.get_log_messages())
+
+    def test_logging_set_vector(self):
+        self.view_model.set_vector('1234')
+        result = ['Welcome', 'trying to set vector', 'vector set: 1234']
+        self.assertEqual(result, self.view_model.logger.get_log_messages())
+
+    def test_logging_set_vector_empty(self):
+        self.view_model.set_vector('')
+        result = ['Welcome', 'trying to set vector', 'vector empty']
+        self.assertEqual(result, self.view_model.logger.get_log_messages())
+
+    def test_logging_set_vector_is_not_correct(self):
+        self.view_model.set_vector('123z')
+        result = ['Welcome', 'trying to set vector', 'vector is not correct']
+        self.assertEqual(result, self.view_model.logger.get_log_messages())
+
+    def test_logging_set_vector_size_is_not_correct(self):
+        self.view_model.set_vector('123')
+        result = ['Welcome', 'trying to set vector', 'vector size is not correct']
+        self.assertEqual(result, self.view_model.logger.get_log_messages())
+
+    def test_logging_click_created_matrix_by_vector(self):
+        self.view_model.set_vector('123')
+        self.view_model.create_matrix_by_vector()
+        result = 'Button create_matrix_by_vector clicked'
         self.assertEqual(result, self.view_model.logger.get_last_message())
 
-    def test_logging_changing_first_fraction_2(self):
+    def test_logging_click_created_random_matrix(self):
+        self.view_model.create_random_matrix()
+        result = 'Button create_random_matrix clicked'
+        self.assertEqual(result, self.view_model.logger.get_last_message())
+
+    def test_logging_created_random_matrix(self):
+        matrix = [[1, 2, 3], [2, 3, 4], [5, 6, 7]]
+        self.view_model.set_created_random_matrix(matrix)
+        result = 'result_random_matrix: \n' + self.view_model.convert_matrix_to_str(matrix)
+        self.assertEqual(result, self.view_model.logger.get_last_message())
+
+    def test_logging_created_matrix_by_vector(self):
         matrix = [[1, 2, 3], [2, 3, 4], [5, 6, 7]]
         self.view_model.set_created_matrix_by_vector(matrix)
-        result = self.view_model.convert_random_matrix_to_str(matrix)
+        result = 'result_matrix_by_vector: \n' + self.view_model.convert_matrix_to_str(matrix)
         self.assertEqual(result, self.view_model.logger.get_last_message())
 
     def test_logging_all(self):
         matrix = [[1, 2, 3], [2, 3, 4], [5, 6, 7]]
         self.view_model.set_created_matrix_by_vector(matrix)
-        result1 = self.view_model.convert_random_matrix_to_str(matrix)
+        result1 = 'result_matrix_by_vector: \n' + self.view_model.convert_matrix_to_str(matrix)
         matrix2 = [[12, 2, 3], [2, 3, 4], [5, 6, 7]]
         self.view_model.set_created_random_matrix(matrix2)
-        result2 = self.view_model.convert_random_matrix_to_str(matrix2)
+        result2 = 'result_random_matrix: \n' + self.view_model.convert_matrix_to_str(matrix2)
         all_res = ['Welcome', result1, result2]
         self.assertEqual(all_res, self.view_model.logger.get_log_messages())
 
