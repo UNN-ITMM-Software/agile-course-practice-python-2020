@@ -3,7 +3,7 @@
 
 import unittest
 
-from ShutinaSvetlana.batcher import Sorting
+from ShutinaSvetlana.model.batcher import Sorting
 
 
 class TestBatcherSortClass(unittest.TestCase):
