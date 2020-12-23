@@ -48,7 +48,7 @@ class StatisticsViewModel:
             self.stud3 = StudentMarks(marks3)
 
             self.set_btn_enabled()
-            self.logger.log(f'Marks was successfully written: "{marks1}", "{marks2}", "{marks3}"')
+            self.logger.log('Marks was successfully written: %s, %s, %s' % (marks1, marks2, marks3))
         except:
             self.set_btn_disabled()
             self.logger.log('Invalid input!')
@@ -57,7 +57,7 @@ class StatisticsViewModel:
         self.marks1_txt = marks1_str
         self.marks2_txt = marks2_str
         self.marks3_txt = marks3_str
-        self.logger.log(f'Entered marks: {self.marks1_txt}, {self.marks2_txt}, {self.marks3_txt}')
+        self.logger.log('Entered marks: %s, %s, %s' % (self.marks1_txt, self.marks2_txt, self.marks3_txt))
 
     def get_marks1_txt(self):
         return self.marks1_txt
@@ -84,6 +84,6 @@ class StatisticsViewModel:
             self.count_of_losers = journal.count_of_losers()
             self.count_of_students_who_successfully_pass = journal.count_of_students_who_successfully_pass()
             self.count_of_excellent = journal.count_of_excellent()
-            self.logger.log(f'Result: {self.count_of_losers}, '
-                            f'{self.count_of_students_who_successfully_pass}, '
-                            f'{self.count_of_excellent}')
+            self.logger.log('Result: %s, %s, %s' % (self.count_of_losers,
+                                                    self.count_of_students_who_successfully_pass,
+                                                    self.count_of_excellent))
