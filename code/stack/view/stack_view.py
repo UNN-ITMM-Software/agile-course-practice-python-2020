@@ -58,7 +58,7 @@ class GUIView:
         self.log_text = ScrolledText.ScrolledText(self.log_frame, width=30)
         self.log_text.pack()
 
-        self.show_stack_frame = tk.Frame(master=self.window, relief=tk.RIDGE, borderwidth=5, height=100)
+        self.show_stack_frame = tk.Frame(master=self.window, relief=tk.RIDGE, borderwidth=5)
         self.show_stack_frame.pack()
 
         self.error_text = tk.Label(self.show_stack_frame, text='', bg='#ff0000', width=30)
