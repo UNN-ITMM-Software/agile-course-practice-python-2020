@@ -1,6 +1,8 @@
 class Node:
 
     def __init__(self, k):
+        if not str(k).isdigit():
+            raise ValueError
         self.key = k
         self.height = 1
         self.left = self.right = None
@@ -41,11 +43,8 @@ class Node:
     def balance(p):
         Node.fixheight(p)
         if Node.bfactor(p) == 2:
-            print("Bfactor p = {}".format(Node.bfactor(p)))
-            print("Bfactor p.right = {}".format(Node.bfactor(p.right)))
             if Node.bfactor(p.right) < 0:
                 p.right = Node.rotateright(p.right)
-                print("FINALLLY")
             return Node.rotateleft(p)
         if Node.bfactor(p) == -2:
             if Node.bfactor(p.left) > 0:
@@ -104,3 +103,11 @@ class Node:
         if p.right and k > p.key:
             return Node.containskey(p.right, k)
         return False
+
+    @staticmethod
+    def dfs(node, result_list):
+        if node.left:
+            Node.dfs(node.left, result_list)
+        if node.right:
+            Node.dfs(node.right, result_list)
+        result_list.append(node.key)
