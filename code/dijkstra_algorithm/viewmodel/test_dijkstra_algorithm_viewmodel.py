@@ -1,5 +1,7 @@
 import unittest
 
+from dijkstra_algorithm.logger.fakelogger import FakeLogger
+from dijkstra_algorithm.logger.reallogger import RealLogger
 from dijkstra_algorithm.viewmodel.dijkstra_algorithm_viewmodel import DAViewModel
 
 
@@ -74,3 +76,13 @@ class TestDAViewModel(unittest.TestCase):
         model.run_dijkstra(matrix)
 
         self.assertEqual(model.get_error(), "Wrong value of source vertex")
+
+
+class TestViewModelFakeLogging(unittest.TestCase):
+    def setUp(self):
+        self.view_model = DAViewModel(FakeLogger())
+
+
+class TestViewModelRealLogging(TestViewModelFakeLogging):
+    def setUp(self):
+        self.view_model = DAViewModel(RealLogger())

@@ -3,8 +3,16 @@ import tkinter as tk
 from dijkstra_algorithm.viewmodel.dijkstra_algorithm_viewmodel import DAViewModel
 
 
+def format_log(messages):
+    result_log = ''
+    for message in messages:
+        result_log += message + '\n'
+    return result_log
+
+
 class GUIView:
     view_model = DAViewModel()
+    N_LOG_MESSAGES_TO_DISPLAY = 2
 
     def __init__(self):
         self.root = tk.Tk()
@@ -21,6 +29,7 @@ class GUIView:
         self.input_start_vertex = tk.Entry(self.root, width=3)
         self.run = tk.Button(self.root, text="run dijksta")
         self.entries = []
+        self.logger_field = tk.Label(self.root, text='Log:', bg='khaki')
 
         self.set_weight_to_grid()
         self.bind_events()
@@ -34,6 +43,7 @@ class GUIView:
         self.input_start_vertex.grid(row=0, column=3)
         self.errors.grid(row=1, column=2, columnspan=3)
         self.run.grid(row=1, column=1)
+        self.logger_field.grid(row=0, column=5, rowspan=self.N_LOG_MESSAGES_TO_DISPLAY, padx=10)
         self.frame.place(relx=0.2, rely=0.2, relwidth=0.6, relheight=0.6)
 
     def bind_events(self):
@@ -61,7 +71,6 @@ class GUIView:
         self.mvvm_back_bind()
 
     def draw_table(self):
-
         if self.view_model.get_btn_create_graph_state() == 'disabled':
             return
 
@@ -124,5 +133,6 @@ class GUIView:
 
         self.input_start_vertex.delete(0, tk.END)
         self.input_start_vertex.insert(tk.END, self.view_model.get_start_vertex())
-
+        self.logger_field.config(text='{}\n'.format(
+            format_log(self.view_model.logger.get_log_messages()[-self.N_LOG_MESSAGES_TO_DISPLAY:])))
         self.errors.config(text='{}\n'.format(self.view_model.get_error()))

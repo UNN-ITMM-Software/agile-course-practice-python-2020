@@ -1,3 +1,4 @@
+from dijkstra_algorithm.logger.reallogger import RealLogger
 from dijkstra_algorithm.model.dijkstra import Graph
 
 
@@ -10,7 +11,8 @@ def is_correct_vertex_number(value):
 
 
 class DAViewModel:
-    def __init__(self):
+    def __init__(self, logger=RealLogger()):
+        self.logger = logger
         self.num_vertex = ''
         self.start_vertex = ''
         self.errors = ''
@@ -37,6 +39,7 @@ class DAViewModel:
 
     def set_start_vertex(self, start):
         self.start_vertex = start
+        self.logger.log('Setting start vertex to: {}'.format(self.start_vertex))
 
     def get_start_vertex(self):
         return self.start_vertex
