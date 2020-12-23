@@ -1,4 +1,5 @@
 import re
+from lines_intersect.logger.reallogger import RealLogger
 from lines_intersect.model.lines_intersect import Line
 
 
@@ -6,7 +7,8 @@ class LinesIntersectViewModel:
     VALID_COORD = r"([-]?\d+[\.]?\d*[ ]+[-]?\d+[\.]?\d*)"
     RESULT_STR = "Intersection: %s"
 
-    def __init__(self):
+    def __init__(self, logger=RealLogger()):
+        self.logger = logger
         self._point1 = ""
         self._point2 = ""
         self._point3 = ""
@@ -45,18 +47,22 @@ class LinesIntersectViewModel:
         return self._point4
 
     def set_point1(self, value):
+        self.logger.log("Set point 1 to %s" % value)
         self._point1 = value
         self.validate_text()
 
     def set_point2(self, value):
+        self.logger.log("Set point 2 to %s" % value)
         self._point2 = value
         self.validate_text()
 
     def set_point3(self, value):
+        self.logger.log("Set point 3 to %s" % value)
         self._point3 = value
         self.validate_text()
 
     def set_point4(self, value):
+        self.logger.log("Set point 4 to %s" % value)
         self._point4 = value
         self.validate_text()
 
@@ -68,6 +74,8 @@ class LinesIntersectViewModel:
         return re.fullmatch(LinesIntersectViewModel.VALID_COORD, value) is not None
 
     def click_calculate(self):
+        self.logger.log("Calculate clicked")
+
         if self.get_button_calculate_state() == "disabled":
             return
 
@@ -78,3 +86,4 @@ class LinesIntersectViewModel:
         line2 = Line(str_to_point(self._point3), str_to_point(self._point4))
 
         self._result = self.RESULT_STR % (str(Line.is_intersect(line1, line2)))
+        self.logger.log(self._result)
