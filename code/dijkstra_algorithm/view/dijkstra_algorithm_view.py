@@ -12,7 +12,7 @@ def format_log(messages):
 
 class GUIView:
     view_model = DAViewModel()
-    N_LOG_MESSAGES_TO_DISPLAY = 2
+    N_LOG_MESSAGES_TO_DISPLAY = 6
 
     def __init__(self):
         self.root = tk.Tk()

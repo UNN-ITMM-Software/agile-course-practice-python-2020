@@ -82,6 +82,52 @@ class TestViewModelFakeLogging(unittest.TestCase):
     def setUp(self):
         self.view_model = DAViewModel(FakeLogger())
 
+    def test_logging_init(self):
+        self.assertEqual('Welcome!', self.view_model.logger.get_last_message())
+
+    def test_logging_enable_set_graph_button(self):
+        self.view_model.set_btn_create_graph_enabled()
+
+        self.assertEqual('Can create graph', self.view_model.logger.get_last_message())
+
+    def test_logging_disable_set_graph_button(self):
+        self.view_model.set_btn_create_graph_disabled()
+
+        self.assertEqual('Can\'t create graph', self.view_model.logger.get_last_message())
+
+    def test_logging_set_start_vertex(self):
+        self.view_model.set_start_vertex('322')
+
+        self.assertEqual('Result from setting start vertex: 322', self.view_model.logger.get_last_message())
+
+    def test_logging_set_correct_vertex_number(self):
+        self.view_model.set_num_vertex('5')
+
+        self.assertEqual('Result from setting number of vertex: 5', self.view_model.logger.get_last_message())
+
+    def test_logging_set_incorrect_vertex_number(self):
+        self.view_model.set_num_vertex('Z')
+
+        self.assertEqual('Entered value isn\'t correct!', self.view_model.logger.get_last_message())
+
+    def test_logging_run_dijkstra_return_correct_result(self):
+        self.view_model.set_num_vertex('3')
+        self.view_model.set_start_vertex('2')
+        matrix = [['0', '2', '1'], ['2', '0', '3'], ['1', '3', '0']]
+        self.view_model.run_dijkstra(matrix)
+
+        self.assertEqual('Dijkstra algorithm successfully completed',
+                         self.view_model.logger.get_last_message())
+
+    def test_logging_run_dijkstra_return_error(self):
+        self.view_model.set_num_vertex('2')
+        self.view_model.set_start_vertex('0')
+        matrix = [['A', 'B'], ['C', 'D']]
+        self.view_model.run_dijkstra(matrix)
+
+        self.assertEqual('Error: invalid literal for int() with base 10: \'A\'',
+                         self.view_model.logger.get_last_message())
+
 
 class TestViewModelRealLogging(TestViewModelFakeLogging):
     def setUp(self):
