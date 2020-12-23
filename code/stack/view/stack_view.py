@@ -12,7 +12,7 @@ class GUIView:
         self.window = tk.Tk()
 
         self.window.title("Stack program")
-        self.window.geometry('200x500')
+        self.window.geometry('200x800')
         self.window.resizable(width=False, height=False)
 
         self.size_frame = tk.Frame(master=self.window, relief=tk.RIDGE, borderwidth=5)
@@ -52,7 +52,13 @@ class GUIView:
         self.output_button = tk.Button(self.output_frame, text='Pop', width=20)
         self.output_button.pack()
 
-        self.show_stack_frame = tk.Frame(master=self.window, relief=tk.RIDGE, borderwidth=5)
+        self.log_frame = tk.Frame(master=self.window, relief=tk.RIDGE, borderwidth=5)
+        self.log_frame.pack()
+
+        self.log_text = ScrolledText.ScrolledText(self.log_frame, width=30)
+        self.log_text.pack()
+
+        self.show_stack_frame = tk.Frame(master=self.window, relief=tk.RIDGE, borderwidth=5, height=100)
         self.show_stack_frame.pack()
 
         self.error_text = tk.Label(self.show_stack_frame, text='', bg='#ff0000', width=30)
@@ -115,3 +121,6 @@ class GUIView:
 
         self.show_stack.delete(1.0, tk.END)
         self.show_stack.insert(tk.INSERT, self.view_model.get_stack_values())
+
+        self.log_text.delete(1.0, tk.END)
+        self.log_text.insert(tk.INSERT, self.view_model.get_log_messages())
