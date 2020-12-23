@@ -1,6 +1,7 @@
 from stack.model.stack import Stack
 from stack.logger.reallogger import RealLogger
 
+
 class StackViewModel:
     def __init__(self,  size=None, logger=RealLogger()):
         self.push_button_enabled = 'disabled'
@@ -98,7 +99,6 @@ class StackViewModel:
         else:
             self.error = 'Неверный тип для размера стека'
             self.logger.log(self.error)
-
 
     def set_input_value(self, value):
         try:

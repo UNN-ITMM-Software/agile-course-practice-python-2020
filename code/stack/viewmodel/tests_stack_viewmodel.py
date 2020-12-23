@@ -65,7 +65,6 @@ class TestViewModel(unittest.TestCase):
 class TestViewModelLogger(unittest.TestCase):
     def test_init_stack_logging(self):
         model = StackViewModel()
-        log = model.get_log_messages()
         self.assertEqual('Program started', model.logger.get_last_message())
 
     def test_validate_with_valide_input_size_logging(self):
@@ -117,4 +116,3 @@ class TestViewModelLogger(unittest.TestCase):
         model.set_input_value(6)
         model.input_click()
         self.assertEqual('Стэк переполнен', model.logger.get_last_message())
-

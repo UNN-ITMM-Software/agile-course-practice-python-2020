@@ -31,4 +31,3 @@ class LoggerTestClass(unittest.TestCase):
         self.logger.log('Another one')
 
         self.assertEqual('Another one', self.logger.get_last_message())
-
