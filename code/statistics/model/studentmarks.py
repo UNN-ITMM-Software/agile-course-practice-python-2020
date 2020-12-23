@@ -16,8 +16,6 @@ class StudentMarks(object):
     def __init__(self, array_of_marks: list):
         if StudentMarks.is_correct(array_of_marks):
             self.marks = array_of_marks
-        else:
-            raise Exception
 
     def amount_of_marks(self):
         return len(self.marks)
