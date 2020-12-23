@@ -108,7 +108,7 @@ class TestViewModelFakeLogging(unittest.TestCase):
     def test_logging_valid_input(self):
         self.view_model.set_instr("1 1", "3 3", "5 5")
         self.view_model.validate_text()
-        self.assertEqual('Marks was successfully written: "[1, 1]", "[3, 3]", "[5, 5]"',
+        self.assertEqual('Marks was successfully written: [1, 1], [3, 3], [5, 5]',
                          self.view_model.logger.get_last_message())
 
     def test_logging_invalid_input(self):
