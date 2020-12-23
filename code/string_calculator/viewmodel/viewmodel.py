@@ -6,7 +6,7 @@ from string_calculator.logger.reallogger import RealLogger
 
 class StrCalculatorViewModel:
     def __init__(self,
-                 logger=RealLogger(os.path.join('..', '..', 'tmp', 'numerical_integration.log'))):
+                 logger=RealLogger(os.path.join('..', '..', 'tmp', 'string_calculator.log'))):
         self.logger = logger
         self.logger.log('Hello')
         self.instr = ''
