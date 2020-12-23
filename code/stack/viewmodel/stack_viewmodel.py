@@ -80,7 +80,6 @@ class StackViewModel:
                     self.set_output_button_disabled()
                     self.error = 'Стэк пуст'
                     self.logger.log(self.error)
-                print(self.pop_result)
             except:
                 self.error = 'Ошибка получения значения'
                 self.logger.log(self.error)
