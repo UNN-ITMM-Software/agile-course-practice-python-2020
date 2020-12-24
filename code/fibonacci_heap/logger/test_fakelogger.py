@@ -2,7 +2,7 @@ import unittest
 
 from fibonacci_heap.logger.fakelogger import FakeLogger as Logger
 
-test_log_msg = lambda msg_num: f'This is the [{msg_num}] test log msg'
+test_log_msg = lambda msg_num: 'This is the [{}] test log msg'.format(msg_num)
 
 
 class TestLogger(unittest.TestCase):
