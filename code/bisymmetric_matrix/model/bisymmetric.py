@@ -86,6 +86,7 @@ class BisymmetricMatrix:
             for j in range(size - index_cor, size):
                 self.mtrx[i].insert(j, self.mtrx[size-1-j][size-1-i])
             index_cor += 1
+        return self.mtrx
 
     @staticmethod
     def is_correct_vector_size(size):
@@ -119,3 +120,4 @@ class BisymmetricMatrix:
             for j in range(size - index_cor, size):
                 self.mtrx[i].insert(j, self.mtrx[size-1-j][size-1-i])
             index_cor += 1
+        return self.mtrx

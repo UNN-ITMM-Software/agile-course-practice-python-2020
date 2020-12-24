@@ -6,11 +6,12 @@ from sorting.viewmodel import viewmodel
 class SortingView:
 
     view_model = viewmodel.SortingViewModel()
+    N_LOG_MESSAGES_TO_DISPLAY = 16
 
     def __init__(self):
         self.root = tk.Tk()
         self.root.title('Sorting numbers')
-        self.root.geometry('900x300')
+        self.root.geometry('900x500')
         self.root.resizable(width=False, height=False)
 
         self.frame = tk.Frame(self.root)
@@ -20,6 +21,7 @@ class SortingView:
         self.sort_btn = tk.Button(self.root, text="Sort", state='disabled')
         self.sorted_array_label = tk.Label(self.root, text="Sorted array of numbers:")
         self.sorted_array = tk.Entry(self.root, width=100)
+        self.logger_label = tk.Label(self.root, text="Log")
 
         self.set_weight_to_grid()
         self.bind_events()
@@ -36,6 +38,7 @@ class SortingView:
         self.sort_btn.grid(row=4, column=0, stick='wens', padx=5, pady=5)
         self.sorted_array_label.grid(row=6, column=0, stick='wens', padx=5, pady=5)
         self.sorted_array.grid(row=6, column=1, stick='wens', padx=5, pady=5)
+        self.logger_label.grid(row=7, column=1, sticky='wens', padx=5, pady=5)
 
     def bind_events(self):
         self.input_array.bind('<KeyRelease>', self.input_array_changed)
@@ -58,3 +61,6 @@ class SortingView:
             state=self.view_model.get_sort_btn_state())
         self.sorted_array.delete(0, tk.END)
         self.sorted_array.insert(tk.END, self.view_model.get_sorted_array())
+        logger_text = '\n'.join(
+            self.view_model.logger.get_log_messages()[:-self.N_LOG_MESSAGES_TO_DISPLAY:-1])
+        self.logger_label.config(text=logger_text)

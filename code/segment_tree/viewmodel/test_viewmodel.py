@@ -1,6 +1,8 @@
 import unittest
 
 from segment_tree.viewmodel.viewmodel import SegmentTreeViewModel
+from segment_tree.logger.fakelogger import FakeLogger
+from segment_tree.logger.reallogger import RealLogger
 
 
 class TestSegmentTreeViewModel(unittest.TestCase):
@@ -293,3 +295,156 @@ class TestSegmentTreeViewModel(unittest.TestCase):
         test_view_model.set_update_value(10)
         test_view_model.update()
         self.assertEqual(False, test_view_model.get_success_procedure())
+
+
+class TestViewModelFakeLogging(unittest.TestCase):
+    def setUp(self):
+        self.view_model = SegmentTreeViewModel(FakeLogger())
+
+    def test_logging_init(self):
+        self.assertEqual('Welcome to segment tree application', self.view_model.logger.get_last_message())
+
+    def test_logging_set_input_size(self):
+        self.view_model.set_input_size(5)
+
+        self.assertEqual('Set tree size = 5', self.view_model.logger.get_last_message())
+
+    def test_logging_set_input_size_with_incorrect_argument(self):
+        self.view_model.set_input_size('mistake')
+
+        self.assertEqual('Incorrect type of input size', self.view_model.logger.get_last_message())
+
+    def test_logging_set_input_array(self):
+        self.view_model.set_input_array([1, 2, 3, 4, 5])
+
+        self.assertEqual('Set array for tree [1, 2, 3, 4, 5]', self.view_model.logger.get_last_message())
+
+    def test_logging_build_tree(self):
+        self.view_model.set_input_size(5)
+        self.view_model.set_input_array([1, 2, 3, 4, 5])
+        self.view_model.set_method('sum')
+        self.view_model.calculate()
+
+        self.assertEqual('Build segment tree', self.view_model.logger.get_last_message())
+
+    def test_logging_build_tree_failed(self):
+        self.view_model.set_input_size(5)
+        self.view_model.set_input_array([1, 2, 3, 4, 5])
+        self.view_model.set_method('lol')
+        self.view_model.calculate()
+
+        self.assertEqual('Incorrect type of segment tree. Expected: max\min\sum',
+                         self.view_model.logger.get_last_message())
+
+    def test_logging_set_method(self):
+        self.view_model.set_method('sum')
+
+        self.assertEqual('Set method sum', self.view_model.logger.get_last_message())
+
+    def test_logging_set_input_array_with_incorrect_argument(self):
+        self.view_model.set_input_array(['mistake', 'mistake'])
+
+        self.assertEqual('Incorrect input array', self.view_model.logger.get_last_message())
+
+    def test_logging_set_left_border(self):
+        self.view_model.set_left_border(0)
+
+        self.assertEqual('Set left border = 0', self.view_model.logger.get_last_message())
+
+    def test_logging_set_left_border_with_incorrect_argument(self):
+        self.view_model.set_left_border('mistake')
+
+        self.assertEqual('Incorrect left border', self.view_model.logger.get_last_message())
+
+    def test_logging_set_right_border(self):
+        self.view_model.set_right_border(2)
+
+        self.assertEqual('Set right border = 2', self.view_model.logger.get_last_message())
+
+    def test_logging_set_right_border_with_incorrect_argument(self):
+        self.view_model.set_right_border('mistake')
+
+        self.assertEqual('Incorrect right border', self.view_model.logger.get_last_message())
+
+    def test_logging_set_update_index(self):
+        self.view_model.set_update_index(1)
+
+        self.assertEqual('Set update index = 1', self.view_model.logger.get_last_message())
+
+    def test_logging_set_update_index_with_incorrect_argument(self):
+        self.view_model.set_update_index('mistake')
+
+        self.assertEqual('Incorrect update index', self.view_model.logger.get_last_message())
+
+    def test_logging_set_update_value(self):
+        self.view_model.set_update_value(100500)
+
+        self.assertEqual('Set update value = 100500', self.view_model.logger.get_last_message())
+
+    def test_logging_set_update_value_with_incorrect_argument(self):
+        self.view_model.set_update_value('mistake')
+
+        self.assertEqual('Incorrect update value', self.view_model.logger.get_last_message())
+
+    def test_logging_update(self):
+        self.view_model.set_input_size(5)
+        self.view_model.set_input_array([1, 2, 3, 4, 5])
+        self.view_model.set_method('sum')
+        self.view_model.calculate()
+        self.view_model.set_update_index(3)
+        self.view_model.set_update_value(100500)
+        self.view_model.update()
+
+        self.assertEqual('Element updated', self.view_model.logger.get_last_message())
+
+    def test_logging_update_failed(self):
+        self.view_model.set_input_size(5)
+        self.view_model.set_input_array([1, 2, 3, 4, 5])
+        self.view_model.set_method('sum')
+        self.view_model.calculate()
+        self.view_model.set_update_index(10)
+        self.view_model.set_update_value(100500)
+        self.view_model.update()
+
+        self.assertEqual('index is out of bounds', self.view_model.logger.get_last_message())
+
+    def test_logging_cut_array(self):
+        self.view_model.set_input_size(5)
+        self.view_model.set_input_array([1, 2, 3, 4, 5])
+        self.view_model.set_method('sum')
+        self.view_model.calculate()
+        self.view_model.set_left_border(0)
+        self.view_model.set_right_border(2)
+        self.view_model.cut_array_for_given_border()
+
+        self.assertEqual('Cut array for given border, result: 6', self.view_model.logger.get_last_message())
+
+    def test_logging_cut_array_fails(self):
+        self.view_model.set_input_size(5)
+        self.view_model.set_input_array([1, 2, 3, 4, 5])
+        self.view_model.set_method('sum')
+        self.view_model.calculate()
+        self.view_model.set_left_border(-1)
+        self.view_model.set_right_border(2)
+        self.view_model.cut_array_for_given_border()
+
+        self.assertEqual('Wrong indices: indices is out of bounds', self.view_model.logger.get_last_message())
+
+    def test_logging_build_tree_full(self):
+        expected_messages = ['Welcome to segment tree application',
+                             'Set tree size = 5',
+                             'Set array for tree [1, 2, 3, 4, 5]',
+                             'Set method sum',
+                             'Build segment tree']
+
+        self.view_model.set_input_size(5)
+        self.view_model.set_input_array([1, 2, 3, 4, 5])
+        self.view_model.set_method('sum')
+        self.view_model.calculate()
+
+        self.assertEqual(expected_messages, self.view_model.logger.get_log_messages())
+
+
+class TestViewModelRealLogging(TestViewModelFakeLogging):
+    def setUp(self):
+        self.view_model = SegmentTreeViewModel(RealLogger())
