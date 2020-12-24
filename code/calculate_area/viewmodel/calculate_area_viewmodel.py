@@ -1,10 +1,11 @@
 import re
-
+from calculate_area.logger.reallogger import RealLogger
 from calculate_area.model.calculating_area import Figure
 
 
 class CalculateAreaViewModel:
-    def __init__(self):
+    def __init__(self, logger=RealLogger()):
+        self.logger = logger
         self.a = ""
         self.r = ""
         self.h = ""
@@ -13,6 +14,7 @@ class CalculateAreaViewModel:
         self.area = ""
         self.msg = ""
         self.calc_button_state = "disabled"
+        self.logger.log('Starting...')
 
     def get_area(self):
         return self.area
@@ -25,22 +27,27 @@ class CalculateAreaViewModel:
 
     def set_a(self, value):
         self.a = value.strip()
+        self.logger.log('Setting the side to %s' % self.a)
         self.validate_inputs()
 
     def set_r(self, value):
         self.r = value.strip()
+        self.logger.log('Setting the radius to %s' % self.r)
         self.validate_inputs()
 
     def set_h(self, value):
         self.h = value.strip()
+        self.logger.log('Setting the height to %s' % self.h)
         self.validate_inputs()
 
     def set_l(self, value):
         self.l = value.strip()
+        self.logger.log('Setting the length of reference to %s' % self.l)
         self.validate_inputs()
 
     def set_figure_type(self, value):
         self.figure_type = value.strip()
+        self.logger.log('Setting figure type to %s' % self.figure_type)
         self.validate_inputs()
 
     def disable_calc_button(self):
@@ -90,6 +97,8 @@ class CalculateAreaViewModel:
         self.enable_calc_button()
 
     def calculate(self):
+        self.logger.log('Button clicked')
+        self.logger.log('Selected figure type to %s' % self.figure_type)
         if self.calc_button_state == "normal":
             if self.figure_type == "CONE":
                 figure = Figure(r=float(self.r), l=float(self.l))
@@ -104,4 +113,5 @@ class CalculateAreaViewModel:
                 figure = Figure(r=float(self.r), h=float(self.h))
                 self.area = figure.calculate_area_cylinder()
             self.area = str(self.area)
+            self.logger.log('Result: %s' % self.area)
             return
