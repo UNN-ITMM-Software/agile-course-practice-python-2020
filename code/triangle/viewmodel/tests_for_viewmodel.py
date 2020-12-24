@@ -2,6 +2,8 @@ import math
 import unittest
 
 from triangle.viewmodel.viewmodel import TriangleViewModel
+from triangle.logger.fakelogger import FakeLogger
+from triangle.logger.reallogger import RealLogger
 
 
 class TestTriangleCalculatorViewModel(unittest.TestCase):
@@ -110,3 +112,30 @@ class TestTriangleCalculatorViewModel(unittest.TestCase):
         self.view_model.set_operation('get angle type')
         self.view_model.click_button()
         self.assertEqual('obtuse', self.view_model.get_answer())
+
+
+class TestViewModelFakeLogging(unittest.TestCase):
+    def setUp(self):
+        self.view_model = TriangleViewModel(FakeLogger())
+
+    def test_logging_init(self):
+        self.assertEqual('Welcome!', self.view_model.logger.get_last_message())
+
+    def test_logging_changing_vertices(self):
+        self.view_model.set_vertices(['0', '0', '3', '0', '0', '4'])
+        self.assertEqual('Setting vertices to (0.0, 0.0) (3.0, 0.0) (0.0, 4.0)',
+                         self.view_model.logger.get_last_message())
+
+    def test_logging_performing_operation(self):
+        expected_messages = ["Operation set to 'get ab'", 'Result: 3.0', 'Click on button']
+
+        self.view_model.set_vertices(['0', '0', '3', '0', '0', '4'])
+        self.view_model.set_operation('get ab')
+        self.view_model.click_button()
+
+        self.assertEqual(expected_messages, self.view_model.logger.get_log_messages()[-3:])
+
+
+class TestViewModelRealLogging(TestViewModelFakeLogging):
+    def setUp(self):
+        self.view_model = TriangleViewModel(RealLogger())
