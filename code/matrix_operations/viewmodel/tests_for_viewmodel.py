@@ -1,5 +1,6 @@
 import unittest
-
+from matrix_operations.logger.fakelogger import FakeLogger
+from matrix_operations.logger.reallogger import RealLogger
 from matrix_operations.viewmodel.viewmodel import MatrixOperationsViewModel
 
 
@@ -70,3 +71,36 @@ class TestFractionCalculatorViewModel(unittest.TestCase):
         content = [[2, 1, 2], [0, 3, 0], [3, 1, 1]]
         self.view_model.update_matrix1_content(content)
         self.assertEqual(self.view_model.calculate(), [[2, 0, 3], [1, 3, 1], [2, 0, 1]])
+
+
+class TestViewModelFakeLogging(unittest.TestCase):
+    def setUp(self):
+        self.view_model = MatrixOperationsViewModel(FakeLogger())
+
+    def test_logging_init(self):
+        self.assertEqual('Welcome!', self.view_model.logger.get_last_message())
+
+    def test_logging_changing_first_matrix(self):
+        content = [[2, 1, 2], [0, 3, 0], [3, 1, 1]]
+        self.view_model.update_matrix1_content(content)
+        self.assertEqual('Setting first matrix to [[2, 1, 2], [0, 3, 0], [3, 1, 1]]', self.view_model.logger.get_last_message())
+
+    def test_logging_changing_second_fraction(self):
+        content = [[2, 1, 2], [0, 3, 0], [3, 1, 1]]
+        self.view_model.update_matrix2_content(content)
+        self.assertEqual('Setting second matrix to [[2, 1, 2], [0, 3, 0], [3, 1, 1]]', self.view_model.logger.get_last_message())
+
+    def test_logging_performing_operation(self):
+        expected_messages = ['Button clicked', 'Selected operation is +',
+                             'Result: [[4, 2, 4], [0, 6, 0], [6, 2, 2]]']
+        content = [[2, 1, 2], [0, 3, 0], [3, 1, 1]]
+        self.view_model.update_matrix1_content(content)
+        self.view_model.update_matrix2_content(content)
+        self.view_model.set_operation('+')
+        self.view_model.calculate()
+        self.assertEqual(expected_messages, self.view_model.logger.get_log_messages()[-3:])
+
+
+class TestViewModelRealLogging(TestViewModelFakeLogging):
+    def setUp(self):
+        self.view_model = MatrixOperationsViewModel(RealLogger())
