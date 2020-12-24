@@ -83,12 +83,14 @@ class TestViewModelFakeLogging(unittest.TestCase):
     def test_logging_changing_first_matrix(self):
         content = [[2, 1, 2], [0, 3, 0], [3, 1, 1]]
         self.view_model.update_matrix1_content(content)
-        self.assertEqual('Setting first matrix to [[2, 1, 2], [0, 3, 0], [3, 1, 1]]', self.view_model.logger.get_last_message())
+        self.assertEqual('Setting first matrix to [[2, 1, 2], [0, 3, 0], [3, 1, 1]]',
+                         self.view_model.logger.get_last_message())
 
     def test_logging_changing_second_fraction(self):
         content = [[2, 1, 2], [0, 3, 0], [3, 1, 1]]
         self.view_model.update_matrix2_content(content)
-        self.assertEqual('Setting second matrix to [[2, 1, 2], [0, 3, 0], [3, 1, 1]]', self.view_model.logger.get_last_message())
+        self.assertEqual('Setting second matrix to [[2, 1, 2], [0, 3, 0], [3, 1, 1]]',
+                         self.view_model.logger.get_last_message())
 
     def test_logging_performing_operation(self):
         expected_messages = ['Button clicked', 'Selected operation is +',
