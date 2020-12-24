@@ -1,5 +1,7 @@
 from float_vector_metrics.model.float_vector_metrics import VectorMetrics
 
+from float_vector_metrics.logger.reallogger import RealLogger
+
 
 class VectorMetricsViewModel:
     calculator = VectorMetrics()
@@ -11,7 +13,9 @@ class VectorMetricsViewModel:
         'Linf': calculator.linf
     }
 
-    def __init__(self):
+    def __init__(self, logger=RealLogger()):
+        self.logger = logger
+        self.logger.log('Welcome to The Float Vector Metrics Calculator!')
         self.x = [0, 0, 0]
         self.y = [0, 0, 0]
         self.x_in = str(self.x)
@@ -30,10 +34,12 @@ class VectorMetricsViewModel:
                 return True
             else:
                 self.error_msg = "Error: Only list notations supported"
+                self.logger.log('%s' % self.error_msg)
                 self.button_state = "disabled"
                 return False
         except Exception as exp:
             self.error_msg = "Error: Incorrect expression, only list of float or int values supported"
+            self.logger.log('%s' % self.error_msg)
             self.button_state = "disabled"
             return False
 
@@ -48,6 +54,7 @@ class VectorMetricsViewModel:
         is_valid = self.validate(value)
         if is_valid:
             self.x = eval(value)
+            self.logger.log('Setting x vector to %s' % self.x_in)
         return is_valid
 
     def get_x(self):
@@ -58,6 +65,7 @@ class VectorMetricsViewModel:
         is_valid = self.validate(value)
         if is_valid:
             self.y = eval(value)
+            self.logger.log('Setting y vector to %s' % self.y_in)
         return is_valid
 
     def get_y(self):
@@ -68,14 +76,18 @@ class VectorMetricsViewModel:
 
     def set_metric(self, value):
         self.metric = self.METRICS.get(value, None)
+        self.logger.log('Setting metric to %s' % value)
         if self.metric is not None and self.error_msg == '':
             self.button_state = 'active'
 
     def compute(self):
+        self.logger.log('Button clicked')
         try:
             self.result = self.metric(self.x, self.y)
+            self.logger.log('Result: %s' % self.result)
         except Exception as exp:
             self.error_msg = "Error: {}". format(exp)
+            self.logger.log('%s' % self.error_msg)
 
     def get_result(self):
         return "Result: {}".format(self.result)
