@@ -128,4 +128,5 @@ class GUIView:
 
         error_msg = self.view_model.get_error_message()
         self.error_field.config(text='{}'.format(error_msg if error_msg else 'Normal work'))
-        self.logger_field.config(text='{}\n'.format(get_log_messages(self.view_model.logger.get_log_messages())))
+        self.logger_field.config(text='{}\n'.format(
+            format_log(self.view_model.logger.get_log_messages())))
