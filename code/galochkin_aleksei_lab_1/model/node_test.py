@@ -1,6 +1,6 @@
 import unittest
 
-from galochkin_aleksei_lab_1.node import Node
+from galochkin_aleksei_lab_1.model.node import Node
 
 
 class NodeTest(unittest.TestCase):
@@ -148,3 +148,11 @@ class NodeTest(unittest.TestCase):
 
     def test_remove_no_key(self):
         self.assertEqual(0, Node.remove(None, 3))
+
+    def test_dfs(self):
+        a = Node(1)
+        for i in range(2, 10):
+            a = Node.insert(a, i)
+        result_list = []
+        Node.dfs(a, result_list)
+        self.assertEqual([1, 3, 2, 5, 7, 9, 8, 6, 4], result_list)
