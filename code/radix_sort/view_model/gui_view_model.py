@@ -1,17 +1,21 @@
 from radix_sort.model.radix_sort import RadixSort
+from radix_sort.infrastructure.real_logger import RealLogger
 
 
 def convert_list_into_string(array: list) -> str:
-    return str(" ".join([str(i) for i in array]))
+    return str(", ".join([str(i) for i in array]))
 
 
 class RadixSortViewModel:
-    def __init__(self):
+    def __init__(self, logger=RealLogger()):
         self.input_data = ''
         self.output_data = ''
         self.sort_button_state = 'disabled'
+        self.logger = logger
+        self.logger.log('Start Logging')
 
     def start_sort(self):
+        self.logger.log('Start Sorting: ' + self.input_data)
         try:
             if ',' in self.input_data:
                 start_array = [int(s) for s in self.input_data.split(',')]
@@ -19,9 +23,12 @@ class RadixSortViewModel:
                 start_array = [int(s) for s in self.input_data.split()]
 
             result_array = RadixSort(start_array).sort()
-            self.output_data = convert_list_into_string(result_array)
+            result = convert_list_into_string(result_array)
+            self.output_data = result
+            self.logger.log('Finish Sorting: ' + result)
         except ValueError:
-            self.output_data = "Please, check correct input data"
+            self.logger.log('Incorrect input: ' + self.input_data)
+            self.output_data = "Incorrect input!"
 
     def set_input_data(self, data: str):
         if data:
@@ -32,6 +39,7 @@ class RadixSortViewModel:
         self.input_data = data
 
     def get_input_data(self) -> str:
+        self.logger.log('Getting input: ' + self.input_data)
         return self.input_data
 
     def get_output_data(self) -> str:
