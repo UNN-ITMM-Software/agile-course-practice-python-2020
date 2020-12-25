@@ -206,3 +206,4 @@ class TestViewModelFakeLogging(unittest.TestCase):
 class TestViewModelRealLogging(TestViewModelFakeLogging):
     def setUp(self):
         self.view_model = RangeViewModel(RealLogger())
+
