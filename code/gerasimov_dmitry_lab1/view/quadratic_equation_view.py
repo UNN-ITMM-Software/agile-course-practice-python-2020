@@ -16,6 +16,13 @@ def get_error_text(value):
     return value if value else ''
 
 
+def get_log_messages(messages):
+    result_str = ''
+    for message in messages:
+        result_str += message + '\n'
+    return result_str
+
+
 class GUIView(object):
     view_model = QuadraticEquationViewModel()
 
@@ -36,6 +43,7 @@ class GUIView(object):
         self.btn = tk.Button(self.frame, text='Solve', bg='gray21')
         self.res = tk.Label(self.frame, text='Result', bg='gray21', font=40)
         self.error_field = tk.Label(self.frame, text='', fg='red', bg='gray21', font=('', 12, 'bold'))
+        self.logger_field = tk.Label(self.frame, text='Log:', bg='#619eb3', font=6)
 
         self.set_weight_to_grid()
         self.bind_events()
@@ -56,6 +64,7 @@ class GUIView(object):
         self.btn.grid(row=2, column=1, stick='wens')
         self.res.grid(row=4, column=0, columnspan=3, stick='we', padx=5)
         self.error_field.grid(row=5, column=0, columnspan=3, stick='we', padx=5)
+        self.logger_field.grid(row=0, column=3, stick='ns', rowspan=30)
 
     def bind_events(self):
         self.a_value.bind('<KeyRelease>', self.change_a)
@@ -99,3 +108,4 @@ class GUIView(object):
 
         self.res.config(text='{}\n'.format(get_result_text(self.view_model.get_result())))
         self.error_field.config(text='{}\n'.format(get_error_text(self.view_model.get_error_message())))
+        self.logger_field.config(text='%s\n' % (get_log_messages(self.view_model.logger.get_log_messages())))

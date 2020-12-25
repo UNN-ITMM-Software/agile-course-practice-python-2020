@@ -1,8 +1,9 @@
+import os
+
 import re
 from enum import Enum
-
 import numpy as np
-
+from big_integer.logger.reallogger import RealLogger
 from big_integer.model.big_integer import BigInteger
 
 
@@ -43,7 +44,10 @@ def is_valid(string):
 
 
 class BigIntegerViewModel:
-    def __init__(self):
+    def __init__(self,
+                 logger=RealLogger(os.path.join('..', '..', 'tmp', 'big_integer.log'))):
+        self.logger = logger
+        self.logger.log('Hello')
         self.a = "456"
         self.b = "123"
         self.operation = Operation.ADDITIONAL
@@ -66,23 +70,32 @@ class BigIntegerViewModel:
         return self.result
 
     def set_a(self, a):
+        self.logger.log('Input a: {}'.format(a))
         self.a = a
         if is_valid(self.a) and is_valid(self.b):
+            self.logger.log('Correct input a')
             self.calculate_state = CalculateState.ENABLE
         else:
+            self.logger.log('Invalid input a')
             self.calculate_state = CalculateState.DISABLE
 
     def set_b(self, b):
+        self.logger.log('Input b: {}'.format(b))
         self.b = b
         if is_valid(self.a) and is_valid(self.b):
+            self.logger.log('Correct input b')
             self.calculate_state = CalculateState.ENABLE
         else:
+            self.logger.log('Invalid input b')
             self.calculate_state = CalculateState.DISABLE
 
     def set_operation(self, operation):
+        self.logger.log('Set operation: {}'.format(operation))
         self.operation = operation
 
     def calculate(self):
+        self.logger.log('Button clicked')
+        self.logger.log('Operation: {}'.format(self.operation))
         big_a = string_to_big_integer(self.a)
         big_b = string_to_big_integer(self.b)
         if self.operation == Operation.ADDITIONAL:
@@ -92,3 +105,4 @@ class BigIntegerViewModel:
         elif self.operation == Operation.MULTIPLICATION:
             self.result = big_integer_to_string(big_a * big_b)
         self.calculate_state = CalculateState.ENABLE
+        self.logger.log('Result: {}'.format(self.result))

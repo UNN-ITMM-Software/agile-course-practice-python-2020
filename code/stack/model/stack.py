@@ -39,3 +39,22 @@ class Stack:
         top = self.top()
         del self.stack[-1]
         return top
+
+    def get_stack(self):
+        return self.stack
+
+    def get_stack_size(self):
+        return len(self.stack)
+
+    def get_stack_max_size(self):
+        return self.max_size
+
+    def set_size(self, size):
+        if not isinstance(size, int):
+            raise TypeError
+        elif size < 1:
+            raise Exception('Incorrect max size value')
+        elif size < self.get_stack_size():
+            raise Exception('Small size value')
+        else:
+            self.max_size = size
