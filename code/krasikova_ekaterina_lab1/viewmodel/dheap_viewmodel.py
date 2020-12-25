@@ -1,13 +1,16 @@
 from krasikova_ekaterina_lab1.model.dheap import DHeap
+from krasikova_ekaterina_lab1.logger.reallogger import RealLogger
 
 
 class DHeapViewModel:
-    def __init__(self):
+    def __init__(self, logger=RealLogger()):
+        self.logger = logger
         self.is_heap_init = False
         self.set_create_btn_disabled()
         self.set_insert_btn_disabled()
         self.set_delete_btn_disabled()
         self.set_decrease_btn_disabled()
+        self.logger.log('Welcome!')
 
     def set_create_btn_enabled(self):
         self.create_btn_state = 'normal'
@@ -97,17 +100,26 @@ class DHeapViewModel:
     def create_btn_clicked(self):
         self.DHeap = DHeap(self.param_d, self.input_data)
         self.current_data = ' '.join([str(elem) for elem in self.DHeap.heap])
+        self.logger.log('Entering d parameter: %s' % self.param_d)
+        self.logger.log('Entering input data: %s' % self.input_data)
+        self.logger.log('current data: %s' % self.current_data)
         self.is_heap_init = True
 
     def insert_btn_clicked(self):
         if self.is_heap_init:
             self.DHeap.insert(self.inserting_elem)
+            self.logger.log('Entering element you want to insert: %s' % self.inserting_elem)
             self.current_data = ' '.join([str(elem) for elem in self.DHeap.heap])
+            self.logger.log('current data after insert: %s' % self.current_data)
 
     def delete_btn_clicked(self):
         self.DHeap.delete(self.deleting_elem)
+        self.logger.log('Entering element you want to delete: %s' % self.deleting_elem)
         self.current_data = ' '.join([str(elem) for elem in self.DHeap.heap])
+        self.logger.log('current data after delete: %s' % self.current_data)
 
     def decrease_btn_clicked(self):
         self.DHeap.decrease_weight(self.decrease_key, self.decrease_value)
+        self.logger.log('Entering element you want to decrease: %s' % self.decrease_value)
         self.current_data = ' '.join([str(elem) for elem in self.DHeap.heap])
+        self.logger.log('current data after decrease: %s' % self.current_data)
