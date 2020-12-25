@@ -1,8 +1,9 @@
 from statistical_values.model.statistical_values import StatisticalValues
+from statistical_values.logger.reallogger import RealLogger
 
 
 class StatisticalValuesViewModel:
-    def __init__(self):
+    def __init__(self, logger=RealLogger()):
         self.x = [0, 0, 0]
         self.k = 1
         self.x_in = str(self.x)
@@ -11,6 +12,8 @@ class StatisticalValuesViewModel:
         self.error_msg = ''
         self.statistic = None
         self.result = 0
+        self.logger = logger
+        self.logger.log('Welcome!')
 
     def get_button_state(self):
         return self.button_state
@@ -29,14 +32,17 @@ class StatisticalValuesViewModel:
             else:
                 self.error_msg = "Error: only list or tuple input supported in Values List"
                 self.button_state = "disabled"
+                self.logger.log(self.error_msg)
                 is_valid = False
         except Exception as exp:
             self.error_msg = "Error: incorrect expression in Values List"
             self.button_state = "disabled"
+            self.logger.log(self.error_msg)
             is_valid = False
 
         if is_valid:
             self.x = values
+            self.logger.log("Set x is {}.".format(values))
         return is_valid
 
     def get_x(self):
@@ -53,14 +59,17 @@ class StatisticalValuesViewModel:
             else:
                 self.error_msg = "Error: only int or float input supported in k"
                 self.button_state = "disabled"
+                self.logger.log(self.error_msg)
                 is_valid = False
         except Exception as exp:
             self.error_msg = "Error: incorrect value k"
             self.button_state = "disabled"
+            self.logger.log(self.error_msg)
             is_valid = False
 
         if is_valid:
             self.k = value
+            self.logger.log("Set k is {}.".format(value))
         return is_valid
 
     def get_k(self):
@@ -68,6 +77,7 @@ class StatisticalValuesViewModel:
 
     def set_statistic(self, value):
         self.statistic = value
+        self.logger.log("Set statistic is {}.".format(value))
         if self.statistic is not None:
             self.button_state = 'active'
 
@@ -84,8 +94,11 @@ class StatisticalValuesViewModel:
                 self.result = calculator.begining_moment(self.k)
             elif (self.statistic == 'central moment'):
                 self.result = calculator.central_moment(self.k)
+            self.logger.log("Statistics with name `{}` was calculated. Result value is {}".format(
+                self.statistic, self.result))
         except Exception as exp:
             self.error_msg = "Error: {}". format(exp)
+            self.logger.log(self.error_msg)
 
     def get_result(self):
         return "Result: {}".format(self.result)
