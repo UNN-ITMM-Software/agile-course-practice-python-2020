@@ -4,8 +4,6 @@ from levitsky_ilya_lab1.viewmodel.viewmodel import VolumeViewModel
 
 def get_result_text(value):
     if value is None:
-        return "0"
-    elif not value:
         return "NaN"
     else:
         return value
@@ -13,6 +11,11 @@ def get_result_text(value):
 
 def get_error_text(value):
     return value if value is not None else ''
+
+
+def get_log_messages(messages):
+    result_str = '\n'.join([message for message in messages])
+    return result_str
 
 
 class GUIView:
@@ -40,8 +43,9 @@ class GUIView:
         self.input_radius = tk.Entry(self.frame, bg='white', state='normal')
         self.input_height = tk.Entry(self.frame, bg='white')
         self.btn = tk.Button(self.frame, text='Calculate volume', bg='#ababab')
-        self.res = tk.abel(self.frame, text='', fg='black', bg='#ababab', font=('', 12, 'bold'))
+        self.res = tk.Label(self.frame, text='', fg='black', bg='#ababab', font=('', 12, 'bold'))
         self.error_field = tk.Label(self.frame, text='', fg='black', bg='#619eb3', font=('', 12, 'bold'))
+        self.logger_field = tk.Label(self.frame, text='Log:', bg='#619eb3', font=6)
 
         self.set_weight_to_grid()
         self.bind_events()
@@ -64,6 +68,7 @@ class GUIView:
         self.input_height.grid(row=3, column=3, stick='wens', padx=5, pady=5)
         self.btn.grid(row=4, column=1, columnspan=2, stick='ens')
         self.res.grid(row=6, column=0, columnspan=4, stick='wes', pady=5)
+        self.logger_field.grid(row=0, column=3, stick='ns', rowspan=30)
 
     def bind_events(self):
         self.input_radius.bind('<KeyRelease>', self.first_input_changed)
@@ -98,3 +103,4 @@ class GUIView:
         self.btn.config(state=self.view_model.is_button_enable())
 
         self.res.config(text='%s\n' % (get_result_text(self.view_model.get_result())))
+        self.logger_field.config(text='%s\n' % (get_log_messages(self.view_model.logger.get_log_messages())))

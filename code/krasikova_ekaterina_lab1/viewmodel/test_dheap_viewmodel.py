@@ -1,6 +1,8 @@
 import unittest
 
 from krasikova_ekaterina_lab1.viewmodel.dheap_viewmodel import DHeapViewModel
+from krasikova_ekaterina_lab1.logger.fakelogger import FakeLogger
+from krasikova_ekaterina_lab1.logger.reallogger import RealLogger
 
 
 class TestDHeapViewModel(unittest.TestCase):
@@ -85,3 +87,44 @@ class TestDHeapViewModel(unittest.TestCase):
     def test_when_entered_decrease_without_heap_then_decrease_button_disabled(self):
         self.view_model.set_decreasing_elem('2 3')
         self.assertEqual('disabled', self.view_model.get_decrease_btn_state())
+
+
+class TestViewModelFakeLogging(unittest.TestCase):
+    def setUp(self):
+        self.view_model = DHeapViewModel(FakeLogger())
+
+    def test_logging_init(self):
+        self.assertEqual('Welcome!', self.view_model.logger.get_last_message())
+
+    def test_logging_create_btn_clicked(self):
+        self.view_model.set_input_data('2', '1 2 3')
+        self.view_model.create_btn_clicked()
+        self.assertEqual('current data: 1.0 2.0 3.0', self.view_model.logger.get_last_message())
+
+    def test_logging_insert_btn_clicked(self):
+        self.view_model.set_input_data('2', '1 2 3')
+        self.view_model.create_btn_clicked()
+        self.view_model.set_inserting_elem('5 ')
+        self.view_model.insert_btn_clicked()
+        self.assertEqual('current data after insert: 1.0 2.0 3.0 5.0',
+                         self.view_model.logger.get_last_message())
+
+    def test_logging_delete_btn_clicked(self):
+        self.view_model.set_input_data('2', '1 2 3')
+        self.view_model.create_btn_clicked()
+        self.view_model.set_deleting_elem('1')
+        self.view_model.delete_btn_clicked()
+        self.assertEqual('current data after delete: 1.0 3.0', self.view_model.logger.get_last_message())
+
+    def test_logging_decrease_btn_clicked(self):
+        self.view_model.set_input_data('2', '1 2 3')
+        self.view_model.create_btn_clicked()
+        self.view_model.set_decreasing_elem('1 2')
+        self.view_model.decrease_btn_clicked()
+        self.assertEqual('current data after decrease: 0.0 1.0 3.0',
+                         self.view_model.logger.get_last_message())
+
+
+class TestViewModelRealLogging(TestViewModelFakeLogging):
+    def setUp(self):
+        self.view_model = DHeapViewModel(RealLogger())
