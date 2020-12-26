@@ -1,5 +1,6 @@
 import unittest
 
+from hashmap.logger.reallogger import RealLogger
 from hashmap.viewmodel.hashmap_viewmodel import HashmapViewModel, State, HashmapOperation
 
 
@@ -199,7 +200,6 @@ class TestHashmapFakeLogger(unittest.TestCase):
         expected_log = HashmapViewModel.MSG_TYPES["get_msg"] % ("test_key", 123)
         self.assertEqual(expected_log, self.view_model.logger.get_last_message())
 
-
     def test_log_failure_get(self):
         self.view_model.set_operation(HashmapOperation.GET)
         self.view_model.set_key("test_key")
@@ -224,3 +224,7 @@ class TestHashmapFakeLogger(unittest.TestCase):
         expected_log = HashmapViewModel.MSG_TYPES["key_not_exist_msg"] % ("test_key")
         self.assertEqual(expected_log, self.view_model.logger.get_last_message())
 
+
+class TestViewModelRealLogging(TestHashmapFakeLogger):
+    def setUp(self):
+        self.view_model = HashmapViewModel(RealLogger())
