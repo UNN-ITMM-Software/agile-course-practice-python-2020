@@ -6,6 +6,7 @@ from sokolova_maria_temperature_converter.viewmodel.viewmodel import Temperature
 
 class GUIView(tk.Frame):
     CAST_TYPES = ['fahrenheit', 'kelvin', 'newton']
+    N_LOG_MESSAGES_TO_DISPLAY = 4
     view_model = TemperatureConverterViewModel()
 
     def convert(self):
@@ -14,6 +15,8 @@ class GUIView(tk.Frame):
         self.view_model.convert()
         self.result_label.configure(text=self.view_model.get_output_value())
         self.error_label.configure(text=self.view_model.get_error())
+        logger_text = '\n'.join(self.view_model.logger.get_log_messages()[-self.N_LOG_MESSAGES_TO_DISPLAY:])
+        self.logger.configure(text='%s\n%s' % (self.view_model.get_log_message(), logger_text))
 
     def __init__(self):
         tk.Frame.__init__(self)
@@ -43,3 +46,6 @@ class GUIView(tk.Frame):
 
         self.error_label = tk.Label(self, text="", fg='black', font="Arial 14")
         self.error_label.pack()
+
+        self.logger = tk.Label(self, text='Log:', bg='yellow', font="Arial 10")
+        self.logger.pack()
