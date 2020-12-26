@@ -101,8 +101,10 @@ class HashmapViewModel:
             try:
                 self.hashmap.insert(self.key, self.value)
                 self.update_messages(self.MSG_TYPES["insert_msg"] % (self.key, self.value))
+                self.logger.log(self.MSG_TYPES["insert_msg"] % (self.key, self.value))
             except KeyError:
                 self.update_messages(self.MSG_TYPES["key_exist_msg"] % (self.key))
+                self.logger.log(self.MSG_TYPES["key_exist_msg"] % (self.key))
 
         elif self.operation == HashmapOperation.DELETE:
             try:

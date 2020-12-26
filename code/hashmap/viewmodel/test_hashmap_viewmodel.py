@@ -158,3 +158,20 @@ class TestHashmapFakeLogger(unittest.TestCase):
     def test_log_clicks_on_disabled_button(self):
         self.view_model.click_run_button()
         self.assertEqual(self.view_model.logger.get_last_message(), "button is disabled")
+
+    def test_log_successfully_insert(self):
+        self.view_model.set_operation(HashmapOperation.INSERT)
+        self.view_model.set_key("test_key")
+        self.view_model.set_value(123)
+        self.view_model.click_run_button()
+        expected_log = HashmapViewModel.MSG_TYPES["insert_msg"] % ("test_key", 123)
+        self.assertEqual(expected_log, self.view_model.logger.get_last_message())
+
+    def test_log_failed_insert(self):
+        self.view_model.set_operation(HashmapOperation.INSERT)
+        self.view_model.set_key("test_key")
+        self.view_model.set_value(123)
+        self.view_model.click_run_button()
+        self.view_model.click_run_button()
+        expected_log = HashmapViewModel.MSG_TYPES["key_exist_msg"] % ("test_key")
+        self.assertEqual(expected_log, self.view_model.logger.get_last_message())
