@@ -1,4 +1,4 @@
-class ILogger(object):
+class ILogger:
 
     def __init__(self):
         self.log_messages = []
