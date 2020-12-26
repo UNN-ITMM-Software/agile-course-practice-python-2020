@@ -78,4 +78,3 @@ class ElasticOfDemand:
                  ((self._end_salary + self._start_salary) / (self._end_salary - self._start_salary))
 
         return self.get_demand_by_salary_type(result), result
-
