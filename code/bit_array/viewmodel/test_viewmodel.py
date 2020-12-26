@@ -244,6 +244,13 @@ class TestViewModelFakeLogging(unittest.TestCase):
         self.view_model.calculate()
         self.assertEqual('Set result with NO', self.view_model.logger.get_last_message())
 
+    def test_logging_set_result_bool_2(self):
+        self.view_model.set_operation(Operation.NEQ)
+        self.view_model.set_left_bit_array('111')
+        self.view_model.set_right_bit_array('101')
+        self.view_model.calculate()
+        self.assertEqual('Set result with YES', self.view_model.logger.get_last_message())
+
 
 class TestViewModelRealLogging(TestViewModelFakeLogging):
     def setUp(self):
