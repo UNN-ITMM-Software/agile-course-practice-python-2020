@@ -1,6 +1,5 @@
 import unittest
 
-from hashmap.logger.reallogger import RealLogger
 from hashmap.viewmodel.hashmap_viewmodel import HashmapViewModel, State, HashmapOperation
 
 
