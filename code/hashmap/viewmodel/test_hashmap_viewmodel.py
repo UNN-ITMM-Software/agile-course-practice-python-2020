@@ -146,6 +146,7 @@ class TestHashmapViewModel(unittest.TestCase):
         expected_msg = HashmapViewModel.MSG_TYPES["key_not_exist_msg"] % ("key2")
         self.assertNotEqual(-1, self.view_model.get_message_text().find(expected_msg))
 
+
 class TestHashmapFakeLogger(unittest.TestCase):
 
     def setUp(self):
