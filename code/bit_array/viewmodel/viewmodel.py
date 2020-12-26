@@ -2,7 +2,6 @@ from bit_array.model.bit_array import BitArray
 from bit_array.viewmodel.operation import Operation
 import re
 
-from bit_array.logger.fakelogger import FakeLogger
 from bit_array.logger.reallogger import RealLogger
 
 
