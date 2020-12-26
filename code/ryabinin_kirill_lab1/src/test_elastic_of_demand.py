@@ -18,7 +18,7 @@ class TestElasticOfDemand(unittest.TestCase):
         with self.assertRaises(InvalidArgumentError):
             ElasticOfDemand(start_price=4, end_price=3, start_demand=-1, end_demand=1)
 
-    def test_raise_init_with_zero_delta_profit(self):
+    def test_raise_init_with_zero_delta_salary(self):
         with self.assertRaises(InvalidArgumentError):
             ElasticOfDemand(start_demand=4, end_demand=5, start_salary=1, end_salary=1)
 
