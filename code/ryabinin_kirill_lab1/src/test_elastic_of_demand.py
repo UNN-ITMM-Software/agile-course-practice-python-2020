@@ -33,12 +33,12 @@ class TestElasticOfDemand(unittest.TestCase):
     # SMOKE TESTS
 
     def test_raise_with_not_init_price(self):
-        elastic = ElasticOfDemand(start_demand=4, end_demand=5, start_salary=1, end_salary=1)
+        elastic = ElasticOfDemand(start_demand=4, end_demand=5, start_salary=5, end_salary=1)
         with self.assertRaises(InvalidArgumentError):
             elastic.by_price()
 
     def test_raise_with_not_init_salary(self):
-        elastic = ElasticOfDemand(start_demand=4, end_demand=5, start_price=1, end_price=1)
+        elastic = ElasticOfDemand(start_demand=4, end_demand=5, start_price=2, end_price=1)
         with self.assertRaises(InvalidArgumentError):
             elastic.by_salary()
 
