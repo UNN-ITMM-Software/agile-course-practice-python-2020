@@ -1,4 +1,5 @@
 from hashmap.model.hashmap import Hashmap
+from hashmap.logger.reallogger import RealLogger
 from enum import Enum
 
 
@@ -25,7 +26,9 @@ class HashmapViewModel:
     }
     MAX_MESSAGE_NUMBER = 10
 
-    def __init__(self):
+    def __init__(self, logger=RealLogger()):
+        self.logger = logger
+        self.logger.log("create view")
         self.hashmap = Hashmap()
         self.messages = []
         self.key = ""

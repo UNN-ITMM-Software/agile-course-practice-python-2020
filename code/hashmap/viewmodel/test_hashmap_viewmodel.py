@@ -1,5 +1,6 @@
 import unittest
 
+from hashmap.logger.reallogger import RealLogger
 from hashmap.viewmodel.hashmap_viewmodel import HashmapViewModel, State, HashmapOperation
 
 
@@ -7,6 +8,9 @@ class TestFractionCalculatorViewModel(unittest.TestCase):
 
     def setUp(self):
         self.view_model = HashmapViewModel()
+
+    def test_logging_init(self):
+        self.assertEqual("create view", self.view_model.logger.get_last_message())
 
     def test_by_default_button_disabled(self):
         self.assertEqual(State.DISABLED.value, self.view_model.get_button_run_state())
