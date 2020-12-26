@@ -1,6 +1,8 @@
 import unittest
 
 from string_calculator.viewmodel.viewmodel import StrCalculatorViewModel
+from string_calculator.logger.fakelogger import FakeLogger
+from string_calculator.logger.reallogger import RealLogger
 
 
 class TestStringCalculatorViewModel(unittest.TestCase):
@@ -74,3 +76,46 @@ class TestStringCalculatorViewModel(unittest.TestCase):
         msg = 'negatives not allowed: -1, -2'
         with self.assertRaisesRegex(ValueError, msg):
             self.view_model.click_button()
+
+
+class TestViewModelFakeLogging(unittest.TestCase):
+    def setUp(self):
+        self.view_model = StrCalculatorViewModel(FakeLogger())
+
+    def test_logging_init(self):
+        self.assertEqual('Hello', self.view_model.logger.get_last_message())
+
+    def test_logging_changing_instr_correct(self):
+        expected_messages = ['Hello',
+                             'Set inst: 1,2',
+                             'Correct input',
+                             'Button status: normal']
+
+        self.view_model.set_instr("1,2")
+        self.assertEqual(expected_messages, self.view_model.logger.get_log_messages())
+
+    def test_logging_changing_instr_invalid(self):
+        expected_messages = ['Hello',
+                             'Set inst: @#$%sdf',
+                             'Invalid input',
+                             'Button status: disabled']
+
+        self.view_model.set_instr("@#$%sdf")
+        self.assertEqual(expected_messages, self.view_model.logger.get_log_messages())
+
+    def test_logging_performing_instr(self):
+        expected_messages = ['Hello',
+                             'Set inst: 1,2',
+                             'Correct input',
+                             'Button status: normal',
+                             'Button clicked',
+                             'Answer: 3']
+
+        self.view_model.set_instr("1,2")
+        self.view_model.click_button()
+        self.assertEqual(expected_messages, self.view_model.logger.get_log_messages())
+
+
+class TestViewModelRealLogging(TestViewModelFakeLogging):
+    def setUp(self):
+        self.view_model = StrCalculatorViewModel(RealLogger())
