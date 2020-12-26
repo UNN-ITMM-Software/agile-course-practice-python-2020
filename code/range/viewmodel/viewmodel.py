@@ -2,8 +2,11 @@ from range.model.range import Range
 from range.viewmodel.operation import Operation
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> logging and tests
+=======
+>>>>>>> 2a409e77feb98c705f65f46d72ec5b0065865522
 from range.logger.reallogger import RealLogger
 
 
@@ -122,7 +125,4 @@ class RangeViewModel:
                 self.logger.log('Set value 2 exc: %s' % exception)
                 raise ValueError from exception
         self.logger.log('Set value 2: %s' % input_obj)
-<<<<<<< HEAD
 
-=======
->>>>>>> logging and tests
