@@ -243,3 +243,8 @@ class TestViewModelFakeLogging(unittest.TestCase):
         self.view_model.set_right_bit_array('101')
         self.view_model.calculate()
         self.assertEqual('Set result with NO', self.view_model.logger.get_last_message())
+
+
+class TestViewModelRealLogging(TestViewModelFakeLogging):
+    def setUp(self):
+        self.view_model = BitArrayViewModel(RealLogger())
