@@ -32,10 +32,7 @@ class BitArrayViewModel:
     def __set_result(self, value):
         self.__result = value
         if isinstance(self.__result, bool):
-            if self.__result:
-                res_log = 'YES'
-            else:
-                res_log = 'NO'
+            res_log = 'YES' if self.__result else 'NO'
         else:
             res_log = self.__result.to_string()
 

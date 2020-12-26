@@ -172,6 +172,22 @@ class TestBitArrayViewModel(unittest.TestCase):
         view_model = BitArrayViewModel()
         self.assertEqual(view_model.get_result_string(), '')
 
+    def test_get_bool_result(self):
+        view_model = BitArrayViewModel()
+        view_model.set_operation(Operation.EQ)
+        view_model.set_left_bit_array('111')
+        view_model.set_right_bit_array('101')
+        view_model.calculate()
+        self.assertEqual(view_model.get_result_string(), 'NO')
+
+    def test_get_bool_result_2(self):
+        view_model = BitArrayViewModel()
+        view_model.set_operation(Operation.NEQ)
+        view_model.set_left_bit_array('111')
+        view_model.set_right_bit_array('101')
+        view_model.calculate()
+        self.assertEqual(view_model.get_result_string(), 'YES')
+
     def test_get_empty_left_bit_array(self):
         view_model = BitArrayViewModel()
         self.assertEqual(view_model.get_left_bit_array_string(), '')
