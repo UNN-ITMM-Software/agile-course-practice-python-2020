@@ -53,7 +53,7 @@ class TestElasticOfDemand(unittest.TestCase):
         self.assertEqual(demand_type, DemandTypes.UnitElasticity)
 
     def test_elastic(self):
-        elastic = ElasticOfDemand(start_price=3, end_price=4, start_demand=5, end_demand=10)
+        elastic = ElasticOfDemand(start_price=5, end_price=4, start_demand=5, end_demand=10)
         demand_type, _ = elastic.by_price()
         self.assertEqual(demand_type, DemandTypes.Elastic)
 
