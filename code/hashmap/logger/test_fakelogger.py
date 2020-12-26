@@ -29,6 +29,6 @@ class TestLogger(unittest.TestCase):
         self.logger.log('test_log2')
         self.logger.log('test_log3')
         self.assertEqual('test_log3', self.logger.get_last_message())
-    
+
     def test_last_message_in_empy_log(self):
         self.assertEqual(None, self.logger.get_last_message())
