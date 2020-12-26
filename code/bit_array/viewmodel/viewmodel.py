@@ -34,7 +34,7 @@ class BitArrayViewModel:
         if isinstance(self.__result, bool):
             if self.__result:
                 res_log = 'YES'
-            else: 
+            else:
                 res_log = 'NO'
         else:
             res_log = self.__result.to_string()
