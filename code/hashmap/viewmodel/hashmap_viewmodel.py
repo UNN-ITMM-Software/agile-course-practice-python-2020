@@ -110,8 +110,10 @@ class HashmapViewModel:
             try:
                 self.hashmap.delete(self.key)
                 self.update_messages(self.MSG_TYPES["delete_msg"] % (self.key))
+                self.logger.log(self.MSG_TYPES["delete_msg"] % (self.key))
             except KeyError:
                 self.update_messages(self.MSG_TYPES["key_not_exist_msg"] % (self.key))
+                self.logger.log(self.MSG_TYPES["key_not_exist_msg"] % (self.key))
 
         elif self.operation == HashmapOperation.GET:
             try:
