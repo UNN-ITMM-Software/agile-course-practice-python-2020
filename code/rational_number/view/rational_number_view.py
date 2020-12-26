@@ -5,6 +5,7 @@ from rational_number.viewmodel.rational_number_viewmodel import RationalNumberVi
 
 
 class GUIView(ttk.Frame):
+    N_LOG_MESSAGES_TO_DISPLAY = 10
     default_sticky = tkinter.W + tkinter.E + tkinter.N + tkinter.S
 
     viewmodel = RationalNumberViewModel()
@@ -13,6 +14,7 @@ class GUIView(ttk.Frame):
         self.rowconfigure(0, weight=1)
         self.rowconfigure(1, weight=1)
         self.rowconfigure(2, weight=1)
+        self.rowconfigure(3, weight=1)
 
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=1)
@@ -35,6 +37,10 @@ class GUIView(ttk.Frame):
         self.btn_calculate.config(state=self.viewmodel.get_calculate_button_state())
         self.lbl_message.config(text=self.viewmodel.get_info_message())
         self.lbl_result.config(text=self.viewmodel.get_result())
+
+        log_messages = self.viewmodel.logger.get_log_messages()
+        logger_text = '\n'.join(log_messages[:-self.N_LOG_MESSAGES_TO_DISPLAY:-1])
+        self.lbl_log.config(text=logger_text)
 
     def __init__(self):
         ttk.Frame.__init__(self)
@@ -67,6 +73,9 @@ class GUIView(ttk.Frame):
 
         self.lbl_message = ttk.Label(self, text="Info box")
         self.lbl_message.grid(row=2, column=0, columnspan=5, sticky=tkinter.W + tkinter.N)
+
+        self.lbl_log = tkinter.Label(self.master, text="Here will be log")
+        self.lbl_log.grid(row=3, column=0, columnspan=5, sticky=tkinter.W + tkinter.N)
 
         self.bind_events()
         self.set_weight_to_grid()
