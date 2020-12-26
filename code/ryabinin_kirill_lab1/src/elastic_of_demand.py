@@ -67,6 +67,7 @@ class ElasticOfDemand:
 
         result = ((self._end_demand - self._start_demand) / self._start_demand) / \
                  ((self._end_price - self._start_price) / self._start_price)
+        result = abs(result)
 
         return self.get_demand_by_price_type(result), result
 
