@@ -118,4 +118,3 @@ class RangeViewModel:
                 self.logger.log('Set value 2 exc: %s' % exception)
                 raise ValueError from exception
         self.logger.log('Set value 2: %s' % input_obj)
-

@@ -102,4 +102,3 @@ class View(ttk.Frame):
         self.update_text(self.result_entry, text)
         self.result_entry.configure(state=tk.DISABLED)
         self.__update_logs()
-
