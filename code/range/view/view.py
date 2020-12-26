@@ -65,22 +65,10 @@ class View(ttk.Frame):
     def result_clicked(self, event):
         try:
             self.mvvm_back_bind()
-<<<<<<< HEAD
-=======
-        except Exception as exception:
-            self.__update_result(exception)
-            return
-
-        try:
->>>>>>> logging and tests
             self.view_model.make_operation()
         except Exception as exception:
             self.__update_result(exception)
             return
-<<<<<<< HEAD
-=======
-
->>>>>>> logging and tests
         self.mvvm_bind()
 
     def mvvm_bind(self):
@@ -114,7 +102,4 @@ class View(ttk.Frame):
         self.update_text(self.result_entry, text)
         self.result_entry.configure(state=tk.DISABLED)
         self.__update_logs()
-<<<<<<< HEAD
 
-=======
->>>>>>> logging and tests
