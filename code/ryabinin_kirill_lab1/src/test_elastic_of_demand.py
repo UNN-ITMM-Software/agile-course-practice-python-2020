@@ -1,6 +1,7 @@
 import unittest
 
-from ryabinin_kirill_lab1.src.elastic_of_demand import *
+from ryabinin_kirill_lab1.src.elastic_of_demand import ElasticOfDemand, \
+    InvalidDemandError, InvalidDeltaPriceError
 
 
 class TestElasticOfDemand(unittest.TestCase):
