@@ -10,4 +10,6 @@ class ILogger(object):
         self.log_messages.append(message)
 
     def get_last_message(self):
-        return self.log_messages[-1]
+        if len(self.log_messages) > 0:
+            return self.log_messages[-1]
+        return None
