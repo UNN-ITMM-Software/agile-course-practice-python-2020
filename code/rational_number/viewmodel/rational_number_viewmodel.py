@@ -1,6 +1,8 @@
 import re
 from rational_number.model.rational_number import RationalNumber
 
+from rational_number.logger.reallogger import RealLogger
+
 
 class RationalNumberViewModel:
     VALID_OPERATIONS = ['+', '-', '*', '/']
@@ -8,13 +10,15 @@ class RationalNumberViewModel:
     DENOMINATOR_ZERO_REGEX = r"([-]?\d+)\/([-]?0)"
     NUMERATOR_ZERO_REGEX = r"([-]?0)\/([-]?\d+)"
 
-    def __init__(self):
+    def __init__(self, logger=RealLogger()):
         self.__first_number = ""
         self.__second_number = ""
         self.__operation = RationalNumberViewModel.VALID_OPERATIONS[0]
         self.__calculate_button_state = "disabled"
         self.__info_message = ""
         self.__result = ""
+        self.logger = logger
+        self.logger.log("Start view")
 
     @staticmethod
     def is_rational_number(value):
@@ -34,8 +38,10 @@ class RationalNumberViewModel:
         if not self.__info_message:
             if self.__operation == "/" and self.is_numerator_zero(self.__second_number):
                 self.__info_message = "Numerator of second number is zero. Division by zero is not allowed."
+                self.logger.log("Division by zero")
                 self.disable_calculate_button()
             else:
+                self.logger.log("Operation and input numbers are correct")
                 self.enable_calculate_button()
         else:
             self.disable_calculate_button()
@@ -45,6 +51,7 @@ class RationalNumberViewModel:
 
         if self.__operation not in self.VALID_OPERATIONS:
             operation_message = "Operation is invalid."
+            self.logger.log("Operation %s is invalid" % self.__operation)
         return operation_message
 
     def validate_input_numbers(self):
@@ -53,17 +60,23 @@ class RationalNumberViewModel:
 
         if not self.__first_number:
             first_info = "First number is empty."
+            self.logger.log("First number is empty")
         elif not self.is_rational_number(self.__first_number):
             first_info = "First number is invalid."
+            self.logger.log("First number is invalid")
         elif self.is_denominator_zero(self.__first_number):
             first_info = "Denominator of first number is zero."
+            self.logger.log("Denominator of first number is zero")
 
         if not self.__second_number:
             second_info = "Second number is empty."
+            self.logger.log("Second number is empty")
         elif not self.is_rational_number(self.__second_number):
             second_info = "Second number is invalid."
+            self.logger.log("Second number is invalid")
         elif self.is_denominator_zero(self.__second_number):
             second_info = "Denominator of second number is zero."
+            self.logger.log("Denominator of second number is zero")
 
         return first_info + second_info
 
@@ -114,6 +127,10 @@ class RationalNumberViewModel:
             self.__result = str(num1 * num2)
         elif self.__operation == "/":
             self.__result = str(num1 / num2)
+
+        result_str = "%s %s %s = %s" % (self.__first_number, self.__operation,
+                                        self.__second_number, self.__result)
+        self.logger.log("Calculating was finished successfully. Result: %s" % result_str)
 
     def reset_result(self):
         self.__result = ""
