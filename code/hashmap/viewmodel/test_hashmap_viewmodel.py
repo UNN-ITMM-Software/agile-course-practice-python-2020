@@ -4,13 +4,10 @@ from hashmap.logger.reallogger import RealLogger
 from hashmap.viewmodel.hashmap_viewmodel import HashmapViewModel, State, HashmapOperation
 
 
-class TestFractionCalculatorViewModel(unittest.TestCase):
+class TestHashmapViewModel(unittest.TestCase):
 
     def setUp(self):
         self.view_model = HashmapViewModel()
-
-    def test_logging_init(self):
-        self.assertEqual("create view", self.view_model.logger.get_last_message())
 
     def test_by_default_button_disabled(self):
         self.assertEqual(State.DISABLED.value, self.view_model.get_button_run_state())
@@ -149,3 +146,15 @@ class TestFractionCalculatorViewModel(unittest.TestCase):
         self.view_model.click_run_button()
         expected_msg = HashmapViewModel.MSG_TYPES["key_not_exist_msg"] % ("key2")
         self.assertNotEqual(-1, self.view_model.get_message_text().find(expected_msg))
+
+class TestHashmapFakeLogger(unittest.TestCase):
+
+    def setUp(self):
+        self.view_model = HashmapViewModel()
+
+    def test_log_init(self):
+        self.assertEqual("create view", self.view_model.logger.get_last_message())
+
+    def test_log_clicks_on_disabled_button(self):
+        self.view_model.click_run_button()
+        self.assertEqual(self.view_model.logger.get_last_message(), "button is disabled")

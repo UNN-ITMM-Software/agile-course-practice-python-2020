@@ -95,6 +95,7 @@ class HashmapViewModel:
 
     def click_run_button(self):
         if self.button_run_state == State.DISABLED:
+            self.logger.log("button is disabled")
             return
         if self.operation == HashmapOperation.INSERT:
             try:
