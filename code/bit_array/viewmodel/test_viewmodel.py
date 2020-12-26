@@ -172,7 +172,7 @@ class TestBitArrayViewModel(unittest.TestCase):
         view_model = BitArrayViewModel()
         self.assertEqual(view_model.get_result_string(), '')
 
-    def test_get_bool_result(self):
+    def test_get_bool_result_as_no(self):
         view_model = BitArrayViewModel()
         view_model.set_operation(Operation.EQ)
         view_model.set_left_bit_array('111')
@@ -180,7 +180,7 @@ class TestBitArrayViewModel(unittest.TestCase):
         view_model.calculate()
         self.assertEqual(view_model.get_result_string(), 'NO')
 
-    def test_get_bool_result_2(self):
+    def test_get_bool_result_as_yes(self):
         view_model = BitArrayViewModel()
         view_model.set_operation(Operation.NEQ)
         view_model.set_left_bit_array('111')
@@ -253,14 +253,14 @@ class TestViewModelFakeLogging(unittest.TestCase):
         self.view_model.calculate()
         self.assertEqual('Set result with 00000101', self.view_model.logger.get_last_message())
 
-    def test_logging_set_result_bool(self):
+    def test_logging_set_result_bool_as_no(self):
         self.view_model.set_operation(Operation.EQ)
         self.view_model.set_left_bit_array('111')
         self.view_model.set_right_bit_array('101')
         self.view_model.calculate()
         self.assertEqual('Set result with NO', self.view_model.logger.get_last_message())
 
-    def test_logging_set_result_bool_2(self):
+    def test_logging_set_result_bool_as_yes(self):
         self.view_model.set_operation(Operation.NEQ)
         self.view_model.set_left_bit_array('111')
         self.view_model.set_right_bit_array('101')
