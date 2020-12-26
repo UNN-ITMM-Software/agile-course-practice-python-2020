@@ -65,11 +65,6 @@ class View(ttk.Frame):
     def result_clicked(self, event):
         try:
             self.mvvm_back_bind()
-        except Exception as exception:
-            self.__update_result(exception)
-            return
-
-        try:
             self.view_model.make_operation()
         except Exception as exception:
             self.__update_result(exception)
