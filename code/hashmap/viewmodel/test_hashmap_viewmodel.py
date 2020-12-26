@@ -177,11 +177,9 @@ class TestHashmapFakeLogger(unittest.TestCase):
         self.assertEqual(expected_log, self.view_model.logger.get_last_message())
 
     def test_log_successfully_delete(self):
-        self.view_model.set_operation(HashmapOperation.INSERT)
-        self.view_model.set_key("test_key")
-        self.view_model.set_value(123)
-        self.view_model.click_run_button()
+        self.view_model.hashmap.insert("test_key", 123)
         self.view_model.set_operation(HashmapOperation.DELETE)
+        self.view_model.set_key("test_key")
         self.view_model.click_run_button()
         expected_log = HashmapViewModel.MSG_TYPES["delete_msg"] % ("test_key")
         self.assertEqual(expected_log, self.view_model.logger.get_last_message())
@@ -192,3 +190,37 @@ class TestHashmapFakeLogger(unittest.TestCase):
         self.view_model.click_run_button()
         expected_log = HashmapViewModel.MSG_TYPES["key_not_exist_msg"] % ("test_key")
         self.assertEqual(expected_log, self.view_model.logger.get_last_message())
+
+    def test_log_successfully_get(self):
+        self.view_model.hashmap.insert("test_key", 123)
+        self.view_model.set_operation(HashmapOperation.GET)
+        self.view_model.set_key("test_key")
+        self.view_model.click_run_button()
+        expected_log = HashmapViewModel.MSG_TYPES["get_msg"] % ("test_key", 123)
+        self.assertEqual(expected_log, self.view_model.logger.get_last_message())
+
+
+    def test_log_failure_get(self):
+        self.view_model.set_operation(HashmapOperation.GET)
+        self.view_model.set_key("test_key")
+        self.view_model.click_run_button()
+        expected_log = HashmapViewModel.MSG_TYPES["key_not_exist_msg"] % ("test_key")
+        self.assertEqual(expected_log, self.view_model.logger.get_last_message())
+
+    def test_log_successfully_update(self):
+        self.view_model.hashmap.insert("test_key", 123)
+        self.view_model.set_operation(HashmapOperation.UPDATE)
+        self.view_model.set_key("test_key")
+        self.view_model.set_value("new_value")
+        self.view_model.click_run_button()
+        expected_log = HashmapViewModel.MSG_TYPES["update_msg"] % ("test_key", "new_value")
+        self.assertEqual(expected_log, self.view_model.logger.get_last_message())
+
+    def test_log_failure_update(self):
+        self.view_model.set_operation(HashmapOperation.UPDATE)
+        self.view_model.set_key("test_key")
+        self.view_model.set_value("new_value")
+        self.view_model.click_run_button()
+        expected_log = HashmapViewModel.MSG_TYPES["key_not_exist_msg"] % ("test_key")
+        self.assertEqual(expected_log, self.view_model.logger.get_last_message())
+

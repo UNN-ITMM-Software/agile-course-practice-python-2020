@@ -119,12 +119,16 @@ class HashmapViewModel:
             try:
                 value = self.hashmap.get(self.key)
                 self.update_messages(self.MSG_TYPES["get_msg"] % (self.key, value))
+                self.logger.log(self.MSG_TYPES["get_msg"] % (self.key, value))
             except KeyError:
                 self.update_messages(self.MSG_TYPES["key_not_exist_msg"] % (self.key))
+                self.logger.log(self.MSG_TYPES["key_not_exist_msg"] % (self.key))
 
         elif self.operation == HashmapOperation.UPDATE:
             try:
                 value = self.hashmap.update(self.key, self.value)
                 self.update_messages(self.MSG_TYPES["update_msg"] % (self.key, self.value))
+                self.logger.log(self.MSG_TYPES["update_msg"] % (self.key, self.value))
             except KeyError:
                 self.update_messages(self.MSG_TYPES["key_not_exist_msg"] % (self.key))
+                self.logger.log(self.MSG_TYPES["key_not_exist_msg"] % (self.key))
