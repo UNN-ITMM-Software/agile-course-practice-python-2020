@@ -1,6 +1,7 @@
 from levitsky_ilya_lab1.calculating_volume_3d_figures import calculate_volume_cube, calculate_volume_sphere, \
     calculate_volume_cylinder
 import re
+from levitsky_ilya_lab1.logger.reallogger import RealLogger
 
 
 def is_number_entered(value):
@@ -20,10 +21,12 @@ class VolumeViewModel:
     result = None
     error_message = None
 
-    def __init__(self, rad=None, height=None):
+    def __init__(self, rad=None, height=None, logger=RealLogger()):
         self.rad_val = rad
         self.height_val = height
         self.validate_values()
+        self.logger = logger
+        self.logger.log('Hi!')
 
     def is_button_enable(self):
         return self.button_enabled
@@ -38,8 +41,10 @@ class VolumeViewModel:
             self.set_btn_disabled()
 
     def set_start_value(self, value):
-        self.rad_val = value
-        self.validate_values()
+        if self.rad_val != value:
+            self.rad_val = value
+            self.logger.log('Setting radius value - %s' % self.rad_val)
+            self.validate_values()
 
     def get_start_value(self):
         return self.rad_val
@@ -48,8 +53,10 @@ class VolumeViewModel:
         return self.height_val
 
     def set_end_value(self, value):
-        self.height_val = value
-        self.validate_values()
+        if self.height_val != value:
+            self.height_val = value
+            self.logger.log('Setting height value - %s' % self.height_val)
+            self.validate_values()
 
     def set_btn_disabled(self):
         self.button_enabled = 'disabled'
@@ -62,11 +69,17 @@ class VolumeViewModel:
 
     def perform(self):
         if self.figure_type == 0:
+            self.logger.log('Radiobutton 0 (cube) selected')
             self.result = calculate_volume_cube(int(self.height_val))
+            self.logger.log('Result = %s' % self.result)
         elif self.figure_type == 1:
+            self.logger.log('Radiobutton 1 (sphere) selected')
             self.result = calculate_volume_sphere(int(self.rad_val))
+            self.logger.log('Result = %s' % self.result)
         elif self.figure_type == 2:
+            self.logger.log('Radiobutton 2 (cylinder) selected')
             self.result = calculate_volume_cylinder(int(self.rad_val), int(self.height_val))
+            self.logger.log('Result = %s' % self.result)
 
     def get_result(self):
         return self.result

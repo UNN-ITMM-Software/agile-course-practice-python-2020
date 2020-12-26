@@ -10,6 +10,7 @@ def get_error_text(value):
 
 class GUIView:
     view_model = ModifiedStackViewModel()
+    N_LOG_MESSAGES_TO_DISPLAY = 10
 
     def __init__(self):
         self.root = tk.Tk()
@@ -73,6 +74,8 @@ class GUIView:
         self.enter_array = tk.Label(self.scroll_frame, text='Please, enter array size:')
         self.title = tk.Label(self.array_frame, text='Enter your array: ', bg='Gray21', fg='White')
 
+        self.lbl_result = tk.Label(self.scroll_frame, text="Here will be result")
+
         self.box_list = []
 
         self.error = tk.Label(self.scroll_frame, text='Error', bg='Gray21', fg='Red')
@@ -100,6 +103,7 @@ class GUIView:
         self.push_n_elements.grid(row=10, column=1, pady=5, padx=10)
 
         self.pushed_value.grid(row=9, column=2, pady=5, padx=10)
+        self.lbl_result.grid(row=12, column=1)
 
     def pop_strategy(self):
         self.clean_input()
@@ -217,6 +221,9 @@ class GUIView:
         else:
             self.error.grid_forget()
         self.stack_size.config(text='Stack size: {}\n'.format(self.view_model.size()))
+        logger_text = \
+            '\n'.join(self.view_model.logger.get_log_messages()[:-self.N_LOG_MESSAGES_TO_DISPLAY:-1])
+        self.lbl_result.config(text=logger_text)
 
     def clean_input(self):
         self.pop_size.delete(0, tk.END)
