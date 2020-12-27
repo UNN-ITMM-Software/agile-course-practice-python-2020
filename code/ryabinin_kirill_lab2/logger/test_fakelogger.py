@@ -1,33 +1,41 @@
 import unittest
 
-from ryabinin_kirill_lab2.logger.fakelogger import FakeLogger as Logger
+from ryabinin_kirill_lab2.logger.fakelogger import FakeLogger
 
 
-class TestLogger(unittest.TestCase):
+class TestFakeLogger(unittest.TestCase):
     def setUp(self):
-        self.logger = Logger()
+        self.logger = FakeLogger()
 
     def test_can_create_logger(self):
-        self.assertTrue(isinstance(self.logger, Logger))
+        self.assertTrue(isinstance(self.logger, FakeLogger))
 
-    def test_by_default_log_is_empty(self):
-        log = self.logger.get_log_messages()
+    def test_default_log_is_empty(self):
+        log = self.logger.get_logs()
 
         self.assertEqual(log, [])
 
-    def test_after_logging_message_in_log(self):
-        self.logger.log('Test')
+    def test_log_one_message(self):
+        self.logger.log("Message")
 
-        self.assertEqual(['Test'], self.logger.get_log_messages())
+        log = self.logger.get_logs()
 
-    def test_can_log_several_messages(self):
-        self.logger.log('Test')
-        self.logger.log('Another one')
+        self.assertEqual(log, ["Message"])
 
-        self.assertEqual(['Test', 'Another one'], self.logger.get_log_messages())
+    def test_log_few_messages(self):
+        messages = ["Message1", "Message2"]
+        for message in messages:
+            self.logger.log(message)
 
-    def test_can_get_last_log(self):
-        self.logger.log('Test')
-        self.logger.log('Another one')
+        log = self.logger.get_logs()
 
-        self.assertEqual('Another one', self.logger.get_last_message())
+        self.assertEqual(log, messages)
+
+    def test_can_gen_two_last_messages(self):
+        messages = ["Message1", "Message2", "Message3", "Message4"]
+        for message in messages:
+            self.logger.log(message)
+
+        log = self.logger.get_logs(2)
+
+        self.assertEqual(log, ["Message3", "Message4"])
