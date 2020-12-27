@@ -59,5 +59,5 @@ class ViewModelElasticOfDemand:
         demand = ElasticOfDemand(start_demand=sd, end_demand=ed, start_salary=ss, end_salary=es)
         self.type_salary, _ = demand.by_salary()
 
-    def get_log_message(self):
-        return self.log_message
+    # def get_log_message(self):
+    #     return self.log_message
