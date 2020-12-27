@@ -5,6 +5,7 @@ from ryabinin_kirill_lab2.videmodel.viewmodel_elastic_of_demand import ViewModel
 
 class GuiView(Tk.Frame):
     view_model = ViewModelElasticOfDemand()
+    N_LOG_MESSAGES_TO_DISPLAY = 7
 
     def calc_by_price(self, event):
         self.mvvm_bind()
@@ -59,6 +60,9 @@ class GuiView(Tk.Frame):
 
         self.result_label_price.config(text=self.view_model.get_type_price())
         self.result_label_salary.config(text=self.view_model.get_type_salary())
+
+        logger_text = '\n'.join(self.view_model.logger.get_log_messages()[-self.N_LOG_MESSAGES_TO_DISPLAY:])
+        self.logger_label.config(text=logger_text)
 
     def __init__(self):
         Tk.Frame.__init__(self)
@@ -118,6 +122,9 @@ class GuiView(Tk.Frame):
 
         self.result_label_salary = Tk.Label(self, fg='black', font="Arial 12", bg="light yellow")
         self.result_label_salary.pack()
+
+        self.logger_label = Tk.Label(self, fg='black', font="Arial 12", bg="light yellow")
+        self.logger_label.pack()
 
         self.bind_events()
         self.mvvm_bind()
