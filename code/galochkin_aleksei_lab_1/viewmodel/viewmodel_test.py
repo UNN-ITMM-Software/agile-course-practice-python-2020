@@ -40,3 +40,4 @@ class ViewModelTest(unittest.TestCase):
         view_model.set_input_value("String")
         view_model.add_node()
         self.assertEqual(view_model.get_error(), "Please enter numeric positive value")
+        self.assertEqual(view_model.get_log_message(), "Error occurred: Please enter numeric positive value")
