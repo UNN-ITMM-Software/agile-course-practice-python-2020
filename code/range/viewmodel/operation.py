@@ -1,0 +1,8 @@
+class Operation:
+    NONE = 'NONE'  # 0
+    CONTAINS = 'CONTAINS'  # 2
+    OVERLAP = 'OVERLAP'  # 2
+    EQUALS = 'EQUALS'  # 2
+    ALL_POINTS = 'ALL POINTS'  # 1
+    END_POINTS = 'END POINTS'  # 1
+    ALL = [CONTAINS, OVERLAP, EQUALS, ALL_POINTS, END_POINTS]
