@@ -1,6 +1,8 @@
 import unittest
 
 from big_integer.viewmodel.viewmodel import BigIntegerViewModel, CalculateState, Operation
+from big_integer.logger.fakelogger import FakeLogger
+from big_integer.logger.reallogger import RealLogger
 
 
 class TestBigIntegerViewModel(unittest.TestCase):
@@ -104,3 +106,65 @@ class TestBigIntegerViewModel(unittest.TestCase):
         self.view_model.set_operation(Operation.ADDITIONAL)
         self.view_model.calculate()
         self.assertEqual("0", self.view_model.get_result())
+
+
+class TestViewModelFakeLogging(unittest.TestCase):
+    def setUp(self):
+        self.view_model = BigIntegerViewModel(FakeLogger())
+
+    def test_logging_init(self):
+        self.assertEqual('Hello', self.view_model.logger.get_last_message())
+
+    def test_logging_changing_a_correct(self):
+        expected_messages = ['Hello',
+                             'Input a: 555',
+                             'Correct input a']
+
+        self.view_model.set_a("555")
+        self.assertEqual(expected_messages, self.view_model.logger.get_log_messages())
+
+    def test_logging_changing_b_correct(self):
+        expected_messages = ['Hello',
+                             'Input b: 666',
+                             'Correct input b']
+
+        self.view_model.set_b("666")
+        self.assertEqual(expected_messages, self.view_model.logger.get_log_messages())
+
+    def test_logging_changing_a_invalid(self):
+        expected_messages = ['Hello',
+                             'Input a: wer',
+                             'Invalid input a']
+
+        self.view_model.set_a("wer")
+        self.assertEqual(expected_messages, self.view_model.logger.get_log_messages())
+
+    def test_logging_changing_b_invalid(self):
+        expected_messages = ['Hello',
+                             'Input b: ref',
+                             'Invalid input b']
+
+        self.view_model.set_b("ref")
+        self.assertEqual(expected_messages, self.view_model.logger.get_log_messages())
+
+    def test_logging_performing_operation(self):
+        expected_messages = ['Hello',
+                             'Input a: 456',
+                             'Correct input a',
+                             'Input b: 123',
+                             'Correct input b',
+                             'Set operation: Operation.ADDITIONAL',
+                             'Button clicked',
+                             'Operation: Operation.ADDITIONAL',
+                             'Result: 579']
+
+        self.view_model.set_a("456")
+        self.view_model.set_b("123")
+        self.view_model.set_operation(Operation.ADDITIONAL)
+        self.view_model.calculate()
+        self.assertEqual(expected_messages, self.view_model.logger.get_log_messages())
+
+
+class TestViewModelRealLogging(TestViewModelFakeLogging):
+    def setUp(self):
+        self.view_model = BigIntegerViewModel(RealLogger())

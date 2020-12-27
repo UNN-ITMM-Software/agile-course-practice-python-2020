@@ -1,7 +1,8 @@
+import os
+
 from enum import Enum
-
-
 from numerical_integration.model.numerical_integration import NumericalIntegrator
+from numerical_integration.logger.reallogger import RealLogger
 
 
 class Operation(Enum):
@@ -23,7 +24,10 @@ def is_valid(string):
 
 
 class NumericalIntegratorViewModel:
-    def __init__(self):
+    def __init__(self,
+                 logger=RealLogger(os.path.join('..', '..', 'tmp', 'numerical_integration.log'))):
+        self.logger = logger
+        self.logger.log('Hello')
         self.a = "0"
         self.b = "1"
         self.operation = Operation.TRAPEZIUM_METHOD
@@ -46,23 +50,32 @@ class NumericalIntegratorViewModel:
         return self.result
 
     def set_a(self, a):
+        self.logger.log('Input a: {}'.format(a))
         self.a = a
         if is_valid(self.a) and is_valid(self.b):
+            self.logger.log('Correct input a')
             self.calculate_state = CalculateState.ENABLE
         else:
+            self.logger.log('Invalid input a')
             self.calculate_state = CalculateState.DISABLE
 
     def set_b(self, b):
+        self.logger.log('Input b: {}'.format(b))
         self.b = b
         if is_valid(self.a) and is_valid(self.b):
+            self.logger.log('Correct input b')
             self.calculate_state = CalculateState.ENABLE
         else:
+            self.logger.log('Invalid input b')
             self.calculate_state = CalculateState.DISABLE
 
     def set_operation(self, operation):
+        self.logger.log('Set operation: {}'.format(operation))
         self.operation = operation
 
     def calculate(self):
+        self.logger.log('Button clicked')
+        self.logger.log('Operation: {}'.format(self.operation))
         float_a = float(self.a)
         float_b = float(self.b)
 
@@ -74,3 +87,4 @@ class NumericalIntegratorViewModel:
         elif self.operation == Operation.SIMPSON_METHOD:
             self.result = str(round(NumericalIntegrator().simpson_method(float_a, float_b, func), 5))
         self.calculate_state = CalculateState.ENABLE
+        self.logger.log('Result: {}'.format(self.result))

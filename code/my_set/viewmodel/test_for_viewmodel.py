@@ -1,11 +1,13 @@
 import unittest
 
 from my_set.viewmodel.viewmodel import SetViewModel
+from my_set.logger.fakelogger import FakeLogger
+from my_set.logger.reallogger import RealLogger
 
 
 class TestSetViewModel(unittest.TestCase):
     def setUp(self):
-        self.viewmodel = SetViewModel()
+        self.viewmodel = SetViewModel(FakeLogger())
 
     def test_can_add_element_to_set_a(self):
         self.viewmodel.add('1', 'A')
@@ -89,3 +91,79 @@ class TestSetViewModel(unittest.TestCase):
         self.viewmodel.add('18', 'B')
         result = self.viewmodel.set_b_to_str()
         self.assertEqual(result, '[18]')
+
+
+class TestSetViewModelFakeLogging(unittest.TestCase):
+    def setUp(self):
+        self.viewmodel = SetViewModel(FakeLogger())
+
+    def test_logging_init(self):
+        self.assertEqual('Welcome!', self.viewmodel.logger.get_last_message())
+
+    def test_logging_add_element_to_set_a(self):
+        self.viewmodel.add('1', 'A')
+        self.assertEqual('Resulting set A: [1]', self.viewmodel.logger.get_last_message())
+
+    def test_logging_add_element_to_set_b(self):
+        self.viewmodel.add('1', 'B')
+        self.assertEqual('Resulting set B: [1]', self.viewmodel.logger.get_last_message())
+
+    def test_logging_delete_element_from_set_a(self):
+        self.viewmodel.add('1', 'A')
+        self.viewmodel.delete('1', 'A')
+        self.assertEqual('Resulting set A: []', self.viewmodel.logger.get_last_message())
+
+    def test_logging_delete_element_from_set_b(self):
+        self.viewmodel.add('1', 'B')
+        self.viewmodel.delete('1', 'B')
+        self.assertEqual('Resulting set B: []', self.viewmodel.logger.get_last_message())
+
+    def test_logging_union_a_b_sets(self):
+        self.viewmodel.add('1', 'A')
+        self.viewmodel.add('5', 'B')
+
+        self.viewmodel.union()
+
+        self.assertEqual('Resulting set A: [1, 5]', self.viewmodel.logger.get_last_message())
+
+    def test_logging_intersection_a_b_sets(self):
+        self.viewmodel.add('1', 'A')
+        self.viewmodel.add('5', 'A')
+        self.viewmodel.add('5', 'B')
+
+        self.viewmodel.intersection()
+
+        self.assertEqual('Result: [5]', self.viewmodel.logger.get_last_message())
+
+    def test_logging_difference_a_b_sets(self):
+        self.viewmodel.add('1', 'A')
+        self.viewmodel.add('5', 'A')
+        self.viewmodel.add('5', 'B')
+
+        self.viewmodel.difference(mode='A\B')
+
+        self.assertEqual('Result: [1]', self.viewmodel.logger.get_last_message())
+
+    def test_logging_difference_b_a_sets(self):
+        self.viewmodel.add('1', 'A')
+        self.viewmodel.add('5', 'A')
+        self.viewmodel.add('5', 'B')
+
+        self.viewmodel.difference(mode='B\A')
+
+        self.assertEqual('Result: []', self.viewmodel.logger.get_last_message())
+
+    def test_logging_setting_set_a_to_str(self):
+        self.viewmodel.add('18', 'A')
+        self.viewmodel.set_a_to_str()
+        self.assertEqual('Setting A to [18]', self.viewmodel.logger.get_last_message())
+
+    def test_logging_setting_set_b_to_str(self):
+        self.viewmodel.add('18', 'B')
+        self.viewmodel.set_b_to_str()
+        self.assertEqual('Setting B to [18]', self.viewmodel.logger.get_last_message())
+
+
+class TestSetViewModelRealLogging(TestSetViewModelFakeLogging):
+    def setUp(self):
+        self.viewmodel = SetViewModel(RealLogger())

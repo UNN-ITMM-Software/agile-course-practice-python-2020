@@ -6,11 +6,12 @@ from krasikova_ekaterina_lab1.viewmodel import dheap_viewmodel
 class DHeapView:
 
     view_model = dheap_viewmodel.DHeapViewModel()
+    N_LOG_MESSAGES_TO_DISPLAY = 8
 
     def __init__(self):
         self.root = tk.Tk()
         self.root.title('D-Heap')
-        self.root.geometry('900x200')
+        self.root.geometry('900x600')
         self.root.resizable(width=False, height=False)
 
         self.frame = tk.Frame(self.root)
@@ -35,6 +36,8 @@ class DHeapView:
         self.decrease_label = tk.Label(self.root, text="Decrease weight:")
         self.decrease_data = tk.Entry(self.root, width=10)
         self.decrease_btn = tk.Button(self.root, text="Decrease", state='disabled')
+
+        self.logger_lbl = tk.Label(self.root, text="log: ")
 
         self.set_weight_to_grid()
         self.bind_events()
@@ -61,6 +64,8 @@ class DHeapView:
         self.decrease_label.grid(row=4, column=0, stick='wens', padx=5, pady=5)
         self.decrease_data.grid(row=4, column=1, stick='wens', padx=5, pady=5)
         self.decrease_btn.grid(row=4, column=2, stick='wens', padx=5, pady=5)
+
+        self.logger_lbl.grid(row=6, column=0, sticky='wens', padx=5, pady=5)
 
     def bind_events(self):
         self.entry_param_d.bind('<KeyRelease>', self.input_data_changed)
@@ -126,18 +131,30 @@ class DHeapView:
         self.create_btn.config(state=self.view_model.get_create_btn_state())
         self.current_data.delete(0, tk.END)
         self.current_data.insert(tk.END, self.view_model.get_current_data())
+        logger_text = '\n'.join(
+            self.view_model.logger.get_log_messages()[:-self.N_LOG_MESSAGES_TO_DISPLAY:-1])
+        self.logger_lbl.config(text=logger_text)
 
     def mvvm_insert_back_bind(self):
         self.insert_btn.config(state=self.view_model.get_insert_btn_state())
         self.current_data.delete(0, tk.END)
         self.current_data.insert(tk.END, self.view_model.get_current_data())
+        logger_text = '\n'.join(
+            self.view_model.logger.get_log_messages()[:-self.N_LOG_MESSAGES_TO_DISPLAY:-1])
+        self.logger_lbl.config(text=logger_text)
 
     def mvvm_delete_back_bind(self):
         self.delete_btn.config(state=self.view_model.get_delete_btn_state())
         self.current_data.delete(0, tk.END)
         self.current_data.insert(tk.END, self.view_model.get_current_data())
+        logger_text = '\n'.join(
+            self.view_model.logger.get_log_messages()[:-self.N_LOG_MESSAGES_TO_DISPLAY:-1])
+        self.logger_lbl.config(text=logger_text)
 
     def mvvm_decrease_back_bind(self):
         self.decrease_btn.config(state=self.view_model.get_decrease_btn_state())
         self.current_data.delete(0, tk.END)
         self.current_data.insert(tk.END, self.view_model.get_current_data())
+        logger_text = '\n'.join(
+            self.view_model.logger.get_log_messages()[:-self.N_LOG_MESSAGES_TO_DISPLAY:-1])
+        self.logger_lbl.config(text=logger_text)

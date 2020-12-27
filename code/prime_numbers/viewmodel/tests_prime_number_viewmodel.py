@@ -3,7 +3,7 @@ import unittest
 from prime_numbers.viewmodel.prime_numbers_viewmodel import PrimeNumberViewModel
 
 
-class MyTestCase(unittest.TestCase):
+class TestPrimeNumbersViewModel(unittest.TestCase):
     def test_by_default_button_is_disable(self):
         model = PrimeNumberViewModel()
         self.assertEqual('disabled', model.is_button_enable())
@@ -61,3 +61,46 @@ class MyTestCase(unittest.TestCase):
         model.perform()
 
         self.assertEqual('', model.get_interval_label())
+
+
+class TestViewModelLogger(unittest.TestCase):
+    def test_init_logging(self):
+        model = PrimeNumberViewModel(1, 10)
+        self.assertEqual('Welcome!', model.logger.get_last_message())
+
+    def test_set_start_value_logging(self):
+        model = PrimeNumberViewModel()
+        model.set_start_value(2)
+        self.assertEqual('Setting start value - 2', model.logger.get_last_message())
+
+    def test_set_end_value_logging(self):
+        model = PrimeNumberViewModel()
+        model.set_end_value(10)
+        self.assertEqual('Setting end value - 10', model.logger.get_last_message())
+
+    def test_model_perform_logging(self):
+        model = PrimeNumberViewModel()
+        model.set_start_value(2)
+        model.set_end_value(10)
+        model.perform()
+        self.assertEqual('Result = [2, 3, 5, 7]', model.logger.get_last_message())
+
+    def test_model_perform_all_message_logging(self):
+        model = PrimeNumberViewModel()
+        model.set_start_value(2)
+        model.set_end_value(10)
+        model.perform()
+
+        log_message = ['Welcome!', 'Setting start value - 2',
+                       'Setting end value - 10', 'Button clicked',
+                       'Interval = range(2, 10)', 'Result = [2, 3, 5, 7]']
+        self.assertEqual(log_message, model.logger.get_log_messages()[-6:])
+
+    def test_input_wrong_data(self):
+        model = PrimeNumberViewModel()
+        model.set_start_value(10)
+        model.set_end_value(2)
+        model.perform()
+
+        wrong_message = 'Что-то пошло не так.\nВозможно первое число оказалось больше второго'
+        self.assertEqual(wrong_message, model.logger.get_last_message())
