@@ -1,13 +1,10 @@
 class ILogger(object):
 
     def __init__(self):
-        self.log_messages = []
+        self.logs = []
 
-    def get_log_messages(self):
-        return self.log_messages
+    def get_logs(self, num=0):
+        return self.logs[(-1) * num:]
 
     def log(self, message):
-        self.log_messages.append(message)
-
-    def get_last_message(self):
-        return self.log_messages[-1]
+        self.logs.append(message)

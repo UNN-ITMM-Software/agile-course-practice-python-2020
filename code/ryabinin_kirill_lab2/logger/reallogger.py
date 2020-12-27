@@ -1,13 +1,14 @@
 import logging
-
-from ryabinin_kirill_lab2.logger.ilogger import ILogger
+from lines_intersect.logger.ilogger import ILogger
 
 
 class RealLogger(ILogger):
+
     def __init__(self):
         super(RealLogger, self).__init__()
-        logging.basicConfig(filename='elastic_of_demand.log', level=logging.INFO)
+        logging.basicConfig(filename='../../tmp/elastic_demand.log',
+                            level=logging.INFO)
 
     def log(self, message):
-        self.log_messages.append(message)
+        super(RealLogger, self).log(message)
         logging.info(message)
