@@ -10,19 +10,19 @@ class TestViewModelElasticOfDemand(unittest.TestCase):
         viewmodel = ViewModelElasticOfDemand()
         array = ['4', '3', '4', '5', '\n', '\n']
         viewmodel.set_arguments_from_array(array)
-        self.assertEqual(array, viewmodel.get_arguments_from_array())
+        self.assertEqual(array, viewmodel.get_arguments_array())
 
     def test_set_arguments_from_array2(self):
         viewmodel = ViewModelElasticOfDemand()
         array = ['4', '3', '4', '5', '6', '5']
         viewmodel.set_arguments_from_array(array)
-        self.assertEqual(array, viewmodel.get_arguments_from_array())
+        self.assertEqual(array, viewmodel.get_arguments_array())
 
     def test_set_arguments_from_array3(self):
         viewmodel = ViewModelElasticOfDemand()
         array = ['4', '3', '\n', '\n', '6', '5']
         viewmodel.set_arguments_from_array(array)
-        self.assertEqual(array, viewmodel.get_arguments_from_array())
+        self.assertEqual(array, viewmodel.get_arguments_array())
 
     def test_inelastic(self):
         viewmodel = ViewModelElasticOfDemand()
