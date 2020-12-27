@@ -45,17 +45,17 @@ class TestViewModelElasticOfDemand(unittest.TestCase):
     def test_luxury(self):
         viewmodel = ViewModelElasticOfDemand()
         viewmodel.set_arguments_from_array(['10', '13', '\n', '\n', '500', '600'])
-        viewmodel.calc_by_price()
+        viewmodel.calc_by_salary()
         self.assertEqual(viewmodel.get_type_price(), DemandTypes.Luxury)
 
     def test_essential(self):
         viewmodel = ViewModelElasticOfDemand()
         viewmodel.set_arguments_from_array(['50', '53', '\n', '\n', '500', '600'])
-        viewmodel.calc_by_price()
+        viewmodel.calc_by_salary()
         self.assertEqual(viewmodel.get_type_price(), DemandTypes.Essential)
 
     def test_lowquality(self):
         viewmodel = ViewModelElasticOfDemand()
         viewmodel.set_arguments_from_array(['200', '180', '\n', '\n', '500', '600'])
-        viewmodel.calc_by_price()
+        viewmodel.calc_by_salary()
         self.assertEqual(viewmodel.get_type_price(), DemandTypes.Lowquality)
