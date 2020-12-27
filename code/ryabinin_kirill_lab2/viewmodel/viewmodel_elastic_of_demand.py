@@ -17,6 +17,7 @@ class ViewModelElasticOfDemand:
         self.end_salary = ''
         self.type_price = ''
         self.type_salary = ''
+        self.log_message = ''
 
     def set_arguments_from_array(self, array):
         self.logger.log('Setting arguments from array. Args: %s' % array)
@@ -57,3 +58,6 @@ class ViewModelElasticOfDemand:
         self.logger.log('Calculating elastic of demand by salary. Args: %s, %s, %s, %s' % (sd, ed, ss, es))
         demand = ElasticOfDemand(start_demand=sd, end_demand=ed, start_salary=ss, end_salary=es)
         self.type_salary, _ = demand.by_salary()
+
+    def get_log_message(self):
+        return self.log_message

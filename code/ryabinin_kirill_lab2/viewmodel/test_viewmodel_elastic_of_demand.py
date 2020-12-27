@@ -59,3 +59,7 @@ class TestViewModelElasticOfDemand(unittest.TestCase):
         viewmodel.set_arguments_from_array(['200', '180', '\n', '\n', '500', '600'])
         viewmodel.calc_by_salary()
         self.assertEqual(viewmodel.get_type_salary(), DemandTypes.Lowquality)
+
+    def test_get_log_message(self):
+        view_model = ViewModelElasticOfDemand()
+        self.assertEqual(view_model.get_log_message(), '')
