@@ -1,6 +1,8 @@
 import unittest
 
 from numerical_integration.viewmodel.viewmodel import NumericalIntegratorViewModel, CalculateState, Operation
+from numerical_integration.logger.fakelogger import FakeLogger
+from numerical_integration.logger.reallogger import RealLogger
 
 
 class TestBigIntegerViewModel(unittest.TestCase):
@@ -98,3 +100,49 @@ class TestBigIntegerViewModel(unittest.TestCase):
         self.view_model.set_operation(Operation.SIMPSON_METHOD)
         self.view_model.calculate()
         self.assertEqual("3.5", self.view_model.get_result())
+
+
+class TestViewModelFakeLogging(unittest.TestCase):
+    def setUp(self):
+        self.view_model = NumericalIntegratorViewModel(FakeLogger())
+
+    def test_logging_init(self):
+        self.assertEqual('Hello', self.view_model.logger.get_last_message())
+
+    def test_logging_changing_a(self):
+        expected_messages = ['Hello',
+                             'Input a: 5',
+                             'Correct input a']
+
+        self.view_model.set_a("5")
+        self.assertEqual(expected_messages, self.view_model.logger.get_log_messages())
+
+    def test_logging_changing_b(self):
+        expected_messages = ['Hello',
+                             'Input b: 5',
+                             'Correct input b']
+
+        self.view_model.set_b("5")
+        self.assertEqual(expected_messages, self.view_model.logger.get_log_messages())
+
+    def test_logging_performing_operation(self):
+        expected_messages = ['Hello',
+                             'Input a: 1',
+                             'Correct input a',
+                             'Input b: 2',
+                             'Correct input b',
+                             'Set operation: Operation.TRAPEZIUM_METHOD',
+                             'Button clicked',
+                             'Operation: Operation.TRAPEZIUM_METHOD',
+                             'Result: 1.5']
+
+        self.view_model.set_a("1")
+        self.view_model.set_b("2")
+        self.view_model.set_operation(Operation.TRAPEZIUM_METHOD)
+        self.view_model.calculate()
+        self.assertEqual(expected_messages, self.view_model.logger.get_log_messages())
+
+
+class TestViewModelRealLogging(TestViewModelFakeLogging):
+    def setUp(self):
+        self.view_model = NumericalIntegratorViewModel(RealLogger())
