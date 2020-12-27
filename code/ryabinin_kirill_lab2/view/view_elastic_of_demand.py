@@ -61,7 +61,8 @@ class GuiView(Tk.Frame):
         self.result_label_price.config(text=self.view_model.get_type_price())
         self.result_label_salary.config(text=self.view_model.get_type_salary())
 
-        logger_text = '\n'.join(self.view_model.logger.get_log_messages()[-self.N_LOG_MESSAGES_TO_DISPLAY:])
+        logger_text = \
+            '\n'.join(self.view_model.logger.get_log_messages()[-self.N_LOG_MESSAGES_TO_DISPLAY:])
         self.logger_label.config(text=logger_text)
 
     def __init__(self):
