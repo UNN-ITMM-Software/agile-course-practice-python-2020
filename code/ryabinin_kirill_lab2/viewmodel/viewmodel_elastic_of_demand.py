@@ -19,7 +19,7 @@ class ViewModelElasticOfDemand:
         self.type_salary = ''
 
     def set_arguments_from_array(self, array):
-        self.logger.log(f'Setting arguments from array. Args: {array}')
+        self.logger.log('Setting arguments from array. Args: %s', array)
         self.start_demand = array[0]
         self.end_demand = array[1]
         self.start_price = array[2]
@@ -45,7 +45,7 @@ class ViewModelElasticOfDemand:
         ed = int(split(r'\n', self.end_demand)[0]) if self.end_demand != '\n' else None
         sp = int(split(r'\n', self.start_price)[0]) if self.start_price != '\n' else None
         ep = int(split(r'\n', self.end_price)[0]) if self.end_price != '\n' else None
-        self.logger.log(f'Calculating elastic of demand by price. Args: {sd}, {ed}, {sp}, {ep}')
+        self.logger.log('Calculating elastic of demand by price. Args: %s, %s, %s, %s', sd, ed, sp, ep)
         demand = ElasticOfDemand(start_demand=sd, end_demand=ed, start_price=sp, end_price=ep)
         self.type_price, _ = demand.by_price()
 
@@ -54,6 +54,6 @@ class ViewModelElasticOfDemand:
         ed = int(split(r'\n', self.end_demand)[0]) if self.end_demand != '\n' else None
         ss = int(split(r'\n', self.start_salary)[0]) if self.start_salary != '\n' else None
         es = int(split(r'\n', self.end_salary)[0]) if self.end_salary != '\n' else None
-        self.logger.log(f'Calculating elastic of demand by salary. Args: {sd}, {ed}, {ss}, {es}')
+        self.logger.log('Calculating elastic of demand by salary. Args: %s, %s, %s, %s', sd, ed, ss, es)
         demand = ElasticOfDemand(start_demand=sd, end_demand=ed, start_salary=ss, end_salary=es)
         self.type_salary, _ = demand.by_salary()
