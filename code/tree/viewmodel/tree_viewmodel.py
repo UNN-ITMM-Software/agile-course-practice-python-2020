@@ -1,4 +1,5 @@
 from tree.model.tree import Tree
+from tree.logger.reallogger import RealLogger
 
 
 class TreeViewModel:
@@ -11,7 +12,7 @@ class TreeViewModel:
         self.find_value = None
         self.find_result = ""
         self.error = ""
-    
+
         self.logger = logger
         self.logger.log('Program started')
 

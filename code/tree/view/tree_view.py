@@ -49,10 +49,10 @@ class GUIView:
 
         self.show_tree = ScrolledText.ScrolledText(self.show_tree_frame, width=30)
         self.show_tree.pack()
-        
+
         self.log_frame = tk.Frame(master=self.window, relief=tk.RIDGE, borderwidth=5)
         self.log_frame.pack()
-        
+
         self.log_text = ScrolledText.ScrolledText(self.log_frame, width=30)
         self.log_text.pack()
 
