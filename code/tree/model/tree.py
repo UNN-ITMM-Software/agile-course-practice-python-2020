@@ -40,7 +40,7 @@ class Tree:
         else:
             raise TypeError
 
-	def get_tree(self):
+    def get_tree(self):
         result = []
         if self.left:
             result.extend(self.left.get_tree())
@@ -48,4 +48,3 @@ class Tree:
         if self.right:
             result.extend(self.right.get_tree())
         return result
-
