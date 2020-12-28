@@ -1,5 +1,5 @@
 import unittest
-from tree.model.tree import Tree
+from tree import Tree
 
 
 class TreeTestClass(unittest.TestCase):
