@@ -1,5 +1,5 @@
 import unittest
-from tree import Tree
+from tree.model.tree import Tree
 
 
 class TreeTestClass(unittest.TestCase):
@@ -40,3 +40,10 @@ class TreeTestClass(unittest.TestCase):
     def test_find_invalid_data(self):
         with self.assertRaises(TypeError):
             Tree(-0.7)
+            
+    def test_get_tree(self):
+        tree = Tree(35)
+        tree.insert(-79)
+        tree.insert(5)
+        tree.insert(16)
+        self.assertEqual([-79, 5, 16, 35], tree.get_tree())
