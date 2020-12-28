@@ -1,6 +1,7 @@
 import unittest
 from tree_viewmodel.viewmodel.tree_viewmodel import TreeViewModel
 
+
 class TestViewModel(unittest.TestCase):
     def test_default_enable_input_button(self):
         model = TreeViewModel()

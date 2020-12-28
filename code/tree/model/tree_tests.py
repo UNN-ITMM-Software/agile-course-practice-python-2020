@@ -40,7 +40,7 @@ class TreeTestClass(unittest.TestCase):
     def test_find_invalid_data(self):
         with self.assertRaises(TypeError):
             Tree(-0.7)
-     
+
     def test_get_tree(self):
         tree = Tree(35)
         tree.insert(-79)
