@@ -39,7 +39,7 @@ class Tree:
                 return self.data
         else:
             raise TypeError
-    
+
     def get_tree(self):
         result = []
         if self.left:

@@ -25,7 +25,7 @@ class TestViewModel(unittest.TestCase):
         model.set_find_value(8)
         self.assertEqual('normal', model.is_find_button_enable())
 
-    def test_validate_with_invalide_input_value(self):
+    def test_validate_with_invalide_find_value(self):
         model = TreeViewModel()
         model.set_find_value('f')
         self.assertEqual('disabled', model.is_find_button_enable())
@@ -45,4 +45,3 @@ class TestViewModel(unittest.TestCase):
         model.set_input_value(2)
         model.input_click()
         self.assertEqual(model.get_tree_values(), [1, 2])
-
