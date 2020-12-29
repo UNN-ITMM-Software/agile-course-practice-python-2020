@@ -84,4 +84,4 @@ class TestSortingViewModelFakeLogger(unittest.TestCase):
         self.view_model.set_input_array('s d 1 5')
         self.view_model.sort_btn_click()
         self.assertEqual(['Input array: s d 1 5', 'Start reading the array',
-                          'Start sorting', 'Failed'], self.view_model.get_logs())
+                          'Start sorting', 'Failed'], self.view_model.logger.get_logs())
