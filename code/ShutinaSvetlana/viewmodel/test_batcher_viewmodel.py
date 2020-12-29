@@ -1,6 +1,7 @@
 import unittest
 
 from ShutinaSvetlana.viewmodel.batcher_viewmodel import SortingViewModel
+from ShutinaSvetlana.logger.fake_logger import FakeLogger
 
 
 class TestSortingViewModel(unittest.TestCase):
@@ -61,3 +62,25 @@ class TestSortingViewModel(unittest.TestCase):
     def test_check_input_array(self):
         self.view_model.set_input_array('0.25 3.2 5.4 5')
         self.assertEqual('0.25 3.2 5.4 5', self.view_model.get_input_array())
+
+class TestSortingViewModelFakeLogger(unittest.TestCase):
+    
+    def setUp(self):
+        self.view_model = SortingViewModel(FakeLogger())
+        
+    def test_logger_check_input_array(self):
+        self.view_model.set_input_array('0.25 3.2 5.4 5')
+        self.assertEqual('Input array: 0.25 3.2 5.4 5', self.view_model.logger.get_last_log())
+
+    def test_logger_check_success_result(self):
+        self.view_model.set_input_array('0.25 3.2 5.4 5')
+        self.view_model.sort_btn_click()
+        self.assertEqual(['Input array: 0.25 3.2 5.4 5', 'Start reading the array',
+                          'Start sorting', 'Sorting is OK', 'Result array: 0.25 3.2 5 5.4',
+                          'Success'], self.view_model.get_logs())
+
+    def test_logger_check_failed_result(self):
+        self.view_model.set_input_array('s d 1 5')
+        self.view_model.sort_btn_click()
+        self.assertEqual(['Input array: s d 1 5', 'Start reading the array',
+                          'Start sorting', 'Failed'], self.view_model.get_logs())
