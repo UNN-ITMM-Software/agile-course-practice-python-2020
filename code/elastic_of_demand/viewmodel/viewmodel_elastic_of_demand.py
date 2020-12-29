@@ -1,6 +1,6 @@
 from re import split
 
-from ryabinin_kirill_lab2.model.model_elastic_of_demand import ElasticOfDemand
+from elastic_of_demand.model.model_elastic_of_demand import ElasticOfDemand
 
 
 class ViewModelElasticOfDemand:

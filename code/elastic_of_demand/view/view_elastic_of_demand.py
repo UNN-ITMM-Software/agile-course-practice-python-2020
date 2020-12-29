@@ -1,6 +1,6 @@
 import tkinter as Tk
 
-from ryabinin_kirill_lab2.videmodel.viewmodel_elastic_of_demand import ViewModelElasticOfDemand
+from elastic_of_demand.videmodel.viewmodel_elastic_of_demand import ViewModelElasticOfDemand
 
 
 class GuiView(Tk.Frame):

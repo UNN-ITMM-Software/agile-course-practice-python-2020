@@ -1,7 +1,7 @@
 import unittest
 
-from ryabinin_kirill_lab2.viewmodel.viewmodel_elastic_of_demand import ViewModelElasticOfDemand
-from ryabinin_kirill_lab2.model.model_elastic_of_demand import DemandTypes
+from elastic_of_demand.viewmodel.viewmodel_elastic_of_demand import ViewModelElasticOfDemand
+from elastic_of_demand.model.model_elastic_of_demand import DemandTypes
 
 
 class TestViewModelElasticOfDemand(unittest.TestCase):
