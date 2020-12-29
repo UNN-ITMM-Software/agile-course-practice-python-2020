@@ -9,6 +9,6 @@ class RealLogger(ILogger):
         super(RealLogger, self).__init__()
         logging.basicConfig(filename='../logger/logs.log', level=logging.INFO)
 
-    def log(self, message):
-        self.messages.append(message)
-        logging.info(message)
+    def log(self, log):
+        self.logs.append(log)
+        logging.info(log)
