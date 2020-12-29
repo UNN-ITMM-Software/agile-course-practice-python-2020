@@ -5,18 +5,23 @@ from galochkin_aleksei_lab_1.viewmodel.viewmodel import NodeViewModel
 
 class GUIView(tk.Frame):
     view_model = NodeViewModel()
+    N_LOG_MESSAGES_TO_DISPLAY = 5
 
     def add_node(self):
         self.view_model.set_input_value(self.text_value.get(1, tk.END))
         self.view_model.add_node()
         self.result_label.configure(text=self.view_model.get_output_value)
         self.error_label.configure(text=self.view_model.get_error)
+        logger_text = '\n'.join(self.view_model.logger.get_log_messages()[-self.N_LOG_MESSAGES_TO_DISPLAY:])
+        self.logger.configure(text='%s\n%s' % (self.view_model.get_log_message(), logger_text))
 
     def remove_node(self):
         self.view_model.set_input_value(self.text_value.get(1, tk.END))
         self.view_model.remove_node()
         self.result_label.configure(text=self.view_model.get_output_value)
         self.error_label.configure(text=self.view_model.get_error)
+        logger_text = '\n'.join(self.view_model.logger.get_log_messages()[-self.N_LOG_MESSAGES_TO_DISPLAY:])
+        self.logger.configure(text='%s\n%s' % (self.view_model.get_log_message(), logger_text))
 
     def __init__(self):
         tk.Frame.__init__(self)
@@ -40,3 +45,6 @@ class GUIView(tk.Frame):
 
         self.result_label = tk.Label(self, text="", fg='black', font="Arial 14")
         self.result_label.pack()
+
+        self.logger = tk.Label(self, text='Log:', bg='black', font="Arial 10")
+        self.logger.pack()
