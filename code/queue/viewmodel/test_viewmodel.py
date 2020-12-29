@@ -1,5 +1,7 @@
 import unittest
 
+from queue.logger.fakelogger import FakeLogger
+from queue.logger.reallogger import RealLogger
 from queue.viewmodel.viewmodel import QueueViewModel
 
 
@@ -44,3 +46,29 @@ class TestQueueViewModel(unittest.TestCase):
         self.view_model.set_arrived_info(arrived_info)
         self.assertEqual('normal', self.view_model.get_arrive_btn_state())
         self.assertEqual('normal', self.view_model.get_leave_btn_state())
+
+
+class TestViewModelFakeLogging(unittest.TestCase):
+    def setUp(self):
+        self.view_model = QueueViewModel(FakeLogger())
+
+    def test_logging_init(self):
+        self.assertEqual('Welcome!', self.view_model.logger.get_last_message())
+
+    def test_logging_button_clicked(self):
+        expected_messages = ['Arrive button clicked', 'Arrived info: 3 2 1 4 3']
+
+        self.view_model.set_input_info('3 2 1 4 3')
+        self.view_model.arrive_btn_clicked()
+        self.assertEqual(expected_messages, self.view_model.logger.get_log_messages()[-2:])
+
+    def test_logging_button_clicked(self):
+        expected_messages = ['Leave button clicked']
+
+        self.view_model.leave_btn_clicked()
+        self.assertEqual(expected_messages, self.view_model.logger.get_log_messages()[-1:])
+
+
+class TestViewModelRealLogging(TestViewModelFakeLogging):
+    def setUp(self):
+        self.view_model = QueueViewModel(RealLogger())

@@ -1,13 +1,16 @@
 from queue.model.model import Queue
+from queue.logger.reallogger import RealLogger
 
 
 class QueueViewModel:
-    def __init__(self):
+    def __init__(self, logger=RealLogger()):
+        self.logger = logger
         self.queue = Queue()
         self.input_info = ''
         self.arrived_info = ''
         self.set_arrive_btn_disabled()
         self.set_leave_btn_disabled()
+        self.logger.log('Welcome!')
 
     def set_arrive_btn_enabled(self):
         self.arrive_btn_state = 'normal'
@@ -46,10 +49,13 @@ class QueueViewModel:
             self.set_leave_btn_disabled()
 
     def arrive_btn_clicked(self):
+        self.logger.log('Arrive button clicked')
         self.queue.add_to_queue(self.input_info)
         self.arrived_info = self.queue.get_elements()
         self.set_leave_btn_enabled()
+        self.logger.log('Arrived info: %s' % self.input_info)
 
     def leave_btn_clicked(self):
+        self.logger.log('Leave button clicked')
         self.queue.remove_from_queue()
         self.arrived_info = self.queue.get_elements()
