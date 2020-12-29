@@ -6,13 +6,15 @@ from bit_array.viewmodel.viewmodel import BitArrayViewModel
 
 
 class GUIView(ttk.Frame):
+    N_LOG_MESSAGES_TO_DISPLAY = 15
+
     view_model = BitArrayViewModel()
 
     def __init__(self):
         self.view_model.set_operation(Operation.OR)
         ttk.Frame.__init__(self)
         self.master.title("Bit array")
-        self.master.geometry("450x100")
+        self.master.geometry("460x480")
 
         self.left_bit_array_label = ttk.Label(text="Left bit array", font="Arial 16")
         self.left_bit_array_label.grid(row=0, column=0)
@@ -37,6 +39,9 @@ class GUIView(ttk.Frame):
         self.result_entry = ttk.Label()
         self.result_entry.grid(row=2, column=1, columnspan=3)
 
+        self.lbl_result = ttk.Label(self.master, text="Here will be your result")
+        self.lbl_result.grid(row=3, column=0, columnspan=3, sticky=tk.W + tk.N)
+
         self.bind_events()
         self.mvvm_bind()
 
@@ -56,9 +61,18 @@ class GUIView(ttk.Frame):
             self.mvvm_back_bind()
         except ValueError:
             self.result_entry.configure(text='Wrong input. Expected: word of 0 and 1.')
+
+            logger_text = \
+                '\n'.join(self.view_model.logger.get_log_messages()[:-self.N_LOG_MESSAGES_TO_DISPLAY:-1])
+            self.lbl_result.config(text=logger_text)
             return
+
         self.view_model.calculate()
         self.mvvm_bind()
+
+        logger_text = \
+            '\n'.join(self.view_model.logger.get_log_messages()[:-self.N_LOG_MESSAGES_TO_DISPLAY:-1])
+        self.lbl_result.config(text=logger_text)
 
     def mvvm_bind(self):
         self.update_text(self.left_bit_array_entry, self.view_model.get_left_bit_array_string())
