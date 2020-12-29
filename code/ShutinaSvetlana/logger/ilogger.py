@@ -4,7 +4,7 @@ class ILogger:
         self.logs = []
 
     def get_logs(self):
-        return self.messages
+        return self.logs
 
     def log(self, log):
         self.logs.append(log)
