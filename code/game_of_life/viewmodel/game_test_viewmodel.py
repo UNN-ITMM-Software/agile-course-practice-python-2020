@@ -1,5 +1,7 @@
 import unittest
 
+from game_of_life.logger.fakelogger import FakeLogger
+from game_of_life.logger.reallogger import RealLogger
 from game_of_life.viewmodel.game_viewmodel import GameOfLifeViewModel
 
 
@@ -134,3 +136,62 @@ class TestGameOfLifeViewModel(unittest.TestCase):
         self.view_model.set_number_of_columns(11)
         self.view_model.clicked_add('column')
         self.assertEqual(12, self.view_model.get_number_of_columns())
+
+
+class TestViewModelFakeLogging(unittest.TestCase):
+    def setUp(self):
+        self.view_model = GameOfLifeViewModel(FakeLogger())
+
+    def test_logging_changing_number_of_rows(self):
+        self.view_model.set_number_of_rows('2')
+        self.assertEqual('Setting number of rows to 2', self.view_model.logger.get_last_message())
+
+    def test_logging_changing_number_of_columns(self):
+        self.view_model.set_number_of_columns('3')
+        self.assertEqual('Setting number of columns to 3', self.view_model.logger.get_last_message())
+
+    def test_logging_all(self):
+        self.view_model.set_current_color_field(fake_default_field_for_tests())
+        self.view_model.set_next_color_field(fake_default_field_for_tests())
+        self.view_model.color_changed(0, 0)
+        self.view_model.color_changed(0, 1)
+        self.view_model.color_changed(1, 0)
+        self.view_model.compute_next_step()
+        self.view_model.color_changed(1, 1)
+        result = ['Button clicked']
+        for i in range(2):
+            for j in range(2):
+                result.append('Next color field is %s' % self.view_model.next_color_field[i][j]['bg'])
+        self.assertEqual(result, self.view_model.logger.get_log_messages())
+
+    def test_logging_remove_row_button_clicked(self):
+        self.view_model.rows = 5
+        self.view_model.clicked_remove('row')
+        self.assertEqual(['Remove row button clicked',
+                          'Current amount of rows is 4'],
+                         self.view_model.logger.get_log_messages())
+
+    def test_logging_remove_column_button_clicked(self):
+        self.view_model.columns = 4
+        self.view_model.clicked_remove('column')
+        self.assertEqual(['Remove column button clicked',
+                          'Current amount of columns is 3'],
+                         self.view_model.logger.get_log_messages())
+
+    def test_logging_add_row_button_clicked(self):
+        self.view_model.rows = 4
+        self.view_model.clicked_add('row')
+        self.assertEqual(['Add row button clicked', 'Current amount of rows is 5'],
+                         self.view_model.logger.get_log_messages())
+
+    def test_logging_add_column_button_clicked(self):
+        self.view_model.columns = 3
+        self.view_model.clicked_add('column')
+        self.assertEqual(['Add column button clicked',
+                          'Current amount of columns is 4'],
+                         self.view_model.logger.get_log_messages())
+
+
+class TestViewModelRealLogging(TestViewModelFakeLogging):
+    def setUp(self):
+        self.view_model = GameOfLifeViewModel(RealLogger())
