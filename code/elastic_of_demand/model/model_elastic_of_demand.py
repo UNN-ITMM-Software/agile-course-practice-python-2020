@@ -63,7 +63,7 @@ class ElasticOfDemand:
 
     def by_price(self):
         if self._start_price is None and self._end_price is None:
-            raise InvalidArgumentError('')
+            raise InvalidArgumentError('Error price not defined')
 
         result = ((self._end_demand - self._start_demand) / self._start_demand) / \
                  ((self._end_price - self._start_price) / self._start_price)
@@ -73,7 +73,7 @@ class ElasticOfDemand:
 
     def by_salary(self):
         if self._start_salary is None and self._end_salary is None:
-            raise InvalidArgumentError('')
+            raise InvalidArgumentError('Error salary not defined')
 
         result = ((self._end_demand - self._start_demand) / (self._start_demand + self._end_demand)) * \
                  ((self._end_salary + self._start_salary) / (self._end_salary - self._start_salary))

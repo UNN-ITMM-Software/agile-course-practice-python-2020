@@ -1,6 +1,7 @@
 import unittest
 
-from ryabinin_kirill_lab1.src.elastic_of_demand import ElasticOfDemand, InvalidArgumentError, DemandTypes
+from elastic_of_demand.model.model_elastic_of_demand import ElasticOfDemand, InvalidArgumentError,\
+    DemandTypes
 
 
 class TestElasticOfDemand(unittest.TestCase):
