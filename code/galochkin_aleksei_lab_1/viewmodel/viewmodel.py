@@ -18,7 +18,7 @@ class NodeViewModel:
             if self.root_node is None:
                 self.root_node = Node(self.input_value)
             else:
-                Node.insert(self.root_node, self.input_value)
+                self.root_node = Node.insert(self.root_node, self.input_value)
 
             result_list = []
             Node.dfs(self.root_node, result_list)
@@ -32,7 +32,7 @@ class NodeViewModel:
     def remove_node(self):
         self.clear_error()
         self.logger.log('Trying to remove node with number {}'.format(self.input_value))
-        Node.remove(self.root_node, self.input_value)
+        self.root_node = Node.remove(self.root_node, self.input_value)
 
         result_list = []
         Node.dfs(self.root_node, result_list)
@@ -56,3 +56,4 @@ class NodeViewModel:
 
     def get_log_message(self):
         return self.log_message
+
