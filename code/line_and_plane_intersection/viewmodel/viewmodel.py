@@ -1,9 +1,10 @@
 from line_and_plane_intersection.model.intersection import Intersection, Line, Plane, Point3D
+from line_and_plane_intersection.logger.reallogger import RealLogger
 
 
 class ViewModel:
 
-    def __init__(self):
+    def __init__(self, logger=RealLogger()):
         self.line_point_values_dict = {}
         self.plane_point_values_dict = {}
         self.abcd = []
@@ -11,6 +12,8 @@ class ViewModel:
         self.current_dict_type = None
         self.interception_or_error_msg = ""
         self.intersection = Intersection()
+        self.logger = logger
+        self.logger.log('Line-Plane intersection application init')
 
     def _set_current_point(self, point_id, point_values_dict):
         if point_id is not None:
@@ -21,20 +24,24 @@ class ViewModel:
             self.current_point_id = point_id
 
     def set_current_point_for_plane(self, point_id):
+        self.logger.log('Current plane point = {}'.format(point_id))
         self.current_dict_type = "plane"
         self._set_current_point(point_id, self.plane_point_values_dict)
 
     def set_current_point_for_line(self, point_id):
+        self.logger.log('Current line point = {}'.format(point_id))
         self.current_dict_type = "line"
         self._set_current_point(point_id, self.line_point_values_dict)
 
     def set_x_y_z(self, x_y_z):
+        self.logger.log('dict_type = {}, x_y_z set = {}'.format(self.current_dict_type, x_y_z))
         if self.current_dict_type == "plane":
             self.plane_point_values_dict[self.current_point_id] = x_y_z
         else:
             self.line_point_values_dict[self.current_point_id] = x_y_z
 
     def set_abcd(self, abcd):
+        self.logger.log('abcd set = {}'.format(abcd))
         self.abcd = abcd
 
     def get_x_y_z(self):
@@ -54,6 +61,7 @@ class ViewModel:
         else:
             if is_validate is not None:
                 self.interception_or_error_msg = "Not completed points."
+        self.logger.log('Get result: {}'.format(self.interception_or_error_msg))
 
     def _get_corrected_values(self, dict):
         return list(map(lambda l: list(map(int, l)), list(dict.values())))

@@ -63,6 +63,7 @@ class GUI(tk.Frame):
 
     def setup_grid(self):
         self.rowconfigure(0, weight=1)
+        self.rowconfigure(1, weight=1)
         self.columnconfigure(0, weight=1, uniform='half')
         self.columnconfigure(1, weight=1, uniform='half')
         self.norms.grid(row=0, column=0, sticky='nswe')
