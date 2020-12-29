@@ -55,14 +55,14 @@ class TestViewModelFakeLogging(unittest.TestCase):
     def test_logging_init(self):
         self.assertEqual('Welcome!', self.view_model.logger.get_last_message())
 
-    def test_logging_button_clicked(self):
+    def test_logging_arrive_button_clicked(self):
         expected_messages = ['Arrive button clicked', 'Arrived info: 3 2 1 4 3']
 
         self.view_model.set_input_info('3 2 1 4 3')
         self.view_model.arrive_btn_clicked()
         self.assertEqual(expected_messages, self.view_model.logger.get_log_messages()[-2:])
 
-    def test_logging_button_clicked(self):
+    def test_logging_leave_button_clicked(self):
         expected_messages = ['Leave button clicked']
 
         self.view_model.leave_btn_clicked()
