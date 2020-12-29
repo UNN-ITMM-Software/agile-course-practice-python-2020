@@ -33,7 +33,6 @@ class NodeViewModel:
         self.clear_error()
         self.logger.log('Trying to remove node with number {}'.format(self.input_value))
         self.root_node = Node.remove(self.root_node, self.input_value)
-
         result_list = []
         Node.dfs(self.root_node, result_list)
         self.output_value = result_list
