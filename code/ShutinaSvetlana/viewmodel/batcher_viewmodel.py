@@ -20,6 +20,7 @@ def is_float(value):
 
 class SortingViewModel:
     def __init__(self, logger=RealLogger()):
+        self.logger = logger
         self.input_array = ''
         self.sorted_array = ''
         self.sort_btn_clicked = ''
