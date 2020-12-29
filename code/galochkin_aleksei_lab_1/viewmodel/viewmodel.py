@@ -56,4 +56,3 @@ class NodeViewModel:
 
     def get_log_message(self):
         return self.log_message
-
