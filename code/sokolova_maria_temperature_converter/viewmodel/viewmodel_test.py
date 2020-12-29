@@ -67,3 +67,7 @@ class MyTestCase(unittest.TestCase):
         view_model.convert()
         view_model.clear_error()
         self.assertEqual(view_model.get_error(), '')
+
+    def test_get_log_message(self):
+        view_model = TemperatureConverterViewModel()
+        self.assertEqual(view_model.get_log_message(), '')

@@ -1,5 +1,6 @@
 from enum import Enum
 
+from fibonacci_heap.logger.reallogger import RealLogger
 from fibonacci_heap.model.fibonacci_heap import FibonacciHeap, _Node
 
 
@@ -27,7 +28,10 @@ class HeapViewModel:
     }
     MAX_MESSAGE_NUMBER = 100
 
-    def __init__(self):
+    def __init__(self, logger=RealLogger()):
+        self.logger = logger
+        self.logger.log('Welcome!')
+
         # heap operations
         self.heap = FibonacciHeap()
         self.key = ''
@@ -103,6 +107,7 @@ class HeapViewModel:
         Set key value
         :param key: value to set
         """
+        self.logger.log('Set key is %s' % key)
         self.key = key
         self.validate_text()
 
@@ -111,6 +116,8 @@ class HeapViewModel:
         Set node value
         :param value: value to set
         """
+
+        self.logger.log('Set value is %s' % value)
         self.value = value
         self.validate_text()
 
@@ -157,13 +164,21 @@ class HeapViewModel:
         """
         if self.main_button_state == State.DISABLED:
             return
+
+        self.logger.log('Run button clicked')
+        self.logger.log('Selected operation is %s' % self.operation)
         if self.operation == NodeOperations.INSERT:
             try:
                 self.heap.insert(int(self.key), self.value)
                 self.unique_keys.append(self.key)
-                self.update_messages(self.INFO_MSG['insert'] % (self.key, self.value))
+
+                msg = self.INFO_MSG['insert'] % (self.key, self.value)
+                self.logger.log(msg)
+                self.update_messages(msg)
             except ValueError:
-                self.update_messages(self.INFO_MSG['key_invalid'] % self.key)
+                msg = self.INFO_MSG['key_invalid'] % self.key
+                self.logger.error(msg)
+                self.update_messages(msg)
 
         elif self.operation == NodeOperations.DELETE:
             try:
@@ -171,9 +186,14 @@ class HeapViewModel:
                 self.heap.delete(node)
                 self.update_messages(self.INFO_MSG['delete'] % self.key)
             except (ValueError, AssertionError):
-                self.update_messages(self.INFO_MSG['key_invalid'] % self.key)
+                msg = self.INFO_MSG['key_invalid'] % self.key
+                self.logger.error(msg)
+                self.update_messages(msg)
 
         elif self.operation == NodeOperations.FIND_MIN:
             min_node = self.heap.find_min()
             key, val = min_node.key, min_node.val
-            self.update_messages(self.INFO_MSG['find'] % (key, val))
+
+            msg = self.INFO_MSG['find'] % (key, val)
+            self.logger.log(msg)
+            self.update_messages(msg)

@@ -3,6 +3,13 @@ import tkinter as tk
 from debt_expenses.viewmodel.debt_viewmodel import DebtViewModel
 
 
+def format_log(messages):
+    result_log = ''
+    for message in messages:
+        result_log += message + '\n'
+    return result_log
+
+
 class GUIView:
     view_model = DebtViewModel()
     default_sticky = tk.W + tk.E + tk.N + tk.S
@@ -33,6 +40,7 @@ class GUIView:
 
         self.res = tk.Label(self.frame, text='Result : ', bg='pale green', font=32)
         self.error_field = tk.Label(self.frame, text='', font=28, bg='ghost white')
+        self.logger_field = tk.Label(self.frame, text='Log:', bg='ghost white', font=12)
 
         self.setup_grid()
         self.bind_events()
@@ -57,6 +65,7 @@ class GUIView:
 
         self.res.grid(row=4, column=0, columnspan=4, rowspan=4, sticky=self.default_sticky)
         self.error_field.grid(row=8, column=0, columnspan=4, sticky=self.default_sticky)
+        self.logger_field.grid(row=7, column=0, columnspan=4, stick=self.default_sticky)
 
     def bind_events(self):
         self.req_sum_value.bind('<KeyRelease>', self.change_req_sum)
@@ -119,3 +128,5 @@ class GUIView:
 
         error_msg = self.view_model.get_error_message()
         self.error_field.config(text='{}'.format(error_msg if error_msg else 'Normal work'))
+        self.logger_field.config(text='{}\n'.format(
+            format_log(self.view_model.logger.get_log_messages())))

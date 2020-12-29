@@ -1,5 +1,8 @@
 import unittest
+
 from statistical_values.viewmodel.viewmodel import StatisticalValuesViewModel
+from statistical_values.logger.fakelogger import FakeLogger
+from statistical_values.logger.reallogger import RealLogger
 
 
 class TestStatisticalValuesViewModel(unittest.TestCase):
@@ -103,3 +106,65 @@ class TestStatisticalValuesViewModel(unittest.TestCase):
         self.viewmodel.set_statistic('central moment')
         self.viewmodel.compute()
         self.assertEqual('Error: k must be > 0', self.viewmodel.get_error_message())
+
+
+class TestStatisticalValuesViewModelFakeLogging(unittest.TestCase):
+    def setUp(self):
+        self.viewmodel = StatisticalValuesViewModel(FakeLogger())
+
+    def test_logging_set_x_when_input_correct(self):
+        self.viewmodel.set_x('[1, 2]')
+        log = self.viewmodel.logger.get_last_message()
+
+        self.assertEqual("Set x is [1, 2].", log)
+
+    def test_logging_set_x_when_input_incorrect(self):
+        self.viewmodel.set_x('[1, 2!')
+        log = self.viewmodel.logger.get_last_message()
+
+        self.assertEqual("Error: incorrect expression in Values List", log)
+
+    def test_logging_set_x_when_input_not_supported_type(self):
+        self.viewmodel.set_x('{}')
+        log = self.viewmodel.logger.get_last_message()
+
+        self.assertEqual("Error: only list or tuple input supported in Values List", log)
+
+    def test_logging_set_k_when_input_correct(self):
+        self.viewmodel.set_k('1')
+
+        log = self.viewmodel.logger.get_last_message()
+        self.assertEqual("Set k is 1.", log)
+
+    def test_logging_set_k_when_input_incorrect(self):
+        self.viewmodel.set_k('[1, 2!')
+
+        log = self.viewmodel.logger.get_last_message()
+        self.assertEqual("Error: incorrect value k", log)
+
+    def test_logging_set_k_when_input_not_supported_type(self):
+        self.viewmodel.set_k('[1]')
+
+        log = self.viewmodel.logger.get_last_message()
+        self.assertEqual("Error: only int or float input supported in k", log)
+
+    def test_logging_set_statistic(self):
+        self.viewmodel.set_statistic('mean')
+
+        log = self.viewmodel.logger.get_last_message()
+        self.assertEqual("Set statistic is mean.", log)
+
+    def test_logging_compute(self):
+        self.viewmodel.set_x('[1, 2, 3, 2]')
+        self.viewmodel.set_statistic('mean')
+        self.viewmodel.compute()
+        log_expected = "Statistics with name `mean` was calculated. Result value is 2.0"
+
+        log = self.viewmodel.logger.get_last_message()
+
+        self.assertEqual(log_expected, log)
+
+
+class TestStatisticalValuesViewModelRealLogging(TestStatisticalValuesViewModelFakeLogging):
+    def setUp(self):
+        self.viewmodel = StatisticalValuesViewModel(RealLogger())
