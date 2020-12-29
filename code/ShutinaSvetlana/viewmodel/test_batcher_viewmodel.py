@@ -63,11 +63,12 @@ class TestSortingViewModel(unittest.TestCase):
         self.view_model.set_input_array('0.25 3.2 5.4 5')
         self.assertEqual('0.25 3.2 5.4 5', self.view_model.get_input_array())
 
+
 class TestSortingViewModelFakeLogger(unittest.TestCase):
-    
+
     def setUp(self):
         self.view_model = SortingViewModel(FakeLogger())
-        
+
     def test_logger_check_input_array(self):
         self.view_model.set_input_array('0.25 3.2 5.4 5')
         self.assertEqual('Input array: 0.25 3.2 5.4 5', self.view_model.logger.get_last_log())

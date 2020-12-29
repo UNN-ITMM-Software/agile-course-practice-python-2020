@@ -19,7 +19,7 @@ class TestCaesarCipherFakeLogger(unittest.TestCase):
         self.logger.log('Hello')
         self.assertEqual(['Hello'], self.logger.get_logs())
 
-    def test_added_a-few_messages(self):
+    def test_added_a_few_messages(self):
         self.logger.log('Hello')
         self.logger.log('Start app')
         self.assertEqual(['Hello', 'Start app'], self.logger.get_logs())
