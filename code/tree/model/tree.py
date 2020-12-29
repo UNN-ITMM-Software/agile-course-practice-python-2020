@@ -39,3 +39,12 @@ class Tree:
                 return self.data
         else:
             raise TypeError
+
+    def get_tree(self):
+        result = []
+        if self.left:
+            result.extend(self.left.get_tree())
+        result.append(self.data)
+        if self.right:
+            result.extend(self.right.get_tree())
+        return result

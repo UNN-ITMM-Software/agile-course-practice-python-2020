@@ -1,5 +1,7 @@
 import unittest
 
+from fibonacci_heap.logger.fakelogger import FakeLogger
+from fibonacci_heap.logger.reallogger import RealLogger
 from fibonacci_heap.viewmodel.main_viewmodel import HeapViewModel, State, NodeOperations
 
 
@@ -103,3 +105,37 @@ class TestFibonacciHeapViewModel(unittest.TestCase):
         self.view_model.click_run_button()
         expected_msg = HeapViewModel.INFO_MSG['find'] % (key, val)
         self.assertNotEqual(-1, self.view_model.get_message_text().find(expected_msg))
+
+
+class TestViewModelFakeLogging(unittest.TestCase):
+    def setUp(self):
+        self.view_model = HeapViewModel(FakeLogger())
+
+    def test_logging_init(self):
+        self.assertEqual('Welcome!', self.view_model.logger.get_last_message())
+
+    def test_logging_set_value(self):
+        self.view_model.set_value('5')
+        self.assertEqual('Set value is 5', self.view_model.logger.get_last_message())
+
+    def test_logging_set_key(self):
+        self.view_model.set_key('5')
+        self.assertEqual('Set key is 5', self.view_model.logger.get_last_message())
+
+    def test_logging_performing_operation(self):
+        expected_messages = [
+            'Run button clicked',
+            'Selected operation is {}'.format(NodeOperations.INSERT),
+            'Inserted node: key - {}, value - {}'.format(5, 4)]
+
+        self.view_model.set_key('5')
+        self.view_model.set_value('4')
+        self.view_model.set_operation(NodeOperations.INSERT)
+        self.view_model.click_run_button()
+
+        self.assertEqual(expected_messages, self.view_model.logger.get_log_messages()[-3:])
+
+
+class TestViewModelRealLogging(TestViewModelFakeLogging):
+    def setUp(self):
+        self.view_model = HeapViewModel(RealLogger())

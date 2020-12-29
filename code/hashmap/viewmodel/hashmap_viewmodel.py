@@ -1,4 +1,5 @@
 from hashmap.model.hashmap import Hashmap
+from hashmap.logger.reallogger import RealLogger
 from enum import Enum
 
 
@@ -25,7 +26,9 @@ class HashmapViewModel:
     }
     MAX_MESSAGE_NUMBER = 10
 
-    def __init__(self):
+    def __init__(self, logger=RealLogger()):
+        self.logger = logger
+        self.logger.log("create view")
         self.hashmap = Hashmap()
         self.messages = []
         self.key = ""
@@ -92,31 +95,40 @@ class HashmapViewModel:
 
     def click_run_button(self):
         if self.button_run_state == State.DISABLED:
+            self.logger.log("button is disabled")
             return
         if self.operation == HashmapOperation.INSERT:
             try:
                 self.hashmap.insert(self.key, self.value)
                 self.update_messages(self.MSG_TYPES["insert_msg"] % (self.key, self.value))
+                self.logger.log(self.MSG_TYPES["insert_msg"] % (self.key, self.value))
             except KeyError:
                 self.update_messages(self.MSG_TYPES["key_exist_msg"] % (self.key))
+                self.logger.log(self.MSG_TYPES["key_exist_msg"] % (self.key))
 
         elif self.operation == HashmapOperation.DELETE:
             try:
                 self.hashmap.delete(self.key)
                 self.update_messages(self.MSG_TYPES["delete_msg"] % (self.key))
+                self.logger.log(self.MSG_TYPES["delete_msg"] % (self.key))
             except KeyError:
                 self.update_messages(self.MSG_TYPES["key_not_exist_msg"] % (self.key))
+                self.logger.log(self.MSG_TYPES["key_not_exist_msg"] % (self.key))
 
         elif self.operation == HashmapOperation.GET:
             try:
                 value = self.hashmap.get(self.key)
                 self.update_messages(self.MSG_TYPES["get_msg"] % (self.key, value))
+                self.logger.log(self.MSG_TYPES["get_msg"] % (self.key, value))
             except KeyError:
                 self.update_messages(self.MSG_TYPES["key_not_exist_msg"] % (self.key))
+                self.logger.log(self.MSG_TYPES["key_not_exist_msg"] % (self.key))
 
         elif self.operation == HashmapOperation.UPDATE:
             try:
                 value = self.hashmap.update(self.key, self.value)
                 self.update_messages(self.MSG_TYPES["update_msg"] % (self.key, self.value))
+                self.logger.log(self.MSG_TYPES["update_msg"] % (self.key, self.value))
             except KeyError:
                 self.update_messages(self.MSG_TYPES["key_not_exist_msg"] % (self.key))
+                self.logger.log(self.MSG_TYPES["key_not_exist_msg"] % (self.key))
