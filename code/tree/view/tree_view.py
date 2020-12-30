@@ -50,6 +50,12 @@ class GUIView:
         self.show_tree = ScrolledText.ScrolledText(self.show_tree_frame, width=30)
         self.show_tree.pack()
 
+        self.log_frame = tk.Frame(master=self.window, relief=tk.RIDGE, borderwidth=5)
+        self.log_frame.pack()
+
+        self.log_text = ScrolledText.ScrolledText(self.log_frame, width=30)
+        self.log_text.pack()
+
         self.bind_events()
         self.window.mainloop()
 
@@ -94,3 +100,6 @@ class GUIView:
 
         self.show_tree.delete(1.0, tk.END)
         self.show_tree.insert(tk.INSERT, self.view_model.get_tree_values())
+
+        self.log_text.delete(1.0, tk.END)
+        self.log_text.insert(tk.INSERT, self.view_model.get_log_messages())

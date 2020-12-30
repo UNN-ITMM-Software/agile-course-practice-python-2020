@@ -46,3 +46,23 @@ class TestViewModel(unittest.TestCase):
         model.set_input_value(2)
         model.input_click()
         self.assertEqual(model.get_tree_values(), [1, 2])
+
+    def test_init_logger(self):
+        model = TreeViewModel()
+        self.assertEqual('Program started', model.logger.get_last_message())
+
+    def test_insert_logger(self):
+        model = TreeViewModel()
+        model.set_input_value(6)
+        model.input_click()
+        self.assertEqual('Число 6 добавлено', model.logger.get_last_message())
+
+    def test_output_result_logger(self):
+        model = TreeViewModel()
+        model.set_input_value(3)
+        model.input_click()
+        model.set_input_value(10)
+        model.input_click()
+        model.set_find_value(10)
+        model.find_click()
+        self.assertEqual('Результат поиска 10', model.logger.get_last_message())
