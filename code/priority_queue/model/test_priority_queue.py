@@ -34,7 +34,9 @@ class TestPriorityQueue(unittest.TestCase):
         pq1 = PriorityQueue()
         pq2 = PriorityQueue()
         pq1.push(2)
+        pq1.push(3)
         pq2.push(1)
+        pq2.push(2)
         pq1.merge(pq2)
         self.assertEqual(pq1.top(), 1)
 
