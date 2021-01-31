@@ -13,12 +13,12 @@ class TestLogger(unittest.TestCase):
     def test_empty_log_messages_by_default(self):
         log = self.logger.get_log_messages()
 
-        self.assetEqual(len(log), 0)
+        self.assertEqual(len(log), 0)
 
     def test_can_add_logging_message(self):
         self.logger.log("Example")
 
-        self.assertEqual(["Example"], self.logget.get_log_messages())
+        self.assertEqual(["Example"], self.logger.get_log_messages())
 
     def test_adding_multiple_log_messages(self):
         self.logger.log("Msg1")

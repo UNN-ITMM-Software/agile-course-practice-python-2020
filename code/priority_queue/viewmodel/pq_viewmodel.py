@@ -17,7 +17,7 @@ class PriorityQueueViewModel:
         return str(self.pq.top())
 
     def pop(self):
-        self.logger.log("Value popped from pq")
+        self.logger.log("PQ pop value")
         self.pq.pop()
 
     def is_empty(self):
