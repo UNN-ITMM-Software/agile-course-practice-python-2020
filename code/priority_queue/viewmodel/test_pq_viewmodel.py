@@ -1,5 +1,7 @@
 import unittest
 
+from priority_queue.logger.fakelogger import FakeLogger
+from priority_queue.logger.reallogger import RealLogger
 from priority_queue.viewmodel.pq_viewmodel import PriorityQueueViewModel
 
 
@@ -34,3 +36,25 @@ class TestPriorityQueueViewModel(unittest.TestCase):
             self.pqvm.push(v)
         self.pqvm.pop()
         self.assertEqual(self.pqvm.top(), '2')
+
+
+class TestViewModelFakeLogging(unittest.TestCase):
+    def setUp(self):
+        self.pqvm = PriorityQueueViewModel(FakeLogger())
+
+    def test_logging_init(self):
+        self.assertEqual("Hello pqvm init", self.pqvm.logger.get_last_msg())
+
+    def test_logging_on_retrieving_top_value(self):
+        self.assertEqual("PQ get top value", self.pqvm.logger.get_last_msg())
+
+    def test_logging_on_pushing_value(self):
+        self.assertEqual("PQ push value", self.pqvm.logger.get_last_msg())
+
+    def test_logging_on_pop_value(self):
+        self.assertEqual("PQ push value", self.pqvm.logger.get_last_msg())
+
+
+class TestViewModelRealLogging(unittest.TestCase):
+    def setUp(self):
+        self.pqvm = PriorityQueueViewModel(RealLogger())
