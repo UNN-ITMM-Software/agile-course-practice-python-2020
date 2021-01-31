@@ -30,24 +30,18 @@ class TestPriorityQueue(unittest.TestCase):
             pq.push(v)
         self.assertEqual(pq.top(), 2)
 
-    def test_can_merge_two_queues(self):
-        pq1 = PriorityQueue()
-        pq2 = PriorityQueue()
-        pq1.push(2)
-        pq1.push(3)
-        pq2.push(1)
-        pq2.push(2)
-        pq1.merge(pq2)
-        self.assertEqual(pq1.top(), 1)
-
-    def test_cannot_merge_with_wrong_arg(self):
+    def test_descending_min_after_pop(self):
         pq = PriorityQueue()
-        with self.assertRaises(TypeError):
-            pq.merge("notaPQ")
-
-    def test_consistent_min_after_pop(self):
-        pq = PriorityQueue()
-        for v in [3, 2, 1]:
+        for v in [4, 3, 2, 1]:
             pq.push(v)
         pq.pop()
         self.assertEqual(pq.top(), 2)
+
+    def test_ascending_min_after_pop(self):
+        pq = PriorityQueue()
+        for v in [1, 2, 3, 4]:
+            pq.push(v)
+        pq.pop()
+        pq.pop()
+        pq.pop()
+        self.assertEqual(pq.top(), 4)
