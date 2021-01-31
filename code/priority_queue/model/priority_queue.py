@@ -28,7 +28,7 @@ class PriorityQueue():
             idx = mchildi
             if(ha[idx] <= ha[mchildi]):
                 idx = tempidx
-				self.ha[idx], self.ha[mchildi] = self.ha[mchildi], self.ha[idx]
+                self.ha[idx], self.ha[mchildi] = self.ha[mchildi], self.ha[idx]
                 break
         return val
 
