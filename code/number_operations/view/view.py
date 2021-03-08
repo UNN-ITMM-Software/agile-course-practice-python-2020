@@ -28,6 +28,7 @@ class GUI(tk.Frame):
         self.calculator.numbers = tk.Frame(self.calculator)
 
         self.warning = tk.Label(self.calculator.numbers, text='', font=60)
+        self.label_log = tk.Label(self.calculator.numbers, text="Logging", font=60)
 
         # labels
         self.calculator.labels = tk.Frame(self.calculator.numbers)
@@ -73,6 +74,7 @@ class GUI(tk.Frame):
     def setup_calculator_grid(self):
         self.calculator.rowconfigure(0, weight=1)
         self.calculator.columnconfigure(0, weight=1)
+        self.label_log.pack(side='bottom')
         self.warning.pack(side='bottom', pady=100)
 
         # labels
@@ -215,3 +217,6 @@ class GUI(tk.Frame):
         self.calculator.result_hex.config(state='readonly')
 
         self.warning.config(text=self.viewmodel.get_warning())
+
+        logger_text = '\n'.join(self.viewmodel.logger.get_last_messages(3))
+        self.label_log.config(text=logger_text)

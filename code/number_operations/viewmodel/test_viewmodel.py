@@ -1,8 +1,11 @@
 import unittest
 
 from number_operations.viewmodel.viewmodel import NumberOperationsViewModel
+from number_operations.infrastructure.fake_logger import FakeLogger
+from number_operations.infrastructure.real_logger import RealLogger
 
-class NumberOperationsViewModelTests(unittest.TestCase):
+
+class TestNumberOperationsViewModel(unittest.TestCase):
     def setUp(self):
         self.model = NumberOperationsViewModel()
 
@@ -157,3 +160,60 @@ class NumberOperationsViewModelTests(unittest.TestCase):
         self.model.convert_second_dec()
         self.model.multiply()
         self.assertEqual('Invalid operation!', self.model.get_warning())
+
+
+class TestNumberOperationsViewModelFakeLogger(unittest.TestCase):
+    def setUp(self):
+        self.model = NumberOperationsViewModel(FakeLogger())
+
+    def test_logging_init(self):
+        self.assertEqual(['Start Logging'], self.model.logger.get_last_messages(1))
+
+    def test_logging_setting_first_number(self):
+        self.model.set_first('10', '1010', 'a')
+        self.assertEqual(['Setting first number: dec - 10, bin - 1010, hex - a'],
+                         self.model.logger.get_last_messages(1))
+
+    def test_logging_setting_second_number(self):
+        self.model.set_second('10', '1010', 'a')
+        self.assertEqual(['Setting second number: dec - 10, bin - 1010, hex - a'],
+                         self.model.logger.get_last_messages(1))
+
+    def test_logging_adding(self):
+        self.model.set_first('10', '1010', 'a')
+        self.model.set_second('10', '1010', 'a')
+        self.model.add()
+        self.assertEqual(['Adding 10 and 10'],
+                         self.model.logger.get_last_messages(1))
+
+    def test_logging_subtracting(self):
+        self.model.set_first('10', '1010', 'a')
+        self.model.set_second('10', '1010', 'a')
+        self.model.subtract()
+        self.assertEqual(['Subtracting 10 and 10'],
+                         self.model.logger.get_last_messages(1))
+
+    def test_logging_multiplying(self):
+        self.model.set_first('10', '1010', 'a')
+        self.model.set_second('10', '1010', 'a')
+        self.model.multiply()
+        self.assertEqual(['Multiplying 10 and 10'],
+                         self.model.logger.get_last_messages(1))
+
+    def test_logging_dividing(self):
+        self.model.set_first('10', '1010', 'a')
+        self.model.set_second('10', '1010', 'a')
+        self.model.divide()
+        self.assertEqual(['Dividing 10 and 10'],
+                         self.model.logger.get_last_messages(1))
+
+    def test_invalid_input(self):
+        self.model.set_first('abc')
+        self.model.convert_first_dec()
+        self.assertEqual(['Incorrect input!'],
+                         self.model.logger.get_last_messages(1))
+
+
+class TestNumberOperationsModelRealLogger(TestNumberOperationsViewModelFakeLogger):
+    def setUp(self):
+        self.model = NumberOperationsViewModel(RealLogger())
