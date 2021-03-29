@@ -7,12 +7,12 @@ class TestQueue(unittest.TestCase):
 
     def test_new_queue_is_empty(self):
         new_queue = Queue()
-        assert new_queue.is_empty() == True
+        assert new_queue.is_empty()
 
     def test_queue_is_not_empty(self):
         queue = Queue()
         queue.enqueue(1)
-        assert queue.is_empty() == False
+        assert not queue.is_empty()
 
     def test_size_empty_queue(self):
         queue = Queue()
@@ -40,4 +40,3 @@ class TestQueue(unittest.TestCase):
         queue.enqueue(1)
         queue.enqueue(2)
         assert queue.dequeue() == 1
-
