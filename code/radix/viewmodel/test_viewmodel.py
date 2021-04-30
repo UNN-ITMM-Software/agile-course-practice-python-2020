@@ -50,7 +50,7 @@ class TestSortingViewModel(unittest.TestCase):
         self.assertEqual('OK', self.view_model.get_sort_btn_clicked_result())
 
     def test_by_default_button_disabled(self):
-        self.assertEqual('disabled', self.view_model.get_sort_btn_state())
+        self.assertEqual('normal', self.view_model.get_sort_btn_state())
 
     def test_correct_sorting_1_numb(self):
         self.view_model.set_input_array('9')
