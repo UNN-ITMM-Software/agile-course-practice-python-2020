@@ -25,6 +25,7 @@ class SortingViewModel:
         self.sorted_array = ''
         self.sort_btn_click = ''
         self.log_message = ''
+        self.sort_btn_state = 'normal'
 
     def get_input_array(self):
         return self.input_array
@@ -47,8 +48,11 @@ class SortingViewModel:
     def get_sort_btn_clicked_result(self):
         return self.sort_btn_clicked
 
+    def set_sort_btn_disabled(self):
+        self.sort_btn_state = 'disabled'
+
     def get_sort_btn_state(self):
-        return 'job done'
+        return self.sort_btn_state
 
     def sort_btn_clicked(self):
         try:
