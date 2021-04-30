@@ -54,16 +54,11 @@ class Sorting:
 
             pow_10 = pow_10 * 10
 
-        negatives = []
         non_negatives = []
         for num in self.arr:
-            if num < 0:
-                negatives.append(num)
-            else:
-                non_negatives.append(num)
-        negatives.reverse()
+            non_negatives.append(num)
         self.arr.clear()
-        self.arr.extend(negatives + non_negatives)
+        self.arr.extend(non_negatives)
 
     def result_str(self):
         string = ''

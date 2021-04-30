@@ -48,7 +48,7 @@ class SortingViewModel:
         return self.sort_btn_clicked
 
     def get_sort_btn_state(self):
-        pass
+        return 'job done'
 
     def sort_btn_clicked(self):
         try:
