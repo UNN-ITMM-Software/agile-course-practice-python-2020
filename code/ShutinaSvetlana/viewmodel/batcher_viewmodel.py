@@ -1,5 +1,5 @@
-from model.batcher import Sorting
-from logger.real_logger import RealLogger
+from ShutinaSvetlana.model.batcher import Sorting
+from ShutinaSvetlana.logger.real_logger import RealLogger
 
 
 def is_int(value):
