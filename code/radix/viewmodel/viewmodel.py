@@ -51,8 +51,8 @@ class SortingViewModel:
 #     def set_sort_btn_disabled(self):
 #        self.sort_btn_state = 'normal'
 
-    def get_sort_btn_state(self):
-        return self.sort_btn_state
+#     def get_sort_btn_state(self):
+#        return self.sort_btn_state
 
     def sort_btn_clicked(self):
         try:
