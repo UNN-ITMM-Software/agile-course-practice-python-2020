@@ -1,5 +1,6 @@
 from ..model.queue import Queue
 
+
 class QueueViewmodel:
 
     def __init__(self):
@@ -9,7 +10,7 @@ class QueueViewmodel:
 
     def make_string(self):
         self.string = '\n'.join(self.queue.items)
-    
+
     def enqueue(self, x):
         self.queue.enqueue(x)
         self.make_string()

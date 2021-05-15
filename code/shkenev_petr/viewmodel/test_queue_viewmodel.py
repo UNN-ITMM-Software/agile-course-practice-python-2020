@@ -2,6 +2,7 @@ import unittest
 
 from .queue_viewmodel import QueueViewmodel
 
+
 class TestQueueViewmodel(unittest.TestCase):
 
     def test_new_queue_viewmodel_empty(self):
@@ -37,4 +38,3 @@ class TestQueueViewmodel(unittest.TestCase):
         queue_viewmodel.enqueue('y')
         queue_viewmodel.dequeue()
         assert queue_viewmodel.string == 'y'
-

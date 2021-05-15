@@ -2,6 +2,7 @@
 
 from ..viewmodel.queue_viewmodel import QueueViewmodel
 
+
 class QueueView(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
@@ -10,10 +11,9 @@ class QueueView(tk.Frame):
         self.create_widgets()
         self.viewmodel = QueueViewmodel()
 
-
     def create_widgets(self):
         # Поле ввода элемента для постановки в очередь
-        self.text_box = tk.Text(self, height = 1)
+        self.text_box = tk.Text(self, height=1)
         self.text_box.pack()
 
         # Кнопка вставки
@@ -23,7 +23,7 @@ class QueueView(tk.Frame):
         self.button_enqueue.pack()
 
         # Отображение содержимого очереди
-        self.text_box_queue = tk.Text(self, height = 10)
+        self.text_box_queue = tk.Text(self, height=10)
         self.text_box_queue.pack()
 
         # Кнопка извлечения элемента из очереди
@@ -36,13 +36,11 @@ class QueueView(tk.Frame):
         self.label = tk.Label(self)
         self.label.pack()
 
-
     def enqueue(self):
-        self.viewmodel.enqueue(self.text_box.get("1.0",'end-1c'))
+        self.viewmodel.enqueue(self.text_box.get("1.0", 'end-1c'))
         self.label['text'] = self.viewmodel.peek
         self.text_box_queue.delete(1.0, "end-1c")
         self.text_box_queue.insert("end-1c", self.viewmodel.string)
-
 
     def dequeue(self):
         self.viewmodel.dequeue()
