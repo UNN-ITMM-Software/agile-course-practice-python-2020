@@ -3,6 +3,7 @@ import unittest
 from .queue_viewmodel import QueueViewmodel
 from .logger import Logger
 
+
 class TestQueueViewmodelLogging(unittest.TestCase):
 
     def test_new_queue_viewmodel_empty(self):

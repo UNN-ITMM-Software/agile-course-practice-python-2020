@@ -14,4 +14,3 @@ class Logger(ILogger):
     def log(self, message):
         self.messages.append(message)
         logging.info(message)
- 

@@ -15,13 +15,13 @@ class QueueViewmodel:
 
     def enqueue(self, x):
         self.queue.enqueue(x)
-        self.logger.log('Enqueued: ' + str(x));
+        self.logger.log('Enqueued: ' + str(x))
         self.make_string()
         self.peek = self.queue.peek()
 
     def dequeue(self):
         x = self.queue.dequeue()
-        self.logger.log('Dequeued: ' + str(x));
+        self.logger.log('Dequeued: ' + str(x))
         self.make_string()
         if self.queue.is_empty():
             self.peek = ''
