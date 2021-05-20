@@ -5,10 +5,6 @@ from .ilogger import ILogger
 
 class TestILogger(unittest.TestCase):
 
-    def test_create(self):
-        with self.assertRaises(NotImplementedError):
-                logger = ILogger()
-
     def test_get_messages_list(self):
         with self.assertRaises(NotImplementedError):
                 logger = ILogger()
