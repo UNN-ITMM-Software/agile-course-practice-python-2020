@@ -13,4 +13,4 @@ class TestILogger(unittest.TestCase):
     def test_log(self):
         with self.assertRaises(NotImplementedError):
                 logger = ILogger()
-                logger.log()
+                logger.log("Message")

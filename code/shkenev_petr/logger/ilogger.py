@@ -1,6 +1,6 @@
 class ILogger(object):
     def __init__(self):
-        raise NotImplementedError
+        pass
 
     def get_messages_list(self):
         raise NotImplementedError
