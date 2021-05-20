@@ -38,4 +38,3 @@ class TestQueueViewmodelLogging(unittest.TestCase):
         queue_viewmodel = QueueViewmodel(Logger())
         queue_viewmodel.enqueue('x')
         assert queue_viewmodel.logger.get_messages_list() == ['Enqueued: x']
-
